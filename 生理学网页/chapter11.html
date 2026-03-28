@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11章 · 感觉生理 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第11章 · 感觉生理</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第四阶段 · 整合应用 · 第 11 章</div>
+    <h1>感觉生理</h1>
+    <p class="subtitle">辣不是一种"味觉"——它是痛觉。你感受到的"辣"和烫伤，走的是同一条神经通路。</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐ 趣味性强，充满反直觉的发现</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第11章（神经系统）</strong>、<strong>第13章（感觉器官）</strong> — 你了解了眼、耳、皮肤感受器的结构，这章讲感觉转导和感知的机制。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>"辣"为什么用牛奶缓解比喝水更有效？（TRPV1的化学原理）</li>
+            <li>晕车晕船的根本原因是什么？为什么低头看手机更容易晕？</li>
+            <li>油耳是什么基因决定的？和狐臭有关系吗？</li>
+        </ul>
+    </div>
+
+    <!-- 一、感觉转导的通用原理 -->
+    <h2 id="一感觉转导物理化学信号变成动作电位">一、感觉转导：物理/化学信号变成动作电位</h2>
+
+    <p>所有感觉的本质都是同一个过程：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🔄 感觉转导通用模型</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">外界刺激<br>（光/声/压/化学）</div>
+            <div class="fd-arrow">→<br>感受器</div>
+            <div class="fd-node fn-default">感受器电位<br>（级差电位）<br>强度编码</div>
+            <div class="fd-arrow">→<br>超过阈值</div>
+            <div class="fd-node fn-organ">传入神经元<br>动作电位<br>（频率编码）</div>
+            <div class="fd-arrow">→<br>脊髓/脑干</div>
+            <div class="fd-node fn-brain">皮层处理<br>→ 有意识感知</div>
+        </div>
+    </div>
+
+    <div class="info-box blue">
+        <div class="box-title">🔑 感觉的两大编码方式</div>
+        <p><strong>强度编码</strong>：刺激越强 → 动作电位频率越高（Hz越高）。但动作电位本身是全或无的，不能"更大"，只能"更频繁"。</p>
+        <p><strong>位置编码</strong>：不同感受器对应的皮层区域不同（躯体感觉皮层的"小人图"homunculus），信号来自哪里，你就感觉到哪里痛/热。这就是为什么"截肢后幻肢痛"是真实的——残余神经仍然输入到相应皮层区域，大脑认为那个位置仍然存在。</p>
+    </div>
+
+    <!-- 二、痛觉 -->
+    <h2 id="二痛觉两种纤维两种痛感">二、痛觉：两种纤维，两种痛感</h2>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>特征</th><th>Aδ纤维（快痛）</th><th>C纤维（慢痛）</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>髓鞘</td><td>有髓（薄）</td><td>无髓</td></tr>
+                <tr><td>传导速度</td><td>5-30 m/s</td><td>0.5-2 m/s</td></tr>
+                <tr><td>痛感性质</td><td>尖锐、定位准确（"第一痛"）</td><td>弥散、烧灼感（"第二痛"）</td></tr>
+                <tr><td>功能</td><td>立即警报：让你迅速缩手</td><td>持续提醒：防止继续使用受伤部位</td></tr>
+                <tr><td>激活物</td><td>机械压力、温度</td><td>炎症因子（前列腺素/缓激肽）、热、化学物质</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>用手触碰热源的体验正是这两种纤维的时间差：先感到尖锐刺痛（Aδ，快）→ 手已缩回 → 片刻后感到弥散烧灼感（C纤维，慢）。</p>
+
+    <!-- 三、辣=痛觉 -->
+    <h2 id="三辣椒素与-trpv1辣不是味觉是痛觉">三、辣椒素与 TRPV1：辣不是味觉，是痛觉</h2>
+
+    <div class="info-box green">
+        <div class="box-title">🌶️ TRPV1 受体：辣椒的分子靶点</div>
+        <p><strong>TRPV1（Transient Receptor Potential Vanilloid 1）</strong>是一个离子通道蛋白，正常功能是响应<strong>高温（&gt;43°C）</strong>和<strong>酸性环境（&lt;pH6）</strong>，属于痛觉感受器，分布在C纤维末梢。</p>
+        <p>辣椒素（Capsaicin）分子结构类似"高温信号"，可以直接激活TRPV1 → Ca²⁺/Na⁺内流 → 产生动作电位 → 传递到脊髓"烫伤/疼痛"通路 → 大脑感受到"热痛"。</p>
+        <p>所以辣是一种<strong>痛觉触发的幻觉热感</strong>——你的嘴并没有真的被烧到，但神经告诉大脑"这里在烧"。</p>
+    </div>
+
+    <div class="life-example">
+        <strong>为什么喝牛奶比喝水更能缓解辣？</strong><br>
+        <strong>水不管用的原因</strong>：辣椒素是脂溶性分子，不溶于水。用水冲洗只是物理冲走表面的少量辣椒素，且把辣椒素分散到更大面积，可能让你感觉更辣。<br><br>
+        <strong>牛奶有效的两个原因</strong>：<br>
+        ① <strong>酪蛋白（Casein）</strong>：牛奶中的磷酸酪蛋白是表面活性剂，可以乳化（包裹）脂溶性的辣椒素，从TRPV1受体上将其"洗掉"——类似洗洁精去油污的原理<br>
+        ② <strong>脂肪</strong>：全脂牛奶中的脂肪可以溶解辣椒素，物理稀释局部浓度<br><br>
+        其他有效方法：酒精（溶解辣椒素）、橄榄油（脂肪）、含糖食物（蔗糖可竞争性结合TRPV1的部分位点）。冰冷的食物通过降温可短暂抑制TRPV1激活（低温 &lt;43°C 以下TRPV1活性降低），但效果是暂时的。
+    </div>
+
+    <!-- 四、前庭系统与晕车 -->
+    <h2 id="四前庭系统平衡感的硬件">四、前庭系统：平衡感的硬件</h2>
+
+    <p>内耳的前庭器官由两个部分组成，各有专门负责的感觉类型：</p>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>结构</th><th>感知类型</th><th>原理</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>半规管</strong>（3个，互相垂直）</td>
+                    <td>旋转加速度（角加速度）</td>
+                    <td>管内淋巴液惯性滞后 → 壶腹中毛细胞偏转 → 放电频率变化 → 感知旋转方向和速率</td>
+                </tr>
+                <tr>
+                    <td><strong>椭圆囊+球囊</strong>（耳石器官）</td>
+                    <td>线性加速度 + 重力方向</td>
+                    <td>碳酸钙耳石（otolith）惰性 → 压力偏转毛细胞 → 感知头部倾斜和直线运动</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="personal-case">
+        <div class="box-title">🚗 个人关联：晕车的完整感觉冲突机制</div>
+        <p>晕车（Motion Sickness）的根本原因是<strong>三路感觉信号相互矛盾</strong>：</p>
+
+        <div class="flow-diagram" style="margin:12px 0;">
+            <div class="fd-title">🚌 晕车的三路信号冲突</div>
+            <div class="fd-chain">
+                <div class="fd-node fn-organ">前庭系统<br>感知到振动/转弯<br>（运动信号✓）</div>
+                <div class="fd-arrow">→<br>大脑整合</div>
+                <div class="fd-node fn-alert">视觉信号<br>（看手机/书）<br>显示"静止"（矛盾！）</div>
+                <div class="fd-arrow">+</div>
+                <div class="fd-node fn-default">本体感觉<br>坐着，四肢<br>"未运动"信号</div>
+            </div>
+        </div>
+
+        <p><strong>大脑的"解毒"逻辑</strong>：进化中，如果你的运动感和视觉/本体感觉信号严重不符，最可能的原因是<strong>你中毒了</strong>（误食神经毒素 → 感知系统失调）。因此大脑启动了"排毒程序"——呕吐。</p>
+
+        <p><strong>为什么低头看手机更容易晕？</strong><br>
+        低头时，头部位置固定在向下的角度 → 前庭的头部位置信号（向下倾斜）和视网膜输入（看屏幕，视觉上近距离静止物体）与车辆运动产生的前庭信号更加不匹配。同时颈部肌肉本体感觉也与前庭信号矛盾更大。</p>
+
+        <p><strong>缓解策略（有生理依据）</strong>：<br>
+        ① <strong>看远处（车窗外地平线）</strong>：让视觉信号与前庭信号一致（视觉确认"你在运动中"）<br>
+        ② <strong>坐前排/驾驶</strong>：驾驶者自己控制运动方向，预期信号与实际信号匹配 → 晕车极少<br>
+        ③ <strong>半躺或平躺</strong>：耳石器官感受到的重力方向稳定，减少位置冲突<br>
+        ④ <strong>薄荷/生姜</strong>：可减轻恶心感（作用于消化道的5-HT受体），不解决根本冲突，但能减轻症状<br>
+        ⑤ <strong>抗胆碱药（东莨菪碱贴片）</strong>：抑制前庭信号向呕吐中枢的传递，有效但有口干/嗜睡副作用</p>
+    </div>
+
+    <!-- 五、视觉：暗适应 -->
+    <h2 id="五视觉从光子到神经信号">五、视觉：从光子到神经信号</h2>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>特征</th><th>视杆细胞（Rods）</th><th>视锥细胞（Cones）</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>数量</td><td>约 1.2 亿</td><td>约 600 万</td></tr>
+                <tr><td>分布</td><td>周边视网膜（中央凹几乎无）</td><td>中央凹高度密集</td></tr>
+                <tr><td>光敏感性</td><td>极高（暗光下工作）</td><td>低（需较强光）</td></tr>
+                <tr><td>颜色感知</td><td>无（只感知亮度）</td><td>有（L/M/S三种，对应长/中/短波长）</td></tr>
+                <tr><td>分辨率</td><td>低（多个杆收敛到一个神经元）</td><td>高（中央凹几乎1:1对应神经元）</td></tr>
+                <tr><td>感光物质</td><td>视紫红质（rhodopsin）</td><td>视锥蛋白（opsins，三种）</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="life-example">
+        <strong>暗适应：为什么进入暗室后慢慢才能看清东西？</strong><br>
+        <strong>视紫红质（Rhodopsin）的"漂白"与恢复</strong>：<br>
+        亮光下：视紫红质被光子分解（漂白） → 视杆细胞在亮处不起作用（已全部"失活"）<br>
+        进入暗室：视紫红质从视黄醛+视蛋白重新合成（需要时间）<br>
+        ↓ 约7分钟：视锥细胞适应（色觉部分恢复）<br>
+        ↓ 约20-30分钟：视杆细胞充分暗适应（黑暗中最佳视力）<br><br>
+        这就是为什么进入电影院要等一会儿才能找到座位，以及飞行员在夜间飞行前不能看强光的原因。<br><br>
+        相反，<strong>明适应</strong>（从暗处进入亮处）只需 1-5 分钟——视紫红质漂白很快，比合成快得多。
+    </div>
+
+    <!-- 六、听觉 -->
+    <h2 id="六耳蜗身体里的频谱分析仪">六、耳蜗：身体里的频谱分析仪</h2>
+
+    <p>耳蜗（cochlea）的基底膜（basilar membrane）是一个天然的频率分析器：</p>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>耳蜗位置</th><th>响应频率</th><th>类比</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>蜗底（入口端）</td><td>高频（>4000 Hz）</td><td>小提琴弦（短硬）</td></tr>
+                <tr><td>蜗顶（末端）</td><td>低频（20-200 Hz）</td><td>大提琴弦（长软）</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>不同频率的声音让基底膜的不同位置最大振动 → 对应位置的<strong>毛细胞</strong>偏转 → 离子通道开放 → 动作电位 → 听神经 → 初级听觉皮层（颞叶）解码。</p>
+
+    <div class="life-example">
+        <strong>耳鸣（Tinnitus）的机制</strong><br>
+        长期噪音暴露（演唱会/工厂/爆炸）→ 高频区毛细胞机械损伤 → 毛细胞静息时仍持续自发放电（失去了正常的静息抑制）→ 大脑接收到"没有声音来源"的持续神经冲动 → 感知为持续的嗡嗡声/铃声。<br><br>
+        毛细胞<strong>不能再生</strong>（不像皮肤细胞）。噪音性耳鸣通常是<strong>永久性损伤</strong>。唯一的预防是护耳（在高噪音环境使用耳塞/耳罩）。年轻人因为长时间戴耳机听高音量音乐导致的提前听力损失正在成为重要公共卫生问题。
+    </div>
+
+    <!-- 七、油耳 -->
+    <h2 id="七油耳与-abcc11-基因">七、油耳与 ABCC11 基因</h2>
+
+    <div class="personal-case">
+        <div class="box-title">👂 油耳（湿性耵聍）的基因机制</div>
+        <p><strong>耵聍（耳垢）</strong>有两种类型：</p>
+        <ul>
+            <li><strong>湿性/油性</strong>（深色、粘稠）：由外耳道皮脂腺和<strong>顶泌腺（apocrine glands）</strong>的分泌物混合产生</li>
+            <li><strong>干性/片状</strong>（浅色、干燥）：分泌量少，自然干燥后脱落</li>
+        </ul>
+        <p>这两种类型完全由<strong>ABCC11 基因</strong>（16号染色体）的单核苷酸多态性（SNP rs17822931）决定：</p>
+        <ul>
+            <li>AA/AG（至少一个A等位基因）→ 湿性耵聍 → 顶泌腺功能完整</li>
+            <li>GG（纯合G等位基因）→ 干性耵聍 → ABCC11转运蛋白功能丧失，分泌减少</li>
+        </ul>
+        <p><strong>与狐臭的关系</strong>：<strong>完全相同的基因！</strong>ABCC11编码的转运蛋白也存在于腋窝顶泌腺。GG型（干耳）几乎不产生腋臭；AA/AG型（油耳）腋窝顶泌腺正常分泌 → 被皮肤细菌分解 → 产生气味（狐臭）。</p>
+        <p>东亚人群 GG 频率高达 80-95%（干耳为主），欧美/非洲人群几乎全为 AA 型（油耳为主）。这就是为什么日本有专门的腋臭手术（汉方/ETS类腋臭手术市场），而欧美几乎没有这类需求（因为人人都有，视为正常）。</p>
+    </div>
+
+    <!-- CS类比 -->
+    <h2 id="八-cs-类比感觉系统--模拟信号采集--多路复用">八、💻 CS 类比：感觉系统 = 模拟信号采集 + 多路复用</h2>
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：感觉转导 = ADC + 多路并行信号处理</div>
+        <ul>
+            <li><code>感受器</code> = ADC（Analog-to-Digital Converter）：把物理世界的连续信号（光强、声压、温度）转换为可以被神经传输的数字信号（动作电位频率）</li>
+            <li><code>动作电位频率编码</code> = PWM（脉冲宽度调制）或 PFM：不是信号幅值，而是脉冲频率携带信息量</li>
+            <li><code>耳蜗基底膜</code> = 硬件级 FFT（Fast Fourier Transform）：声音的时域信号在耳蜗中被物理性"展开"为频域（不同位置=不同频率），在外周就完成了频谱分析，而不是把原始信号全送到皮层处理</li>
+            <li><code>感觉适应</code> = 自动增益控制（AGC）：持续刺激后感受器降低灵敏度（如进入有气味的房间一会儿后闻不到了），防止信号饱和</li>
+            <li><code>TRPV1 被辣椒素激活</code> = 错误的中断信号：外来分子直接触发了"错误的硬件中断"（烧伤警报），CPU（大脑）无法区分真实烫伤和辣椒素，只能都当烧伤处理</li>
+            <li><code>晕车的感觉冲突</code> = 传感器融合失败：IMU（前庭）和摄像头（视觉）数据相互矛盾，卡尔曼滤波器（大脑位置推算）输出异常 → 系统进入保护模式（呕吐）</li>
+        </ul>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="九常见误区">九、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：辣味是第六种基本味道</span>
+        <span class="truth">✅ 真相：五种基本味觉（甜/酸/苦/咸/鲜）都是味觉细胞上的化学受体感知，信号经味觉神经传入。辣（Capsaicin）激活的是<strong>痛觉和温觉感受器 TRPV1</strong>，与味觉系统是完全不同的神经通路。严格说，辣不是"taste"，而是一种"somatic sensation"（躯体感觉）。这也是为什么把辣椒素涂在皮肤上（辣椒软膏）也会产生热感，但皮肤没有味觉细胞。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：用耳勺掏耳朵是正确的清洁方式</span>
+        <span class="truth">✅ 真相：外耳道皮肤具有自清洁功能——皮肤向外迁移（像传送带），耵聍会自然移到外耳道口。用棉签/耳勺掏耳朵的问题：①把耵聍往内推（堵塞）②划伤外耳道皮肤（感染入口）③不小心损伤鼓膜。医生建议：只清洁外耳道口可见的部分，用柔软毛巾即可。如果耵聍栓塞，需要耳鼻喉科用温水冲洗或耳镜下取出。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：眼睛转一圈可以自我诊断眩晕类型</span>
+        <span class="truth">✅ 真相：良性阵发性位置性眩晕（BPPV，"耳石症"）和中枢性眩晕（小脑/脑干病变）的鉴别需要专业的眼震检查（Dix-Hallpike试验等）。自行转眼睛不能区分这两者，而中枢性眩晕需要立即就医（可能是脑卒中）。突发严重眩晕+头痛/言语不清/共济失调 = 立即就医，不要等待。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：高音量听耳机只要不超过几个小时就没问题</span>
+        <span class="truth">✅ 真相：噪音性听力损失是<strong>剂量-响应关系</strong>：音量×时间 = 总能量暴露。WHO建议：85 dB 每天最多 8 小时；90 dB 最多 2.5 小时；100 dB 最多 15 分钟；110 dB 最多 2 分钟。大多数耳机最大音量在 100-110 dB 范围内。最安全的原则：耳机音量不超过设备最大音量的 60%，每次不超过 60 分钟。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="十病理预告">十、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">良性阵发性位置性眩晕（BPPV）</span>：耳石（碳酸钙晶体）脱落到半规管内 → 头位改变时耳石随重力移动，错误激活毛细胞 → 强烈旋转感（短暂，持续 &lt;60秒）。最常见的眩晕原因（占外周性眩晕约50%）。<strong>Epley复位法</strong>（特定头位变化动作）可将脱落耳石"归位"，有效率>80%，是非药物治疗的首选。</p>
+        <p>👉 <span class="condition">青光眼（Glaucoma）</span>：眼内压升高 → 压迫视神经（视盘）→ 视神经纤维缓慢死亡 → 视野从周边开始缩小（周边视力先消失）。早期无症状，常被忽视到晚期。40岁以上应定期测眼内压，尤其有家族史者。</p>
+        <p>👉 <span class="condition">带状疱疹后神经痛（PHN）</span>：水痘-带状疱疹病毒潜伏在背根神经节，重新激活时沿皮节分布 → 急性期剧烈疼痛 → 病毒损伤C纤维后，残余神经元异常自发放电 → 慢性烧灼样/电击样疼痛，可持续数月到数年。老年人和免疫功能下降者发病率高，接种带状疱疹疫苗可大幅降低风险。</p>
+        <p>👉 <span class="condition">色盲（Color Blindness）</span>：视锥细胞的某种opsin基因突变或缺失 → 无法分辨特定波长范围的颜色。最常见的是红绿色盲（L型和M型视锥蛋白基因在X染色体上，男性发病率约8%）。真正的全色盲（achromatopsia）极少见。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter10.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第10章 · 内分泌生理</div>
+        </a>
+        <a href="chapter12.html" class="next">
+            <div><span class="nav-label">下一章</span>第12章 · 体温与代谢</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一感觉转导物理化学信号变成动作电位">一、感觉转导原理</a></li>
+            <li><a href="#二痛觉两种纤维两种痛感">二、痛觉机制</a></li>
+            <li><a href="#三辣椒素与-trpv1辣不是味觉是痛觉">三、辣=痛觉(TRPV1)</a></li>
+            <li><a href="#四前庭系统平衡感的硬件">四、前庭系统</a></li>
+            <li><a href="#五视觉从光子到神经信号">五、视觉</a></li>
+            <li><a href="#六耳蜗身体里的频谱分析仪">六、听觉耳蜗</a></li>
+            <li><a href="#七油耳与-abcc11-基因">七、🔬 油耳基因</a></li>
+            <li><a href="#八-cs-类比感觉系统--模拟信号采集--多路复用">八、💻 CS类比</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">TRPV1 辣椒素受体</a></li>
+            <li><a href="glossary.html">前庭系统</a></li>
+            <li><a href="glossary.html">感觉冲突 Motion Sickness</a></li>
+            <li><a href="glossary.html">视紫红质 Rhodopsin</a></li>
+            <li><a href="glossary.html">ABCC11 基因</a></li>
+            <li><a href="glossary.html">基底膜 Basilar Membrane</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第11章 · 感觉生理</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter10.html">← 上一章</a> &nbsp;·&nbsp; <a href="chapter12.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

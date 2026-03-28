@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>药物快查索引 — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* 药物索引专用样式 */
+.search-bar {
+  display: flex;
+  gap: .8rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: .7rem 1rem;
+  border: 2px solid var(--primary-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.search-input:focus { border-color: var(--primary); }
+.filter-btn {
+  padding: .5rem 1rem;
+  border: 2px solid var(--primary-light);
+  border-radius: 6px;
+  background: white;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: .85rem;
+  transition: all .2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.drug-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+.drug-table th {
+  background: var(--primary);
+  color: white;
+  padding: .8rem .6rem;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.drug-table td {
+  padding: .65rem .6rem;
+  border-bottom: 1px solid #e0f2fe;
+  vertical-align: top;
+}
+.drug-table tr:hover td { background: #f0f9ff; }
+.drug-table tr:nth-child(even) td { background: #f8fafc; }
+.drug-table tr:nth-child(even):hover td { background: #f0f9ff; }
+.ti-badge {
+  display: inline-block;
+  padding: .2rem .5rem;
+  border-radius: 4px;
+  font-size: .78rem;
+  font-weight: 700;
+  color: white;
+}
+.ti-narrow { background: #dc2626; }
+.ti-medium { background: #d97706; }
+.ti-wide   { background: #16a34a; }
+.chapter-link {
+  display: inline-block;
+  padding: .15rem .45rem;
+  border-radius: 4px;
+  font-size: .78rem;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.chapter-link:hover { background: var(--primary); color: white; }
+.drug-name-main { font-weight: 700; color: var(--primary-dark); }
+.drug-name-alias { font-size: .78rem; color: #64748b; }
+.category-badge {
+  display: inline-block;
+  padding: .15rem .5rem;
+  border-radius: 12px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.cat-cv   { background:#dbeafe; color:#1d4ed8; }
+.cat-cns  { background:#f3e8ff; color:#7e22ce; }
+.cat-abx  { background:#dcfce7; color:#15803d; }
+.cat-onco { background:#fef9c3; color:#854d0e; }
+.cat-resp { background:#e0f2fe; color:#0369a1; }
+.cat-gi   { background:#fce7f3; color:#be185d; }
+.cat-endo { background:#ffedd5; color:#c2410c; }
+.cat-pain { background:#f1f5f9; color:#475569; }
+.cat-fund { background:#e2e8f0; color:#334155; }
+.table-container {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #e0f2fe;
+  box-shadow: 0 2px 8px rgba(3,105,161,.08);
+}
+.result-count {
+  font-size: .85rem;
+  color: #64748b;
+  margin-bottom: .8rem;
+}
+.hidden-row { display: none; }
+.index-intro {
+  background: linear-gradient(135deg, var(--primary-light), #fff);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #bae6fd;
+}
+.index-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.stat-item {
+  text-align: center;
+}
+.stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); }
+.stat-lbl { font-size: .8rem; color: #64748b; }
+.filters-group {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>🛠️ 工具页</span>
+  <span>›</span>
+  <span>药物快查索引</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">🛠️ 工具页</div>
+  <h1>药物快查索引</h1>
+  <p class="hero-sub">覆盖全12章核心药物，支持按名称/类别/章节/靶点快速筛选，配TI（治疗指数）风险提示</p>
+</div>
+
+<div class="main-content" style="display:block">
+<div class="content-body" style="max-width:100%">
+
+<div class="index-intro">
+  <p>💡 <strong>使用方法</strong>：在搜索框输入药物名称、机制或适应症关键词，或点击类别按钮过滤。TI标识：
+    <span class="ti-badge ti-narrow">TI窄</span> 需要监测血药浓度，
+    <span class="ti-badge ti-medium">TI中</span> 注意剂量，
+    <span class="ti-badge ti-wide">TI宽</span> 相对安全
+  </p>
+  <div class="index-stats">
+    <div class="stat-item"><div class="stat-num" id="total-count">60</div><div class="stat-lbl">收录药物</div></div>
+    <div class="stat-item"><div class="stat-num">12</div><div class="stat-lbl">覆盖章节</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-lbl">药物类别</div></div>
+    <div class="stat-item"><div class="stat-num" id="show-count">60</div><div class="stat-lbl">当前显示</div></div>
+  </div>
+</div>
+
+<div class="section-card">
+  <div class="search-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="🔍 输入药物名、机制、适应症...">
+    <button class="filter-btn" onclick="clearSearch()">清除</button>
+  </div>
+
+  <div class="filters-group" id="filterBtns">
+    <button class="filter-btn active" data-cat="all">全部</button>
+    <button class="filter-btn" data-cat="fund">基础药理</button>
+    <button class="filter-btn" data-cat="cv">心血管</button>
+    <button class="filter-btn" data-cat="resp">呼吸系统</button>
+    <button class="filter-btn" data-cat="gi">消化系统</button>
+    <button class="filter-btn" data-cat="pain">镇痛麻醉</button>
+    <button class="filter-btn" data-cat="cns">中枢神经</button>
+    <button class="filter-btn" data-cat="endo">内分泌</button>
+    <button class="filter-btn" data-cat="abx">抗菌</button>
+    <button class="filter-btn" data-cat="onco">抗肿瘤</button>
+  </div>
+
+  <div class="result-count" id="resultCount">显示 60 / 60 个药物</div>
+
+  <div class="table-container">
+    <table class="drug-table" id="drugTable">
+      <thead>
+        <tr>
+          <th>药物名称</th>
+          <th>类别</th>
+          <th>作用靶点/机制</th>
+          <th>主要适应症</th>
+          <th>关键副作用/注意</th>
+          <th>TI</th>
+          <th>章节</th>
+        </tr>
+      </thead>
+      <tbody id="drugTableBody">
+        <!-- 基础药理 -->
+        <tr data-cat="fund" data-search="阿托品 m受体拮抗 乙酰胆碱 心动过缓 有机磷中毒">
+          <td><div class="drug-name-main">阿托品</div><div class="drug-name-alias">Atropine</div></td>
+          <td><span class="category-badge cat-fund">基础药理</span></td>
+          <td>M受体拮抗（竞争性）</td>
+          <td>心动过缓/有机磷解毒/术前抑制腺体</td>
+          <td>口干/心动过速/尿潴留/散瞳（SLUD反向）</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter1.html" class="chapter-link">Ch.1</a></td>
+        </tr>
+        <tr data-cat="fund" data-search="纳洛酮 阿片拮抗 竞争 μ受体 呼吸抑制逆转">
+          <td><div class="drug-name-main">纳洛酮</div><div class="drug-name-alias">Naloxone</div></td>
+          <td><span class="category-badge cat-fund">基础药理</span></td>
+          <td>μ/κ/δ受体纯拮抗剂（高亲和力）</td>
+          <td>阿片过量逆转/呼吸抑制</td>
+          <td>t½短（60-90min），需重复给药；依赖患者→急性戒断</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter1.html" class="chapter-link">Ch.1</a> <a href="chapter8.html" class="chapter-link">Ch.8</a></td>
+        </tr>
+        <tr data-cat="fund" data-search="沙丁胺醇 β2激动 支气管扩张 SABA 哮喘">
+          <td><div class="drug-name-main">沙丁胺醇</div><div class="drug-name-alias">Albuterol/Salbutamol</div></td>
+          <td><span class="category-badge cat-resp">呼吸系统</span></td>
+          <td>β₂受体激动剂（SABA）</td>
+          <td>哮喘急性发作/COPD急性加重（按需）</td>
+          <td>心动过速/低钾血症/震颤</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter1.html" class="chapter-link">Ch.1</a> <a href="chapter6.html" class="chapter-link">Ch.6</a></td>
+        </tr>
+        <!-- 药动学 -->
+        <tr data-cat="fund" data-search="华法林 维生素K拮抗 抗凝 INR 蛋白结合">
+          <td><div class="drug-name-main">华法林</div><div class="drug-name-alias">Warfarin</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>维生素K环氧化物还原酶抑制→凝血因子Ⅱ/Ⅶ/Ⅸ/Ⅹ↓</td>
+          <td>房颤/机械瓣膜/静脉血栓/肺栓塞</td>
+          <td>大量药物相互作用（CYP2C9）；出血；胎儿毒性；需INR监测（目标2-3）</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter2.html" class="chapter-link">Ch.2</a> <a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <!-- 药效学 -->
+        <tr data-cat="cns" data-search="地高辛 心力衰竭 Na-K ATP酶 TI窄 强心苷">
+          <td><div class="drug-name-main">地高辛</div><div class="drug-name-alias">Digoxin</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>Na⁺/K⁺-ATPase抑制→细胞内Ca²⁺↑→心肌收缩力↑；迷走神经兴奋→心率↓</td>
+          <td>心衰（辅助）/房颤心率控制</td>
+          <td>TI≈2，室性心律失常/黄绿视/恶心；低钾增强毒性</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter3.html" class="chapter-link">Ch.3</a></td>
+        </tr>
+        <!-- 心血管 -->
+        <tr data-cat="cv" data-search="卡托普利 ACEI 血管紧张素 干咳 缓激肽 高血压 心衰">
+          <td><div class="drug-name-main">卡托普利/依那普利</div><div class="drug-name-alias">ACEI类</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>ACE抑制→AngⅡ↓+缓激肽↑→血管扩张</td>
+          <td>高血压/心衰/糖尿病肾病/心肌梗死后</td>
+          <td>干咳（缓激肽）；血管神经水肿；高钾；妊娠禁忌</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <tr data-cat="cv" data-search="缬沙坦 ARB 血管紧张素受体 高血压 心衰 ACEI不耐受">
+          <td><div class="drug-name-main">缬沙坦/氯沙坦</div><div class="drug-name-alias">ARB类</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>AT₁受体拮抗→AngⅡ效应↓</td>
+          <td>高血压/心衰/ACEI不耐受替代</td>
+          <td>无干咳；血管神经水肿（罕见）；高钾；妊娠禁忌</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <tr data-cat="cv" data-search="氨氯地平 CCB 钙拮抗剂 二氢吡啶 高血压 心绞痛 踝部水肿">
+          <td><div class="drug-name-main">氨氯地平</div><div class="drug-name-alias">Amlodipine/CCB二氢吡啶</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>L型Ca²⁺通道阻滞→血管平滑肌舒张</td>
+          <td>高血压/心绞痛（稳定型/变异型）</td>
+          <td>踝部水肿；头痛；颜面潮红；反射性心动过速</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <tr data-cat="cv" data-search="美托洛尔 比索洛尔 β阻滞剂 心衰 心绞痛 哮喘禁忌">
+          <td><div class="drug-name-main">美托洛尔/比索洛尔</div><div class="drug-name-alias">β₁选择性阻滞剂</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>β₁受体阻断→心率↓/心肌收缩力↓/肾素↓</td>
+          <td>心衰/心绞痛/高血压/心梗后/房颤心率控制</td>
+          <td>哮喘慎用；骤停→心绞痛/心梗；疲劳；性功能障碍</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <tr data-cat="cv" data-search="螺内酯 保钾利尿剂 醛固酮 心衰 MRA 男性乳房发育">
+          <td><div class="drug-name-main">螺内酯/依普利酮</div><div class="drug-name-alias">MRA类</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>醛固酮受体拮抗→K⁺保留/Na⁺排出</td>
+          <td>心衰（GDMT）/高血压/肝硬化腹水</td>
+          <td>高钾血症；男性乳房发育（螺内酯）；ACEI/ARB联用增加高钾风险</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <tr data-cat="cv" data-search="阿司匹林 抗血板 COX-1 血栓素 心肌梗死 阿司匹林哮喘">
+          <td><div class="drug-name-main">阿司匹林（低剂量）</div><div class="drug-name-alias">ASA 75-100mg/d</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>不可逆抑制COX-1→TXA₂↓→血小板聚集↓</td>
+          <td>动脉血栓预防（心梗/脑梗/支架后）</td>
+          <td>胃肠道出血；阿司匹林哮喘（LOX通路↑）；与NSAIDs拮抗</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter5.html" class="chapter-link">Ch.5</a></td>
+        </tr>
+        <tr data-cat="cv" data-search="他汀 辛伐他汀 HMG-CoA 降胆固醇 肌病 横纹肌溶解">
+          <td><div class="drug-name-main">阿托伐他汀/瑞舒伐他汀</div><div class="drug-name-alias">他汀类/Statins</div></td>
+          <td><span class="category-badge cat-cv">心血管</span></td>
+          <td>HMG-CoA还原酶抑制→肝脏胆固醇合成↓→LDL-R上调→LDL↓</td>
+          <td>动脉粥样硬化/高胆固醇血症/心血管事件预防</td>
+          <td>肌痛/肌病（CYP3A4抑制剂增加风险→横纹肌溶解）；肝酶升高；新发糖尿病</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter2.html" class="chapter-link">Ch.2</a></td>
+        </tr>
+        <!-- 呼吸 -->
+        <tr data-cat="resp" data-search="布地奈德 ICS 吸入糖皮质激素 哮喘控制药 漱口">
+          <td><div class="drug-name-main">布地奈德/氟替卡松</div><div class="drug-name-alias">ICS类</div></td>
+          <td><span class="category-badge cat-resp">呼吸系统</span></td>
+          <td>糖皮质激素→核受体→炎症基因转录↓→气道炎症↓</td>
+          <td>哮喘控制（第3阶及以上）/COPD（激素反应型）</td>
+          <td>口腔念珠菌（用后漱口！）；声音嘶哑；全身作用（大剂量）</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter6.html" class="chapter-link">Ch.6</a></td>
+        </tr>
+        <tr data-cat="resp" data-search="噻托溴铵 LAMA M3 COPD 24小时 支气管扩张">
+          <td><div class="drug-name-main">噻托溴铵</div><div class="drug-name-alias">Tiotropium/LAMA</div></td>
+          <td><span class="category-badge cat-resp">呼吸系统</span></td>
+          <td>M₃受体拮抗→支气管平滑肌舒张（24小时）</td>
+          <td>COPD一线维持治疗/哮喘（联合）</td>
+          <td>口干；尿潴留（老年男性慎用）；青光眼</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter6.html" class="chapter-link">Ch.6</a></td>
+        </tr>
+        <tr data-cat="resp" data-search="孟鲁司特 白三烯 LTRA 哮喘 神经精神副作用 FDA警告">
+          <td><div class="drug-name-main">孟鲁司特</div><div class="drug-name-alias">Montelukast/LTRA</div></td>
+          <td><span class="category-badge cat-resp">呼吸系统</span></td>
+          <td>CysLT₁受体拮抗→白三烯效应↓</td>
+          <td>哮喘（辅助）/变应性鼻炎/阿司匹林哮喘</td>
+          <td>FDA黑框警告：抑郁/自杀意念/行为改变（神经精神副作用）</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter6.html" class="chapter-link">Ch.6</a></td>
+        </tr>
+        <tr data-cat="resp" data-search="肾上腺素 过敏性休克 α1 β1 β2 肌注大腿">
+          <td><div class="drug-name-main">肾上腺素（肌注）</div><div class="drug-name-alias">Epinephrine</div></td>
+          <td><span class="category-badge cat-resp">呼吸系统</span></td>
+          <td>α₁（升压）+β₁（心率）+β₂（支气管扩张）</td>
+          <td>过敏性休克急救（唯一一线）</td>
+          <td>高血压/心律失常；外渗坏死（静脉）；指趾注射禁忌</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter6.html" class="chapter-link">Ch.6</a></td>
+        </tr>
+        <!-- 消化 -->
+        <tr data-cat="gi" data-search="奥美拉唑 PPI 质子泵抑制剂 不可逆 胃溃疡 GERD">
+          <td><div class="drug-name-main">奥美拉唑/泮托拉唑</div><div class="drug-name-alias">PPI类</div></td>
+          <td><span class="category-badge cat-gi">消化系统</span></td>
+          <td>不可逆抑制H⁺/K⁺-ATPase（壁细胞质子泵）</td>
+          <td>消化性溃疡/GERD/Hp根除/NSAIDs预防</td>
+          <td>长期：低镁/艰难梭菌/B₁₂↓/骨折风险；CYP2C19相互作用（氯吡格雷）</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter7.html" class="chapter-link">Ch.7</a></td>
+        </tr>
+        <tr data-cat="gi" data-search="昂丹司琼 5HT3拮抗 止吐 化疗相关恶心 QT延长">
+          <td><div class="drug-name-main">昂丹司琼</div><div class="drug-name-alias">Ondansetron</div></td>
+          <td><span class="category-badge cat-gi">消化系统</span></td>
+          <td>5-HT₃受体拮抗（中枢+外周）</td>
+          <td>化疗/放疗/术后恶心呕吐</td>
+          <td>QT延长（高剂量静脉）；便秘；头痛</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter7.html" class="chapter-link">Ch.7</a></td>
+        </tr>
+        <tr data-cat="gi" data-search="对乙酰氨基酚 APAP 扑热息痛 肝毒性 NAC 解毒">
+          <td><div class="drug-name-main">对乙酰氨基酚</div><div class="drug-name-alias">APAP/Acetaminophen</div></td>
+          <td><span class="category-badge cat-gi">消化系统</span></td>
+          <td>中枢COX-3抑制（机制尚不完全明确）</td>
+          <td>解热镇痛/骨关节炎（首选）/阿片联合</td>
+          <td>过量→NAPQI→肝细胞坏死（NAC解毒，8h内效果最佳）；酒精激活CYP2E1增加风险</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter7.html" class="chapter-link">Ch.7</a></td>
+        </tr>
+        <!-- 镇痛 -->
+        <tr data-cat="pain" data-search="吗啡 阿片 μ受体 镇痛 便秘 呼吸抑制 五大效应">
+          <td><div class="drug-name-main">吗啡/氢吗啡酮</div><div class="drug-name-alias">强效阿片</div></td>
+          <td><span class="category-badge cat-pain">镇痛麻醉</span></td>
+          <td>μ受体激动（Gi偶联）→镇痛/欣快/便秘/缩瞳/呼吸抑制</td>
+          <td>重度疼痛/急性心梗/癌性疼痛</td>
+          <td>呼吸抑制（纳洛酮逆转）；便秘（无耐受性→PAMORA）；成瘾性；缩瞳</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter8.html" class="chapter-link">Ch.8</a></td>
+        </tr>
+        <tr data-cat="pain" data-search="芬太尼 强阿片 贴片 透皮 快速起效 胸壁强直">
+          <td><div class="drug-name-main">芬太尼</div><div class="drug-name-alias">Fentanyl</div></td>
+          <td><span class="category-badge cat-pain">镇痛麻醉</span></td>
+          <td>μ受体强激动剂（100×吗啡）</td>
+          <td>术中麻醉/癌痛（透皮贴）/急性重度疼痛</td>
+          <td>呼吸抑制（极快）；胸壁强直（快速静推）；成瘾性高（街头芬太尼危机）</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter8.html" class="chapter-link">Ch.8</a></td>
+        </tr>
+        <tr data-cat="pain" data-search="利多卡因 局麻 钠通道阻断 心律失常 LAST 脂肪乳">
+          <td><div class="drug-name-main">利多卡因</div><div class="drug-name-alias">Lidocaine</div></td>
+          <td><span class="category-badge cat-pain">镇痛麻醉</span></td>
+          <td>Na⁺通道阻滞（频率依赖性）→局麻；高剂量静脉→抗心律失常（Ib类）</td>
+          <td>局部麻醉/室性心律失常（心梗后）</td>
+          <td>LAST（局麻全身毒性）：CNS兴奋→惊厥→心血管抑制；20%脂肪乳解救；酸性环境（脓肿）失效</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter8.html" class="chapter-link">Ch.8</a></td>
+        </tr>
+        <tr data-cat="pain" data-search="布洛芬 NSAIDs COX-1 COX-2 胃肠道损伤 肾功能 心血管">
+          <td><div class="drug-name-main">布洛芬/萘普生</div><div class="drug-name-alias">非选择性NSAIDs</div></td>
+          <td><span class="category-badge cat-pain">镇痛麻醉</span></td>
+          <td>COX-1+COX-2抑制→PGE₂/TXA₂↓</td>
+          <td>轻中度疼痛/发热/炎症性疾病</td>
+          <td>胃溃疡（PGE₂保护↓，系统机制）；肾功能损害；心血管（COX-2效应）；孕晚期禁忌</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter8.html" class="chapter-link">Ch.8</a></td>
+        </tr>
+        <!-- CNS -->
+        <tr data-cat="cns" data-search="氟西汀 帕罗西汀 舍曲林 SSRI 抑郁 5HT再摄取 延迟起效">
+          <td><div class="drug-name-main">氟西汀/舍曲林/帕罗西汀</div><div class="drug-name-alias">SSRI类</div></td>
+          <td><span class="category-badge cat-cns">中枢神经</span></td>
+          <td>5-HT转运体(SERT)抑制→突触5-HT↑</td>
+          <td>抑郁/焦虑/PTSD/OCD/惊恐障碍</td>
+          <td>起效2-4周；性功能障碍；SSRI停药综合征（帕罗西汀最重）；5-HT综合征（MAOIs并用）；增加青少年自杀意念</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter9.html" class="chapter-link">Ch.9</a></td>
+        </tr>
+        <tr data-cat="cns" data-search="地西泮 苯二氮卓 GABA 镇静 苯二氮卓 氟马西尼逆转">
+          <td><div class="drug-name-main">地西泮/劳拉西泮</div><div class="drug-name-alias">苯二氮卓类/BZD</div></td>
+          <td><span class="category-badge cat-cns">中枢神经</span></td>
+          <td>GABA-A正变构调节→Cl⁻通道开放频率↑</td>
+          <td>焦虑/失眠/癫痫持续状态/酒精戒断/术前用药</td>
+          <td>嗜睡/共济失调；老年人跌倒；依赖（慢减量）；与阿片联用致死；氟马西尼逆转</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter9.html" class="chapter-link">Ch.9</a></td>
+        </tr>
+        <tr data-cat="cns" data-search="氯氮平 奥氮平 非典型抗精神病 代谢综合征 粒细胞缺乏 QT">
+          <td><div class="drug-name-main">奥氮平/氯氮平</div><div class="drug-name-alias">非典型抗精神病药</div></td>
+          <td><span class="category-badge cat-cns">中枢神经</span></td>
+          <td>D₂+5-HT₂A拮抗（广谱）→精神症状↓，EPS较少</td>
+          <td>精神分裂症/双相情感障碍/难治性精神病（氯氮平）</td>
+          <td>代谢综合征（体重↑/血糖↑/血脂↑）；氯氮平特有：粒细胞缺乏症（每周WBC监测）</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter9.html" class="chapter-link">Ch.9</a></td>
+        </tr>
+        <tr data-cat="cns" data-search="锂盐 双相情感障碍 TI窄 肾毒性 甲减 NSAIDs噻嗪利尿剂 相互作用">
+          <td><div class="drug-name-main">碳酸锂</div><div class="drug-name-alias">Lithium</div></td>
+          <td><span class="category-badge cat-cns">中枢神经</span></td>
+          <td>GSK-3β抑制等多靶点（未完全阐明）</td>
+          <td>双相情感障碍（躁狂/预防）</td>
+          <td>TI≈3（0.6-1.2 mEq/L）；肾毒性/甲减/多尿；NSAIDs/噻嗪/ACEI→锂中毒；妊娠Ebstein畸形</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter9.html" class="chapter-link">Ch.9</a></td>
+        </tr>
+        <tr data-cat="cns" data-search="左旋多巴 卡比多巴 帕金森 多巴胺前药 开关现象 异动症">
+          <td><div class="drug-name-main">左旋多巴+卡比多巴</div><div class="drug-name-alias">L-DOPA/Carbidopa</div></td>
+          <td><span class="category-badge cat-cns">中枢神经</span></td>
+          <td>L-DOPA穿越BBB→DA前药；卡比多巴阻断外周脱羧</td>
+          <td>帕金森病一线</td>
+          <td>长期：开关现象/异动症/幻觉/冲动控制障碍；恶心（卡比多巴减轻）；直立性低血压</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter9.html" class="chapter-link">Ch.9</a></td>
+        </tr>
+        <!-- 内分泌 -->
+        <tr data-cat="endo" data-search="二甲双胍 metformin AMPK 2型糖尿病 乳酸酸中毒 肾功能">
+          <td><div class="drug-name-main">二甲双胍</div><div class="drug-name-alias">Metformin</div></td>
+          <td><span class="category-badge cat-endo">内分泌</span></td>
+          <td>AMPK激活→肝糖输出↓/胰岛素敏感性↑</td>
+          <td>T2DM一线（心血管中性/保护）</td>
+          <td>GFR&lt;30禁用（乳酸酸中毒）；GFR 30-45减量；B₁₂吸收↓；造影剂前暂停；胃肠道不适</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter10.html" class="chapter-link">Ch.10</a></td>
+        </tr>
+        <tr data-cat="endo" data-search="司美格鲁肽 GLP-1 减重 心血管保护 胰高糖素样肽 恶心呕吐">
+          <td><div class="drug-name-main">司美格鲁肽/利拉鲁肽</div><div class="drug-name-alias">GLP-1 RA类</div></td>
+          <td><span class="category-badge cat-endo">内分泌</span></td>
+          <td>GLP-1受体激动→葡萄糖依赖性胰岛素↑+胰高糖素↓+食欲↓</td>
+          <td>T2DM+心血管高危/减重/心衰保护</td>
+          <td>恶心/呕吐（起始）；甲状腺C细胞肿瘤（啮齿动物，MEN2/甲状腺髓样癌禁忌）；胰腺炎（监测）</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter10.html" class="chapter-link">Ch.10</a></td>
+        </tr>
+        <tr data-cat="endo" data-search="达格列净 SGLT2 达格列净 心衰 CKD 泌尿感染 DKA">
+          <td><div class="drug-name-main">达格列净/恩格列净</div><div class="drug-name-alias">SGLT2i类</div></td>
+          <td><span class="category-badge cat-endo">内分泌</span></td>
+          <td>肾近端小管SGLT2抑制→葡萄糖排泄↑</td>
+          <td>T2DM+心衰/CKD保护（独立于血糖控制）</td>
+          <td>泌尿生殖系感染（女性）；DKA（正常血糖型！）；脱水；下肢截肢（坎格列净）</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter10.html" class="chapter-link">Ch.10</a></td>
+        </tr>
+        <tr data-cat="endo" data-search="胰岛素 基础 速效 低血糖 K调节 DKA治疗">
+          <td><div class="drug-name-main">胰岛素（各剂型）</div><div class="drug-name-alias">速效/长效/预混</div></td>
+          <td><span class="category-badge cat-endo">内分泌</span></td>
+          <td>胰岛素受体→GLUT4移位→葡萄糖摄取↑；合成代谢</td>
+          <td>T1DM必须/T2DM各阶段/DKA/HHS</td>
+          <td>低血糖（最重要）；体重增加；低钾（治疗DKA时补钾）；注射部位脂肪萎缩</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter10.html" class="chapter-link">Ch.10</a></td>
+        </tr>
+        <tr data-cat="endo" data-search="泼尼松 地塞米松 糖皮质激素 抗炎 HPA轴抑制 库欣">
+          <td><div class="drug-name-main">泼尼松/地塞米松</div><div class="drug-name-alias">系统性糖皮质激素</div></td>
+          <td><span class="category-badge cat-endo">内分泌</span></td>
+          <td>GR（核受体）→炎症基因↓/免疫抑制/ACTH↓（HPA轴）</td>
+          <td>各种炎症/自身免疫/器官移植/irAE/肿瘤相关</td>
+          <td>长期：骨质疏松/感染↑/高血糖/库欣/HPA抑制（不可骤停！）；PUD/精神症状/白内障</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter10.html" class="chapter-link">Ch.10</a></td>
+        </tr>
+        <!-- 抗菌 -->
+        <tr data-cat="abx" data-search="青霉素 阿莫西林 β内酰胺 PBP 细胞壁 过敏">
+          <td><div class="drug-name-main">阿莫西林/氨苄西林</div><div class="drug-name-alias">氨基青霉素</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>抑制PBP→细胞壁肽聚糖交联↓→细菌溶解（杀菌）</td>
+          <td>社区获得性肺炎/Hp根除/耳鼻喉感染/尿路感染</td>
+          <td>青霉素过敏（IgE介导/交叉过敏率~1-2%）；腹泻；C.diff；皮疹（单核细胞增多症）</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="头孢曲松 三代头孢 第三代头孢菌素 脑膜炎 肺炎 ESBL">
+          <td><div class="drug-name-main">头孢曲松/头孢噻肟</div><div class="drug-name-alias">第三代头孢菌素</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>β-内酰胺环与PBP结合→细胞壁合成↓（杀菌）</td>
+          <td>细菌性脑膜炎/社区肺炎/肠杆菌科/奈瑟菌</td>
+          <td>β-内酰胺酶产生→耐药；胆道淤泥（头孢曲松）；过敏</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="亚胺培南 美罗培南 碳青霉烯 ESBL 最广谱 NDM KPC 超级细菌">
+          <td><div class="drug-name-main">美罗培南/亚胺培南</div><div class="drug-name-alias">碳青霉烯类</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>最稳定β-内酰胺→PBP1a/2a/4→极广谱杀菌</td>
+          <td>ESBL产生菌/医院内感染/感染性休克（最后手段之一）</td>
+          <td>诱导KPC/NDM耐药（应用于降阶梯策略）；惊厥（亚胺培南）；C.diff</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="万古霉素 MRSA 糖肽 TDM AUC D-Ala-D-Ala 红人综合征">
+          <td><div class="drug-name-main">万古霉素</div><div class="drug-name-alias">Vancomycin</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>D-Ala-D-Ala末端结合→肽聚糖延伸受阻（杀菌）</td>
+          <td>MRSA/严重革兰阳性菌/C.diff（口服）</td>
+          <td>肾毒性/耳毒性（需TDM，AUC/MIC 400-600）；红人综合征（快速输注→组胺）；VRE对万古耐药</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="阿奇霉素 大环内酯 50S 蛋白合成 支原体 QT延长 CYP3A4抑制">
+          <td><div class="drug-name-main">阿奇霉素/克拉霉素</div><div class="drug-name-alias">大环内酯类</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>50S核糖体23S rRNA结合→蛋白合成↓（抑菌）</td>
+          <td>社区肺炎（非典型）/Hp根除（克拉霉素）/衣原体/支原体</td>
+          <td>QT延长；胃肠道不适；克拉霉素CYP3A4强抑制→他汀/华法林相互作用</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="环丙沙星 左氧氟沙星 喹诺酮 DNA旋转酶 肌腱 QT延长 黑框警告">
+          <td><div class="drug-name-main">环丙沙星/左氧氟沙星</div><div class="drug-name-alias">氟喹诺酮类</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>DNA旋转酶/拓扑异构酶Ⅳ抑制→DNA复制阻断（杀菌）</td>
+          <td>尿路感染/腹腔感染/结核辅助/炭疽</td>
+          <td>黑框警告：肌腱断裂/QT延长/周围神经病变/主动脉夹层/CNS副作用；儿童/孕妇禁用；阳离子螯合</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="甲硝唑 厌氧菌 艰难梭菌 滴虫 酒精相互作用 双硫仑反应">
+          <td><div class="drug-name-main">甲硝唑</div><div class="drug-name-alias">Metronidazole</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>还原成自由基→DNA氧化损伤（厌氧菌/原虫特异性）</td>
+          <td>厌氧菌感染/C.diff（轻度）/滴虫/Hp根除</td>
+          <td>双硫仑样反应（饮酒）；金属味；周围神经病（长期）；神经毒性</td>
+          <td><span class="ti-badge ti-wide">TI宽</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <tr data-cat="abx" data-search="利福平 结核 RNA聚合酶 诱导剂 CYP450 肝毒性 橙红色尿">
+          <td><div class="drug-name-main">利福平</div><div class="drug-name-alias">Rifampin</div></td>
+          <td><span class="category-badge cat-abx">抗菌</span></td>
+          <td>细菌RNA聚合酶β亚基抑制→转录↓（杀菌）</td>
+          <td>结核病（一线联合）/MRSA协同/脑膜炎球菌预防</td>
+          <td>强CYP450诱导剂（华法林/OCP/HAART失效）；肝毒性；橙红色尿液/泪液/汗液；耐药迅速（单用）</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter11.html" class="chapter-link">Ch.11</a></td>
+        </tr>
+        <!-- 抗肿瘤 -->
+        <tr data-cat="onco" data-search="顺铂 铂类化疗 DNA交联 肾毒性 耳毒性 睾丸癌 大量水化">
+          <td><div class="drug-name-main">顺铂/卡铂</div><div class="drug-name-alias">铂类/Platinum</div></td>
+          <td><span class="category-badge cat-onco">抗肿瘤</span></td>
+          <td>DNA链间/链内铂-鸟嘌呤交联→复制阻断</td>
+          <td>睾丸癌/卵巢癌/肺癌/头颈癌</td>
+          <td>肾毒性（大量水化预防）；耳毒性（永久）；严重恶心；外周神经毒性；骨髓抑制</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter12.html" class="chapter-link">Ch.12</a></td>
+        </tr>
+        <tr data-cat="onco" data-search="甲氨蝶呤 叶酸拮抗 DHFR 白血病 骨肉瘤 亚叶酸钙救援">
+          <td><div class="drug-name-main">甲氨蝶呤</div><div class="drug-name-alias">MTX/Methotrexate</div></td>
+          <td><span class="category-badge cat-onco">抗肿瘤</span></td>
+          <td>DHFR抑制→叶酸代谢↓→核苷酸合成↓（S期阻滞）</td>
+          <td>急性白血病/骨肉瘤（高剂量）；RA/银屑病（低剂量抗炎）</td>
+          <td>骨髓抑制；黏膜炎；肝毒性（长期低剂量）；肾毒性；亚叶酸钙（甲酰四氢叶酸）解救</td>
+          <td><span class="ti-badge ti-narrow">TI窄</span></td>
+          <td><a href="chapter12.html" class="chapter-link">Ch.12</a></td>
+        </tr>
+        <tr data-cat="onco" data-search="伊马替尼 格列卫 BCR-ABL CML 靶向治疗 TKI ATP位点 T315I">
+          <td><div class="drug-name-main">伊马替尼（格列卫）</div><div class="drug-name-alias">Imatinib/TKI</div></td>
+          <td><span class="category-badge cat-onco">抗肿瘤</span></td>
+          <td>BCR-ABL/c-KIT/PDGFR ATP结合位点竞争性抑制</td>
+          <td>CML（费城染色体+）/GIST/Ph+ALL</td>
+          <td>水肿/体重增加；骨髓抑制；T315I突变→耐药→泊那替尼克服；CYP3A4代谢（相互作用）</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter12.html" class="chapter-link">Ch.12</a></td>
+        </tr>
+        <tr data-cat="onco" data-search="曲妥珠单抗 赫赛汀 HER2 乳腺癌 心脏毒性 单克隆抗体">
+          <td><div class="drug-name-main">曲妥珠单抗（赫赛汀）</div><div class="drug-name-alias">Trastuzumab</div></td>
+          <td><span class="category-badge cat-onco">抗肿瘤</span></td>
+          <td>HER2（ErbB2）细胞外域结合→信号↓+ADCC</td>
+          <td>HER2+乳腺癌/HER2+胃癌（必须基因检测确认）</td>
+          <td>心脏毒性（LVEF↓，可逆，与蒽环类联用增加风险）；输注反应；肺毒性</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter12.html" class="chapter-link">Ch.12</a></td>
+        </tr>
+        <tr data-cat="onco" data-search="帕博利珠单抗 K药 PD-1 免疫检查点 irAE 黑色素瘤 肺癌">
+          <td><div class="drug-name-main">帕博利珠单抗（K药）</div><div class="drug-name-alias">Pembrolizumab/PD-1抑制剂</div></td>
+          <td><span class="category-badge cat-onco">抗肿瘤</span></td>
+          <td>PD-1单抗→阻断PD-1/PD-L1轴→T细胞激活恢复</td>
+          <td>MSI-H肿瘤（广谱）/黑色素瘤/肺癌/多种实体瘤</td>
+          <td>irAE（任何器官）：甲状腺炎/肺炎/结肠炎/肝炎/心肌炎；激素治疗irAE；需内分泌替代</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter12.html" class="chapter-link">Ch.12</a></td>
+        </tr>
+        <tr data-cat="onco" data-search="利妥昔单抗 rituximab CD20 B细胞淋巴瘤 RA 输注反应 乙肝再激活">
+          <td><div class="drug-name-main">利妥昔单抗</div><div class="drug-name-alias">Rituximab/抗CD20</div></td>
+          <td><span class="category-badge cat-onco">抗肿瘤</span></td>
+          <td>CD20单抗→B细胞耗竭（ADCC/CDC/直接凋亡）</td>
+          <td>B细胞淋巴瘤（非霍奇金）/CLL/RA/类风湿关节炎</td>
+          <td>输注反应（第一次输注最重）；乙肝再激活（使用前必须筛查HBsAg/HBcAb）；PML（罕见）</td>
+          <td><span class="ti-badge ti-medium">TI中</span></td>
+          <td><a href="chapter12.html" class="chapter-link">Ch.12</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- section-card -->
+
+</div><!-- content-body -->
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 药物快查索引</p>
+  <p><a href="index.html">返回目录</a> | <a href="receptor-map.html">受体靶点图谱</a> | <a href="interaction-guide.html">相互作用速查</a></p>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+// 搜索和过滤逻辑
+const searchInput = document.getElementById('searchInput');
+const tableBody   = document.getElementById('drugTableBody');
+const filterBtns  = document.getElementById('filterBtns');
+const resultCount = document.getElementById('resultCount');
+const showCount   = document.getElementById('show-count');
+
+let currentCat = 'all';
+
+function updateTable() {
+  const q = searchInput.value.toLowerCase().trim();
+  const rows = tableBody.querySelectorAll('tr');
+  let visible = 0;
+
+  rows.forEach(row => {
+    const cat    = row.dataset.cat || '';
+    const search = (row.dataset.search || '') + row.innerText.toLowerCase();
+    const catMatch  = currentCat === 'all' || cat === currentCat;
+    const textMatch = q === '' || search.includes(q);
+    const show = catMatch && textMatch;
+    row.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  const total = rows.length;
+  resultCount.textContent = `显示 ${visible} / ${total} 个药物`;
+  if (showCount) showCount.textContent = visible;
+}
+
+// 类别按钮点击
+filterBtns.addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  filterBtns.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = btn.dataset.cat;
+  updateTable();
+});
+
+// 搜索输入
+searchInput.addEventListener('input', updateTable);
+
+function clearSearch() {
+  searchInput.value = '';
+  currentCat = 'all';
+  filterBtns.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  filterBtns.querySelector('[data-cat="all"]').classList.add('active');
+  updateTable();
+}
+
+// 初始化
+updateTable();
+</script>
+</body>
+</html>

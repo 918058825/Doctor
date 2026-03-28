@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统对比 - 解剖学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .compare-section { margin-bottom:40px; }
+        .compare-section h2 { border-bottom:3px solid var(--primary); padding-bottom:8px; }
+        .matrix-table { width:100%; border-collapse:collapse; font-size:0.88rem; }
+        .matrix-table th { background:linear-gradient(135deg, var(--primary), #7c3aed); color:#fff; padding:10px 12px; text-align:center; font-size:0.85rem; }
+        .matrix-table td { padding:10px 12px; border:1px solid var(--gray-200); text-align:center; vertical-align:middle; }
+        .matrix-table tr:nth-child(even) { background:var(--gray-50); }
+        .matrix-table tr:hover { background:rgba(99,102,241,0.06); }
+        .matrix-table td:first-child { font-weight:700; text-align:left; background:rgba(99,102,241,0.04); white-space:nowrap; }
+        .check { color:#16a34a; font-weight:700; } .cross { color:var(--gray-300); }
+        .highlight-cell { background:rgba(99,102,241,0.1) !important; font-weight:600; }
+        .sys-icon { font-size:1.2rem; display:block; margin-bottom:2px; }
+        .compare-insight { background:linear-gradient(135deg, #f0f4ff, #faf5ff); border-radius:12px; padding:16px 20px; margin:16px 0; border-left:4px solid var(--primary); }
+        .compare-insight strong { color:var(--primary-dark); }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <a href="index.html" class="logo">🫀 解剖学入门学习</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="glossary.html">术语词典</a></li>
+            <li><a href="quiz.html">自测问答</a></li>
+            <li><a href="compare.html" class="active">系统对比</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="breadcrumb">
+    <a href="index.html">首页</a> <span>›</span> 系统对比
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">工具页 · 对比</div>
+    <h1>⚖️ 九大系统对比速查</h1>
+    <p class="subtitle">用对比表格快速理解各系统的关系、差异和协作方式。横向比较是最高效的学习方法之一。</p>
+</div>
+
+<div class="main-content">
+    <div class="content-body">
+
+        <!-- 对比一：九大系统全景 -->
+        <div class="compare-section">
+            <h2>一、九大系统"身份证"一览</h2>
+            <div style="overflow-x:auto">
+            <table class="matrix-table">
+                <tr>
+                    <th>系统</th>
+                    <th><span class="sys-icon">🦴</span>运动</th>
+                    <th><span class="sys-icon">🍽️</span>消化</th>
+                    <th><span class="sys-icon">🌬️</span>呼吸</th>
+                    <th><span class="sys-icon">❤️</span>循环</th>
+                    <th><span class="sys-icon">💧</span>泌尿</th>
+                    <th><span class="sys-icon">👶</span>生殖</th>
+                    <th><span class="sys-icon">🧠</span>神经</th>
+                    <th><span class="sys-icon">🧪</span>内分泌</th>
+                    <th><span class="sys-icon">👁️</span>感觉</th>
+                </tr>
+                <tr>
+                    <td>核心器官</td>
+                    <td>骨、关节、肌肉</td>
+                    <td>胃、肠、肝、胰</td>
+                    <td>鼻、喉、气管、肺</td>
+                    <td>心脏、血管</td>
+                    <td>肾、膀胱</td>
+                    <td>睾丸/卵巢、子宫</td>
+                    <td>脑、脊髓</td>
+                    <td>垂体、甲状腺</td>
+                    <td>眼、耳、鼻</td>
+                </tr>
+                <tr>
+                    <td>一句话功能</td>
+                    <td>支撑+运动</td>
+                    <td>消化+吸收</td>
+                    <td>气体交换</td>
+                    <td>运输物质</td>
+                    <td>排废+调平衡</td>
+                    <td>繁殖后代</td>
+                    <td>信息处理</td>
+                    <td>激素调节</td>
+                    <td>感知环境</td>
+                </tr>
+                <tr>
+                    <td>CS类比</td>
+                    <td>机箱+机械臂</td>
+                    <td>ETL管道</td>
+                    <td>电源系统</td>
+                    <td>网络基础设施</td>
+                    <td>日志轮转+GC</td>
+                    <td>CI/CD+Fork</td>
+                    <td>CPU+OS</td>
+                    <td>消息队列</td>
+                    <td>传感器阵列</td>
+                </tr>
+                <tr>
+                    <td>关键数字</td>
+                    <td>206块骨</td>
+                    <td>8-10m长</td>
+                    <td>7亿肺泡</td>
+                    <td>10万km血管</td>
+                    <td>200万肾单位</td>
+                    <td>3亿精子/次</td>
+                    <td>860亿神经元</td>
+                    <td>~50种激素</td>
+                    <td>1.2亿视杆</td>
+                </tr>
+                <tr>
+                    <td>常见疾病</td>
+                    <td>骨质疏松、关节炎</td>
+                    <td>胃溃疡、肝硬化</td>
+                    <td>哮喘、肺炎</td>
+                    <td>冠心病、高血压</td>
+                    <td>肾结石、尿毒症</td>
+                    <td>不孕症、宫颈癌</td>
+                    <td>中风、帕金森</td>
+                    <td>糖尿病、甲亢</td>
+                    <td>近视、耳聋</td>
+                </tr>
+                <tr>
+                    <td>章节链接</td>
+                    <td><a href="chapter5.html">第5章</a></td>
+                    <td><a href="chapter6.html">第6章</a></td>
+                    <td><a href="chapter7.html">第7章</a></td>
+                    <td><a href="chapter8.html">第8章</a></td>
+                    <td><a href="chapter9.html">第9章</a></td>
+                    <td><a href="chapter10.html">第10章</a></td>
+                    <td><a href="chapter11.html">第11章</a></td>
+                    <td><a href="chapter12.html">第12章</a></td>
+                    <td><a href="chapter13.html">第13章</a></td>
+                </tr>
+            </table>
+            </div>
+        </div>
+
+        <!-- 对比二：两大调控系统 -->
+        <div class="compare-section">
+            <h2>二、两大调控系统：神经 vs 内分泌</h2>
+            <table class="matrix-table">
+                <tr>
+                    <th>对比维度</th>
+                    <th>🧠 神经系统</th>
+                    <th>🧪 内分泌系统</th>
+                </tr>
+                <tr><td>传递方式</td><td>电信号 + 神经递质</td><td>血液运输激素</td></tr>
+                <tr><td>传递速度</td><td class="highlight-cell">极快（毫秒级）</td><td>较慢（秒~小时）</td></tr>
+                <tr><td>持续时间</td><td>短暂</td><td class="highlight-cell">持久</td></tr>
+                <tr><td>作用范围</td><td>精确（一根神经→一块肌肉）</td><td class="highlight-cell">广泛（血液带到全身）</td></tr>
+                <tr><td>CS类比</td><td>gRPC同步调用</td><td>消息队列异步消息</td></tr>
+                <tr><td>比喻</td><td>打电话 📞</td><td>发邮件 📧</td></tr>
+                <tr><td>桥梁</td><td colspan="2" style="text-align:center;font-weight:700;color:var(--primary)">下丘脑 — 同时属于两个系统的"翻译官"</td></tr>
+            </table>
+
+            <div class="compare-insight">
+                <strong>💡 关键理解：</strong>神经和内分泌不是竞争关系，而是互补关系。紧急情况→神经系统"打电话"秒级响应→同时触发肾上腺素"发邮件"维持长效应激状态。两者通过下丘脑紧密衔接。
+            </div>
+        </div>
+
+        <!-- 对比三：交感 vs 副交感 -->
+        <div class="compare-section">
+            <h2>三、交感 vs 副交感神经</h2>
+            <table class="matrix-table">
+                <tr>
+                    <th>器官/功能</th>
+                    <th>⚡ 交感神经（战斗逃跑）</th>
+                    <th>😴 副交感神经（休息消化）</th>
+                </tr>
+                <tr><td>瞳孔</td><td>散大 👀</td><td>缩小</td></tr>
+                <tr><td>心率</td><td>加快 💓</td><td>减慢</td></tr>
+                <tr><td>血压</td><td>升高 ⬆️</td><td>降低</td></tr>
+                <tr><td>支气管</td><td>扩张（多吸氧）</td><td>收缩</td></tr>
+                <tr><td>消化</td><td>抑制 🚫</td><td>促进 ✅</td></tr>
+                <tr><td>膀胱</td><td>舒张（憋尿）</td><td>收缩（排尿）</td></tr>
+                <tr><td>汗腺</td><td>分泌增加 💦</td><td>无明显作用</td></tr>
+                <tr><td>神经递质</td><td>去甲肾上腺素</td><td>乙酰胆碱</td></tr>
+                <tr><td>CS类比</td><td>Performance Mode 🏎️</td><td>Power Save Mode 🔋</td></tr>
+            </table>
+
+            <div class="compare-insight">
+                <strong>💡 记忆技巧：</strong>想象你被老虎追（交感兴奋）——心跳快、呼吸急、瞳孔大、不想吃饭也不想上厕所，全身资源集中在逃跑上。安全后躺在沙发上（副交感主导）——心率降、消化动、想上厕所、犯困。
+            </div>
+        </div>
+
+        <!-- 对比四：三种肌肉 -->
+        <div class="compare-section">
+            <h2>四、三种肌肉组织对比</h2>
+            <table class="matrix-table">
+                <tr>
+                    <th>特征</th>
+                    <th>💪 骨骼肌</th>
+                    <th>❤️ 心肌</th>
+                    <th>🔄 平滑肌</th>
+                </tr>
+                <tr><td>位置</td><td>四肢、躯干、面部</td><td>仅心脏</td><td>内脏壁、血管壁</td></tr>
+                <tr><td>随意控制</td><td class="check">✅ 可控制</td><td class="cross">❌ 不可</td><td class="cross">❌ 不可</td></tr>
+                <tr><td>收缩速度</td><td>快</td><td>中等有节律</td><td>慢但持久</td></tr>
+                <tr><td>疲劳性</td><td>容易疲劳</td><td class="highlight-cell">不知疲倦</td><td>不易疲劳</td></tr>
+                <tr><td>显微结构</td><td>有横纹、多核</td><td>有横纹、单核、闰盘</td><td>无横纹、梭形、单核</td></tr>
+                <tr><td>比喻</td><td>汽车引擎（手动控制）</td><td>永不停歇的时钟</td><td>自动传送带</td></tr>
+            </table>
+        </div>
+
+        <!-- 对比五：体循环 vs 肺循环 -->
+        <div class="compare-section">
+            <h2>五、体循环 vs 肺循环</h2>
+            <table class="matrix-table">
+                <tr>
+                    <th>特征</th>
+                    <th>🔴 体循环（大循环）</th>
+                    <th>🔵 肺循环（小循环）</th>
+                </tr>
+                <tr><td>起点</td><td>左心室</td><td>右心室</td></tr>
+                <tr><td>终点</td><td>右心房</td><td>左心房</td></tr>
+                <tr><td>路线</td><td>左心室→主动脉→全身→腔静脉→右心房</td><td>右心室→肺动脉→肺→肺静脉→左心房</td></tr>
+                <tr><td>功能</td><td>送氧气+营养到全身，带走CO₂+废物</td><td>到肺排CO₂、获取O₂</td></tr>
+                <tr><td>路程</td><td class="highlight-cell">长（遍布全身）</td><td>短（仅到肺）</td></tr>
+                <tr><td>血压</td><td>高（收缩压120mmHg）</td><td>低（约25mmHg）</td></tr>
+                <tr><td>动脉中血液</td><td>含氧血（鲜红）</td><td class="highlight-cell">缺氧血（暗红）</td></tr>
+            </table>
+
+            <div class="compare-insight">
+                <strong>💡 易混淆点：</strong>肺动脉里流的是<strong>缺氧血</strong>！动脉≠含氧血。动脉的定义是"从心脏出去的血管"，跟含不含氧无关。
+            </div>
+        </div>
+
+        <!-- 对比六：1型 vs 2型糖尿病 -->
+        <div class="compare-section">
+            <h2>六、1型 vs 2型糖尿病</h2>
+            <table class="matrix-table">
+                <tr>
+                    <th>特征</th>
+                    <th>1型糖尿病</th>
+                    <th>2型糖尿病</th>
+                </tr>
+                <tr><td>发病机制</td><td>自身免疫破坏胰岛B细胞</td><td>胰岛素抵抗 + 胰岛功能渐衰</td></tr>
+                <tr><td>常见发病年龄</td><td>青少年</td><td class="highlight-cell">中老年（但年轻化趋势明显）</td></tr>
+                <tr><td>体型</td><td>多偏瘦</td><td>多肥胖</td></tr>
+                <tr><td>胰岛素水平</td><td>极低/无</td><td>早期正常或偏高，晚期下降</td></tr>
+                <tr><td>治疗</td><td>必须注射胰岛素</td><td>饮食+运动+口服药，后期可能需胰岛素</td></tr>
+                <tr><td>占比</td><td>约5-10%</td><td class="highlight-cell">约90%以上</td></tr>
+                <tr><td>CS类比</td><td>服务器硬件损坏（造不出胰岛素）</td><td>软件配置错误（胰岛素够但读不懂）</td></tr>
+            </table>
+        </div>
+
+        <!-- 对比七：五感对比 -->
+        <div class="compare-section">
+            <h2>七、五种感觉对比</h2>
+            <table class="matrix-table">
+                <tr>
+                    <th>感觉</th>
+                    <th>器官</th>
+                    <th>感受器</th>
+                    <th>大脑处理中心</th>
+                    <th>经丘脑中转？</th>
+                    <th>CS类比</th>
+                </tr>
+                <tr><td>👁️ 视觉</td><td>眼（视网膜）</td><td>视锥/视杆细胞</td><td>枕叶</td><td>是</td><td>Camera + GPU</td></tr>
+                <tr><td>👂 听觉</td><td>耳（耳蜗）</td><td>毛细胞</td><td>颞叶</td><td>是</td><td>麦克风 + 声卡</td></tr>
+                <tr><td>👃 嗅觉</td><td>鼻（嗅区）</td><td>嗅细胞</td><td>嗅皮层</td><td class="highlight-cell"><strong>否！直达</strong></td><td>硬件中断</td></tr>
+                <tr><td>👅 味觉</td><td>舌（味蕾）</td><td>味觉细胞</td><td>岛叶</td><td>是</td><td>化学传感器</td></tr>
+                <tr><td>✋ 触觉</td><td>皮肤</td><td>各类感受器</td><td>顶叶</td><td>是</td><td>分布式传感网络</td></tr>
+            </table>
+        </div>
+
+        <div class="info-box green">
+            <div class="box-title">💡 为什么对比学习最有效？</div>
+            <p>心理学研究表明，<strong>对比编码</strong>（contrastive encoding）比单独学习每个概念效率高40%。当你同时看到两个相似概念的异同点时，大脑会自动建立更深的联系。</p>
+            <p>建议：先阅读各章节的详细内容，再来这里做横向对比，巩固记忆。</p>
+        </div>
+
+    </div>
+
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h3>📚 快速跳转</h3>
+            <ul class="toc-list">
+                <li><a href="index.html">返回首页</a></li>
+                <li><a href="glossary.html">去术语词典</a></li>
+                <li><a href="quiz.html">去自测问答</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-card" style="margin-top:16px">
+            <h3>本页对比列表</h3>
+            <ul class="toc-list">
+                <li><a href="#" onclick="return false">一、九大系统全景</a></li>
+                <li><a href="#" onclick="return false">二、神经 vs 内分泌</a></li>
+                <li><a href="#" onclick="return false">三、交感 vs 副交感</a></li>
+                <li><a href="#" onclick="return false">四、三种肌肉组织</a></li>
+                <li><a href="#" onclick="return false">五、体循环 vs 肺循环</a></li>
+                <li><a href="#" onclick="return false">六、1型 vs 2型糖尿病</a></li>
+                <li><a href="#" onclick="return false">七、五种感觉对比</a></li>
+            </ul>
+        </div>
+    </aside>
+</div>
+
+<footer class="site-footer">
+    <p>解剖学入门学习平台 · 小吴的学习笔记 · 2026</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核心机制图解 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .mech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
+            margin: 24px 0;
+        }
+        .mech-card {
+            background: #fff;
+            border: 1.5px solid #bae6fd;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(14,116,144,0.08);
+        }
+        .mech-card h3 {
+            font-size: 1rem;
+            color: #0c4a6e;
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mech-chapter-tag {
+            font-size: 0.72rem;
+            background: #e0f2fe;
+            color: #0e7490;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        .mech-loop {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .mech-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+        }
+        .mech-box {
+            background: #f0f9ff;
+            border: 1px solid #7dd3fc;
+            border-radius: 6px;
+            padding: 5px 10px;
+            flex: 1;
+            color: #0c4a6e;
+            font-weight: 500;
+        }
+        .mech-box.alert { background: #fff1f2; border-color: #fca5a5; color: #991b1b; }
+        .mech-box.result { background: #f0fdf4; border-color: #86efac; color: #166534; }
+        .mech-box.brain { background: #faf5ff; border-color: #d8b4fe; color: #6b21a8; }
+        .mech-box.hormone { background: #fff7ed; border-color: #fdba74; color: #9a3412; }
+        .mech-arrow { color: #0e7490; font-size: 0.9rem; white-space: nowrap; }
+        .mech-note {
+            margin-top: 10px;
+            font-size: 0.78rem;
+            color: #555;
+            background: #f8fafc;
+            border-left: 3px solid #7dd3fc;
+            padding: 6px 10px;
+            border-radius: 0 4px 4px 0;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>核心机制图解</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">学习工具</div>
+    <h1>核心机制图解</h1>
+    <p class="subtitle">14个最重要的生理调节机制 · 可视化流程 · 附临床意义</p>
+</div>
+
+<div class="main-content" style="max-width:1100px;">
+<div class="content-body" style="width:100%;">
+
+<h2>🔁 反馈调节类</h2>
+<div class="mech-grid">
+
+    <!-- 1. 血糖调节 -->
+    <div class="mech-card">
+        <h3>🍬 血糖精密调节 <span class="mech-chapter-tag">第10章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">血糖↑（饭后）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">胰岛B细胞分泌 胰岛素</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">GLUT4转位→葡萄糖进入肌肉/脂肪</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">血糖恢复正常（负反馈）</div></div>
+            <div class="mech-step" style="margin-top:6px;"><div class="mech-box alert">血糖↓（禁食）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">胰岛A细胞分泌 胰高血糖素</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">肝脏糖原分解 + 糖异生</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">血糖恢复正常</div></div>
+        </div>
+        <div class="mech-note">💊 临床：2型糖尿病=GLUT4对胰岛素信号不敏感（胰岛素抵抗）；运动也能激活GLUT4（via AMPK），不依赖胰岛素。</div>
+    </div>
+
+    <!-- 2. 压力感受器反射 -->
+    <div class="mech-card">
+        <h3>❤️ 压力感受器反射（Baroreflex） <span class="mech-chapter-tag">第4章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">血压突然升高</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">颈动脉窦/主动脉弓牵张感受器激活</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">延髓心血管中枢</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">①心率减慢（迷走↑）②血管舒张（交感↓）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">血压恢复正常</div></div>
+        </div>
+        <div class="mech-note">⚡ 速度：数秒内生效，是最快的血压调节机制。久坐后站立→血压短暂下降→该反射激活心率加快（体位性低血压时此反射减弱）。</div>
+    </div>
+
+    <!-- 3. RAAS -->
+    <div class="mech-card">
+        <h3>🫘 RAAS 肾素-血管紧张素-醛固酮 <span class="mech-chapter-tag">第7章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">血压↓ / 血容量↓ / Na⁺↓</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">肾小球旁器分泌 肾素</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">血管紧张素原 → 血管紧张素Ⅰ</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ ACE（肺）</div><div class="mech-box">血管紧张素Ⅱ（Ang Ⅱ）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 两路</div></div>
+            <div class="mech-step"><div class="mech-box">①血管收缩→阻力↑→血压↑</div></div>
+            <div class="mech-step"><div class="mech-box hormone">②肾上腺→醛固酮→肾小管保Na⁺留水→血容量↑</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">血压血容量恢复</div></div>
+        </div>
+        <div class="mech-note">💊 ACEI（培哚普利等）抑制ACE；ARB（氯沙坦等）阻断Ang Ⅱ受体。两类均是常用降压药和心衰治疗药。</div>
+    </div>
+
+    <!-- 4. HPA轴 -->
+    <div class="mech-card">
+        <h3>😰 HPA轴（压力反应） <span class="mech-chapter-tag">第10章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">应激/压力感知</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">下丘脑分泌 CRH（促肾上腺皮质激素释放激素）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">垂体前叶分泌 ACTH</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box hormone">肾上腺皮质分泌 皮质醇</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 效果</div><div class="mech-box">升血糖/升血压/免疫调节（急性）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 负反馈</div><div class="mech-box result">皮质醇→抑制CRH和ACTH分泌</div></div>
+        </div>
+        <div class="mech-note">⚠️ 慢性压力→负反馈受损→皮质醇长期偏高→免疫抑制/胰岛素抵抗/腹部脂肪积累/记忆海马损伤。</div>
+    </div>
+
+    <!-- 5. 体温调节 -->
+    <div class="mech-card">
+        <h3>🌡️ 体温双向调节 <span class="mech-chapter-tag">第12章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box">下丘脑POAH体温传感器</div></div>
+            <div class="mech-step"><div class="mech-arrow">偏低↓</div><div class="mech-box">寒战产热 + 皮肤血管收缩 + 非寒战产热（棕色脂肪UCP1）</div></div>
+            <div class="mech-step"><div class="mech-arrow">偏高↓</div><div class="mech-box">出汗蒸发 + 皮肤血管扩张 + 行为降温</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">核心体温维持在37°C±0.5</div></div>
+            <div class="mech-step" style="margin-top:6px;"><div class="mech-box alert">发烧：IL-1→COX→PGE₂→调定点上移</div></div>
+        </div>
+        <div class="mech-note">💊 退烧机制：NSAIDs（布洛芬）→抑制COX→阻断PGE₂→调定点复位→出汗退热。</div>
+    </div>
+
+    <!-- 6. 甲状腺轴 -->
+    <div class="mech-card">
+        <h3>🦋 甲状腺分泌轴（HPT轴） <span class="mech-chapter-tag">第10章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">感知代谢需求低（T3/T4偏低）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">下丘脑分泌 TRH（促甲状腺激素释放激素）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">垂体前叶分泌 TSH（促甲状腺激素）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box hormone">甲状腺分泌 T4（外周转化为活性T3）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 效果</div><div class="mech-box">BMR↑ / 心率↑ / 产热↑ / 蛋白质合成↑</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 负反馈</div><div class="mech-box result">T3/T4→抑制TRH和TSH</div></div>
+        </div>
+        <div class="mech-note">📊 TSH是甲状腺功能最敏感的指标：TSH偏高=甲减（T3/T4不足）；TSH偏低=甲亢（T3/T4过多）。</div>
+    </div>
+
+</div>
+
+<h2>⚡ 信号传导类</h2>
+<div class="mech-grid">
+
+    <!-- 7. 动作电位 -->
+    <div class="mech-card">
+        <h3>⚡ 动作电位的全过程 <span class="mech-chapter-tag">第2章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box">静息电位 -70 mV（K⁺外流平衡）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 阈上刺激</div><div class="mech-box">Na⁺通道开放→Na⁺内流→去极化</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ +30 mV</div><div class="mech-box alert">Na⁺通道失活→K⁺通道开放→K⁺外流→复极化</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">超极化（-80 mV）→K⁺通道关闭</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">Na⁺-K⁺-ATPase恢复离子梯度</div></div>
+        </div>
+        <div class="mech-note">💊 局麻药（利多卡因）阻断Na⁺通道→无法去极化→无动作电位→感觉/运动阻滞。高钾血症→静息电位升高→兴奋性先高后低→心律失常。</div>
+    </div>
+
+    <!-- 8. 突触传递 -->
+    <div class="mech-card">
+        <h3>🔗 化学突触传递 <span class="mech-chapter-tag">第8章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box">突触前动作电位到达</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">电压门控Ca²⁺通道开放→Ca²⁺内流</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">突触小泡与膜融合→神经递质释放到突触间隙</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">递质扩散→结合突触后受体</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">EPSP（兴奋）或 IPSP（抑制）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 终止</div><div class="mech-box">再摄取 / 酶降解（AChE）/ 弥散</div></div>
+        </div>
+        <div class="mech-note">💊 SSRIs阻断5-HT再摄取→突触间隙5-HT浓度↑；新斯的明抑制AChE→NMJ处ACh积累（重症肌无力治疗）。</div>
+    </div>
+
+    <!-- 9. 兴奋-收缩偶联 -->
+    <div class="mech-card">
+        <h3>💪 骨骼肌兴奋-收缩偶联 <span class="mech-chapter-tag">第9章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box">运动神经元动作电位</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ NMJ</div><div class="mech-box">ACh→N受体→肌膜动作电位</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ T管</div><div class="mech-box">L型Ca²⁺通道→RyR1开放→肌浆网Ca²⁺释放</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ Ca²⁺</div><div class="mech-box">结合肌钙蛋白C→原肌球蛋白移位→结合位点暴露</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">肌球蛋白横桥与肌动蛋白结合→横桥循环→肌肉收缩</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 弛豫</div><div class="mech-box result">SERCA泵Ca²⁺回肌浆网→Ca²⁺解离肌钙蛋白→复位</div></div>
+        </div>
+        <div class="mech-note">⚡ 尸僵：ATP耗尽→横桥无法解离→肌肉僵硬；需新ATP分解横桥-肌动蛋白键（所以尸僵需要能量才能解除）。</div>
+    </div>
+
+    <!-- 10. 凝血 -->
+    <div class="mech-card">
+        <h3>🩹 止血三步与凝血瀑布 <span class="mech-chapter-tag">第3章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">血管损伤</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 第1步</div><div class="mech-box">血管收缩（TXA₂/内皮素）→减少血流</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 第2步</div><div class="mech-box">血小板黏附（胶原→vWF→GPIb）→激活→释放ADP/TXA₂→聚集（GPIIb/IIIa-纤维蛋白原）→白色血栓</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 第3步</div><div class="mech-box">外源性（TF-FⅦa）+ 内源性（FⅫ）→共同通路→凝血酶→纤维蛋白→红色血栓</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 后续</div><div class="mech-box result">纤溶：tPA→纤溶酶→降解纤维蛋白</div></div>
+        </div>
+        <div class="mech-note">💊 抗凝药靶点：华法林（维生素K拮抗→Ⅱ/Ⅶ/Ⅸ/Ⅹ↓）；肝素（增强AT-Ⅲ→灭活凝血酶）；阿司匹林（抑制COX→TXA₂↓→血小板聚集↓）。</div>
+    </div>
+
+</div>
+
+<h2>🏥 综合调节类</h2>
+<div class="mech-grid">
+
+    <!-- 11. CO2驱动呼吸 -->
+    <div class="mech-card">
+        <h3>🫁 CO₂驱动呼吸的负反馈 <span class="mech-chapter-tag">第5章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">运动→代谢↑→血CO₂↑/pH↓</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">延髓中枢化学感受器（感知脑脊液pH）</div></div>
+            <div class="mech-step"><div class="mech-arrow">+</div><div class="mech-box brain">颈动脉体外周感受器（感知PO₂/PCO₂/pH）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">呼吸中枢→呼吸频率↑ + 深度↑</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">CO₂呼出↑→血CO₂↓→pH恢复</div></div>
+        </div>
+        <div class="mech-note">⚠️ Shallow Water Blackout：过度换气→血CO₂过低→屏气时CO₂还未积累到触发喘息时已因低氧失去意识。驱动呼吸的是CO₂不是O₂。</div>
+    </div>
+
+    <!-- 12. ADH水调节 -->
+    <div class="mech-card">
+        <h3>💧 ADH水平衡调节 <span class="mech-chapter-tag">第7章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box alert">血浆渗透压↑（脱水/高Na⁺）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box brain">下丘脑渗透压感受器→ADH合成↑</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">垂体后叶释放ADH→集合管→AQP2水通道插入膜</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">肾小管水重吸收↑→尿量↓（浓缩尿）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">血浆渗透压↓→口渴减轻（负反馈）</div></div>
+        </div>
+        <div class="mech-note">🍺 酒精→抑制ADH分泌→肾小管水重吸收↓→利尿增多→脱水→宿醉头痛（颅内血管脱水收缩）。</div>
+    </div>
+
+    <!-- 13. 肌肉肥大 -->
+    <div class="mech-card">
+        <h3>🏋️ 肌肉肥大机制 <span class="mech-chapter-tag">第9章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box">力量训练→肌肉机械张力↑</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">肌纤维微撕裂→炎症因子→卫星细胞激活</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box hormone">mTORC1激活（机械张力+亮氨酸共同作用）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box">蛋白质合成↑（肌球蛋白/肌动蛋白）</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓</div><div class="mech-box result">肌原纤维增粗→肌肉横截面积增大（肥大）</div></div>
+        </div>
+        <div class="mech-note">⏱️ 时间窗：训练后24-48小时蛋白质合成速率最高（"合成窗口"）。睡眠中生长激素脉冲式分泌进一步促进合成。训练后蛋白质补充（尤其亮氨酸）显著增强此过程。</div>
+    </div>
+
+    <!-- 14. 睡眠调节 -->
+    <div class="mech-card">
+        <h3>😴 睡眠-觉醒的双重调控 <span class="mech-chapter-tag">第8/10章</span></h3>
+        <div class="mech-loop">
+            <div class="mech-step"><div class="mech-box brain">进程S（睡眠压力）：腺苷在清醒期持续积累</div></div>
+            <div class="mech-step"><div class="mech-arrow">+</div><div class="mech-box brain">进程C（昼夜节律）：视交叉上核SCN的生物钟，夜间→松果体→褪黑素↑</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 两者叠加</div><div class="mech-box alert">困倦信号足够强→睡眠启动</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 睡眠中</div><div class="mech-box">腺苷被分解→睡眠压力↓；生长激素脉冲分泌；记忆巩固；胶质淋巴系统清除代谢废物</div></div>
+            <div class="mech-step"><div class="mech-arrow">↓ 清晨</div><div class="mech-box result">皮质醇晨峰（CAR）→觉醒</div></div>
+        </div>
+        <div class="mech-note">☕ 咖啡因：竞争性阻断腺苷受体→屏蔽睡眠压力信号（腺苷本身仍在积累！）→不喝咖啡后腺苷大量结合→"咖啡因崩溃"。最佳饮用时机：起床后90分钟（皮质醇峰值后），不影响皮质醇的天然觉醒效果。</div>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 核心机制图解 · 14个关键调节机制</p>
+    <p style="margin-top:6px;font-size:0.8rem;"><a href="glossary.html">← 词汇表</a> &nbsp;·&nbsp; <a href="scenarios.html">生活情景 →</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

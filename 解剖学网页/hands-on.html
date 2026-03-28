@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动手认识自己 - 解剖学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .experiment-section {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed #e5e7eb;
+        }
+        .experiment-section:first-of-type { border-top: none; margin-top: 1rem; padding-top: 0; }
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .difficulty {
+            display: inline-flex;
+            gap: 3px;
+            margin-left: 8px;
+        }
+        .difficulty .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+        }
+        .difficulty .dot.on { background: #fbbf24; }
+        .anatomy-note {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem 1.2rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+        .anatomy-note strong { color: #1d4ed8; }
+        .safety-note {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0 10px 10px 0;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <a href="index.html" class="logo">🫀 解剖学入门学习</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="glossary.html">📖 词典</a></li>
+            <li><a href="quiz.html">🧪 自测</a></li>
+            <li><a href="compare.html">⚖️ 对比</a></li>
+            <li><a href="daily-scenarios.html">🎬 场景</a></li>
+            <li><a href="body-signals.html">📡 信号</a></li>
+            <li><a href="hands-on.html" class="active">🖐️ 体验</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 面包屑 -->
+<div class="breadcrumb">
+    <a href="index.html">首页</a> → <span>动手认识自己</span>
+</div>
+
+<!-- 页面标题 -->
+<div class="page-hero">
+    <h1>🖐️ 动手认识自己</h1>
+    <p class="subtitle">解剖学不是纸上谈兵。你的身体就是最好的教材——<strong>在自己身上摸到它、感受它、理解它</strong>。<br>以下每个实验都可以在家独立完成，无需任何设备。</p>
+</div>
+
+<!-- 主内容 -->
+<div class="main-content full-width">
+    <div class="content-body">
+
+        <div class="info-box green" style="margin-bottom: 2rem;">
+            <div class="box-title">📋 使用指南</div>
+            <p>每个实验包含：<strong>操作步骤</strong> → <strong>你会感受到什么</strong> → <strong>解剖学原理</strong>。建议学完对应章节后来做实验，效果最好。</p>
+            <p>难度标记：🟡 = 简单直观 | 🟡🟡 = 需要仔细体会 | 🟡🟡🟡 = 有点挑战</p>
+        </div>
+
+        <div class="safety-note">
+            ⚠️ <strong>安全提示</strong>：所有实验都是无创、安全的日常操作。不要用力过大；有心脏病、低血压等基础疾病者，跳过相关实验。如有不适立即停止。
+        </div>
+
+        <!-- ===== 实验 1：骨性标志 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">🦴 实验一：摸到自己的骨头 <span class="difficulty"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+
+            <p>人体有很多骨头贴近皮肤表面，可以直接摸到。这些"能摸到的骨头"叫<strong>骨性标志（bony landmarks）</strong>，是临床查体、手术定位的重要参照。</p>
+
+            <div class="hands-on-card">
+                <h4>A. 锁骨——最容易摸到的骨头</h4>
+                <ol class="steps">
+                    <li>正坐，低头，用手指从脖子根部向两侧摸</li>
+                    <li>你会摸到一根横向的、略微弯曲的硬条——这就是<strong>锁骨</strong></li>
+                    <li>沿锁骨从内向外摸：内侧端连着<strong>胸骨</strong>（胸口正中的硬板），外侧端连着<strong>肩峰</strong>（肩膀最高点）</li>
+                    <li>在锁骨中点下方按压——可能有些酸胀（锁骨下方是血管和神经经过的区域）</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong>锁骨全长（约15cm）。它是连接躯干和上肢的唯一骨性连接，也是最容易骨折的骨头之一（摔倒时手撑地，力传到锁骨）。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>B. 肩胛骨——背上的"翅膀"</h4>
+                <ol class="steps">
+                    <li>把右手伸到左肩后方，摸到后背靠近肩膀的位置</li>
+                    <li>找到一条横向的骨嵴——这是<strong>肩胛冈</strong>（肩胛骨的脊梁）</li>
+                    <li>现在左手从体侧慢慢抬起向前伸 → 感受肩胛骨在后背的滑动</li>
+                    <li>把左手背到身后 → 肩胛骨内侧缘明显隆起，可以清晰摸到整个三角形轮廓</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong>肩胛骨——一块浮在后背肋骨上的三角形扁骨，不和任何骨头直接关节连接（只靠肌肉悬吊！），所以活动范围极大。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>C. 更多可以摸到的骨头</h4>
+                <ol class="steps">
+                    <li><strong>胸骨</strong>：胸口正中，从锁骨交汇处往下按——那块硬的板就是胸骨（心肺复苏按压处）</li>
+                    <li><strong>髂前上棘（ASIS）</strong>：双手叉腰，大拇指朝后，其余四指指尖自然落在的前方骨突就是。它是骨盆最重要的标志点</li>
+                    <li><strong>膝盖骨（髌骨）</strong>：腿伸直放松，在膝盖前方可以晃动它——这是人体最大的籽骨</li>
+                    <li><strong>内踝/外踝</strong>：脚踝两侧的突起——内侧是胫骨下端，外侧是腓骨下端</li>
+                    <li><strong>第7颈椎棘突</strong>：低头时脖子后面最突出的那个骨头——计数椎骨的起点</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong>6个骨性标志。医生查体时经常用这些标志来定位——比如从C7往下数到T4可以定位肺尖的位置。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>人体206块骨头中，能直接在体表触及的约有30-40处。这些骨性标志是临床诊断和手术定位的"GPS坐标"。比如注射臀部肌肉时，需要先找到<strong>髂前上棘和髂后上棘</strong>来定位安全注射区域（避开坐骨神经）。→ 详见 <a href="chapter5.html">第5章 运动系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 2：肌肉触摸 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">💪 实验二：感受肌肉收缩 <span class="difficulty"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>A. 前臂肌群——握拳的秘密</h4>
+                <ol class="steps">
+                    <li>左手轻轻握住右前臂中段（掌心朝内侧）</li>
+                    <li>右手用力<strong>反复握拳→松开→握拳→松开</strong></li>
+                    <li>感受左手下方的肌肉在<strong>有节奏地膨胀和收缩</strong></li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你感受到了：</strong>前臂屈肌群（指浅屈肌、指深屈肌等）的收缩。有趣的是——<strong>控制手指运动的肌肉大部分不在手上，而在前臂</strong>！肌肉通过长长的肌腱穿过腕管控制手指。这就是为什么前臂细的人手指力量也会弱。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>B. 咬肌——你脸上最强的肌肉</h4>
+                <ol class="steps">
+                    <li>把手指放在两侧脸颊、耳朵前下方的位置</li>
+                    <li>紧紧咬牙 → 感受手指下方一块肌肉鼓起来</li>
+                    <li>放松 → 鼓包消失。再咬紧 → 又鼓起来</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong><strong>咬肌（masseter）</strong>——按体积来算，它是人体最强的肌肉之一，咬合力可达70kg以上（磨牙区更强）。它从<strong>颧弓</strong>到<strong>下颌角</strong>，由<strong>三叉神经下颌支</strong>支配。经常磨牙的人咬肌会肥大，视觉上脸变方——"瘦脸针"就是在咬肌注射肉毒素使其萎缩。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>C. 胸锁乳突肌——脖子上最醒目的肌肉</h4>
+                <ol class="steps">
+                    <li>把头<strong>转向右侧</strong>（看右肩方向）</li>
+                    <li>用右手摸左侧脖子——会感觉到一条<strong>绷紧的斜向肌肉带</strong></li>
+                    <li>这条肌肉从<strong>耳朵后方</strong>斜向下走到<strong>锁骨和胸骨交界处</strong></li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong><strong>胸锁乳突肌（SCM）</strong>——它起于胸骨和锁骨（胸锁），止于颞骨乳突（乳突）。单侧收缩→转头向对侧；双侧收缩→屈颈（点头）。它是颈部手术（如甲状腺手术）的重要解剖标志，<strong>颈动脉就在它的深面</strong>。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>人体有600多块骨骼肌，占体重40%。肌肉只能收缩不能"推"，所以总是成对拮抗工作（屈肌 vs 伸肌）。你能触摸到的肌肉都是浅层肌，深层还有更多层。→ 详见 <a href="chapter5.html">第5章 运动系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 3：脉搏 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">❤️ 实验三：寻找你的脉搏 <span class="difficulty"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+
+            <p>脉搏 = 心脏每次收缩将血液泵入动脉时，动脉壁的搏动波。在动脉贴近体表且下方有骨头的地方，你可以摸到脉搏。</p>
+
+            <div class="hands-on-card">
+                <h4>A. 桡动脉脉搏（最常用）</h4>
+                <ol class="steps">
+                    <li>翻转左手使掌心朝上</li>
+                    <li>用右手<strong>食指和中指</strong>（不要用拇指，拇指有自己的脉搏会干扰）</li>
+                    <li>轻放在左手腕<strong>拇指侧</strong>（大拇指根部下方、桡骨茎突内侧）</li>
+                    <li>轻轻按压——感受"扑通扑通"的搏动</li>
+                    <li>计时15秒，数搏动次数 × 4 = 你的心率/分钟（正常60-100次/min）</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong><strong>桡动脉</strong>——桡骨茎突旁、靠拇指侧。这是中医"切脉"的位置，也是临床最常测脉搏的部位。因为这里动脉浅表，下方就是桡骨，容易压到。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>B. 颈动脉脉搏（急救用）</h4>
+                <ol class="steps">
+                    <li>找到喉结（甲状软骨）——脖子正前方中线的突起</li>
+                    <li>从喉结向外侧滑约2-3cm</li>
+                    <li>在<strong>胸锁乳突肌前缘</strong>轻按——感受到强力搏动</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong><strong>颈总动脉</strong>。急救时判断伤者有无心跳，首选摸颈动脉——因为即使血压很低，颈动脉仍可能有搏动（离心脏最近的大动脉之一）。
+                </div>
+                <div class="caution">
+                    ⚠️ 不要两侧同时按压！不要用力！颈动脉窦在分叉处有压力感受器，压迫可导致心率骤降。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>C. 更多脉搏点</h4>
+                <ol class="steps">
+                    <li><strong>颞浅动脉</strong>：太阳穴前方，轻按可感受搏动（头痛时常在此处感到搏动痛）</li>
+                    <li><strong>肱动脉</strong>：肘窝内侧——测血压时听诊器放的位置</li>
+                    <li><strong>足背动脉</strong>：脚背最高点、第1-2趾间隙的延长线上——下肢血管疾病时检查的重要脉搏</li>
+                    <li><strong>股动脉</strong>：腹股沟中点（鼠蹊部）按压——这是身体最粗的浅表动脉之一</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong>全身6个主要脉搏触诊点。每个脉搏点都意味着：这里有一条<strong>浅表动脉</strong>经过，且下方有<strong>硬的骨头</strong>或组织做支撑。这些也是<strong>止血按压点</strong>——大出血时按压近心端的脉搏点可以暂时止血。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>动脉从心脏出发，越分支越细。能摸到脉搏的都是较粗的动脉且位置浅表。动脉壁有弹性——每次心脏收缩泵血，动脉壁扩张形成脉搏波，传播速度约5-8m/s（比血流速度快得多）。→ 详见 <a href="chapter8.html">第8章 循环系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 4：呼吸 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">🫁 实验四：感受两种呼吸方式 <span class="difficulty"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>膈式呼吸 vs 肋式呼吸</h4>
+                <ol class="steps">
+                    <li><strong>左手</strong>放在<strong>胸口</strong>（胸骨上方），<strong>右手</strong>放在<strong>肚脐上方</strong>的腹部</li>
+                    <li>先做"腹式呼吸"：吸气时<strong>肚子鼓起来</strong>（右手被推出去），胸口尽量不动</li>
+                    <li>这是<strong>膈肌</strong>在下降——膈肌收缩向下→腹腔被挤压→肚子鼓出→胸腔扩大→空气吸入</li>
+                    <li>再做"胸式呼吸"：吸气时<strong>胸口抬起</strong>（左手被推出），肚子尽量不动</li>
+                    <li>这是<strong>肋间外肌</strong>在收缩——把肋骨往上提→胸廓前后径增大→空气吸入</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong>两种呼吸动力的区别。平静呼吸70%靠<strong>膈肌</strong>（膈式呼吸），30%靠<strong>肋间肌</strong>。深呼吸/运动时两者同时发力，还会加上辅助呼吸肌。<br>
+                    💡 <strong>腹式深呼吸</strong>能刺激迷走神经→激活副交感→降低心率→缓解焦虑。这就是冥想呼吸法的解剖学原理。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>屏气实验——感受呼吸中枢</h4>
+                <ol class="steps">
+                    <li>深吸一口气后屏住呼吸</li>
+                    <li>坚持到"忍不住"的时候再呼气</li>
+                    <li>注意：让你"忍不住"的感觉不是缺氧——是<strong>CO₂升高</strong>!</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong><strong>延髓呼吸中枢</strong>的CO₂化学感受调控。血液中CO₂升高→H⁺升高→刺激中枢和外周化学感受器→强烈的"必须呼吸"冲动。正常人很难屏气>2分钟——因为呼吸中枢的优先级高于你的意志力。这是生存保护机制。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>膈肌是最重要的呼吸肌，由膈神经（C3-C5）支配。如果颈椎C3以上损伤→膈神经断→无法自主呼吸→需要呼吸机。这就是高位截瘫最危险的原因。→ 详见 <a href="chapter7.html">第7章 呼吸系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 5：反射 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">⚡ 实验五：测试你的神经反射 <span class="difficulty"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>A. 瞳孔对光反射</h4>
+                <ol class="steps">
+                    <li>找一个光线较暗的房间，面对镜子</li>
+                    <li>观察此时你的<strong>瞳孔大小</strong>（应该比较大，因为暗环境下瞳孔散大以接收更多光）</li>
+                    <li>用手机手电筒照向一只眼睛（不要直射，从侧面照即可）</li>
+                    <li>观察<strong>两只眼睛</strong>的瞳孔——都会迅速缩小！</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你观察到了：</strong><br>
+                    <strong>直接对光反射</strong>：被光照的眼瞳孔缩小<br>
+                    <strong>间接对光反射</strong>：没被照的眼也缩小（因为信号在中脑交叉传到双侧）<br><br>
+                    反射弧：视网膜→视神经（II）→中脑顶盖前区→双侧E-W核→动眼神经（III）副交感纤维→睫状神经节→<strong>瞳孔括约肌收缩</strong>→瞳孔缩小。<br>
+                    这个反射在急救中极其重要——如果一侧瞳孔散大不缩→提示同侧动眼神经受压→可能脑疝→紧急！
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>B. 膝跳反射（自己做有点难）</h4>
+                <ol class="steps">
+                    <li>坐在高处让小腿自然悬垂（不接触地面）</li>
+                    <li>找到膝盖骨（髌骨）下方的凹陷——那里有一条绷紧的带子叫<strong>髌韧带</strong></li>
+                    <li>用手掌侧面或手指关节快速敲击髌韧带</li>
+                    <li>如果角度和力度对了——小腿会不自主地弹起来！</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong><strong>膝跳反射（股四头肌牵张反射）</strong>——敲击髌韧带→股四头肌被突然牵拉→<strong>肌梭</strong>检测到长度变化→感觉信号经<strong>股神经</strong>→脊髓L2-L4→运动神经元直接回传→股四头肌收缩→小腿弹起。<br>
+                    整个过程只经过<strong>一个突触</strong>（单突触反射弧），完全不经过大脑，所以你<strong>无法用意志抑制它</strong>。<br>
+                    医生用此反射评估L2-L4脊髓段功能是否正常。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>C. Romberg试验——本体感觉测试</h4>
+                <ol class="steps">
+                    <li>站在安全的地方（旁边有东西可以扶）</li>
+                    <li>双脚并拢站直 → 这时你靠视觉+本体感觉+前庭三个系统维持平衡</li>
+                    <li>现在<strong>闭上眼睛</strong> → 去掉视觉</li>
+                    <li>如果你能稳稳站立30秒 → 你的本体感觉和前庭功能正常</li>
+                    <li>如果明显摇晃 → 说明你比较依赖视觉来维持平衡（闭眼后本体感觉/前庭代偿不足）</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong>平衡三联：<strong>视觉</strong>（眼睛）+ <strong>本体感觉</strong>（肌肉关节中的感受器）+ <strong>前庭</strong>（内耳）。大脑小脑综合这三路信息来维持平衡。Romberg试验阳性（闭眼后站不稳）提示<strong>脊髓后索</strong>或<strong>本体感觉</strong>病变。
+                </div>
+                <div class="caution">
+                    ⚠️ 做这个实验时务必旁边有东西可以扶。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>反射弧是神经系统最基本的工作单位：感受器→传入神经→神经中枢→传出神经→效应器。有些反射快到不经大脑（脊髓反射），有些需大脑参与（条件反射）。→ 详见 <a href="chapter11.html">第11章 神经系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 6：感觉测试 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">🧪 实验六：两点辨别觉——你的"分辨率"有多高 <span class="difficulty"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>测试不同身体部位的触觉精度</h4>
+                <ol class="steps">
+                    <li>找两支笔或两根牙签（不要太尖锐）</li>
+                    <li>闭上眼睛，请朋友用两个笔尖同时轻触你的<strong>指尖</strong>，间距约2-3mm</li>
+                    <li>问你：感觉是1个点还是2个点？<strong>指尖</strong>通常2mm就能分辨出两个点</li>
+                    <li>同样的间距，换到<strong>后背</strong>试试 → 你会发现需要间距>40mm才能分辨出两个点！</li>
+                    <li>再试试<strong>嘴唇</strong>（约2-3mm）、<strong>前臂</strong>（约30mm）、<strong>小腿</strong>（约40mm）</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong><strong>两点辨别觉（two-point discrimination）</strong>的巨大差异。<br><br>
+                    原因：指尖和嘴唇的<strong>触觉感受器密度极高</strong>（每cm²有上百个<strong>Meissner小体</strong>），在大脑<strong>初级体感皮质（S1）</strong>中占据的"地盘"也特别大（想想大脑皮质上的<strong>躯体感觉小人 homunculus</strong>——手指和嘴巴被画得超大）。<br><br>
+                    而后背的感受器密度低、皮质代表区小 → "分辨率"低。<br>
+                    这就是为什么<strong>盲人读盲文用指尖</strong>——它是人体触觉分辨率最高的区域。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>皮肤里至少有4种触觉感受器（Meissner小体-轻触、Pacinian小体-压力/振动、Merkel盘-持续压力、Ruffini末梢-牵拉）。不同身体部位的感受器密度和类型比例不同，决定了该区域的"触觉能力"。→ 详见 <a href="chapter13.html">第13章 感觉器官</a> · <a href="chapter11.html">第11章 神经系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 7：视觉盲点 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">👁️ 实验七：发现你的视觉盲点 <span class="difficulty"><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>每个人的眼睛里都有一个"看不见"的区域</h4>
+                <ol class="steps">
+                    <li>在一张白纸上画一个<strong>小十字"+"</strong>和一个<strong>小圆点"●"</strong>，间距约10cm</li>
+                    <li>闭上<strong>左眼</strong>，用<strong>右眼</strong>盯住<strong>十字"+"</strong></li>
+                    <li>手持白纸，慢慢前后移动距离（大约在25-30cm处）</li>
+                    <li>在某个距离上——圆点"●"<strong>消失了</strong>！</li>
+                    <li>继续前后调整距离——圆点又出现了</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你发现了：</strong>你的<strong>视觉盲点（blind spot）</strong>！<br><br>
+                    视网膜上有一个区域没有感光细胞——那里是<strong>视神经乳头</strong>（视盘），也就是<strong>视神经纤维汇集离开眼球</strong>的出口。<br>
+                    没有感光细胞 → 那个区域看不见东西。<br><br>
+                    为什么平时你不觉得有盲点？因为：<br>
+                    ① 两只眼睛的盲点位置不重叠（左右互补）<br>
+                    ② 大脑视觉皮层会根据周围信息<strong>"脑补"填充</strong>盲点区域<br>
+                    这是大脑"自动PS"能力的绝佳证明。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>视网膜是大脑的延伸（胚胎发育中从间脑突出形成）。感光细胞分两种：视锥细胞（色觉、明视、集中在黄斑中央凹）和视杆细胞（暗视、周边视野）。视盘是唯一没有感光细胞的区域。→ 详见 <a href="chapter13.html">第13章 感觉器官</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 8：淋巴结 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">🛡️ 实验八：摸到你的淋巴结 <span class="difficulty"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>免疫系统的"哨兵站"</h4>
+                <ol class="steps">
+                    <li><strong>颌下淋巴结</strong>：低头，把手指伸到下巴下方、下颌骨内侧，轻轻按压——可能摸到小的、可滑动的"小豆子"</li>
+                    <li><strong>颈部淋巴结</strong>：沿胸锁乳突肌前后缘轻轻按压——感冒时这里可能肿大</li>
+                    <li><strong>腋窝淋巴结</strong>：把一只手抬起，另一只手指伸入腋窝深处轻按</li>
+                    <li><strong>腹股沟淋巴结</strong>：大腿根部内侧（鼠蹊部）轻按——这里的淋巴结通常较容易摸到</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你摸到了：</strong>人体浅表淋巴结中最常见的几组。正常淋巴结<strong>＜1cm、质地软、可活动、无压痛</strong>。感冒时颈部淋巴结肿大→说明免疫细胞在这里"开会打仗"。<br><br>
+                    ⚠️ 什么时候需要注意：淋巴结>2cm、持续增大、质地硬、不活动、无痛性肿大 → 需排除淋巴瘤等疾病。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>全身约有600个淋巴结，分布在淋巴回流的路径上，像一个个"检查站"。淋巴液流经淋巴结时，其中的<strong>巨噬细胞</strong>和<strong>淋巴细胞</strong>会检查并消灭病原体。这就是感染区域附近淋巴结肿大的原因——士兵在前线集结。→ 详见 <a href="chapter8.html">第8章 循环系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 9：心跳 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">💓 实验九：听到/感受自己的心跳 <span class="difficulty"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>心尖搏动——心脏在跳的直接证据</h4>
+                <ol class="steps">
+                    <li>左手掌放在<strong>左胸偏下方</strong>（大约在左锁骨中线第5肋间）</li>
+                    <li>安静状态下感受——你能感到一下一下的搏动</li>
+                    <li>这叫<strong>心尖搏动</strong>——心脏左心室收缩时，心尖撞击胸壁</li>
+                    <li>做10个深蹲后再感受——搏动明显加强，这是心脏收缩力增强的表现</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你感受到了：</strong>心脏的实际位置。注意：心脏并不在左胸正中央，而是<strong>2/3在左侧、1/3在右侧</strong>，位于两肺之间的<strong>纵隔</strong>内。你摸到的搏动点就是<strong>心尖</strong>（左心室的最下端），它在第5肋间隙、锁骨中线内侧。
+                </div>
+            </div>
+
+            <div class="hands-on-card">
+                <h4>用手机"听"心跳</h4>
+                <ol class="steps">
+                    <li>在安静房间里，把手机的麦克风贴在左胸心尖搏动处</li>
+                    <li>打开手机录音功能，录15秒</li>
+                    <li>回放时开大音量——你可能听到"咚-哒、咚-哒"的双音</li>
+                    <li><strong>"咚"</strong> = 第一心音（S1）：房室瓣（二尖瓣+三尖瓣）关闭的声音</li>
+                    <li><strong>"哒"</strong> = 第二心音（S2）：半月瓣（主动脉瓣+肺动脉瓣）关闭的声音</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你听到了：</strong>心脏瓣膜开关的声音！每个心动周期：心房收缩→房室瓣开→血进心室→心室收缩→房室瓣关（S1 "咚"）→半月瓣开→血泵出→心室舒张→半月瓣关（S2 "哒"）。医生用听诊器听到的就是这些声音——如果有"杂音"（呼呼声），可能提示瓣膜病变。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>心脏有4个腔（左右心房+左右心室）和4组瓣膜。瓣膜保证血液单向流动。每分钟泵出约5L血液，一天约7200L，一生约泵血2.5亿L。→ 详见 <a href="chapter8.html">第8章 循环系统</a>
+            </div>
+        </div>
+
+        <!-- ===== 实验 10：关节活动 ===== -->
+        <div class="experiment-section">
+            <div class="section-badge">🔗 实验十：体验不同类型的关节 <span class="difficulty"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></span></div>
+
+            <div class="hands-on-card">
+                <h4>你的身体里有"万向节"也有"单轴铰链"</h4>
+                <ol class="steps">
+                    <li><strong>肩关节</strong>：伸直手臂，画一个大圆圈（360°全方位旋转）→ 这是<strong>球窝关节</strong>（股骨头嵌在肩胛骨关节盂里），活动度最大</li>
+                    <li><strong>肘关节</strong>：试试只能做弯曲和伸直 → 这是<strong>滑车关节</strong>（铰链型），只能单轴运动</li>
+                    <li><strong>桡尺关节</strong>：把手臂伸直掌心朝上，然后翻转掌心朝下 → 你的<strong>桡骨</strong>绕着<strong>尺骨</strong>旋转了！这叫旋前/旋后，靠<strong>车轴关节</strong>实现</li>
+                    <li><strong>拇指腕掌关节</strong>：试试让拇指碰小指指尖 → 这是<strong>鞍状关节</strong>（独有！），让人类拇指能做"对掌"动作——这是人类能使用工具的关键</li>
+                </ol>
+                <div class="what-you-feel">
+                    <strong>✅ 你体验了：</strong>4种不同关节的运动特点。关节的结构决定了它的运动自由度：球窝关节最自由但最不稳定（肩关节是脱位率最高的关节），铰链关节最稳定但只能一个方向动。工程学中的"自由度"概念在这里完美适用。
+                </div>
+            </div>
+
+            <div class="anatomy-note">
+                <strong>📖 解剖学原理：</strong>人体约有200多个关节。关节的三要素：关节面（光滑的透明软骨覆盖）+ 关节囊（密封袋）+ 关节腔（含滑液润滑）。活动度 vs 稳定性永远是trade-off。→ 详见 <a href="chapter5.html">第5章 运动系统</a>
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <h2 style="margin-top: 3rem;">🎯 做完这些实验之后</h2>
+
+        <div class="info-box blue">
+            <div class="box-title">你已经亲手验证了</div>
+            <p>🦴 <strong>运动系统</strong>：触摸了锁骨、肩胛骨等6个骨性标志，感受了3种肌肉收缩，体验了4种关节运动</p>
+            <p>❤️ <strong>循环系统</strong>：找到了6个脉搏触诊点，感受了心尖搏动，听到了心音</p>
+            <p>🫁 <strong>呼吸系统</strong>：区分了膈式呼吸和肋式呼吸，体验了呼吸中枢的CO₂调控</p>
+            <p>🧠 <strong>神经系统</strong>：测试了瞳孔反射、膝跳反射、Romberg平衡试验</p>
+            <p>👁️ <strong>感觉系统</strong>：发现了视觉盲点，体验了两点辨别觉的巨大差异</p>
+            <p>🛡️ <strong>免疫系统</strong>：摸到了4组浅表淋巴结</p>
+        </div>
+
+        <div class="cs-analogy" style="margin-top: 1.5rem;">
+            <div class="cs-title">🖥️ 程序员视角</div>
+            <p>这些实验就像对自己的身体执行了一次<code>硬件诊断（hardware diagnostics）</code>：检查了CPU（大脑反射）、总线（神经传导）、传感器阵列（感觉系统）、泵和管道（心血管）、散热系统（呼吸）、机械结构（骨骼关节）。你不再只是"用"这台机器——你开始<strong>理解</strong>它了。</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+    <p>解剖学入门学习平台 · 小吴的学习笔记 · 2026</p>
+    <p style="margin-top: 4px; font-size: 0.8rem;">内容仅供学习参考，不作为医学诊断依据</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>
+

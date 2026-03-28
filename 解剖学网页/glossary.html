@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>术语词典 - 解剖学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .glossary-search { display:flex; gap:10px; margin-bottom:24px; }
+        .glossary-search input { flex:1; padding:12px 16px; border:2px solid var(--gray-200); border-radius:10px; font-size:1rem; transition:border 0.2s; }
+        .glossary-search input:focus { outline:none; border-color:var(--primary); }
+        .glossary-filter { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+        .glossary-filter button { padding:6px 16px; border:1.5px solid var(--gray-300); border-radius:20px; background:#fff; cursor:pointer; font-size:0.85rem; transition:all 0.2s; }
+        .glossary-filter button.active, .glossary-filter button:hover { background:var(--primary); color:#fff; border-color:var(--primary); }
+        .glossary-item { border-left:4px solid var(--primary); padding:12px 16px; margin-bottom:16px; background:var(--gray-50); border-radius:0 10px 10px 0; }
+        .glossary-item .term { font-weight:700; color:var(--primary-dark); font-size:1.05rem; }
+        .glossary-item .term-en { color:var(--gray-500); font-size:0.85rem; margin-left:8px; font-style:italic; }
+        .glossary-item .term-cat { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.7rem; margin-left:8px; color:#fff; }
+        .cat-基础 { background:#6366f1; } .cat-运动 { background:#f59e0b; } .cat-消化 { background:#10b981; }
+        .cat-呼吸 { background:#3b82f6; } .cat-循环 { background:#ef4444; } .cat-泌尿 { background:#8b5cf6; }
+        .cat-生殖 { background:#ec4899; } .cat-神经 { background:#6366f1; } .cat-内分泌 { background:#f97316; }
+        .cat-感觉 { background:#14b8a6; }
+        .glossary-item .def { margin-top:6px; color:var(--gray-700); font-size:0.92rem; line-height:1.6; }
+        .glossary-item .ref-link { font-size:0.8rem; margin-top:4px; }
+        .glossary-count { color:var(--gray-500); font-size:0.85rem; margin-bottom:16px; }
+        .no-result { text-align:center; padding:40px; color:var(--gray-400); font-size:1.1rem; display:none; }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <a href="index.html" class="logo">🫀 解剖学入门学习</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="glossary.html" class="active">术语词典</a></li>
+            <li><a href="quiz.html">自测问答</a></li>
+            <li><a href="compare.html">系统对比</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="breadcrumb">
+    <a href="index.html">首页</a> <span>›</span> 术语词典
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">工具页 · 查阅</div>
+    <h1>📖 解剖学术语词典</h1>
+    <p class="subtitle">收录本学习平台涉及的核心术语，支持搜索和按系统筛选。遇到不懂的词，来这里查！</p>
+</div>
+
+<div class="main-content">
+    <div class="content-body">
+
+        <div class="glossary-search">
+            <input type="text" id="searchInput" placeholder="🔍 输入术语名称或关键词搜索..." oninput="filterGlossary()">
+        </div>
+
+        <div class="glossary-filter" id="filterBtns">
+            <button class="active" onclick="setFilter('全部')">全部</button>
+            <button onclick="setFilter('基础')">基础概念</button>
+            <button onclick="setFilter('运动')">运动系统</button>
+            <button onclick="setFilter('消化')">消化系统</button>
+            <button onclick="setFilter('呼吸')">呼吸系统</button>
+            <button onclick="setFilter('循环')">循环系统</button>
+            <button onclick="setFilter('泌尿')">泌尿系统</button>
+            <button onclick="setFilter('生殖')">生殖系统</button>
+            <button onclick="setFilter('神经')">神经系统</button>
+            <button onclick="setFilter('内分泌')">内分泌系统</button>
+            <button onclick="setFilter('感觉')">感觉器官</button>
+        </div>
+
+        <div class="glossary-count" id="glossaryCount"></div>
+
+        <div id="glossaryList">
+            <!-- 基础概念 -->
+            <div class="glossary-item" data-cat="基础">
+                <span class="term">解剖学</span><span class="term-en">Anatomy</span><span class="term-cat cat-基础">基础</span>
+                <div class="def">研究人体正常形态结构的科学。"解"=剖开，"剖"=分析。是所有医学学科的基础。</div>
+                <div class="ref-link"><a href="chapter1.html">→ 第1章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="基础">
+                <span class="term">组织</span><span class="term-en">Tissue</span><span class="term-cat cat-基础">基础</span>
+                <div class="def">由形态和功能相似的细胞及细胞间质组成的结构。人体四大基本组织：上皮组织、结缔组织、肌肉组织、神经组织。</div>
+                <div class="ref-link"><a href="chapter3.html">→ 第3章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="基础">
+                <span class="term">器官</span><span class="term-en">Organ</span><span class="term-cat cat-基础">基础</span>
+                <div class="def">由不同组织组合而成、执行特定功能的结构单元。如心脏包含肌肉组织、上皮组织、结缔组织和神经组织。</div>
+                <div class="ref-link"><a href="chapter3.html">→ 第3章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="基础">
+                <span class="term">解剖学标准姿势</span><span class="term-en">Anatomical Position</span><span class="term-cat cat-基础">基础</span>
+                <div class="def">身体直立、面朝前方、两眼平视、双足并拢、上肢自然下垂、手掌朝前。所有方位术语的参考基准。</div>
+                <div class="ref-link"><a href="chapter4.html">→ 第4章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="基础">
+                <span class="term">矢状面</span><span class="term-en">Sagittal Plane</span><span class="term-cat cat-基础">基础</span>
+                <div class="def">前后方向的纵切面，将人体分为左右两部分。MRI矢状位图像即从这个方向切割观察。</div>
+                <div class="ref-link"><a href="chapter4.html">→ 第4章</a></div>
+            </div>
+
+            <!-- 运动系统 -->
+            <div class="glossary-item" data-cat="运动">
+                <span class="term">密质骨/松质骨</span><span class="term-en">Compact / Spongy Bone</span><span class="term-cat cat-运动">运动</span>
+                <div class="def">密质骨是坚硬致密的骨外壳，提供强度；松质骨在骨端内部呈海绵状，减轻重量同时保持支撑力。</div>
+                <div class="ref-link"><a href="chapter5.html">→ 第5章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="运动">
+                <span class="term">关节腔</span><span class="term-en">Joint Cavity</span><span class="term-cat cat-运动">运动</span>
+                <div class="def">关节囊内的密封空间，含有少量滑液，起润滑和营养关节软骨的作用。</div>
+                <div class="ref-link"><a href="chapter5.html">→ 第5章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="运动">
+                <span class="term">椎间盘</span><span class="term-en">Intervertebral Disc</span><span class="term-cat cat-运动">运动</span>
+                <div class="def">椎骨之间的纤维软骨垫，中央是胶状的髓核，外围是坚韧的纤维环。起缓冲减震作用。纤维环破裂→椎间盘突出。</div>
+                <div class="ref-link"><a href="chapter5.html">→ 第5章</a></div>
+            </div>
+
+            <!-- 消化系统 -->
+            <div class="glossary-item" data-cat="消化">
+                <span class="term">蠕动</span><span class="term-en">Peristalsis</span><span class="term-cat cat-消化">消化</span>
+                <div class="def">消化管壁平滑肌的波浪式收缩运动，把食物从口腔方向推向肛门方向。倒立也能吞咽食物就是靠蠕动。</div>
+                <div class="ref-link"><a href="chapter6.html">→ 第6章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="消化">
+                <span class="term">幽门螺杆菌</span><span class="term-en">Helicobacter pylori (H.pylori)</span><span class="term-cat cat-消化">消化</span>
+                <div class="def">能在胃酸环境中生存的细菌，是慢性胃炎和胃/十二指肠溃疡的主要病因。可通过碳14呼气试验检测。</div>
+                <div class="ref-link"><a href="chapter6.html">→ 第6章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="消化">
+                <span class="term">胆汁</span><span class="term-en">Bile</span><span class="term-cat cat-消化">消化</span>
+                <div class="def">由肝脏分泌、储存于胆囊的消化液。主要功能是乳化脂肪（把大脂肪滴打散成小滴），增大脂肪酶的作用面积。</div>
+                <div class="ref-link"><a href="chapter6.html">→ 第6章</a></div>
+            </div>
+
+            <!-- 呼吸系统 -->
+            <div class="glossary-item" data-cat="呼吸">
+                <span class="term">肺泡</span><span class="term-en">Alveolus</span><span class="term-cat cat-呼吸">呼吸</span>
+                <div class="def">肺内最小的气体交换单元，约7亿个，总面积约100㎡。壁极薄（0.2-0.5μm），紧贴毛细血管，O₂和CO₂在此扩散交换。</div>
+                <div class="ref-link"><a href="chapter7.html">→ 第7章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="呼吸">
+                <span class="term">膈肌</span><span class="term-en">Diaphragm</span><span class="term-cat cat-呼吸">呼吸</span>
+                <div class="def">分隔胸腔和腹腔的穹顶形骨骼肌，是最重要的呼吸肌。收缩→胸腔扩大→吸气；舒张→胸腔缩小→呼气。打嗝=膈肌痉挛。</div>
+                <div class="ref-link"><a href="chapter7.html">→ 第7章</a></div>
+            </div>
+
+            <!-- 循环系统 -->
+            <div class="glossary-item" data-cat="循环">
+                <span class="term">窦房结</span><span class="term-en">Sinoatrial Node (SA Node)</span><span class="term-cat cat-循环">循环</span>
+                <div class="def">位于右心房的特殊心肌组织，是心脏的"天然起搏器"，自动发放电冲动，决定心跳频率（60-100次/分）。</div>
+                <div class="ref-link"><a href="chapter8.html">→ 第8章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="循环">
+                <span class="term">冠状动脉</span><span class="term-en">Coronary Artery</span><span class="term-cat cat-循环">循环</span>
+                <div class="def">专门为心肌供血的动脉，从主动脉根部发出。冠状动脉粥样硬化→冠心病→心绞痛/心肌梗死。</div>
+                <div class="ref-link"><a href="chapter8.html">→ 第8章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="循环">
+                <span class="term">淋巴结</span><span class="term-en">Lymph Node</span><span class="term-cat cat-循环">循环</span>
+                <div class="def">淋巴管上的"过滤站"，含大量免疫细胞，过滤淋巴液中的细菌和异物。感染时肿大（如感冒时颈部淋巴结肿大）。</div>
+                <div class="ref-link"><a href="chapter8.html">→ 第8章</a></div>
+            </div>
+
+            <!-- 泌尿系统 -->
+            <div class="glossary-item" data-cat="泌尿">
+                <span class="term">肾单位</span><span class="term-en">Nephron</span><span class="term-cat cat-泌尿">泌尿</span>
+                <div class="def">肾脏的基本功能单位，由肾小体（肾小球+肾小囊）和肾小管组成。每个肾约100万个肾单位。完成滤过、重吸收和分泌。</div>
+                <div class="ref-link"><a href="chapter9.html">→ 第9章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="泌尿">
+                <span class="term">肾小球滤过率(GFR)</span><span class="term-en">Glomerular Filtration Rate</span><span class="term-cat cat-泌尿">泌尿</span>
+                <div class="def">单位时间内两肾生成的超滤液量，正常约125ml/min。是衡量肾功能最重要的指标。GFR下降=肾功能减退。</div>
+                <div class="ref-link"><a href="chapter9.html">→ 第9章</a></div>
+            </div>
+
+            <!-- 生殖系统 -->
+            <div class="glossary-item" data-cat="生殖">
+                <span class="term">受精</span><span class="term-en">Fertilization</span><span class="term-cat cat-生殖">生殖</span>
+                <div class="def">精子和卵子在输卵管壶腹部结合的过程。约2-3亿精子出发，最终只有一个能穿透卵子完成受精。</div>
+                <div class="ref-link"><a href="chapter10.html">→ 第10章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="生殖">
+                <span class="term">月经周期</span><span class="term-en">Menstrual Cycle</span><span class="term-cat cat-生殖">生殖</span>
+                <div class="def">女性约28天为一周期的生殖准备过程。包括月经期（子宫内膜脱落）、增殖期（内膜修复增厚）、分泌期（内膜为着床做准备）。</div>
+                <div class="ref-link"><a href="chapter10.html">→ 第10章</a></div>
+            </div>
+
+            <!-- 神经系统 -->
+            <div class="glossary-item" data-cat="神经">
+                <span class="term">突触</span><span class="term-en">Synapse</span><span class="term-cat cat-神经">神经</span>
+                <div class="def">神经元之间的信号传递结构。突触前膜释放神经递质→穿过突触间隙→与突触后膜受体结合→传递信号。类似API调用。</div>
+                <div class="ref-link"><a href="chapter11.html">→ 第11章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="神经">
+                <span class="term">髓鞘</span><span class="term-en">Myelin Sheath</span><span class="term-cat cat-神经">神经</span>
+                <div class="def">包裹神经轴突的绝缘层，使神经冲动以跳跃式传导，速度从2m/s提升至120m/s。多发性硬化症=髓鞘被免疫系统攻击。</div>
+                <div class="ref-link"><a href="chapter11.html">→ 第11章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="神经">
+                <span class="term">交感/副交感神经</span><span class="term-en">Sympathetic / Parasympathetic</span><span class="term-cat cat-神经">神经</span>
+                <div class="def">自主神经系统的两个分支。交感="战斗逃跑"（心率↑血压↑瞳孔散大），副交感="休息消化"（心率↓消化↑），两者像跷跷板互相拮抗。</div>
+                <div class="ref-link"><a href="chapter11.html">→ 第11章</a></div>
+            </div>
+
+            <!-- 内分泌 -->
+            <div class="glossary-item" data-cat="内分泌">
+                <span class="term">激素</span><span class="term-en">Hormone</span><span class="term-cat cat-内分泌">内分泌</span>
+                <div class="def">由内分泌腺分泌、通过血液运输、作用于靶器官的化学信使。微量但效果显著（如1mg甲状腺激素就能加速全身代谢）。</div>
+                <div class="ref-link"><a href="chapter12.html">→ 第12章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="内分泌">
+                <span class="term">负反馈</span><span class="term-en">Negative Feedback</span><span class="term-cat cat-内分泌">内分泌</span>
+                <div class="def">内分泌最核心的调节机制。靶腺激素水平升高→抑制上级（下丘脑/垂体）分泌→激素减少→抑制解除→激素再升高。类似空调恒温器。</div>
+                <div class="ref-link"><a href="chapter12.html">→ 第12章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="内分泌">
+                <span class="term">胰岛素</span><span class="term-en">Insulin</span><span class="term-cat cat-内分泌">内分泌</span>
+                <div class="def">胰岛B细胞分泌的唯一能降低血糖的激素。促进细胞摄取葡萄糖和合成糖原。缺乏或抵抗→糖尿病。</div>
+                <div class="ref-link"><a href="chapter12.html">→ 第12章</a></div>
+            </div>
+
+            <!-- 感觉 -->
+            <div class="glossary-item" data-cat="感觉">
+                <span class="term">视锥细胞/视杆细胞</span><span class="term-en">Cone / Rod Cells</span><span class="term-cat cat-感觉">感觉</span>
+                <div class="def">视网膜上的两类感光细胞。视锥（600万）负责彩色视觉和细节（明视觉），视杆（1.2亿）负责暗光下的黑白视觉（暗视觉）。</div>
+                <div class="ref-link"><a href="chapter13.html">→ 第13章</a></div>
+            </div>
+            <div class="glossary-item" data-cat="感觉">
+                <span class="term">耳蜗</span><span class="term-en">Cochlea</span><span class="term-cat cat-感觉">感觉</span>
+                <div class="def">内耳的螺旋形结构，内含基底膜和毛细胞。声波振动→基底膜振动→毛细胞将机械能转为电信号→听觉。不同频率在基底膜不同位置引起共振。</div>
+                <div class="ref-link"><a href="chapter13.html">→ 第13章</a></div>
+            </div>
+        </div>
+
+        <div class="no-result" id="noResult">😅 没有找到匹配的术语，试试其他关键词？</div>
+
+    </div>
+
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h3>📚 快速跳转</h3>
+            <ul class="toc-list">
+                <li><a href="index.html">返回首页</a></li>
+                <li><a href="quiz.html">去自测问答</a></li>
+                <li><a href="compare.html">去系统对比</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-card" style="margin-top:16px">
+            <h3>💡 使用提示</h3>
+            <p style="font-size:0.85rem;color:var(--gray-600);">输入中文名称或英文名即可搜索。点击分类按钮可按系统筛选。每个术语都链接到对应章节。</p>
+        </div>
+    </aside>
+</div>
+
+<footer class="site-footer">
+    <p>解剖学入门学习平台 · 小吴的学习笔记 · 2026</p>
+</footer>
+
+<script>
+let currentFilter = '全部';
+
+function setFilter(cat) {
+    currentFilter = cat;
+    document.querySelectorAll('.glossary-filter button').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.includes(cat) || (cat === '全部' && btn.textContent === '全部'));
+    });
+    filterGlossary();
+}
+
+function filterGlossary() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const items = document.querySelectorAll('.glossary-item');
+    let count = 0;
+    items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        const cat = item.dataset.cat;
+        const matchSearch = !query || text.includes(query);
+        const matchFilter = currentFilter === '全部' || cat === currentFilter;
+        const show = matchSearch && matchFilter;
+        item.style.display = show ? '' : 'none';
+        if (show) count++;
+    });
+    document.getElementById('glossaryCount').textContent = `共显示 ${count} 条术语`;
+    document.getElementById('noResult').style.display = count === 0 ? 'block' : 'none';
+}
+
+filterGlossary();
+</script>
+
+<script src="nav.js"></script>
+</body>
+</html>
+

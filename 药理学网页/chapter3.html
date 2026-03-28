@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第3章 药效学·治疗窗 — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>基础药理</span>
+  <span>›</span>
+  <span>第3章 药效学·治疗窗</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">基础药理 · 第 3 章</div>
+  <h1>药效学·治疗窗</h1>
+  <p class="hero-sub">量效关系、治疗指数与联合用药——理解"为什么地高辛要测血药浓度""为什么两个药加在一起不等于简单相加"</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+<!-- 模块1：承接导读 -->
+<div class="chapter-intro">
+  <div class="intro-links">
+    <span>本章衔接：</span>
+    <a href="chapter2.html">← 第2章 药动学ADME</a>
+    <a href="chapter4.html">第4章 不良反应 →</a>
+    <a href="../病理学网页/index.html">病理学参考</a>
+  </div>
+  <div class="hook-questions">
+    <div class="hook-q">📈 量效曲线为什么是S形？EC₅₀和Emax分别代表什么？为什么不能只靠Emax判断药物好坏？</div>
+    <div class="hook-q">⚖️ 治疗指数TI=2意味着什么？地高辛为什么如此"危险"而不得不用？</div>
+    <div class="hook-q">🧪 两个药联合使用，效果一定更好吗？协同/相加/拮抗怎么区分？</div>
+  </div>
+  <div class="drug-preview">
+    <span>本章核心概念：</span>
+    <span class="drug-pill">地高辛（TI≈2）</span>
+    <span class="drug-pill">苯二氮卓类（TI极大）</span>
+    <span class="drug-pill">青霉素（协同）</span>
+    <span class="drug-pill">阿司匹林+布洛芬（药效拮抗）</span>
+    <span class="drug-pill">吗啡+苯二氮卓（毒性协同）</span>
+  </div>
+</div>
+
+<!-- 模块2：核心机制 -->
+<div class="section-card">
+  <h2>量效关系的核心概念</h2>
+
+  <div class="four-questions">
+    <div class="fq-item">
+      <div class="fq-label">EC₅₀（半数有效浓度）</div>
+      <div class="fq-content">
+        产生50%最大效应时的药物浓度<br>
+        <strong>EC₅₀↓ = 亲和力强 = 效能高（Potency）</strong><br>
+        吗啡 vs 可待因：吗啡EC₅₀更小 → 更低剂量达相同镇痛<br>
+        <em>决定剂量大小，不决定最终能达多强效果</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">Emax（最大效能）</div>
+      <div class="fq-content">
+        药物能产生的最大效应上限<br>
+        <strong>Emax = 效力（Efficacy）</strong><br>
+        完全激动剂 > 部分激动剂（Emax固有上限）<br>
+        阿司匹林 vs 吗啡：镇痛Emax差异悬殊<br>
+        <em>决定"天花板"，再加剂量也不会超越</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">治疗指数 TI</div>
+      <div class="fq-content">
+        <strong>TI = TD₅₀ / ED₅₀ ≈ LD₅₀ / ED₅₀</strong><br>
+        TI越大 → 安全窗口越宽<br>
+        苯二氮卓TI≈1000（极安全）<br>
+        地高辛TI≈2（极窄，需TDM）<br>
+        锂盐TI≈3，华法林TI≈3–5
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">治疗窗（Therapeutic Window）</div>
+      <div class="fq-content">
+        MEC（最低有效浓度）到 MTC（最低毒性浓度）之间的安全范围<br>
+        <strong>窗口宽 → 剂量弹性大；窗口窄 → 需TDM</strong><br>
+        需TDM药物：地高辛/万古霉素/锂盐/苯妥英/氨基糖苷类
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">治疗窗可视化</h3>
+  <div class="dose-window">
+    <div class="dw-zone dw-sub">
+      <div class="dw-label">无效区</div>
+      <div class="dw-desc">浓度 &lt; MEC<br>药物不足</div>
+    </div>
+    <div class="dw-zone dw-therapeutic">
+      <div class="dw-label">治疗窗 ✓</div>
+      <div class="dw-desc">MEC ~ MTC<br>有效且安全</div>
+    </div>
+    <div class="dw-zone dw-toxic">
+      <div class="dw-label">毒性区</div>
+      <div class="dw-desc">浓度 &gt; MTC<br>不良反应出现</div>
+    </div>
+  </div>
+  <p style="margin:0.5rem 0 1.5rem; color:#64748b; font-size:0.9rem; text-align:center">
+    地高辛治疗窗极窄（0.5–0.9 ng/mL），高于1.5 ng/mL即出现毒性（室性心律失常）
+  </p>
+
+  <h3>联合用药——四种相互作用</h3>
+  <div class="drug-compare">
+    <div class="compare-item">
+      <div class="compare-label">协同作用（Synergism）</div>
+      <div class="compare-body">
+        <p>联合效果 > 各自效果之和</p>
+        <ul>
+          <li><strong>青霉素+氨基糖苷类</strong>：β-内酰胺破坏细胞壁，氨基糖苷进入量增加 → 抗菌协同</li>
+          <li><strong>ACE抑制剂+ARB</strong>：双重RAAS阻断（但副作用也叠加！）</li>
+          <li><strong>吗啡+苯二氮卓</strong>：呼吸抑制协同 → 致命（非法药物滥用最常见死因）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="compare-item">
+      <div class="compare-label">相加/拮抗/耐受</div>
+      <div class="compare-body">
+        <p>相加：效果等于各自之和（多数情况）</p>
+        <p>拮抗：<strong>阿司匹林+布洛芬</strong>竞争COX活性位点 → 阿司匹林心血管保护↓</p>
+        <p>耐受：长期用药后效果减弱</p>
+        <ul>
+          <li>药动学耐受：CYP诱导，代谢加速</li>
+          <li>药效学耐受：受体下调（β激动剂）</li>
+          <li>快速耐受：短时间内（硝酸酯类）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块3：CS类比 -->
+<div class="section-card">
+  <h2>CS类比：量效关系 = 系统性能曲线与SLA</h2>
+  <div class="cs-analogy">
+    <h3>🖥️ 把量效曲线想象成服务器性能测试报告</h3>
+    <div class="analogy-grid">
+      <div class="analogy-item">
+        <div class="analogy-concept">量效曲线（S形）</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">性能测试的吞吐量曲线<br>
+          低并发（低剂量）→ 几乎无响应<br>
+          中并发（EC₅₀附近）→ 吞吐量线性增长<br>
+          高并发（接近Emax）→ 趋于饱和，再加并发也无提升<br>
+          <em>曲线饱和=受体全部占满，没有更多"座位"</em>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">治疗指数 TI</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">安全系数（Safety Factor）<br>
+          <code>TI = crash_threshold / useful_threshold</code><br>
+          TI=2 → 有效负载的2倍就会崩溃（地高辛）<br>
+          TI=1000 → 必须达到1000倍负载才崩溃（苯二氮卓）<br>
+          <em>运维人员（医生）对TI低的服务需要时刻监控</em>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">药物耐受性</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">系统自动扩容后"感知不到负载"<br>
+          连续使用β激动剂 → 受体下调（自动扩容后每台机器处理能力↓）<br>
+          曾经有效的"流量"（剂量）不再产生响应<br>
+          <em>需要增加剂量，或"停机维护"恢复受体数量</em>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">协同 vs 拮抗</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">微服务调用链<br>
+          协同：两个服务互相增强，A调用B时B已经预处理好数据 → 响应更快<br>
+          拮抗：两个服务竞争同一资源锁 → 其中一个永远拿不到锁<br>
+          <em>阿司匹林+布洛芬同时抢COX活性位点，布洛芬赢，阿司匹林保护效果消失</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块4：认知扩展 -->
+<div class="section-card">
+  <h2>认知扩展</h2>
+  <div class="cognitive-expand">
+    <h3>💡 扩展①：为什么苯二氮卓过量不致死，而巴比妥类过量致死？</h3>
+    <p>苯二氮卓类（地西泮、劳拉西泮）和巴比妥类（苯巴比妥）都通过增强GABA-A受体发挥镇静作用，但机制有根本差异：</p>
+    <ul>
+      <li><strong>苯二氮卓</strong>：是GABA-A的<strong>正变构调节剂</strong>——只有在GABA存在时才增加Cl⁻通道开放频率。没有GABA就没有效果，因此有内在上限（"天花板"）。即使大量服用，呼吸抑制风险也低</li>
+      <li><strong>巴比妥类</strong>：在高剂量时可直接打开Cl⁻通道（无需GABA），没有Emax上限 → 呼吸中枢完全抑制 → 致死</li>
+    </ul>
+    <p><strong>临床意义</strong>：苯二氮卓作为镇静首选正是因为其安全性（TI极大）；其拮抗剂氟马西尼可快速逆转过量；但苯二氮卓+阿片类联用时呼吸抑制风险显著增加。</p>
+
+    <h3 style="margin-top:1.5rem">💡 扩展②：地高辛为什么TI=2还在用？——"无法替代"的历史药物</h3>
+    <p>地高辛治疗窗极窄（TI≈2），血药浓度超过1.5 ng/mL即可出现毒性（视觉异常——黄视，室性心律失常），但它至今仍是心衰和心房颤动的重要辅助药物，原因：</p>
+    <ul>
+      <li>正性肌力作用（抑制Na⁺/K⁺-ATP酶）在心衰中不可替代</li>
+      <li>对心率有独特控制（负性变时）</li>
+      <li>价格极低（专利过期数十年）</li>
+    </ul>
+    <p><strong>安全使用策略</strong>：从小剂量开始；定期测血药浓度；监测血钾（低钾→毒性风险↑）；老年/肾衰患者剂量减半。</p>
+  </div>
+</div>
+
+<!-- 模块5：临床逻辑 -->
+<div class="section-card">
+  <h2>临床逻辑</h2>
+  <div class="clinical-logic">
+    <h3>⚕️ 临床决策三要点</h3>
+    <div class="logic-points">
+      <div class="logic-point">
+        <div class="logic-num">01</div>
+        <div class="logic-content">
+          <strong>使用TI低的药物（TI&lt;10）必须建立监测计划</strong><br>
+          窄治疗窗药物清单：地高辛（TI≈2）、锂盐（TI≈3）、华法林、苯妥英、万古霉素、氨茶碱（TI≈5）、氨基糖苷类<br>
+          <strong>原则</strong>：初始剂量从低端开始；建立TDM时间表；充分告知患者中毒体征（地高辛：恶心/视觉异常/心悸）
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">02</div>
+        <div class="logic-content">
+          <strong>阿司匹林与NSAIDs同用的"拮抗陷阱"</strong><br>
+          布洛芬/萘普生可逆性竞争COX-1活性位点，阻止阿司匹林的不可逆乙酰化。如同时服用，需在阿司匹林<strong>至少30分钟前</strong>服用，或改用对乙酰氨基酚（不影响COX-1）替代止痛。<br>
+          <strong>临床意义</strong>：心血管疾病患者服用阿司匹林期间同时使用布洛芬，心肌梗死风险增加
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">03</div>
+        <div class="logic-content">
+          <strong>硝酸酯类快速耐受——为什么要留空窗期？</strong><br>
+          硝酸甘油持续24小时使用后疗效大幅下降（快速耐受）。机制：持续NO暴露→鸟苷酸环化酶脱敏+硫基耗竭。<br>
+          <strong>解决方案</strong>：每日留8–12小时"无药窗口"（通常睡前），恢复受体敏感性。<br>
+          <em>透皮贴剂需每日10–12小时后移除，隔日贴用</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块6：副作用推导 -->
+<div class="section-card">
+  <h2>副作用推导：TI过窄药物的系统性风险</h2>
+  <div class="adverse-box">
+    <h3>❌ 常见误区 vs ✅ 机制推导</h3>
+    <div class="adverse-grid">
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "地高辛中毒是用多了，减量就好"</div>
+        <div class="adverse-logic">
+          ✅ 推导：地高辛中毒不只是"剂量问题"<br>
+          血钾↓（利尿剂）→ 心肌细胞K⁺耗竭 → 地高辛与Na⁺/K⁺-ATP酶亲和力↑ → 相同剂量毒性↑<br>
+          因此：血钾正常是地高辛安全使用的前提；保钾利尿剂（螺内酯）可减少低钾风险
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "氨茶碱用量不高，不需要担心毒性"</div>
+        <div class="adverse-logic">
+          ✅ 推导：氨茶碱TI≈5，治疗浓度10–20 μg/mL，毒性浓度>20 μg/mL<br>
+          合用环丙沙星（CYP1A2抑制）→ 氨茶碱代谢↓ → 浓度升高→ 心律失常/癫痫发作<br>
+          高龄/心衰/肝硬化患者：CL自然下降，同剂量即可达毒性范围
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "苯二氮卓安全，多吃一片没关系"</div>
+        <div class="adverse-logic">
+          ✅ 推导：苯二氮卓单用TI极大（罕见死亡），但协同毒性突破天花板<br>
+          苯二氮卓+阿片类（含止咳糖浆/违禁药）→ 双重呼吸抑制 → 协同效应<br>
+          美国2019年过量死亡中，苯二氮卓+阿片类联合占16%<br>
+          <strong>FDA黑框警告：两类药禁止同时处方</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块7：药物关联网 -->
+<div class="section-card">
+  <h2>药物关联网</h2>
+  <div class="drug-network">
+    <div class="network-node">
+      <a href="chapter2.html">← 第2章</a>
+      <span>稳态浓度是量效关系的横坐标</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter4.html">第4章 →</a>
+      <span>TI低的药物是不良反应重灾区</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter5.html">第5章</a>
+      <span>地高辛：心衰用药，TI极窄</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter8.html">第8章</a>
+      <span>阿片+苯二氮卓：协同呼吸抑制</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter9.html">第9章</a>
+      <span>苯二氮卓、苯妥英：TDM重点</span>
+    </div>
+    <div class="network-node">
+      <a href="interaction-guide.html">相互作用速查</a>
+      <span>协同/拮抗完整清单</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- content-body -->
+
+<div class="sidebar">
+  <div class="toc-box">
+    <div class="toc-title">本章目录</div>
+    <div id="toc-list"></div>
+  </div>
+  <div class="key-formula">
+    <div class="formula-title">📐 核心概念</div>
+    <div class="formula-item"><strong>TI</strong> = TD₅₀ / ED₅₀</div>
+    <div class="formula-item"><strong>EC₅₀↓</strong> → 效能（Potency）↑</div>
+    <div class="formula-item"><strong>Emax↑</strong> → 效力（Efficacy）↑</div>
+    <div class="formula-item">地高辛TI≈<strong>2</strong>（极窄）</div>
+    <div class="formula-item">苯二氮卓TI≈<strong>1000</strong>（极宽）</div>
+  </div>
+</div>
+
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 第3章 药效学·治疗窗</p>
+  <p><a href="chapter2.html">← 第2章</a> | <a href="index.html">目录</a> | <a href="chapter4.html">第4章 →</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

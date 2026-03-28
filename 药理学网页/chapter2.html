@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 药动学·ADME — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>基础药理</span>
+  <span>›</span>
+  <span>第2章 药动学·ADME</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">基础药理 · 第 2 章</div>
+  <h1>药动学·ADME</h1>
+  <p class="hero-sub">药物在体内的旅程——从吸收到消除，理解"为什么这个药要饭前吃""为什么肾衰要减量"</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+<!-- 模块1：承接导读 -->
+<div class="chapter-intro">
+  <div class="intro-links">
+    <span>本章衔接：</span>
+    <a href="../生理学网页/chapter3.html">生理学·肝脏代谢</a>
+    <a href="../生理学网页/chapter8.html">生理学·肾脏排泄</a>
+    <a href="chapter1.html">← 第1章 受体药理</a>
+    <a href="chapter3.html">第3章 量效关系 →</a>
+  </div>
+  <div class="hook-questions">
+    <div class="hook-q">💊 为什么口服某些药的效果远弱于注射？"首关效应"到底发生了什么？</div>
+    <div class="hook-q">⚗️ CYP3A4被克拉霉素抑制时，为什么他汀类药物会引起横纹肌溶解？</div>
+    <div class="hook-q">🩺 肾功能下降时，为什么绝大多数药物都需要减量？有公式可以算吗？</div>
+  </div>
+  <div class="drug-preview">
+    <span>本章核心药物/概念：</span>
+    <span class="drug-pill">利多卡因（首关效应典范）</span>
+    <span class="drug-pill">华法林（蛋白结合率）</span>
+    <span class="drug-pill">氯吡格雷（前药/CYP2C19）</span>
+    <span class="drug-pill">他汀类（CYP3A4相互作用）</span>
+    <span class="drug-pill">地高辛（窄治疗窗/肾清除）</span>
+    <span class="drug-pill">苯妥英（非线性动力学）</span>
+  </div>
+</div>
+
+<!-- 模块2：核心机制——ADME四格 -->
+<div class="section-card">
+  <h2>ADME 四步旅程</h2>
+
+  <div class="pk-box">
+    <div class="pk-cell">
+      <div class="pk-letter">A</div>
+      <div class="pk-title">Absorption · 吸收</div>
+      <ul>
+        <li><strong>生物利用度 F</strong>：口服到达体循环的比例（利多卡因口服 F≈3%，静注 F=100%）</li>
+        <li><strong>首关效应</strong>：口服→门静脉→肝脏大量代谢，剩余才进体循环</li>
+        <li><strong>影响因素</strong>：剂型（肠溶/缓释）、胃排空速率、P-gp外排泵、食物</li>
+        <li><strong>给药途径</strong>：静注 > 肌注 > 皮下 > 口服（黏膜/舌下可绕过首关）</li>
+      </ul>
+    </div>
+    <div class="pk-cell">
+      <div class="pk-letter">D</div>
+      <div class="pk-title">Distribution · 分布</div>
+      <ul>
+        <li><strong>表观分布容积 Vd</strong>：Vd = 给药量 / 血浆浓度；Vd大 → 广泛分布于组织（地高辛 Vd≈500L）</li>
+        <li><strong>血浆蛋白结合率</strong>：结合型无活性；竞争性置换→游离型↑→毒性↑（华法林+阿司匹林）</li>
+        <li><strong>血脑屏障</strong>：高脂溶性/小分子才能入脑；P-gp泵向外</li>
+        <li><strong>特殊屏障</strong>：胎盘屏障（沙利度胺教训）、血睾屏障</li>
+      </ul>
+    </div>
+    <div class="pk-cell">
+      <div class="pk-letter">M</div>
+      <div class="pk-title">Metabolism · 代谢</div>
+      <ul>
+        <li><strong>一相反应</strong>：氧化/还原/水解（CYP450），产物仍有活性或毒性</li>
+        <li><strong>二相反应</strong>：结合（葡萄糖醛酸化/磺酸化），增加水溶性，通常灭活</li>
+        <li><strong>CYP450主要亚型</strong>：CYP3A4（~50%药物）/ CYP2D6（β阻滞剂/抗精神病药）/ CYP2C9（华法林/NSAIDs）/ CYP2C19（质子泵抑制剂/氯吡格雷）</li>
+        <li><strong>前药</strong>：本身无活性，需经代谢活化（氯吡格雷→活性硫醇代谢物）</li>
+      </ul>
+    </div>
+    <div class="pk-cell">
+      <div class="pk-letter">E</div>
+      <div class="pk-title">Excretion · 排泄</div>
+      <ul>
+        <li><strong>肾排泄三步</strong>：肾小球滤过 + 肾小管主动分泌 − 肾小管重吸收</li>
+        <li><strong>影响因素</strong>：尿液pH（弱酸性药物在碱性尿中电离↑→重吸收↓→排泄↑）</li>
+        <li><strong>清除率 CL</strong>：单位时间清除药物的血浆体积（mL/min）</li>
+        <li><strong>稳态浓度</strong>：经4~5个半衰期达到稳态（输入速率 = 清除速率）</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">半衰期与稳态——最重要的两个公式</h3>
+  <div class="drug-flow">
+    <div class="flow-step">
+      <div class="flow-label">半衰期</div>
+      <div class="flow-content">
+        <strong>t½ = 0.693 × Vd / CL</strong><br>
+        Vd大（组织分布广）→ t½长<br>
+        CL大（代谢/排泄快）→ t½短<br>
+        <em>肾衰→CL↓→t½延长→蓄积→减量</em>
+      </div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-label">达稳态时间</div>
+      <div class="flow-content">
+        ~4–5 个 t½<br>
+        与剂量<strong>无关</strong><br>
+        只与 t½ 有关<br>
+        <em>地高辛 t½≈36h → ~7天才稳态</em>
+      </div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-label">负荷剂量</div>
+      <div class="flow-content">
+        <strong>LD = Vd × Css</strong><br>
+        需要快速达到有效浓度时<br>
+        先给大剂量，再维持剂量<br>
+        <em>胺碘酮、地高辛、万古霉素</em>
+      </div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+      <div class="flow-label">维持剂量</div>
+      <div class="flow-content">
+        <strong>MD = CL × Css × τ</strong><br>
+        τ=给药间隔<br>
+        肾衰 → CL↓ → MD↓ 或 τ↑<br>
+        <em>根据 GFR 调整</em>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">CYP450——最重要的代谢酶网络</h3>
+  <div class="drug-compare">
+    <div class="compare-item">
+      <div class="compare-label">CYP抑制剂（危险！）</div>
+      <div class="compare-body">
+        <p>使底物浓度<strong>升高</strong>→毒性</p>
+        <ul>
+          <li>克拉霉素/红霉素 → 抑制CYP3A4 → 他汀↑→横纹肌溶解</li>
+          <li>氟康唑 → 抑制CYP2C9 → 华法林↑→出血</li>
+          <li>奥美拉唑 → 抑制CYP2C19 → 氯吡格雷活化↓→血栓</li>
+          <li>葡萄柚汁 → 抑制肠道CYP3A4 → 钙拮抗剂↑</li>
+        </ul>
+      </div>
+    </div>
+    <div class="compare-item">
+      <div class="compare-label">CYP诱导剂（也危险！）</div>
+      <div class="compare-body">
+        <p>使底物浓度<strong>降低</strong>→失效</p>
+        <ul>
+          <li>利福平 → 诱导CYP3A4 → 口服避孕药↓→意外妊娠</li>
+          <li>苯妥英/卡马西平 → 诱导多种CYP → 华法林↓→血栓</li>
+          <li>圣约翰草 → 诱导CYP3A4 → 环孢素↓→器官排斥</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块3：CS类比 -->
+<div class="section-card">
+  <h2>CS类比：药动学 = 微服务的部署与运维</h2>
+  <div class="cs-analogy">
+    <h3>🖥️ 把人体当成分布式系统来理解ADME</h3>
+    <div class="analogy-grid">
+      <div class="analogy-item">
+        <div class="analogy-concept">口服→首关效应</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">Nginx反向代理拦截并处理payload<br>
+          <code>request: 100mg → proxy filter → downstream: 3mg</code><br>
+          利多卡因口服后Nginx（肝脏）拦截了97%的流量，只有3%到达靶器官
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">半衰期 t½</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">Redis缓存TTL<br>
+          每过一个TTL，缓存中的"药物"剩余50%<br>
+          t½=6h → 24h后还剩 (1/2)⁴ = 6.25%<br>
+          <em>TTL由Vd/CL决定，不是程序员设置的固定值</em>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">CYP3A4被抑制</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">核心依赖库版本锁死，下游任务积压<br>
+          <code>npm install clarithromycin → peer dependency conflict</code><br>
+          降解酶被占用 → 底物在队列积压 → 内存溢出（药物中毒）
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">稳态浓度</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">负载均衡的稳定态<br>
+          输入速率 = 清除速率时达到平衡<br>
+          就像服务器的请求速率 = 处理速率时队列长度稳定<br>
+          <em>4–5个t½后自动稳定，修改剂量需再等4–5个t½重新稳定</em>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">前药（氯吡格雷）</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">加密payload，在目标节点才解密激活<br>
+          <code>encrypted_payload → CYP2C19_decrypt → active_drug</code><br>
+          CYP2C19慢代谢者（PM） = 解密密钥缺失 → 永远收到密文 → 氯吡格雷无效
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">负荷剂量</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">冷启动时预热缓存<br>
+          不等服务自然缓存命中，直接 warm-up 预填充<br>
+          <code>docker run --preload=true cardiac_glycoside</code><br>
+          之后再用维持剂量维持稳定状态
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块4：认知扩展 -->
+<div class="section-card">
+  <h2>认知扩展</h2>
+  <div class="cognitive-expand">
+    <h3>💡 扩展①：前药设计——为什么氯吡格雷对CYP2C19慢代谢者无效？</h3>
+    <p>氯吡格雷本身是<strong>无活性的前药</strong>。它口服后需经肝脏CYP2C19两步氧化，才生成能不可逆抑制血小板P2Y₁₂受体的活性硫醇代谢物。</p>
+    <p><strong>CYP2C19基因多态性</strong>（约30%亚洲人、15%白人为慢代谢者PM）：携带2个功能缺失等位基因的患者，活性代谢物生成显著减少，血小板抑制率下降约40%，支架内血栓风险增加3倍。</p>
+    <p><strong>临床对策</strong>：对CYP2C19 PM患者（基因检测）改用<strong>替格瑞洛</strong>（无需代谢活化，直接可逆抑制P2Y₁₂）。奥美拉唑作为CYP2C19抑制剂，也会减少氯吡格雷活化——心脏科指南现倾向用泮托拉唑代替。</p>
+
+    <h3 style="margin-top:1.5rem">💡 扩展②：肾功能不全——为什么几乎所有药都要减量？</h3>
+    <p>肾功能衰退（GFR↓）直接影响两条途径：</p>
+    <ol>
+      <li><strong>肾排泄减少</strong>：大多数水溶性药物及其代谢物主要经肾排泄。GFR↓ → CL↓ → t½延长 → 稳态浓度↑ → 蓄积中毒</li>
+      <li><strong>血浆蛋白减少</strong>（肾病综合征）：蛋白结合率↓ → 游离型药物↑ → 效应增强</li>
+    </ol>
+    <p><strong>临床意义</strong>：万古霉素、氨基糖苷类、地高辛、甲氨蝶呤需根据肌酐清除率(Ccr)调整剂量；二甲双胍在GFR<30时需停用（乳酸蓄积）；NSAIDs进一步损害残余肾功能→禁用。</p>
+    <p><strong>记忆口诀</strong>：<em>"肾衰减量，肝衰谨慎"</em>——肾衰时药物肾排泄↓，肝功能损害时肝代谢↓，两者方向相同，均导致蓄积。</p>
+  </div>
+</div>
+
+<!-- 模块5：临床逻辑 -->
+<div class="section-card">
+  <h2>临床逻辑</h2>
+  <div class="clinical-logic">
+    <h3>⚕️ 临床决策三要点</h3>
+    <div class="logic-points">
+      <div class="logic-point">
+        <div class="logic-num">01</div>
+        <div class="logic-content">
+          <strong>处方他汀时必须问：患者在服什么抗生素？</strong><br>
+          大环内酯类（阿奇霉素/克拉霉素/红霉素）均为CYP3A4抑制剂。辛伐他汀/洛伐他汀高度依赖CYP3A4代谢，合用时血药浓度可升高5–10倍 → 横纹肌溶解风险极大。<br>
+          <strong>处理</strong>：感染期间暂停他汀，或改用不经CYP3A4代谢的瑞舒伐他汀/普伐他汀。
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">02</div>
+        <div class="logic-content">
+          <strong>监测药物浓度（TDM）的适应症</strong><br>
+          窄治疗窗药物需常规TDM：地高辛（目标0.5–0.9 ng/mL）、万古霉素（谷浓度10–20 mg/L）、苯妥英（10–20 μg/mL）、锂盐（0.6–1.2 mEq/L）。<br>
+          <strong>时机</strong>：达稳态后（4–5个t½）采血；每次调整剂量后需再等4–5个t½重新采血评估。
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">03</div>
+        <div class="logic-content">
+          <strong>老年患者的药动学变化</strong><br>
+          ① 肝血流↓+CYP酶活性↓ → 首关效应↓（某些药生物利用度反而升高）；<br>
+          ② GFR随年龄自然下降（>65岁平均GFR≈60 mL/min）；<br>
+          ③ 体脂比↑、体液比↓ → 脂溶性药物Vd↑（t½延长）；<br>
+          ④ 血浆白蛋白↓ → 游离型药物↑。<br>
+          <strong>原则</strong>：老年人"start low, go slow"；尤其警惕地高辛、苯二氮卓、氨基糖苷类。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块6：副作用推导 -->
+<div class="section-card">
+  <h2>副作用推导：从CYP450相互作用到临床灾难</h2>
+  <div class="adverse-box">
+    <h3>❌ 常见误区 vs ✅ 机制推导</h3>
+    <div class="adverse-grid">
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "这两个药都是医生开的，一起吃应该没问题"</div>
+        <div class="adverse-logic">
+          ✅ 推导：克拉霉素（CYP3A4抑制）+ 辛伐他汀（CYP3A4底物）<br>
+          → 辛伐他汀血药浓度↑↑ → 肌肉毒性 → 横纹肌溶解 → 肌红蛋白尿 → 急性肾衰<br>
+          <strong>临床证据</strong>：FDA黑框警告；合用时辛伐他汀AUC增加12倍
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "华法林治疗期间加用阿司匹林只是'加强抗凝'"</div>
+        <div class="adverse-logic">
+          ✅ 推导：两条机制叠加<br>
+          ① 阿司匹林竞争性置换华法林血浆蛋白结合 → 游离华法林↑ → 抗凝↑<br>
+          ② 阿司匹林不可逆抑制血小板COX-1 → 血小板功能障碍<br>
+          → 双重出血风险，INR监测滞后于蛋白置换效应
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "利福平抗结核期间用口服避孕药保险"</div>
+        <div class="adverse-logic">
+          ✅ 推导：利福平是强效CYP3A4诱导剂<br>
+          → 雌激素/孕激素代谢加速 → 血药浓度↓60–70% → 避孕失败<br>
+          → 同时诱导P-gp → 肠道外排↑ → 生物利用度进一步降低<br>
+          <strong>临床处理</strong>：抗结核治疗期间及停用利福平后2月内改用非激素避孕法
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块7：药物关联网 -->
+<div class="section-card">
+  <h2>药物关联网</h2>
+  <div class="drug-network">
+    <div class="network-node">
+      <a href="chapter1.html">← 第1章</a>
+      <span>受体结合决定Vd和t½</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter3.html">第3章 →</a>
+      <span>量效曲线建立在稳态浓度基础上</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter4.html">第4章</a>
+      <span>CYP450相互作用是最重要的ADR机制</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter5.html">第5章</a>
+      <span>华法林CYP2C9代谢，INR监测</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter9.html">第9章</a>
+      <span>CYP2D6：抗精神病/抗抑郁药代谢</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter11.html">第11章</a>
+      <span>大环内酯类是CYP3A4强抑制剂</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- content-body -->
+
+<div class="sidebar">
+  <div class="toc-box">
+    <div class="toc-title">本章目录</div>
+    <div id="toc-list"></div>
+  </div>
+  <div class="key-formula">
+    <div class="formula-title">📐 核心公式</div>
+    <div class="formula-item"><strong>t½</strong> = 0.693 × Vd / CL</div>
+    <div class="formula-item"><strong>负荷剂量</strong> = Vd × Css</div>
+    <div class="formula-item"><strong>维持剂量</strong> = CL × Css × τ</div>
+    <div class="formula-item"><strong>达稳态时间</strong> ≈ 4–5 个 t½</div>
+  </div>
+</div>
+
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 第2章 药动学·ADME</p>
+  <p><a href="chapter1.html">← 第1章</a> | <a href="index.html">目录</a> | <a href="chapter3.html">第3章 →</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

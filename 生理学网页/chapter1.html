@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1章 · 稳态与调节 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="top-nav">
+    <div class="top-nav-inner"></div>
+</nav>
+
+<!-- 面包屑 -->
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a>
+    <span>›</span>
+    <span>第1章 · 稳态与调节</span>
+</div>
+
+<!-- 页面标题 -->
+<div class="page-hero">
+    <div class="chapter-badge">第一阶段 · 基础核心 · 第 1 章</div>
+    <h1>稳态与调节</h1>
+    <p class="subtitle">全书底层逻辑。读懂这章，后面11章你都能更快理解。</p>
+</div>
+
+<!-- 主内容 -->
+<div class="main-content">
+
+    <!-- ===================== 正文 ===================== -->
+    <div class="content-body">
+
+        <!-- ============================================================
+             模块1：📌 导读
+             ============================================================ -->
+        <div class="chapter-intro">
+            <div class="ci-meta">
+                <span class="ci-badge">📌 导读</span>
+                <span class="ci-phase">⭐⭐⭐⭐⭐ 全书最重要章节</span>
+            </div>
+            <div class="ci-anatomy-link">
+                🔗 解剖学对应：<strong>第3章（结构层次）</strong> — 你已经知道身体由细胞→组织→器官→系统构成，这章来讲这些结构为什么能维持稳定运转。
+            </div>
+            <h3>学完这章，你能解释：</h3>
+            <ul class="intro-hooks">
+                <li>发高烧为什么最后会自然退下来，而不是一直烧下去？</li>
+                <li>分娩时宫缩为什么越来越强烈而不是越来越弱？</li>
+                <li>血糖为什么总能保持在 4-6 mmol/L 左右，吃了糖之后几小时又恢复正常？</li>
+            </ul>
+        </div>
+
+        <!-- ============================================================
+             核心概念一：什么是稳态
+             ============================================================ -->
+        <h2 id="一什么是稳态">一、什么是稳态？</h2>
+
+        <p>
+            先说最重要的一句话：<strong>生命就是一场对抗混乱的持续战争。</strong>
+        </p>
+        <p>
+            外界环境在不断变化——气温忽高忽低、你时而跑步时而睡觉、一会儿吃饭一会儿饿肚子。
+            但你身体内部的关键参数，却始终保持在一个相对固定的范围里：
+        </p>
+
+        <div class="stat-grid">
+            <div class="stat-item">
+                <span class="num">37°C</span>
+                <span class="label">体温（正常 36.5-37.5°C）</span>
+            </div>
+            <div class="stat-item">
+                <span class="num">5 mmol/L</span>
+                <span class="label">空腹血糖（正常 3.9-6.1）</span>
+            </div>
+            <div class="stat-item">
+                <span class="num">120/80</span>
+                <span class="label">血压 mmHg（正常范围）</span>
+            </div>
+            <div class="stat-item">
+                <span class="num">7.40</span>
+                <span class="label">血液 pH（正常 7.35-7.45）</span>
+            </div>
+        </div>
+
+        <p>
+            这种"内部环境维持相对稳定"的状态，生理学叫做 <strong>稳态（Homeostasis）</strong>，
+            由法国生理学家贝尔纳（Claude Bernard）在 19 世纪提出，后来被坎农（Walter Cannon）发展完善。
+        </p>
+
+        <div class="key-concept">
+            <strong>稳态的核心定义：</strong>内环境（细胞外液）的理化性质，
+            在一定范围内保持相对稳定的状态。注意是"相对稳定"，
+            不是"绝对不变"——稳态是动态平衡，而不是静止不动。
+        </div>
+
+        <h3>稳态≠不变</h3>
+        <p>
+            很多人理解稳态会误以为"稳定就是不动"。这是错误的。
+            更准确的说法是：<strong>稳态就像走钢丝</strong>，一直在动态调整，
+            才能不掉下去。
+        </p>
+        <p>
+            比如你的体温在一天内其实是波动的：清晨最低（约 36.2°C），
+            下午 4-6 点最高（约 37.2°C），运动后会短暂升到 38°C，
+            但总是被拉回到正常范围内。这种"不断偏离、不断被拉回"就是稳态的真实状态。
+        </p>
+
+        <!-- ============================================================
+             核心概念二：维持稳态的三要素
+             ============================================================ -->
+        <h2 id="二稳态靠什么维持三要素">二、稳态靠什么维持？三要素</h2>
+
+        <p>
+            身体维持稳态不是魔法，而是靠一套固定结构在运作：
+            <strong>感受器 → 控制中枢 → 效应器</strong>。
+        </p>
+
+        <div class="flow-diagram">
+            <div class="fd-title">⚙️ 稳态调节的三要素</div>
+            <div class="fd-chain">
+                <div class="fd-node fn-start">🌡️ 受控变量<br><small>（如体温、血糖）</small></div>
+                <div class="fd-arrow">→</div>
+                <div class="fd-node fn-default">👁️ 感受器<br><small>（检测偏差）</small></div>
+                <div class="fd-arrow">→</div>
+                <div class="fd-node fn-brain">🧠 控制中枢<br><small>（分析、决策）</small></div>
+                <div class="fd-arrow">→</div>
+                <div class="fd-node fn-organ">💪 效应器<br><small>（执行调节）</small></div>
+                <div class="fd-arrow feedback">↩</div>
+                <div class="fd-node fn-result">✅ 恢复稳态</div>
+            </div>
+        </div>
+
+        <h3>感受器（Receptor / Sensor）</h3>
+        <p>
+            感知内环境的变化，把信息传回控制中枢。
+            比如血管壁里的<strong>压力感受器</strong>感知血压变化，
+            下丘脑里的<strong>温度感受器</strong>感知体温变化，
+            胰岛 B 细胞感知血液里的葡萄糖浓度。
+        </p>
+        <p>
+            注意：感受器感知的不是"现在的数值"，
+            而是"<strong>现在的数值和设定值之间的偏差</strong>"。
+            偏差越大，发出的信号越强。没有偏差时信号很弱，系统基本不动。
+        </p>
+
+        <h3>控制中枢（Control Center）</h3>
+        <p>
+            接收感受器的信号，判断偏差方向（偏高还是偏低），
+            决定调节指令的方向和强度。
+            最重要的控制中枢是<strong>下丘脑</strong>（体温、渗透压、食欲等）
+            和<strong>脑干</strong>（心率、呼吸等），
+            也有不经过大脑的局部控制（如肾脏自身调节）。
+        </p>
+
+        <h3>效应器（Effector）</h3>
+        <p>
+            接收控制中枢的指令，执行具体的调节动作。
+            效应器可以是肌肉（出汗、颤抖、血管扩缩）、
+            腺体（胰岛分泌激素）、或器官（肾脏调节排尿量）。
+        </p>
+
+        <div class="life-example">
+            <strong>案例：你走进冷库</strong><br>
+            皮肤冷觉感受器检测到温度下降 → 信号传到下丘脑（控制中枢）→
+            下丘脑发出指令：① 皮肤血管收缩（减少散热）② 骨骼肌颤抖（产热）③
+            甲状腺素分泌增加（提升基础代谢产热）→ 体温维持在 37°C 附近。
+            你感觉"冷"，正是这套系统在全速运转的副产品。
+        </div>
+
+        <!-- ============================================================
+             核心概念三：负反馈
+             ============================================================ -->
+        <h2 id="三负反馈最重要的调节方式">三、负反馈——最重要的调节方式</h2>
+
+        <p>
+            生理学最核心、最常用的调节机制是<strong>负反馈（Negative Feedback）</strong>。
+            理解负反馈，你就理解了全书 70% 的调节机制。
+        </p>
+
+        <div class="key-concept">
+            <strong>负反馈的本质：</strong>
+            当受控变量偏离设定值时，调节方向与偏离方向<strong>相反</strong>，
+            把变量拉回正常范围。
+            简单说：<strong>偏高 → 调低；偏低 → 调高。</strong>
+        </div>
+
+        <h3>负反馈回路：以体温为例</h3>
+
+        <div class="flow-diagram">
+            <div class="fd-title">🌡️ 体温负反馈调节回路</div>
+            <div class="fd-loop-box">
+                <div class="fd-loop-badge">负反馈回路</div>
+                <div class="fd-chain">
+                    <div class="fd-node fn-alert">体温↑<br><small>（如运动后）</small></div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-brain">下丘脑<br><small>感知偏差</small></div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-organ">出汗 + 皮肤<br>血管扩张</div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-result">散热增加<br>体温↓</div>
+                </div>
+                <div class="fd-loop-feedback-row">
+                    <span class="fb-label">↩ 负反馈：</span>
+                    体温回到正常范围 → 下丘脑检测到偏差消失 → 停止发汗指令 → 系统安静下来
+                </div>
+            </div>
+        </div>
+
+        <h3>负反馈回路：以血糖为例</h3>
+
+        <div class="flow-diagram">
+            <div class="fd-title">🩸 血糖负反馈调节回路</div>
+            <div class="fd-loop-box">
+                <div class="fd-loop-badge">负反馈回路</div>
+                <div class="fd-chain">
+                    <div class="fd-node fn-alert">血糖↑<br><small>（饭后）</small></div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-hormone">胰岛B细胞<br><small>感知血糖升高</small></div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-default">分泌<strong>胰岛素</strong></div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-organ">细胞摄取葡萄糖<br>肝脏储存糖原</div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-result">血糖↓<br>恢复正常</div>
+                </div>
+                <div class="fd-loop-feedback-row">
+                    <span class="fb-label">↩ 负反馈：</span>
+                    血糖恢复正常 → 胰岛B细胞感知到血糖不再偏高 → 胰岛素分泌减少 → 调节停止
+                </div>
+            </div>
+        </div>
+
+        <p>
+            如果血糖偏低怎么办？方向反转：胰岛 A 细胞分泌<strong>胰高血糖素</strong>，
+            促进肝糖原分解、葡萄糖释放入血，血糖回升。
+            两套机制互为补充，把血糖锁定在 3.9-6.1 mmol/L 的范围里。
+        </p>
+
+        <h3>负反馈的两个关键特性</h3>
+
+        <div class="info-box blue">
+            <div class="box-title">📐 特性一：有调节滞后</div>
+            <p>负反馈需要时间：感受器检测 → 信号传导 → 效应器响应，这套流程有延迟。
+            所以在偏差刚发生时，身体不会立刻完美纠正，而是有一段"过冲"或"欠冲"，
+            然后逐渐收敛到设定值附近。
+            这就是为什么你吃完饭后血糖会先升高再恢复，而不是一口饭下去血糖纹丝不动。</p>
+        </div>
+        <div class="info-box green">
+            <div class="box-title">📐 特性二：设定值（Set Point）可以调整</div>
+            <p>负反馈的目标不是一成不变的。比如发烧时，下丘脑的体温设定值被细菌毒素上调到 39°C，
+            所以身体会主动产热、维持高温——这不是调节失灵，而是设定值主动改变了。
+            退烧之后，设定值恢复 37°C，身体就开始大量出汗散热，所以退烧时你会出一身汗。</p>
+        </div>
+
+        <div class="life-example">
+            <strong>案例：发烧为什么最后会自然退？</strong><br>
+            发烧时下丘脑设定值被上调（比如到 39°C）→ 你的体温努力维持在 39°C（所以你不出汗、
+            甚至觉得冷）→ 免疫系统利用这段时间消灭细菌/病毒 → 感染清除，毒素消失 →
+            下丘脑设定值恢复到 37°C → 现在 39°C 相对于 37°C 偏高了 →
+            负反馈启动：大量出汗散热 → 体温降回 37°C → 你出了一身汗，感觉"烧退了"。<br><br>
+            <strong>所以退烧时出汗是正常的，是身体在恢复，不是"虚脱"。</strong>
+        </div>
+
+        <!-- ============================================================
+             核心概念四：正反馈
+             ============================================================ -->
+        <h2 id="四正反馈少数但关键的场景">四、正反馈——少数但关键的场景</h2>
+
+        <p>
+            与负反馈相反，<strong>正反馈（Positive Feedback）</strong>
+            的调节方向与偏离方向<strong>相同</strong>：
+            偏高 → 进一步推高；偏低 → 进一步压低。
+        </p>
+
+        <div class="key-concept">
+            <strong>正反馈的本质：</strong>放大偏差，让事情往一个方向加速推进，
+            直到某个<strong>终点事件</strong>发生，系统才停止。
+            正反馈不维持稳态——它打破稳态，快速完成一个特定任务。
+        </div>
+
+        <p>
+            正反馈在生理学中远比负反馈少见，但关键时刻不可缺少。
+            常见的两大场景：分娩和血液凝固。
+        </p>
+
+        <h3>正反馈案例一：分娩宫缩</h3>
+
+        <div class="flow-diagram">
+            <div class="fd-title">🤱 分娩宫缩正反馈回路</div>
+            <div class="fd-loop-box">
+                <div class="fd-loop-badge positive">正反馈回路</div>
+                <div class="fd-chain">
+                    <div class="fd-node fn-start">胎儿头部<br>挤压宫颈</div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-brain">下丘脑/垂体<br>分泌催产素</div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-organ">子宫肌肉<br>收缩增强</div>
+                    <div class="fd-arrow">→</div>
+                    <div class="fd-node fn-alert">宫颈受压<br>更强烈</div>
+                </div>
+                <div class="fd-loop-feedback-row" style="background: #fff1f2; color: #9f1239; border-left-color: #f43f5e;">
+                    <span class="fb-label" style="color: #e11d48;">↻ 正反馈：</span>
+                    更强的收缩 → 更强的刺激 → 更多催产素 → 更强的收缩……
+                    直到<strong style="color:#9f1239;">胎儿娩出</strong>，刺激消失，循环终止。
+                </div>
+            </div>
+        </div>
+
+        <p>
+            这就是为什么临产宫缩是越来越强烈，而不是越来越弱——
+            这是正反馈的正常工作方式：用"越来越猛"的方式快速完成分娩。
+        </p>
+
+        <h3>正反馈案例二：血液凝固</h3>
+        <p>
+            你割破手指时，凝血因子会形成正反馈级联（凝血瀑布）：
+            凝血因子 X 被激活 → 激活更多凝血因子 → 生成凝血酶 →
+            凝血酶又激活更多凝血因子……整个过程指数级放大，
+            在几分钟内从微小的损伤信号，迅速形成牢固的血凝块封住伤口。
+            一旦伤口封住，出血停止，刺激消失，凝血级联自动终止。
+        </p>
+
+        <div class="info-box yellow">
+            <div class="box-title">⚠️ 正反馈 vs 负反馈：根本区别</div>
+            <p><strong>负反馈</strong>：维持稳态，目标是"不变"，无终点事件，持续运作。</p>
+            <p><strong>正反馈</strong>：打破稳态，目标是"快速完成某件事"，有明确终点事件（胎儿娩出、伤口封闭），终点触发后自动停止。</p>
+            <p>正反馈在生理学里相对少见，但每个都很重要。记住这两个：分娩 + 凝血。</p>
+        </div>
+
+        <!-- ============================================================
+             正反馈失控
+             ============================================================ -->
+        <h3>正反馈失控：从有益变成致命</h3>
+
+        <p>
+            正反馈有一个致命弱点：<strong>如果终点事件无法触发，正反馈会一直放大，直到系统崩溃。</strong>
+        </p>
+
+        <div class="life-example">
+            <strong>案例：大失血的恶性循环</strong><br>
+            大量失血 → 血压急剧下降 → 心脏供血不足、心肌收缩力减弱 →
+            心输出量进一步下降 → 血压更低 → 心脏更弱…… 这是正反馈在病理状态下的恶性循环，
+            最终导致<strong>失血性休克</strong>。
+            不及时补液、输血，系统不会自己停下来，只会越来越差。
+        </div>
+
+        <div class="life-example">
+            <strong>案例：高热惊厥的恶性循环</strong><br>
+            高温使神经元异常放电 → 异常放电产生更多热量 → 体温更高 →
+            更多神经元放电……如果不及时处理，会导致脑损伤。
+            这就是为什么高烧超过 40°C 时需要紧急干预——
+            此时负反馈已经失能，正反馈占主导。
+        </div>
+
+        <!-- ============================================================
+             核心概念五：前馈调节
+             ============================================================ -->
+        <h2 id="五前馈调节比负反馈更快的预判">五、前馈调节——比负反馈更快的预判</h2>
+
+        <p>
+            负反馈是"出问题了再调"。但身体还有一种更聪明的调节方式：
+            <strong>前馈调节（Feedforward）</strong>——
+            <strong>在变量偏离之前，提前预判并发出调节指令。</strong>
+        </p>
+
+        <div class="life-example">
+            <strong>案例：吃饭前唾液就分泌了</strong><br>
+            你看到食物、闻到香味时，消化液就开始分泌了——
+            这时食物还没进嘴，血糖也没变化。
+            身体通过视觉、嗅觉信号"预判"将要进食，提前激活消化系统，
+            等食物真正到达时消化效率更高。
+            这是前馈调节，不需要等到"血糖真的变化"才行动。
+        </div>
+
+        <div class="life-example">
+            <strong>案例：开始运动的瞬间心率就加速</strong><br>
+            你刚开始跑步，肌肉耗氧量还没真正升高，心率却已经先升了。
+            原因：大脑运动皮层在发出运动指令的同时，也向心血管中枢发送了前馈信号："接下来要需要大量供血了。"
+            心率提前准备好，而不是等到组织真的缺氧再反应（那样就太慢了）。
+        </div>
+
+        <p>
+            前馈调节的缺点是：如果预判错误（比如你以为要吃东西结果没吃），
+            身体做了多余的准备工作，但代价不大。
+            前馈调节 + 负反馈配合才是最高效的系统：
+            <strong>前馈做快速预热，负反馈做精准校正。</strong>
+        </p>
+
+        <!-- ============================================================
+             模块3：🖥️ CS 类比
+             ============================================================ -->
+        <h2 id="六-cs-类比pid-控制器">六、💻 CS 类比：PID 控制器</h2>
+
+        <div class="cs-analogy">
+            <div class="cs-title">💻 类比：负反馈 = PID 闭环控制器</div>
+            <p>
+                如果你了解控制系统或者 PID 控制器，负反馈调节对你来说就是老朋友了。
+            </p>
+            <p>
+                PID 控制器的三个参数：
+            </p>
+            <ul>
+                <li><strong>P（比例）</strong>：偏差越大，调节力度越强（比如体温偏离越多，出汗量越大）</li>
+                <li><strong>I（积分）</strong>：持续偏差会累积响应，确保长期稳定（慢性高血压触发肾脏长期调节）</li>
+                <li><strong>D（微分）</strong>：对偏差变化速率做出响应（血压突然急剧下降时，反应比缓慢下降更剧烈）</li>
+            </ul>
+            <p>
+                身体里的稳态调节，本质上就是生物版的 PID 控制器——只是用的是神经信号和激素，
+                而不是电压和算法。
+            </p>
+            <p>
+                进一步类比：
+            </p>
+            <ul>
+                <li><code>感受器</code> = 传感器（ADC）</li>
+                <li><code>控制中枢</code> = 控制器 / MCU</li>
+                <li><code>效应器</code> = 执行器（继电器、电机）</li>
+                <li><code>设定值</code> = 目标寄存器里的值</li>
+                <li><code>反馈信号</code> = 传感器读数回传到控制器</li>
+            </ul>
+            <p>
+                负反馈回路 = 闭环控制（Closed-loop control）<br>
+                前馈调节 = 开环控制（Open-loop control）的预判部分<br>
+                正反馈 = 有锁存行为的系统（触发后自我维持，直到 Reset 信号）
+            </p>
+            <p style="color: #67e8f9; font-style: italic;">
+                整个生理学，本质上就是在讲这台"生物计算机"的各个子系统是怎么控制的。
+            </p>
+        </div>
+
+        <!-- ============================================================
+             具体系统中的稳态（综合案例）
+             ============================================================ -->
+        <h2 id="七稳态在各系统中的体现">七、稳态在各系统中的体现</h2>
+
+        <p>
+            稳态不是一个孤立概念，它贯穿所有生理系统。
+            下面快速预览一下你后面会学到的各章，都和稳态直接相关：
+        </p>
+
+        <div class="compare-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>受控变量</th>
+                        <th>主要感受器</th>
+                        <th>控制中枢</th>
+                        <th>效应器</th>
+                        <th>对应章节</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>体温</td>
+                        <td>皮肤/下丘脑温度感受器</td>
+                        <td>下丘脑</td>
+                        <td>汗腺/肌肉/血管</td>
+                        <td>第12章</td>
+                    </tr>
+                    <tr>
+                        <td>血糖</td>
+                        <td>胰岛细胞</td>
+                        <td>胰岛（局部）</td>
+                        <td>胰岛素/胰高血糖素</td>
+                        <td>第10章</td>
+                    </tr>
+                    <tr>
+                        <td>血压</td>
+                        <td>颈动脉窦压力感受器</td>
+                        <td>延髓心血管中枢</td>
+                        <td>心脏/血管</td>
+                        <td>第4章</td>
+                    </tr>
+                    <tr>
+                        <td>血液 pH</td>
+                        <td>中枢/外周化学感受器</td>
+                        <td>延髓呼吸中枢</td>
+                        <td>肺（呼吸）/肾脏</td>
+                        <td>第5、7章</td>
+                    </tr>
+                    <tr>
+                        <td>细胞外液渗透压</td>
+                        <td>下丘脑渗透压感受器</td>
+                        <td>下丘脑/垂体</td>
+                        <td>肾脏（ADH调节）</td>
+                        <td>第7章</td>
+                    </tr>
+                    <tr>
+                        <td>血 O₂/CO₂ 浓度</td>
+                        <td>颈动脉体化学感受器</td>
+                        <td>延髓呼吸中枢</td>
+                        <td>呼吸肌（肺）</td>
+                        <td>第5章</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            看这张表你会发现：<strong>下丘脑和延髓是身体里最繁忙的两个控制中枢</strong>，
+            负责协调大量稳态调节任务。后面的章节里，你会反复看到它们出现。
+        </p>
+
+        <!-- ============================================================
+             模块4：⚠️ 常见误区
+             ============================================================ -->
+        <h2 id="八三个常见误区">八、⚠️ 三个常见误区</h2>
+
+        <div class="misconception">
+            <span class="myth">❌ 误区1：稳态就是"身体什么都不变"</span>
+            <span class="truth">✅ 真相：稳态是动态平衡，是"在变化中维持范围"，就像走钢丝。任何一刻的体温、血糖、血压都在小范围内波动，这是正常的，不是调节失灵。</span>
+        </div>
+
+        <div class="misconception">
+            <span class="myth">❌ 误区2：正反馈对身体总是有害的</span>
+            <span class="truth">✅ 真相：正反馈在分娩和凝血中是必需的、有益的。没有正反馈，分娩无法完成，伤口无法止血。正反馈本身不是问题，问题在于"终点事件无法触发导致的失控"。</span>
+        </div>
+
+        <div class="misconception">
+            <span class="myth">❌ 误区3：发烧一定要马上吃退烧药</span>
+            <span class="truth">✅ 真相：38.5°C 以下的发烧是免疫系统的主动武器——高温能抑制细菌繁殖、加速免疫细胞活性。强行退烧会打断免疫战场。通常建议超过 38.5°C 才考虑退烧药，且要补充足够水分（因为出汗会导致大量液体流失）。</span>
+        </div>
+
+        <div class="misconception">
+            <span class="myth">❌ 误区4：感受器感知的是"绝对数值"</span>
+            <span class="truth">✅ 真相：感受器感知的是"偏差"，即当前值与设定值的差距，不是数值本身。这就是为什么你从暖和的房间走进冷库会觉得很冷，但在外面站了一小时之后再进冷库，感受会相对弱一些——这是适应现象，感受器的敏感度会调整。</span>
+        </div>
+
+        <!-- ============================================================
+             模块5：🔮 病理预告
+             ============================================================ -->
+        <h2 id="九病理预告">九、🔮 病理预告</h2>
+
+        <div class="pathology-preview">
+            <p>了解稳态之后，很多疾病的本质就是某条调节回路失灵了：</p>
+            <p>
+                👉 <span class="condition">2型糖尿病</span>：胰岛素分泌正常，但细胞对胰岛素不响应（胰岛素抵抗），
+                血糖的负反馈回路无法有效工作，血糖长期偏高。
+            </p>
+            <p>
+                👉 <span class="condition">原发性高血压</span>：压力感受器的设定值被上移，
+                或者肾脏对血压的调节出现异常，血压的负反馈回路无法把血压拉回正常值。
+            </p>
+            <p>
+                👉 <span class="condition">失血性休克</span>：大量失血 → 负反馈失能 → 正反馈恶性循环（血压越低→心肌越弱→血压更低），不干预则持续恶化。
+            </p>
+            <p>
+                👉 <span class="condition">甲亢</span>：甲状腺激素分泌失控，对上级调控（TSH）的负反馈抑制失效，
+                甲状腺素持续大量分泌，导致代谢亢进、心率加快、怕热多汗等一系列症状。
+            </p>
+            <p style="color: #9f1239; font-style: italic; margin-top: 0.8rem;">
+                → 这些疾病在内分泌（第10章）和神经（第8章）章节会有更详细的机制解析。
+            </p>
+        </div>
+
+        <!-- ============================================================
+             模块6：🔗 章节导航
+             ============================================================ -->
+        <div class="chapter-nav">
+            <span></span>
+            <a href="chapter2.html" class="next">
+                <div>
+                    <span class="nav-label">下一章</span>
+                    第2章 · 细胞与电信号
+                </div>
+                <span>›</span>
+            </a>
+        </div>
+
+    </div><!-- end content-body -->
+
+    <!-- ===================== 右侧目录 ===================== -->
+    <div class="sidebar">
+        <div class="sidebar-card">
+            <h3>📋 本章目录</h3>
+            <ul class="toc-list">
+                <li><a href="#一什么是稳态">一、什么是稳态？</a></li>
+                <li><a href="#二稳态靠什么维持三要素">二、稳态的三要素</a></li>
+                <li><a href="#三负反馈最重要的调节方式">三、负反馈</a></li>
+                <li><a href="#四正反馈少数但关键的场景">四、正反馈</a></li>
+                <li><a href="#五前馈调节比负反馈更快的预判">五、前馈调节</a></li>
+                <li><a href="#六-cs-类比pid-控制器">六、💻 CS类比</a></li>
+                <li><a href="#七稳态在各系统中的体现">七、各系统稳态</a></li>
+                <li><a href="#八三个常见误区">八、⚠️ 常见误区</a></li>
+                <li><a href="#九病理预告">九、🔮 病理预告</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-card">
+            <h3>🔑 核心词汇</h3>
+            <ul class="toc-list">
+                <li><a href="glossary.html">稳态 Homeostasis</a></li>
+                <li><a href="glossary.html">负反馈 Negative Feedback</a></li>
+                <li><a href="glossary.html">正反馈 Positive Feedback</a></li>
+                <li><a href="glossary.html">前馈调节 Feedforward</a></li>
+                <li><a href="glossary.html">感受器 Receptor</a></li>
+                <li><a href="glossary.html">效应器 Effector</a></li>
+                <li><a href="glossary.html">设定值 Set Point</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-card">
+            <h3>📍 本章关联</h3>
+            <ul class="toc-list">
+                <li><a href="chapter4.html">→ 血压调节（第4章）</a></li>
+                <li><a href="chapter8.html">→ 神经调控（第8章）</a></li>
+                <li><a href="chapter10.html">→ 激素调节（第10章）</a></li>
+                <li><a href="chapter12.html">→ 体温调节（第12章）</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- end main-content -->
+
+<!-- 页脚 -->
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第1章 · 稳态与调节</p>
+    <p style="margin-top: 6px; font-size: 0.8rem;">
+        <a href="index.html">← 返回首页</a>
+        &nbsp;·&nbsp;
+        <a href="chapter2.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

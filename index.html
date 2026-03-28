@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>医学基础四门课 · 总目录</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --c1: #0d9488;
+  --c2: #0284c7;
+  --c3: #be123c;
+  --c4: #7c3aed;
+  --bg:      #0f172a;
+  --surface: #1e293b;
+  --border:  #334155;
+  --text:    #f1f5f9;
+  --muted:   #94a3b8;
+  --r: 10px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+a { color: inherit; text-decoration: none; }
+
+/* header */
+header {
+  padding: 2.4rem 2rem 1.8rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.site-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  margin-bottom: .35rem;
+}
+.site-sub {
+  font-size: .83rem;
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+}
+.subject-pills {
+  display: flex;
+  justify-content: center;
+  gap: .45rem;
+  flex-wrap: wrap;
+}
+.pill {
+  padding: .22rem .7rem;
+  border-radius: 999px;
+  font-size: .73rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+.pill-1 { color: var(--c1); border-color: var(--c1); background: rgba(13,148,136,.08); }
+.pill-2 { color: var(--c2); border-color: var(--c2); background: rgba(2,132,199,.08); }
+.pill-3 { color: var(--c3); border-color: var(--c3); background: rgba(190,18,60,.08); }
+.pill-4 { color: var(--c4); border-color: var(--c4); background: rgba(124,58,237,.08); }
+
+/* main grid */
+main {
+  padding: 1.6rem 2rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: .85rem;
+}
+@media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }
+
+/* card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: transform .18s, box-shadow .18s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+.card-accent { width: 4px; flex-shrink: 0; }
+.c1 .card-accent { background: var(--c1); }
+.c2 .card-accent { background: var(--c2); }
+.c3 .card-accent { background: var(--c3); }
+.c4 .card-accent { background: var(--c4); }
+
+.card-body {
+  padding: 1rem 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  flex: 1;
+  min-width: 0;
+}
+.card-icon { font-size: 1.65rem; line-height: 1; flex-shrink: 0; }
+.card-info  { flex: 1; min-width: 0; }
+
+.card-stage {
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  margin-bottom: .18rem;
+}
+.c1 .card-stage { color: var(--c1); }
+.c2 .card-stage { color: var(--c2); }
+.c3 .card-stage { color: var(--c3); }
+.c4 .card-stage { color: var(--c4); }
+
+.card-name {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: .28rem;
+}
+.card-desc {
+  font-size: .77rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: .3rem;
+}
+.card-meta { font-size: .7rem; color: #64748b; }
+
+.card-btn {
+  flex-shrink: 0;
+  align-self: center;
+  margin-right: 1rem;
+  padding: .38rem .9rem;
+  border-radius: 7px;
+  font-size: .76rem;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  transition: opacity .15s;
+}
+.card-btn:hover { opacity: .8; }
+.c1 .card-btn { background: var(--c1); }
+.c2 .card-btn { background: var(--c2); }
+.c3 .card-btn { background: var(--c3); }
+.c4 .card-btn { background: var(--c4); }
+
+/* footer */
+footer {
+  text-align: center;
+  padding: 1.2rem 2rem;
+  border-top: 1px solid var(--border);
+  font-size: .73rem;
+  color: #475569;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-title">📚 医学基础四门课</div>
+  <div class="site-sub">解剖 → 生理 → 病理 → 药理，从结构到机制，从疾病到干预</div>
+  <div class="subject-pills">
+    <span class="pill pill-1">🫀 解剖学</span>
+    <span class="pill pill-2">⚡ 生理学</span>
+    <span class="pill pill-3">🔬 病理学</span>
+    <span class="pill pill-4">💊 药理学</span>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+
+    <a class="card c1" href="解剖学网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🫀</div>
+        <div class="card-info">
+          <div class="card-stage">第一阶段 · 基础结构</div>
+          <div class="card-name">解剖学</div>
+          <div class="card-desc">9大系统的结构与空间关系，医学的坐标系</div>
+          <div class="card-meta">14章 · 7工具页 · 动手实验</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c2" href="生理学网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">⚡</div>
+        <div class="card-info">
+          <div class="card-stage">第二阶段 · 运行机制</div>
+          <div class="card-name">生理学</div>
+          <div class="card-desc">RAAS、激素轴、心电图——正常是什么样的</div>
+          <div class="card-meta">12章 · 3工具页 · 经典机制</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c3" href="病理学网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🔬</div>
+        <div class="card-info">
+          <div class="card-stage">第三阶段 · 疾病机制</div>
+          <div class="card-name">病理学</div>
+          <div class="card-desc">细胞损伤、炎症、肿瘤——身体为什么会坏</div>
+          <div class="card-meta">12章 · 3工具页 · 疾病地图</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c4" href="药理学网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">💊</div>
+        <div class="card-info">
+          <div class="card-stage">第四阶段 · 干预手段</div>
+          <div class="card-name">药理学</div>
+          <div class="card-desc">受体靶点、ADME、高危配伍——怎么修复</div>
+          <div class="card-meta">12章 · 3工具页 · 受体图谱</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>小吴的医学基础笔记 · 2026</footer>
+
+</body>
+</html>

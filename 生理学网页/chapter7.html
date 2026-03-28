@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7章 · 泌尿生理 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第7章 · 泌尿生理</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第二阶段 · 四大系统 · 第 7 章</div>
+    <h1>泌尿生理</h1>
+    <p class="subtitle">肾脏每天过滤 180 升血液，却只产生 1.5 升尿液——这 99% 的节省，是怎么做到的？</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐ 重要，尤其是ADH和RAAS的调节逻辑</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第10章（泌尿系统）</strong> — 你知道了肾脏、输尿管、膀胱的结构，这章来讲肾小球过滤和肾小管重吸收的工作原理。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>为什么喝很多水后尿液变透明？身体怎么知道要多排水？</li>
+            <li>喝酒后频繁上厕所是什么机制？（不只是液体多了那么简单）</li>
+            <li>运动大量出汗后，只补白开水可能反而造成问题——为什么？</li>
+        </ul>
+    </div>
+
+    <!-- 一、肾脏的工作单元 -->
+    <h2 id="一肾单位180-升过滤的执行者">一、肾单位：180 升过滤的执行者</h2>
+
+    <p>每个肾脏约含 100 万个肾单位（Nephron），每个肾单位是一个独立的功能单元，由以下部分组成：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🫘 肾单位的结构与功能</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-organ">肾小球<br>（Glomerulus）<br>高压过滤</div>
+            <div class="fd-arrow">→<br>过滤</div>
+            <div class="fd-node fn-default">近端小管<br>（PCT）<br>65% 重吸收</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">髓袢<br>（Loop of Henle）<br>浓缩梯度</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-brain">远端小管<br>（DCT）<br>精细调节</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">集合管<br>（CD）<br>ADH控制</div>
+        </div>
+    </div>
+
+    <div class="stat-grid">
+        <div class="stat-item">
+            <span class="num">180 L/天</span>
+            <span class="label">肾小球滤过液（原尿）</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">1.5 L/天</span>
+            <span class="label">最终尿液（终尿）</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">99%</span>
+            <span class="label">被重新吸收比例</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">125 mL/分</span>
+            <span class="label">正常肾小球滤过率（GFR）</span>
+        </div>
+    </div>
+
+    <!-- 二、肾小球过滤 -->
+    <h2 id="二肾小球过滤按大小的粗筛">二、肾小球过滤：按大小的"粗筛"</h2>
+
+    <p>肾小球是一团毛细血管网，压力较高（约 60 mmHg），液体被"压"出血管进入鲍曼囊，形成<strong>原尿（初滤液）</strong>。</p>
+
+    <p>过滤是非选择性的（按大小筛）：</p>
+    <ul>
+        <li>✅ <strong>自由通过</strong>：水、电解质（Na⁺、K⁺、Cl⁻）、葡萄糖、氨基酸、尿素、肌酐</li>
+        <li>❌ <strong>无法通过</strong>：大分子蛋白质（白蛋白等）、血细胞</li>
+    </ul>
+
+    <div class="info-box yellow">
+        <div class="box-title">💡 尿蛋白/尿糖 = 肾脏出问题的信号</div>
+        <p><strong>尿蛋白（Proteinuria）</strong>：正常尿液中蛋白质极微量（&lt;150 mg/天）。大量尿蛋白表示肾小球滤过屏障受损，常见于糖尿病肾病、肾小球肾炎。</p>
+        <p><strong>尿糖（Glucosuria）</strong>：正常尿液中葡萄糖几乎为零（全部被重吸收）。血糖超过肾糖阈（约 10 mmol/L）时，葡萄糖转运体饱和（Tm），多余的葡萄糖溢出到尿液 → 尿糖阳性，是糖尿病的诊断线索之一。</p>
+    </div>
+
+    <!-- 三、肾小管重吸收 -->
+    <h2 id="三肾小管重吸收先全量复制再精准删除">三、肾小管重吸收："先全量复制，再精准删除"</h2>
+
+    <h3>近端小管（PCT）：大量粗回收</h3>
+    <p>约 65% 的钠、水、氯被近端小管等比例重吸收（等渗重吸收），100% 的葡萄糖和氨基酸被主动转运回来。这一段是无差别的大批量回收。</p>
+
+    <h3>髓袢：建立渗透梯度</h3>
+    <p>髓袢深入肾髓质，通过<strong>逆流倍增机制（Countercurrent Multiplication）</strong>在肾髓质建立由皮质到髓质越来越高的渗透梯度（从 300 mOsm 到 1200 mOsm）。这个梯度是后续集合管浓缩尿液的"驱动力"。</p>
+
+    <h3>远端小管和集合管：ADH 的工作区</h3>
+    <p>这一段是最终的精细调节阶段，水的重吸收量取决于<strong>ADH（抗利尿激素）</strong>的水平。</p>
+
+    <!-- 四、ADH调节 -->
+    <h2 id="四adh抗利尿激素渗透压的实时调控">四、ADH（抗利尿激素）：渗透压的实时调控</h2>
+
+    <div class="fd-loop-box">
+        <div class="fd-loop-title">ADH 的负反馈调节 <span class="fd-loop-badge">负反馈</span></div>
+        <div class="fd-chain">
+            <div class="fd-node fn-alert">血浆渗透压↑<br>（或血容量↓）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-brain">下丘脑渗透压<br>感受器激活</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">垂体后叶<br>释放 ADH↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">集合管插入<br>水通道蛋白<br>（AQP2）↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">水重吸收↑<br>尿液浓缩<br>→渗透压恢复</div>
+        </div>
+        <div class="fd-loop-feedback-row">
+            <div class="fd-arrow feedback">↩ 负反馈：渗透压恢复后，ADH分泌减少</div>
+        </div>
+    </div>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>情况</th><th>ADH 水平</th><th>尿量</th><th>尿液颜色</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>大量喝水</td><td>↓ 低</td><td>多（3-10 L/天可能）</td><td>透明/淡黄</td></tr>
+                <tr><td>正常</td><td>中等</td><td>1-2 L/天</td><td>淡黄</td></tr>
+                <tr><td>脱水/出汗多</td><td>↑ 高</td><td>少（可到0.5L/天）</td><td>深黄/琥珀</td></tr>
+                <tr><td>喝酒（酒精）</td><td>↓↓ 被抑制</td><td>大量增多</td><td>透明（不是颜色问题）</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="life-example">
+        <strong>案例：喝酒后为什么频繁上厕所？</strong><br>
+        酒精（乙醇）直接抑制下丘脑释放 ADH。ADH 减少 → 集合管水通道蛋白减少 → 水不被重吸收 → 大量稀释尿液排出。<br>
+        这是一个"利尿剂效应"：喝了 1 杯啤酒（约 350 mL），可能产生 400-600 mL 尿液。<br><br>
+        <strong>后续：宿醉头痛的机制</strong><br>
+        大量排尿 → 脱水 → 血浆渗透压升高 → ADH 反弹性升高（酒精代谢后）→ 抗利尿 → 但脱水已造成颅内压变化（脑膜拉伸） → 头痛。<br>
+        防宿醉策略：饮酒时交替补水，睡前喝1-2杯水+电解质。
+    </div>
+
+    <div class="life-example">
+        <strong>案例：运动后只喝白开水 = 低渗透压风险</strong><br>
+        出汗是低渗液体（汗液 Na⁺ 浓度 20-80 mmol/L，远低于血浆 140 mmol/L）。大量出汗后血浆 Na⁺ 浓度相对升高（高渗脱水）。<br>
+        此时如果只补充大量纯水（无电解质）→ 血浆渗透压迅速下降 → 细胞外液低渗 → 水进入细胞 → 细胞水肿 → 脑细胞水肿 → 低钠性脑水肿症状（恶心、头痛、意识混乱、严重者癫痫）。<br>
+        这种"运动相关低钠血症"在超级马拉松/铁人三项等项目中并不罕见，主要发生在补水过多而未补充电解质的参赛者中。正确做法是补含电解质的运动饮料或食盐。
+    </div>
+
+    <!-- 五、RAAS -->
+    <h2 id="五raas-系统血压的长效调节">五、RAAS 系统：血压的长效调节</h2>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚖️ RAAS 激活路径（血压低时）</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-alert">血压↓ / 血容量↓<br>/ 血Na⁺↓</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">肾脏球旁细胞<br>分泌<strong>肾素</strong></div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">肝脏血管紧张素原<br>→ 血管紧张素Ⅰ<br>→ACE→<strong>血管紧张素Ⅱ</strong></div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">肾上腺皮质<br>分泌<strong>醛固酮</strong></div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">远端小管/集合管<br>Na⁺重吸收↑→<br>水潴留↑→血压↑</div>
+        </div>
+    </div>
+
+    <p>RAAS 的三个组成：</p>
+    <ul>
+        <li><strong>血管紧张素Ⅱ</strong>：①直接收缩血管（升压）②刺激醛固酮分泌 ③促进近端小管 Na⁺ 重吸收 ④刺激 ADH 分泌</li>
+        <li><strong>醛固酮</strong>：增加远端小管 Na⁺ 通道和 Na/K 泵，留钠排钾（Na⁺进来，K⁺出去）</li>
+        <li><strong>血管紧张素转化酶（ACE）</strong>：高血压治疗药物 ACEI（如卡托普利）正是抑制这个酶，减少血管紧张素Ⅱ生成</li>
+    </ul>
+
+    <!-- 六、酸碱平衡 -->
+    <h2 id="六肾脏与酸碱平衡">六、肾脏与酸碱平衡</h2>
+
+    <p>肺脏是酸碱平衡的快速调节者（秒~分钟），肾脏是慢速精确调节者（小时~天）：</p>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>调节方式</th><th>肾脏机制</th><th>效果</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>排酸</td>
+                    <td>H⁺ 主动分泌到尿液（在α-intercalated cells）</td>
+                    <td>降低血液酸度（升高pH）</td>
+                </tr>
+                <tr>
+                    <td>保碱</td>
+                    <td>HCO₃⁻ 重吸收（主要在近端小管）</td>
+                    <td>维持血液缓冲碱</td>
+                </tr>
+                <tr>
+                    <td>铵盐排泄</td>
+                    <td>NH₃ + H⁺ → NH₄⁺ 随尿排出（增加排H⁺能力）</td>
+                    <td>代谢性酸中毒时大幅增加</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CS类比 -->
+    <h2 id="七-cs-类比肾脏--全量缓存--选择性垃圾回收">七、💻 CS 类比：肾脏 = 全量缓存 + 选择性垃圾回收</h2>
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：肾脏 = 智能缓存管理器</div>
+        <p>肾脏的工作策略与直觉相反——它不是"把废物找出来删掉"，而是"先把所有东西都过滤出来，再把有用的拿回来"：</p>
+        <ul>
+            <li><code>肾小球过滤</code> = Full Backup（全量备份）：不管有用没用，先全部备份到临时存储（180L/天）</li>
+            <li><code>肾小管重吸收</code> = Selective Restore（选择性恢复）：葡萄糖、氨基酸、Na⁺、K⁺——有需要的全部搬回来</li>
+            <li><code>Tm（转运最大值）</code> = Buffer Overflow：每种转运蛋白都有容量上限；超过上限的会"溢出"到尿液（如血糖过高时的尿糖）</li>
+            <li><code>ADH 调节水通道蛋白</code> = 动态缓存大小调整：根据当前系统内存压力（血浆渗透压），实时决定缓存（水）要保留多少还是丢弃多少</li>
+            <li><code>RAAS</code> = 长期配置更新：磁盘级别的配置持久化，调整的是基础水钠保留量</li>
+            <li><code>GFR = 125 mL/分</code> = 超高带宽 I/O 接口：宁可处理量大、过滤精度低，再用重吸收精准修正，比一开始就精确筛选效率更高</li>
+        </ul>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="八常见误区">八、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：多喝水一定对肾好</span>
+        <span class="truth">✅ 真相：每天饮水 1.5-2 升对大多数人足够。过量饮水（超过 3-4 升/天）会稀释血钠，增加肾脏处理负担，且对"排毒"没有额外帮助。预防肾结石确实需要充足饮水，但不需要极端。真正"保护肾脏"靠的是控制血糖、血压和避免肾毒性药物滥用。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：尿液颜色越深说明毒素越多</span>
+        <span class="truth">✅ 真相：尿液颜色主要来自尿色素（尿胆素），深黄色只是说明尿液浓缩（ADH水平高、饮水少）。清晨第一泡尿深黄是正常的（经过一夜睡眠，未补水）。特殊颜色才需要注意：红色（血尿/食物色素）、茶色（胆红素/肌红蛋白）、浑浊（感染）。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：肾功能正常代表肾没问题</span>
+        <span class="truth">✅ 真相：肾脏储备能力极强——即使 50% 的肾单位受损，GFR 仍可维持正常范围（剩余肾单位代偿性肥大）。血肌酐/GFR 升高往往意味着肾功能已损失超过 50%。早期肾损伤（如糖尿病肾病第一期）表现为微量白蛋白尿，而不是GFR异常，定期尿微量白蛋白检测非常重要。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：憋尿只是不舒服，没有危害</span>
+        <span class="truth">✅ 真相：长期憋尿会导致：①膀胱过度充盈 → 膀胱逼尿肌受损 → 膀胱过活动或容量减小 ②尿液长时间停留 → 细菌繁殖 → 膀胱炎风险↑ ③膀胱内压↑ → 尿液逆流至输尿管/肾盂 → 肾盂肾炎风险。正常成人2-4小时排尿一次是合适的。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="九病理预告">九、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">慢性肾脏病（CKD）</span>：糖尿病肾病+高血压肾病是两大主因。肾小球长期处于高滤过压/高糖环境 → 肾小球硬化 → GFR 下降。分五期，晚期（GFR&lt;15）需透析或肾移植。中国CKD患病率约10%，多数人不知道自己患病。</p>
+        <p>👉 <span class="condition">尿路感染（UTI）</span>：大肠杆菌从尿道逆行感染最常见。女性尿道短（约4 cm vs 男性20 cm），发病率是男性的8倍。表现为尿频/尿急/尿痛，蔓延到肾脏则为肾盂肾炎（发热+腰痛）。多喝水增加尿流量有预防效果。</p>
+        <p>👉 <span class="condition">尿崩症（Diabetes Insipidus）</span>：ADH 缺乏（中枢性）或肾脏对 ADH 无响应（肾源性）→ 集合管无法浓缩尿液 → 每天产生 5-20 升极淡的尿液 → 严重脱水。名字中"Diabetes"（尿多）与糖尿病相同，但机制完全不同（这里没有糖）。</p>
+        <p>👉 <span class="condition">肾结石</span>：尿液中矿物质（草酸钙、尿酸等）过饱和结晶 → 肾绞痛（被称为人体最剧烈疼痛之一）。高危因素：饮水少、高草酸食物（菠菜、坚果）、遗传。充足饮水（每天2L以上）是最有效的预防措施。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter6.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第6章 · 消化生理</div>
+        </a>
+        <a href="chapter8.html" class="next">
+            <div><span class="nav-label">下一章</span>第8章 · 神经生理</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一肾单位180-升过滤的执行者">一、肾单位结构</a></li>
+            <li><a href="#二肾小球过滤按大小的粗筛">二、肾小球过滤</a></li>
+            <li><a href="#三肾小管重吸收先全量复制再精准删除">三、肾小管重吸收</a></li>
+            <li><a href="#四adh抗利尿激素渗透压的实时调控">四、ADH调节</a></li>
+            <li><a href="#五raas-系统血压的长效调节">五、RAAS系统</a></li>
+            <li><a href="#六肾脏与酸碱平衡">六、酸碱平衡</a></li>
+            <li><a href="#七-cs-类比肾脏--全量缓存--选择性垃圾回收">七、💻 CS类比</a></li>
+            <li><a href="#八常见误区">八、⚠️ 误区</a></li>
+            <li><a href="#九病理预告">九、🔮 病理预告</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">GFR 肾小球滤过率</a></li>
+            <li><a href="glossary.html">ADH 抗利尿激素</a></li>
+            <li><a href="glossary.html">醛固酮 Aldosterone</a></li>
+            <li><a href="glossary.html">RAAS 系统</a></li>
+            <li><a href="glossary.html">水通道蛋白 Aquaporin</a></li>
+            <li><a href="glossary.html">Tm 转运最大值</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔗 本章关联</h3>
+        <ul class="toc-list">
+            <li>← <a href="chapter1.html">第1章：负反馈调节</a></li>
+            <li>← <a href="chapter4.html">第4章：血压形成</a></li>
+            <li>← <a href="chapter5.html">第5章：酸碱呼吸调节</a></li>
+            <li>→ <a href="chapter10.html">第10章：醛固酮/ADH</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第7章 · 泌尿生理</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter6.html">← 上一章</a> &nbsp;·&nbsp; <a href="chapter8.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

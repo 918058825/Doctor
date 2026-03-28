@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1章 · 药物与受体 — 药理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a>
+    <span>›</span>
+    <span>基础药理</span>
+    <span>›</span>
+    <span>第1章 · 药物与受体</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">基础药理 · 第 1 章</div>
+    <h1>药物与受体：精准结合的艺术</h1>
+    <p class="subtitle">为什么有些分子能"精准"起效？理解受体，就理解了药理学的底层逻辑——靶点决定一切。</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+<!-- ═══ 模块1：承接导读 ═══ -->
+<div class="chapter-intro">
+    <div class="chapter-intro-link">
+        🔗 衔接：<a href="../生理学网页/index.html">生理学</a>告诉你细胞如何正常通信，
+        <a href="../病理学网页/index.html">病理学</a>告诉你通信哪里出了错，
+        <strong>药理学告诉你：如何用一个小分子"插入"这个通信系统来纠正它</strong>。
+    </div>
+    <h3>🤔 带着这3个问题开始本章</h3>
+    <div class="hook-questions">
+        <div class="hook-q">为什么β受体阻滞剂能治心脏病，眼科用它降眼压，精神科用它控制表演焦虑？同一个"β受体"，为什么能管这么多事？</div>
+        <div class="hook-q">人体内有内啡肽，吗啡和内啡肽作用于同一个受体——为什么吗啡的成瘾性远比内啡肽强？</div>
+        <div class="hook-q">长期服用β受体阻滞剂的患者，突然停药为什么会诱发心绞痛甚至心梗？药物明明停了，为什么症状反而更重？</div>
+    </div>
+    <div class="drug-preview">
+        <span class="drug-preview-label">本章涉及：</span>
+        <span class="drug-pill">β受体阻滞剂</span>
+        <span class="drug-pill">阿托品</span>
+        <span class="drug-pill">吗啡 / 纳洛酮</span>
+        <span class="drug-pill">肾上腺素</span>
+        <span class="drug-pill">苯二氮卓</span>
+    </div>
+</div>
+
+<!-- ═══ 模块2：核心机制 ═══ -->
+<div class="section-card">
+    <h2 id="receptor-families">🎯 受体的四大超家族</h2>
+    <p>所有药物靶点中，受体是最核心的一类。人体约有800个基因编码的受体，但它们几乎全部归属于四大超家族——每个家族的信号传导速度和机制截然不同。</p>
+
+    <div class="four-questions">
+        <div class="fq-item">
+            <div class="fq-label">🔵 G蛋白偶联受体（GPCR）</div>
+            <div class="fq-content">
+                人体最大的受体家族（~800个），覆盖神经递质/激素/嗅觉/视觉。<br>
+                信号路径：配体结合 → G蛋白激活 → 腺苷酸环化酶/磷脂酶C → <strong>cAMP↑或IP₃/DAG</strong> → 蛋白激酶 → 细胞效应。<br>
+                速度：<strong>秒级</strong>。代表：β受体/α受体/多巴胺受体/阿片受体/组胺受体。<br>
+                <span class="receptor-badge rb-gpcr">GPCR</span>
+            </div>
+        </div>
+        <div class="fq-item">
+            <div class="fq-label">🟢 配体门控离子通道</div>
+            <div class="fq-content">
+                配体结合即直接开放/关闭离子通道，无需第二信使。<br>
+                速度：<strong>毫秒级</strong>（最快！）。代表：nACh受体（肌肉收缩）/ GABA-A（苯二氮卓作用位点）/ NMDA（谷氨酸，记忆和麻醉）。<br>
+                <strong>局麻药不属于此类</strong>——它们直接阻断电压门控Na⁺通道（非配体门控）。<br>
+                <span class="receptor-badge rb-ion">离子通道</span>
+            </div>
+        </div>
+        <div class="fq-item">
+            <div class="fq-label">🟡 酶联受体（受体酪氨酸激酶）</div>
+            <div class="fq-content">
+                受体本身就是酶（或与酶偶联），配体结合后激活内在激酶活性。<br>
+                速度：<strong>分钟级</strong>。代表：胰岛素受体（IRS-1信号）/ 生长因子受体（EGFR/HER2）/ 细胞因子受体（JAK-STAT通路）。<br>
+                <strong>靶向抗癌药的主要靶点</strong>：格列卫抑制BCR-ABL，吉非替尼抑制EGFR。<br>
+                <span class="receptor-badge rb-enzyme">酶联受体</span>
+            </div>
+        </div>
+        <div class="fq-item">
+            <div class="fq-label">🟣 核受体（配体调控转录因子）</div>
+            <div class="fq-content">
+                配体（通常是脂溶性小分子）穿透细胞膜，直接进入细胞核/结合胞质受体后入核 → 改变基因转录。<br>
+                速度：<strong>小时至天级</strong>。代表：糖皮质激素受体 / 甲状腺激素受体 / 雌激素/雄激素受体 / 维生素D受体。<br>
+                这也解释了为什么糖皮质激素起效需要数小时，<strong>不能用于急性过敏的即刻抢救</strong>（肾上腺素才能即刻起效）。<br>
+                <span class="receptor-badge rb-nuclear">核受体</span>
+            </div>
+        </div>
+    </div>
+
+    <h3>激动剂 vs 拮抗剂 vs 部分激动剂</h3>
+    <p>同样能结合受体，结合后的"效能"决定了药物的本质类别：</p>
+
+    <div class="drug-compare">
+        <div class="dc-col">
+            <div class="dc-header">激动剂（Agonist）</div>
+            <div class="dc-row"><span class="dc-key">结合</span><span class="dc-val">✅ 能结合受体（有亲和力）</span></div>
+            <div class="dc-row"><span class="dc-key">激活</span><span class="dc-val">✅ 激活受体，产生完整信号（效能=1）</span></div>
+            <div class="dc-row"><span class="dc-key">效果</span><span class="dc-val">产生靶器官的生理效应</span></div>
+            <div class="dc-row"><span class="dc-key">例子</span><span class="dc-val">肾上腺素（α+β）、沙丁胺醇（β₂）、吗啡（μ）</span></div>
+        </div>
+        <div class="dc-col">
+            <div class="dc-header alt">拮抗剂（Antagonist）</div>
+            <div class="dc-row"><span class="dc-key">结合</span><span class="dc-val">✅ 能结合受体（有亲和力）</span></div>
+            <div class="dc-row"><span class="dc-key">激活</span><span class="dc-val">❌ 不激活受体（效能=0），但占据位点</span></div>
+            <div class="dc-row"><span class="dc-key">效果</span><span class="dc-val">阻断内源性配体/激动剂的作用</span></div>
+            <div class="dc-row"><span class="dc-key">例子</span><span class="dc-val">美托洛尔（β₁拮抗）、纳洛酮（μ拮抗）、阿托品（M拮抗）</span></div>
+        </div>
+    </div>
+
+    <div class="info-box" style="margin: 0.75rem 0;">
+        💡 <strong>部分激动剂</strong>（如丁丙诺啡/β受体的某些药物）：既能结合，也能激活，但效能<1。在没有完全激动剂时表现为激动；有完全激动剂时又竞争性表现为"拮抗"——这种双重性质在戒毒治疗中非常有用。
+    </div>
+
+    <h3>亲和力 vs 效能：两个完全不同的概念</h3>
+    <div class="drug-flow">
+        <div class="df-step"><strong>亲和力</strong><span>Kd↓ = 亲和力↑<br>结合有多"紧"</span></div>
+        <div class="df-arrow">≠</div>
+        <div class="df-step key"><strong>效能</strong><span>结合后<br>信号有多强</span></div>
+        <div class="df-arrow">→</div>
+        <div class="df-step"><strong>EC50</strong><span>产生50%最大效应<br>所需浓度</span></div>
+        <div class="df-arrow">+</div>
+        <div class="df-step"><strong>Emax</strong><span>最大能达到的<br>效应上限</span></div>
+    </div>
+    <p style="font-size:0.88rem; color: var(--text-muted);">
+        类比：亲和力 = 门锁和钥匙配合的精度；效能 = 开门后能推开多少东西。一把钥匙可以很容易插入锁孔（高亲和力），但转动后推开的力可以很小（低效能）。
+    </p>
+</div>
+
+<!-- ═══ 模块3：CS类比 ═══ -->
+<div class="section-card">
+    <h2 id="cs-analogy">💻 CS类比：受体是一套分层API系统</h2>
+
+    <div class="cs-analogy">
+        <div class="cs-analogy-label">💻 Computer Science 类比</div>
+        <h4>受体 = 有版本号的API接口；药物 = 发出HTTP请求的客户端</h4>
+        <ul>
+            <li><strong>激动剂</strong> = 发送带有<code>正确payload</code>的POST请求 → 服务器执行业务逻辑 → 返回效应</li>
+            <li><strong>拮抗剂</strong> = 发送<code>OPTIONS预检请求</code>或空body的POST → 占用了接口连接，但服务器不执行任何业务逻辑 → 真正的请求（内源性配体）被挤出队列</li>
+            <li><strong>部分激动剂</strong> = 发送<code>参数不完整</code>的请求 → 服务器执行了，但只完成了50%的任务</li>
+            <li><strong>受体亚型</strong>（β₁ vs β₂）= 同一套业务逻辑的<code>v1 vs v2 API</code>：接口签名相似，但底层实现和返回值不同（心脏β₁ vs 支气管β₂）</li>
+        </ul>
+        <h4 style="margin-top:1rem;">受体调节 = 服务器的自动弹性伸缩</h4>
+        <ul>
+            <li><strong>受体下调</strong>（长期激动剂暴露）= 服务器<code>自动降低连接池上限</code>防过载 → 再高的请求量，响应也减弱（耐受性形成）。临床：长期吗啡→剂量需要增加才能止痛</li>
+            <li><strong>受体上调</strong>（长期拮抗剂暴露）= 服务器<code>自动扩容</code>，部署了更多API实例（受体数量↑） → 突然撤掉拮抗剂时，大量内源性配体同时激活海量受体 → <strong>系统雪崩</strong>（反弹效应）。临床：突然停β阻滞剂→心率反弹→心绞痛/心梗</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ═══ 模块4：认知扩展 ═══ -->
+<div class="section-card">
+    <h2 id="cognitive-expand">🌟 认知扩展：两个打破直觉的发现</h2>
+
+    <div class="cognitive-expand">
+        <div class="ce-label">认知扩展 ①</div>
+        <div class="ce-title">反向激动剂：不只是"不激活"，而是"反向关掉"</div>
+        <p>我们通常认为，受体只有两种状态：被激动剂激活（ON）或被拮抗剂阻断（OFF）。</p>
+        <p>但实际上，很多受体在<strong>没有任何配体</strong>时也有一定的基础活性（Constitutive Activity）——就像某些系统进程在没有任何请求时也持续占用少量CPU。</p>
+        <p><strong>反向激动剂（Inverse Agonist）</strong>能与受体结合，不仅阻止激动剂的作用，还能把这个基础活性也压制到零以下。</p>
+        <p>典型例子：大多数第一代抗组胺药（扑尔敏/苯海拉明）并不只是"H1受体拮抗剂"，而是<strong>H1受体反向激动剂</strong>——这解释了为什么它们比纯拮抗剂的镇静副作用更强（H1受体在CNS的基础活性也被压制了）。</p>
+    </div>
+
+    <div class="cognitive-expand" style="margin-top: 0.5rem;">
+        <div class="ce-label">认知扩展 ②</div>
+        <div class="ce-title">选择性是相对的——剂量越大，越像"核弹"</div>
+        <p>β₁选择性药物（如美托洛尔）被称为"心脏选择性β阻滞剂"，理论上对肺/支气管的β₂受体影响很小。</p>
+        <p>但这里有个被教材低调处理的关键事实：<strong>选择性是剂量依赖的</strong>。β₁:β₂选择性比值大约是75:1（美托洛尔），意味着：</p>
+        <ul>
+            <li>低剂量：主要占据β₁受体，β₂几乎不受影响</li>
+            <li>高剂量：β₁受体被完全饱和，多余的药物开始大量占据β₂受体</li>
+        </ul>
+        <p><strong>类比</strong>：就像一把"精准制导导弹"，目标很精确，但如果装了10倍炸药，爆炸半径就会覆盖周围所有目标。<br>
+        结论：哮喘患者使用β₁选择性药物时，<strong>低剂量相对安全，高剂量仍有支气管痉挛风险</strong>。</p>
+    </div>
+</div>
+
+<!-- ═══ 模块5：临床逻辑 ═══ -->
+<div class="section-card">
+    <h2 id="clinical-logic">🩺 临床逻辑：三个高频临床决策点</h2>
+
+    <div class="clinical-logic">
+        <div class="cl-label">🩺 临床应用</div>
+        <div class="cl-title">决策点 ① β阻滞剂减量停药——必须逐渐减量，不能突然停</div>
+        <p>原因：长期β阻滞剂→β受体上调（数量↑+敏感性↑）→突然停药时，血液中的内源性肾上腺素/去甲肾上腺素突然大量激活这些"超敏"受体→<strong>心率飙升、血压反弹、心绞痛发作</strong>。</p>
+        <p><strong>处理：停药时间拉长至1-2周，每次减少25%剂量</strong>，让受体数量逐渐恢复正常。</p>
+    </div>
+
+    <div class="clinical-logic" style="margin-top: 0.5rem;">
+        <div class="cl-label">🩺 临床应用</div>
+        <div class="cl-title">决策点 ② 竞争性 vs 非竞争性拮抗剂——解毒时的关键区别</div>
+        <p><strong>竞争性拮抗剂</strong>（如纳洛酮）：与激动剂竞争同一位点，增大激动剂剂量可克服。剂量不够时，吗啡仍可"挤走"纳洛酮 → 需足量、反复给药（纳洛酮t½仅30-90分钟，但海洛因持续更长）。</p>
+        <p><strong>非竞争性拮抗剂</strong>：结合变构位点，无论激动剂浓度多高都无法完全克服。</p>
+    </div>
+
+    <div class="clinical-logic" style="margin-top: 0.5rem;">
+        <div class="cl-label">🩺 临床应用</div>
+        <div class="cl-title">决策点 ③ 受体下调（耐受性）的预测——哪些药容易形成耐受</div>
+        <p>高效能完全激动剂（吗啡/苯二氮卓/硝酸酯类）长期使用 → 受体脱敏+下调 → 需要加量维持效果。<br>
+        <strong>特例：阿片类的便秘副作用不会产生耐受</strong>（肠道μ受体的下调机制与CNS不同）→ 便秘是持续性副作用，需要长期使用缓泻药应对。</p>
+    </div>
+</div>
+
+<!-- ═══ 模块6：副作用推导 ═══ -->
+<div class="section-card">
+    <h2 id="adverse">⚠️ 副作用推导：从靶点分布推导，不需要死记</h2>
+
+    <div class="adverse-box">
+        <div class="ab-label">⚠️ 副作用推导（从靶点出发）</div>
+        <h4>核心原则：副作用 = 靶点在"不想要"的部位产生了效果</h4>
+
+        <div class="adverse-item">
+            <div class="adverse-myth">❌ 常见误解：β₁选择性药物（美托洛尔）对哮喘患者绝对安全</div>
+            <div class="adverse-truth">✅ 推导：β₁:β₂选择性比约75:1。<strong>低剂量相对安全</strong>，但高剂量时β₂受体被占据 → 气道平滑肌失去β₂舒张信号 → 支气管收缩 → 哮喘发作。因此哮喘患者使用β阻滞剂时：①首选β₁选择性最高的药物（比索洛尔＞美托洛尔）；②使用最低有效剂量；③密切监测肺功能。</div>
+        </div>
+
+        <div class="adverse-item">
+            <div class="adverse-myth">❌ 常见误解：阿托品（M受体拮抗剂）只用于减慢心率</div>
+            <div class="adverse-truth">✅ 推导：M受体广泛分布于全身多处，阿托品阻断所有M受体 → <strong>心率↑</strong>（阻断心脏M₂，去除迷走神经制动）+ <strong>口干</strong>（阻断腮腺M受体→唾液分泌↓）+ <strong>瞳孔扩大</strong>（阻断虹膜括约肌M受体）+ <strong>肠道蠕动↓</strong>（阻断胃肠M受体）+ <strong>尿潴留</strong>（阻断膀胱逼尿肌M受体→前列腺增生患者危险）。口诀：<strong>热、干、快、红、盲、忘</strong>（发热/干燥/心快/皮红/视力模糊/中枢症状）。</div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ 模块7：药物关联网 ═══ -->
+<div class="section-card">
+    <h2 id="network">🔗 药物关联网</h2>
+    <p>受体理论是整个药理学的基础，几乎每一章都会回到这里的概念：</p>
+
+    <div class="drug-network">
+        <div class="dn-title">本章概念在其他章节的应用</div>
+        <div class="dn-items">
+            <div class="dn-item">
+                <span class="dn-from">→ 第2章</span>
+                <span class="dn-arrow">›</span>
+                <span class="dn-to"><a href="chapter2.html">ADME</a>：药物必须先到达受体，浓度取决于药动学</span>
+            </div>
+            <div class="dn-item">
+                <span class="dn-from">→ 第3章</span>
+                <span class="dn-arrow">›</span>
+                <span class="dn-to"><a href="chapter3.html">量效关系</a>：剂量决定靶点占据率，高剂量时选择性丧失</span>
+            </div>
+            <div class="dn-item">
+                <span class="dn-from">→ 第5章</span>
+                <span class="dn-arrow">›</span>
+                <span class="dn-to"><a href="chapter5.html">心血管</a>：β₁受体/α受体/RAAS是心血管药物的核心靶点</span>
+            </div>
+            <div class="dn-item">
+                <span class="dn-from">→ 第8章</span>
+                <span class="dn-arrow">›</span>
+                <span class="dn-to"><a href="chapter8.html">镇痛</a>：μ阿片受体的激动/耐受/依赖/纳洛酮拮抗全流程</span>
+            </div>
+            <div class="dn-item">
+                <span class="dn-from">→ 第9章</span>
+                <span class="dn-arrow">›</span>
+                <span class="dn-to"><a href="chapter9.html">CNS药物</a>：多巴胺D₂/5-HT/GABA-A受体是精神科药物靶点</span>
+            </div>
+            <div class="dn-item">
+                <span class="dn-from">→ 第12章</span>
+                <span class="dn-arrow">›</span>
+                <span class="dn-to"><a href="chapter12.html">抗肿瘤</a>：酶联受体（EGFR/BCR-ABL）是靶向药物的主要靶点</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="chapter-nav">
+        <span></span>
+        <a href="chapter2.html" class="chapter-nav-btn next">第2章 · 药动学 ADME →</a>
+    </div>
+</div>
+
+</div><!-- /content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">📑 本章目录</div>
+        <div class="sidebar-toc"></div>
+    </div>
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">💊 本章药物</div>
+        <div>
+            <span class="drug-pill">β受体阻滞剂</span>
+            <span class="drug-pill">美托洛尔</span>
+            <span class="drug-pill">肾上腺素</span>
+            <span class="drug-pill">沙丁胺醇</span>
+            <span class="drug-pill">阿托品</span>
+            <span class="drug-pill">吗啡</span>
+            <span class="drug-pill">纳洛酮</span>
+            <span class="drug-pill">苯海拉明</span>
+        </div>
+    </div>
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">🎯 受体类型</div>
+        <div>
+            <span class="receptor-badge rb-gpcr">GPCR</span>
+            <span class="receptor-badge rb-ion">离子通道</span>
+            <span class="receptor-badge rb-enzyme">酶联受体</span>
+            <span class="receptor-badge rb-nuclear">核受体</span>
+        </div>
+    </div>
+    <div class="sidebar-card">
+        <div class="sidebar-card-title">⚡ 记忆要点</div>
+        <div style="font-size:0.82rem; color: var(--text-muted); line-height: 1.7;">
+            <div>🔵 GPCR → cAMP/IP₃（秒级）</div>
+            <div>🟢 离子通道 → 直接开放（毫秒）</div>
+            <div>🟡 酶联 → 激酶磷酸化（分钟）</div>
+            <div>🟣 核受体 → 转录调控（小时）</div>
+            <div style="margin-top:0.5rem;">亲和力 ≠ 效能</div>
+            <div>下调 = 耐受；上调 = 反弹</div>
+        </div>
+    </div>
+</div>
+</div><!-- /main-content -->
+
+<footer class="site-footer">
+    <p>💊 药理学入门 · 第1章 · 药物与受体</p>
+    <p style="margin-top:6px; font-size:0.8rem;">内容以科学通识为目的，不构成医疗建议。</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

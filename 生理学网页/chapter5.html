@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5章 · 呼吸生理 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第5章 · 呼吸生理</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第二阶段 · 四大系统 · 第 5 章</div>
+    <h1>呼吸生理</h1>
+    <p class="subtitle">控制你呼吸节律的不是氧气，而是二氧化碳——这个认知颠覆了很多人的直觉。</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐⭐ 重要，有几个反直觉的核心原理</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第7章（呼吸系统）</strong> — 你已了解气管-支气管-肺泡的结构，这章来讲气体交换和呼吸调节的机制。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>憋气的难受感来自 CO₂ 积累，而不是缺 O₂——为什么？</li>
+            <li>高原上为什么头晕？过度换气为什么也会头晕？两者机制相同吗？</li>
+            <li>"岔气"（跑步侧腹痛）是什么？为什么呼气能缓解？</li>
+        </ul>
+    </div>
+
+    <!-- 一、肺通气 -->
+    <h2 id="一肺通气负压呼吸机制">一、肺通气：负压呼吸机制</h2>
+
+    <p>肺本身没有肌肉，不能主动膨胀。通气靠的是<strong>胸腔容积变化产生的压力差</strong>：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🌬️ 吸气过程（主动）</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-brain">呼吸中枢<br>发出冲动</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">膈肌+<br>肋间外肌<br>收缩</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">胸腔容积↑<br>胸内负压↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">肺被动膨胀<br>肺泡压↓</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">大气压 > 肺泡压<br>空气流入</div>
+        </div>
+    </div>
+
+    <div class="info-box blue">
+        <div class="box-title">💡 呼气为什么是"被动的"？</div>
+        <p>安静呼吸时，呼气不需要肌肉主动收缩：膈肌和肋间肌<strong>松弛</strong> → 胸腔弹性回缩 → 容积减小 → 肺泡压 > 大气压 → 气体被动流出。</p>
+        <p>只有在用力呼气（运动、吹奏乐器）时，才需要腹肌和肋间内肌主动参与。</p>
+    </div>
+
+    <h3>肺容量关键数值</h3>
+    <div class="stat-grid">
+        <div class="stat-item">
+            <span class="num">500 mL</span>
+            <span class="label">潮气量（TV）<br>每次平静呼吸量</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">~4.5 L</span>
+            <span class="label">肺活量（VC）<br>最大吸气后最大呼气</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">~1.5 L</span>
+            <span class="label">功能残气量（FRC）<br>平静呼气后肺内余气</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">150 mL</span>
+            <span class="label">解剖无效腔<br>（气管+支气管，不参与气体交换）</span>
+        </div>
+    </div>
+
+    <!-- 二、气体交换 -->
+    <h2 id="二气体交换分压梯度驱动扩散">二、气体交换：分压梯度驱动扩散</h2>
+
+    <p>气体交换完全靠<strong>分压差驱动的被动扩散</strong>——不需要载体蛋白，不消耗能量，速度极快（红细胞流经肺泡毛细血管的时间约 0.75 秒，但气体交换在 0.25 秒内就完成了）。</p>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>位置</th><th>O₂分压 (PO₂)</th><th>CO₂分压 (PCO₂)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>大气</td><td>159 mmHg</td><td>0.3 mmHg</td></tr>
+                <tr><td>肺泡</td><td>104 mmHg</td><td>40 mmHg</td></tr>
+                <tr><td>肺毛细血管（入）</td><td>40 mmHg</td><td>46 mmHg</td></tr>
+                <tr><td>肺毛细血管（出）</td><td>104 mmHg</td><td>40 mmHg</td></tr>
+                <tr><td>组织毛细血管（入）</td><td>104 mmHg</td><td>40 mmHg</td></tr>
+                <tr><td>组织间液</td><td>40 mmHg</td><td>46 mmHg</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>规律很简单：O₂ 从高分压（肺泡）→ 低分压（血液→组织）；CO₂ 从高分压（组织代谢产生）→ 低分压（血液→肺泡→呼出）。</p>
+
+    <!-- 三、CO₂的运输 -->
+    <h2 id="三co₂-的运输70-变成了碳酸氢根">三、CO₂ 的运输：70% 变成了碳酸氢根</h2>
+
+    <p>不同于 O₂ 主要靠血红蛋白携带，CO₂ 的运输方式更多样：</p>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>运输方式</th><th>比例</th><th>机制</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>碳酸氢根（HCO₃⁻）</td>
+                    <td><strong>70%</strong></td>
+                    <td>CO₂ + H₂O → H₂CO₃ → H⁺ + HCO₃⁻（碳酸酐酶催化，在红细胞内）<br>HCO₃⁻运到肺部后逆反应，CO₂呼出</td>
+                </tr>
+                <tr>
+                    <td>氨基甲酸血红蛋白</td>
+                    <td>23%</td>
+                    <td>CO₂ 与血红蛋白的氨基结合，直接运输</td>
+                </tr>
+                <tr>
+                    <td>溶解于血浆</td>
+                    <td>7%</td>
+                    <td>CO₂ 直接物理溶解（少量，但这部分决定PCO₂）</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="key-concept">
+        <strong>重要连接：CO₂运输与酸碱平衡</strong><br>
+        CO₂在血液中产生 H⁺（通过碳酸途径），所以 CO₂浓度直接影响血液pH。CO₂↑ → H⁺↑ → pH↓（酸中毒）；CO₂↓ → H⁺↓ → pH↑（碱中毒）。呼吸系统是酸碱平衡的快速调节器（秒-分钟级），肾脏是慢速调节器（小时-天级）。
+    </div>
+
+    <!-- 四、呼吸调节 -->
+    <h2 id="四呼吸调节co₂-才是主驾驶">四、呼吸调节：CO₂ 才是主驾驶</h2>
+
+    <p>这是最违反直觉的知识点之一：<strong>正常情况下，呼吸节律主要由 CO₂ 浓度（和pH）控制，而不是 O₂ 浓度。</strong></p>
+
+    <div class="info-box blue">
+        <div class="box-title">🔬 两种化学感受器</div>
+        <p><strong>中枢化学感受器</strong>（延髓）：对血液/脑脊液 PCO₂ 和 pH 极度敏感。PCO₂ 升高 1 mmHg，通气量就明显增加。O₂ 变化对它基本没影响。</p>
+        <p><strong>外周化学感受器</strong>（颈动脉体、主动脉体）：对 O₂、CO₂、pH 都响应，但在正常生理范围内贡献较小。只有 PO₂ 降到很低（&lt;60 mmHg）时，O₂才开始驱动通气增加。</p>
+    </div>
+
+    <div class="fd-loop-box">
+        <div class="fd-loop-title">CO₂升高触发的通气负反馈 <span class="fd-loop-badge">负反馈</span></div>
+        <div class="fd-chain">
+            <div class="fd-node fn-alert">血液PCO₂↑<br>pH↓</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-brain">延髓化学感受器<br>兴奋↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">呼吸中枢<br>增加通气</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">CO₂呼出增加<br>PCO₂↓ pH恢复</div>
+        </div>
+        <div class="fd-loop-feedback-row">
+            <div class="fd-arrow feedback">↩ 负反馈：PCO₂恢复正常后，化学感受器活动减弱</div>
+        </div>
+    </div>
+
+    <div class="life-example">
+        <strong>案例：憋气为什么难受？不是缺氧，是CO₂积累！</strong><br>
+        憋气时 O₂ 在慢慢消耗，但 CO₂ 也在快速积累。正常肺泡 PCO₂ 是 40 mmHg，憋气 30-60 秒后 PCO₂ 可升到 50-55 mmHg。<br>
+        这个 PCO₂ 升高激活了延髓化学感受器，产生强烈的"必须呼吸"冲动。此时你体内的 O₂ 还绰绰有余（O₂饱和度仍有 98%+），但 CO₂ 已经在"警报"了。<br><br>
+        <strong>危险：过度换气后憋气（Shallow Water Blackout）</strong><br>
+        游泳前剧烈过度换气会把 PCO₂ 从 40 降到 25 mmHg。此时憋气，O₂ 耗尽但 PCO₂ 还在低位，"警报"迟迟不触发 → 在产生憋气冲动前就已经失去意识（低氧昏厥）。这是泳池溺亡的常见原因之一。
+    </div>
+
+    <div class="life-example">
+        <strong>案例：高原反应的机制（和过度换气头晕的区别）</strong><br>
+        <strong>高原反应</strong>：海拔升高 → 大气压下降 → 吸入O₂分压降低 → 血液PO₂下降 → 组织缺氧（头晕、恶心）<br>
+        → 外周化学感受器被低O₂激活 → 通气增加 → CO₂被过度呼出 → PCO₂下降 → 血液碱化（呼吸性碱中毒）<br>
+        → 脑血管收缩（CO₂是脑血管的重要扩张剂）→ 加重头晕<br><br>
+        <strong>过度换气综合征</strong>（情绪/焦虑）：呼吸过快 → CO₂呼出过多 → PCO₂下降 → 碱中毒 → 脑血管收缩+Ca²⁺降低→ 头晕+手脚麻木+口周麻木<br>
+        处理方法：纸袋法（重新吸入CO₂）或放慢呼吸，可迅速缓解。<br><br>
+        两者的共同节点都是"PCO₂下降→脑血管收缩"，但到达这个节点的路径不同。
+    </div>
+
+    <!-- 五、岔气 -->
+    <h2 id="五岔气side-stitch膈肌缺血性痉挛">五、岔气（Side Stitch）：膈肌缺血性痉挛</h2>
+
+    <p><strong>岔气</strong>是跑步时出现的侧腹部锐痛，最常见于右侧肋骨下方。主流解释是<strong>膈肌缺血引起的痉挛</strong>：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🏃 岔气机制</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">跑步<br>（腹腔震动+<br>用力呼吸）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">膈肌持续用力<br>供血需求↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">血液重分配向<br>肌肉（腿）倾斜<br>膈肌相对缺血</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">膈肌痉挛<br>→ 侧腹刺痛</div>
+        </div>
+    </div>
+
+    <div class="info-box green">
+        <div class="box-title">💡 缓解岔气的方法（有生理依据的）</div>
+        <p>1. <strong>减速或停跑</strong>：减少膈肌工作负荷，让血液供应跟上</p>
+        <p>2. <strong>用力呼气</strong>：主动收缩腹肌帮助呼气，可以拉伸/放松膈肌</p>
+        <p>3. <strong>按压痛点深呼吸</strong>：手指压住侧腹，配合深呼气——改变膈肌和韧带的张力</p>
+        <p>预防：饭后至少 2 小时再剧烈运动（胃饱胀会压迫膈肌），逐渐增加运动强度（避免突然剧烈呼吸）。</p>
+    </div>
+
+    <!-- CS类比 -->
+    <h2 id="六-cs-类比气体交换--浓度梯度-dma-传输">六、💻 CS 类比：气体交换 = 浓度梯度 DMA 传输</h2>
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：呼吸系统 = 被动 DMA + 主动流量控制</div>
+        <ul>
+            <li><code>气体扩散</code> = DMA（Direct Memory Access）：数据（气体分子）从高浓度端到低浓度端的传输，完全被动，不消耗 CPU（细胞）资源</li>
+            <li><code>分压差</code> = 总线电位差/驱动电压：差值越大，传输速率越快；差值为 0，传输停止</li>
+            <li><code>延髓呼吸中枢</code> = 时钟发生器 + 自适应频率控制：默认节律产生呼吸，CO₂/pH 传感器实时调整"时钟频率"（呼吸频率）</li>
+            <li><code>CO₂→H⁺路径</code> = 化学信号转换器：把气体浓度变化转换为 pH 信号，供控制器读取</li>
+            <li><code>肺泡表面积（约 70 m²）</code> = 大面积并行接口：不是靠加快速度，而是靠增大面积提升总传输吞吐量</li>
+            <li><code>Shallow Water Blackout</code> = 传感器被刷掉后的系统崩溃：人为降低 CO₂（过度换气）相当于把"低电量警报"阈值调低，系统在真正耗尽前就不报警了——典型的传感器标定失误</li>
+        </ul>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="七常见误区">七、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：憋气难受是因为缺氧</span>
+        <span class="truth">✅ 真相：正常人憋气 1-2 分钟时，O₂ 饱和度仍在 95% 以上，难受感主要来自 CO₂ 积累激活了中枢化学感受器。真正缺氧的感觉是逐渐意识模糊，而不是那种"必须呼吸"的憋迫感。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：深呼吸会让血液充满更多氧气</span>
+        <span class="truth">✅ 真相：正常安静状态下，血红蛋白已经 98% 饱和，深呼吸带来的 PO₂ 提升意义不大（S形曲线平坦段）。深呼吸的真实作用是：①呼出更多CO₂（降低PCO₂，碱化血液）；②激活副交感神经、降低心率（迷走神经张力）。所以深呼吸"放松"的效果是真实的，但机制不是"充氧"。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：打哈欠是因为缺氧</span>
+        <span class="truth">✅ 真相：实验研究发现，吸入纯O₂或高CO₂气体都不能减少打哈欠的频率。目前支持度较高的理论是"脑温调节说"：打哈欠时大量吸入空气，可以短暂降低脑温（头部散热），在困倦（脑温偏高）时尤为常见。传染性哈欠可能与镜像神经元/共情机制有关。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：肺活量越大呼吸功能越好</span>
+        <span class="truth">✅ 真相：肺活量是一个静态容量，与运动时呼吸能力的关键指标不完全对应。临床上更重要的是 FEV₁（1秒用力呼气量），它反映的是气道通畅程度。哮喘/COPD患者肺活量可能正常，但 FEV₁ 严重下降。运动能力更多取决于心肺联合效率（VO₂max），而非单纯肺容量。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="八病理预告">八、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">慢性阻塞性肺疾病（COPD）</span>：长期吸烟 → 气道炎症+肺泡壁破坏（肺气肿）→ 气道阻力↑ + 弹性↓ → 气体潴留 + 通气不足。COPD患者长期高CO₂，化学感受器对CO₂不敏感，反而靠O₂低来维持通气驱动——此时给过高O₂浓度反而会减弱呼吸驱动，是临床操作陷阱。</p>
+        <p>👉 <span class="condition">哮喘（Asthma）</span>：气道炎症 → 平滑肌痉挛+黏液分泌增加 → 呼气时气道阻力极大增加（呼气比吸气更难，与喉炎相反）→ 典型的呼气性呼吸困难 + 哮鸣音。支气管扩张剂（β₂激动剂，沙丁胺醇）激活气道平滑肌β₂受体，使其舒张，快速缓解发作。</p>
+        <p>👉 <span class="condition">肺栓塞（PE）</span>：下肢深静脉血栓脱落 → 堵塞肺动脉 → 该区域肺泡通气正常但血流减少（通气/血流失匹配）→ 气体交换效率骤降 → 突发呼吸困难+胸痛+低氧。高危因素：长途飞行、久坐不动。</p>
+        <p>👉 <span class="condition">睡眠呼吸暂停（OSA）</span>：睡眠时上气道塌陷 → 呼吸停止 10-30 秒 → 低氧触发觉醒反应 → 再睡再发生，一夜数十到数百次 → 慢性缺氧/睡眠碎片化 → 高血压、心脏病、认知下降风险大幅增加。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter4.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第4章 · 循环生理</div>
+        </a>
+        <a href="chapter6.html" class="next">
+            <div><span class="nav-label">下一章</span>第6章 · 消化生理</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一肺通气负压呼吸机制">一、肺通气机制</a></li>
+            <li><a href="#二气体交换分压梯度驱动扩散">二、气体交换</a></li>
+            <li><a href="#三co₂-的运输70-变成了碳酸氢根">三、CO₂的运输</a></li>
+            <li><a href="#四呼吸调节co₂-才是主驾驶">四、呼吸调节</a></li>
+            <li><a href="#五岔气side-stitch膈肌缺血性痉挛">五、岔气机制</a></li>
+            <li><a href="#六-cs-类比气体交换--浓度梯度-dma-传输">六、💻 CS类比</a></li>
+            <li><a href="#七常见误区">七、⚠️ 误区</a></li>
+            <li><a href="#八病理预告">八、🔮 病理预告</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">分压 Partial Pressure</a></li>
+            <li><a href="glossary.html">化学感受器</a></li>
+            <li><a href="glossary.html">FEV₁ 一秒量</a></li>
+            <li><a href="glossary.html">潮气量 Tidal Volume</a></li>
+            <li><a href="glossary.html">呼吸性碱中毒</a></li>
+            <li><a href="glossary.html">通气/血流比值</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔗 本章关联</h3>
+        <ul class="toc-list">
+            <li>← <a href="chapter1.html">第1章：负反馈调节</a></li>
+            <li>← <a href="chapter3.html">第3章：血红蛋白携氧</a></li>
+            <li>← <a href="chapter4.html">第4章：肺循环</a></li>
+            <li>→ <a href="chapter7.html">第7章：酸碱调节</a></li>
+            <li>→ <a href="chapter12.html">第12章：运动代谢</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第5章 · 呼吸生理</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter4.html">← 上一章</a> &nbsp;·&nbsp; <a href="chapter6.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>术语词典 — 病理学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .glossary-search {
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .glossary-search input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #fca5a5;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            background: #fff;
+            color: #1f2937;
+            transition: border-color 0.2s;
+        }
+        .glossary-search input:focus {
+            border-color: #b91c1c;
+        }
+        .glossary-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .filter-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 2px solid #fca5a5;
+            background: white;
+            color: #b91c1c;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+        }
+        .glossary-section { margin-bottom: 2rem; }
+        .glossary-letter {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #b91c1c;
+            border-bottom: 2px solid #fca5a5;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1rem;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+        .glossary-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-left: 4px solid #b91c1c;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: box-shadow 0.2s;
+        }
+        .glossary-card:hover { box-shadow: 0 4px 12px rgba(185,28,28,0.12); }
+        .gc-term {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .gc-en {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.4rem;
+        }
+        .gc-def {
+            font-size: 0.88rem;
+            color: #374151;
+            line-height: 1.6;
+        }
+        .gc-chapter {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            background: #fee2e2;
+            color: #b91c1c;
+            border-radius: 4px;
+        }
+        .glossary-card.hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="top-nav-inner"></div>
+</nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a>
+    <span>›</span>
+    <span>📖 术语词典</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">工具页 · Tool</div>
+    <h1>📖 病理学术语词典</h1>
+    <p class="subtitle">快速查找病理学核心概念，每个词条都有通俗解释和对应章节，帮助你系统巩固知识。</p>
+</div>
+
+<div class="main-content" style="display:block; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+
+    <div class="glossary-search">
+        <input type="text" id="searchInput" placeholder="🔍 输入术语搜索，如：炎症、坏死、p53…" oninput="filterGlossary()">
+    </div>
+
+    <div class="glossary-filter">
+        <button class="filter-btn active" onclick="setFilter('all', this)">全部</button>
+        <button class="filter-btn" onclick="setFilter('ch1', this)">第1章·细胞损伤</button>
+        <button class="filter-btn" onclick="setFilter('ch2', this)">第2章·炎症</button>
+        <button class="filter-btn" onclick="setFilter('ch3', this)">第3章·修复</button>
+        <button class="filter-btn" onclick="setFilter('ch4', this)">第4章·肿瘤</button>
+        <button class="filter-btn" onclick="setFilter('ch5', this)">第5章·循环</button>
+        <button class="filter-btn" onclick="setFilter('ch6', this)">第6章·呼吸</button>
+        <button class="filter-btn" onclick="setFilter('ch7', this)">第7章·消化</button>
+        <button class="filter-btn" onclick="setFilter('ch8', this)">第8章·泌尿</button>
+        <button class="filter-btn" onclick="setFilter('ch9', this)">第9章·神经</button>
+        <button class="filter-btn" onclick="setFilter('ch10', this)">第10章·内分泌</button>
+        <button class="filter-btn" onclick="setFilter('ch11', this)">第11章·免疫</button>
+        <button class="filter-btn" onclick="setFilter('ch12', this)">第12章·运动</button>
+    </div>
+
+    <div id="glossaryContainer">
+
+    <!-- A -->
+    <div class="glossary-section">
+        <div class="glossary-letter">A</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch1">
+                <div class="gc-term">凋亡</div>
+                <div class="gc-en">Apoptosis</div>
+                <div class="gc-def">程序性细胞死亡。细胞按照预设程序有序地"自杀"，不触发炎症。类比：SIGTERM信号触发的优雅关机，与坏死的"系统崩溃"相对。</div>
+                <span class="gc-chapter">→ 第1章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch5">
+                <div class="gc-term">动脉粥样硬化</div>
+                <div class="gc-en">Atherosclerosis</div>
+                <div class="gc-def">动脉壁内脂质（主要是oxLDL）沉积→炎症→斑块形成的慢性过程。是心梗和脑梗的主要病理基础。病程数十年，核心是慢性炎症而非单纯"脂肪堆积"。</div>
+                <span class="gc-chapter">→ 第5章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch1">
+                <div class="gc-term">萎缩</div>
+                <div class="gc-en">Atrophy</div>
+                <div class="gc-def">细胞（或器官）在持续刺激（负荷减少/营养不足/神经失支配）下体积缩小。细胞数量不减少，是细胞的适应性反应。类比：长期不使用肌肉→肌肉萎缩。</div>
+                <span class="gc-chapter">→ 第1章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- B -->
+    <div class="glossary-section">
+        <div class="glossary-letter">B</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch9">
+                <div class="gc-term">血脑屏障</div>
+                <div class="gc-en">Blood-Brain Barrier (BBB)</div>
+                <div class="gc-def">脑毛细血管内皮细胞间的紧密连接，严格限制血液中物质进入脑组织。保护大脑的同时，也是脑部药物治疗的最大障碍（90%以上脑部候选药物无法穿越）。</div>
+                <span class="gc-chapter">→ 第9章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- C -->
+    <div class="glossary-section">
+        <div class="glossary-letter">C</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch4">
+                <div class="gc-term">癌基因</div>
+                <div class="gc-en">Oncogene</div>
+                <div class="gc-def">促进细胞增殖的基因，突变后变成持续激活的"油门"。只需一个等位基因突变即可致病（显性）。常见：RAS（30%实体瘤）、HER2（乳腺癌20%）。类比：被锁死的油门踏板。</div>
+                <span class="gc-chapter">→ 第4章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch2">
+                <div class="gc-term">细胞因子</div>
+                <div class="gc-en">Cytokine</div>
+                <div class="gc-def">免疫细胞分泌的小蛋白信号分子，调控炎症和免疫应答。如IL-1β（发烧信号）、TNF-α（全身炎症反应）、IL-6（CRP激活）等。类比：免疫系统内部的通信广播。</div>
+                <span class="gc-chapter">→ 第2章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch8">
+                <div class="gc-term">慢性肾病（CKD）</div>
+                <div class="gc-en">Chronic Kidney Disease</div>
+                <div class="gc-def">肾功能损害超过3个月，eGFR&lt;60 mL/min/1.73m²。进行性、不可逆的肾单位丧失。主因：糖尿病（第一位）+高血压。早期几乎无症状，肌酐升高时已失去50%以上肾功能。</div>
+                <span class="gc-chapter">→ 第8章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch6">
+                <div class="gc-term">COPD（慢性阻塞性肺疾病）</div>
+                <div class="gc-en">Chronic Obstructive Pulmonary Disease</div>
+                <div class="gc-def">慢性支气管炎+肺气肿的组合，以不可逆的气流受限为特征。吸烟是主因。核心：肺泡破坏→弹性回缩力丧失→气体陷闭。唯一能减缓进展的措施：戒烟。</div>
+                <span class="gc-chapter">→ 第6章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- D -->
+    <div class="glossary-section">
+        <div class="glossary-letter">D</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch2">
+                <div class="gc-term">调定点</div>
+                <div class="gc-en">Set Point</div>
+                <div class="gc-def">下丘脑体温调节的"目标温度"。炎症时前列腺素E2作用于下丘脑→调定点上移→身体感觉"冷"→产热增加→达到新的调定点（即发烧）。布洛芬抑制PGE2→调定点复位→退烧。</div>
+                <span class="gc-chapter">→ 第2章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch10">
+                <div class="gc-term">糖尿病（T2DM）</div>
+                <div class="gc-en">Type 2 Diabetes Mellitus</div>
+                <div class="gc-def">胰岛素抵抗+β细胞代偿失败→血糖升高。不同于1型（自身免疫→胰岛素缺乏）。2型早期减重可逆转。四大慢性并发症：肾病/视网膜病/神经病变（微血管）+心血管病（大血管）。</div>
+                <span class="gc-chapter">→ 第10章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- F -->
+    <div class="glossary-section">
+        <div class="glossary-letter">F</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch3">
+                <div class="gc-term">纤维化</div>
+                <div class="gc-en">Fibrosis</div>
+                <div class="gc-def">反复损伤→反复修复→大量胶原蛋白沉积替代正常组织→器官功能丧失。关键介质：TGF-β。典型：肝硬化（肝纤维化）、肺纤维化（特发性肺纤维化）、心脏纤维化（心梗后）。通常不可逆。</div>
+                <span class="gc-chapter">→ 第3章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch5">
+                <div class="gc-term">泡沫细胞</div>
+                <div class="gc-en">Foam Cell</div>
+                <div class="gc-def">巨噬细胞吞噬大量oxLDL（氧化低密度脂蛋白）后，变成充满脂质滴的细胞，外观泡沫状。动脉粥样硬化斑块"脂纹"的核心成分。类比：处理损坏数据包的防火墙进程变成"僵尸进程"。</div>
+                <span class="gc-chapter">→ 第5章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- G -->
+    <div class="glossary-section">
+        <div class="glossary-letter">G</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch3">
+                <div class="gc-term">肉芽组织</div>
+                <div class="gc-en">Granulation Tissue</div>
+                <div class="gc-def">伤口修复增殖期形成的新生组织，由毛细血管芽+成纤维细胞+炎症细胞构成，外观粉红色、颗粒状（因充满新生毛细血管）。是二期愈合的填充材料，最终成熟为疤痕。</div>
+                <span class="gc-chapter">→ 第3章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- H -->
+    <div class="glossary-section">
+        <div class="glossary-letter">H</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch1">
+                <div class="gc-term">肥大</div>
+                <div class="gc-en">Hypertrophy</div>
+                <div class="gc-def">细胞体积增大（而非数量增多）。原因：功能需求增加（运动→骨骼肌肥大/高血压→左心室肥大）。本质：细胞内蛋白质合成增加，肌原纤维/细胞器增多。类比：单个CPU升级（提高主频），而非增加CPU数量。</div>
+                <span class="gc-chapter">→ 第1章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch1 ch2">
+                <div class="gc-term">组胺</div>
+                <div class="gc-en">Histamine</div>
+                <div class="gc-def">肥大细胞/嗜碱性粒细胞储存和释放的炎症介质。引起血管扩张（红/热）+毛细血管通透性↑（水肿）+平滑肌收缩（哮喘发作）。过敏反应的即刻触发物。抗组胺药（如氯雷他定）阻断H1受体→缓解过敏症状。</div>
+                <span class="gc-chapter">→ 第2章 / 第11章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- I -->
+    <div class="glossary-section">
+        <div class="glossary-letter">I</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch11">
+                <div class="gc-term">免疫耐受</div>
+                <div class="gc-en">Immune Tolerance</div>
+                <div class="gc-def">免疫系统对自身抗原不产生攻击性应答的状态。通过中枢耐受（胸腺阴性选择）和外周耐受（调节性T细胞Treg抑制）维持。耐受机制失效→自身免疫病。</div>
+                <span class="gc-chapter">→ 第11章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch2">
+                <div class="gc-term">炎症</div>
+                <div class="gc-en">Inflammation</div>
+                <div class="gc-def">组织对损伤的防御性血管-细胞反应。目的：消灭病原/清除碎屑/启动修复。五大表现：红/肿/热/痛/功能障碍（Rubor/Tumor/Calor/Dolor/Functio laesa）。慢性炎症是现代多种疾病的共同底层。</div>
+                <span class="gc-chapter">→ 第2章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch10">
+                <div class="gc-term">胰岛素抵抗</div>
+                <div class="gc-en">Insulin Resistance</div>
+                <div class="gc-def">细胞对胰岛素的反应性下降→相同浓度胰岛素产生的降糖效果减弱→胰岛β细胞代偿性分泌更多胰岛素。主因：腹型肥胖→内脏脂肪分泌促炎细胞因子→信号通路受阻。减重可改善。</div>
+                <span class="gc-chapter">→ 第10章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- K -->
+    <div class="glossary-section">
+        <div class="glossary-letter">K</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch1">
+                <div class="gc-term">坏死</div>
+                <div class="gc-en">Necrosis</div>
+                <div class="gc-def">细胞因严重损伤（缺血/毒素/感染）发生的非程序性死亡。细胞膜破裂→细胞内容物释放→引发周围炎症。四种形态：凝固性（最常见，心梗）/液化性（脑梗/脓肿）/干酪性（结核）/坏疽（肢端缺血）。类比：OOM killed，无优雅退出。</div>
+                <span class="gc-chapter">→ 第1章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- M -->
+    <div class="glossary-section">
+        <div class="glossary-letter">M</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch1">
+                <div class="gc-term">化生</div>
+                <div class="gc-en">Metaplasia</div>
+                <div class="gc-def">一种成熟细胞类型转变为另一种成熟细胞类型。通常是为了更好适应不利环境。经典例子：长期吸烟→支气管假复层柱状上皮→鳞状上皮化生（但鳞癌风险升高）。本质：干细胞分化方向改变，非细胞自己变形。</div>
+                <span class="gc-chapter">→ 第1章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch4">
+                <div class="gc-term">转移</div>
+                <div class="gc-en">Metastasis</div>
+                <div class="gc-def">恶性肿瘤细胞脱离原发灶→通过血液/淋巴/种植→在远处器官形成新的肿瘤病灶。约90%的癌症死亡由转移引起，而非原发灶。特定癌症有特定的转移靶器官（"种子与土壤"学说）。</div>
+                <span class="gc-chapter">→ 第4章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch5">
+                <div class="gc-term">心肌梗死</div>
+                <div class="gc-en">Myocardial Infarction (MI)</div>
+                <div class="gc-def">冠状动脉急性闭塞→供血区心肌缺血→凝固性坏死。直接原因：80%以上是易损斑块破裂→急性血栓。"时间就是心肌"——每延误1分钟约1900个心肌细胞死亡。诊断：hsTnI升高+心电图+症状。</div>
+                <span class="gc-chapter">→ 第5章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- N -->
+    <div class="glossary-section">
+        <div class="glossary-letter">N</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch4">
+                <div class="gc-term">肿瘤</div>
+                <div class="gc-en">Neoplasm / Tumor</div>
+                <div class="gc-def">机体局部组织克隆性异常增殖形成的新生物。分良性（膨胀性生长/不转移/可切除）和恶性（浸润性/可转移/危及生命）。癌（来自上皮）vs 肉瘤（来自间叶）。本质：多次关键基因突变累积导致分裂失控。</div>
+                <span class="gc-chapter">→ 第4章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- P -->
+    <div class="glossary-section">
+        <div class="glossary-letter">P</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch4">
+                <div class="gc-term">p53</div>
+                <div class="gc-en">p53 / TP53</div>
+                <div class="gc-def">"基因组守护者"。检测到DNA损伤→启动修复/暂停细胞周期/触发凋亡的关键调控蛋白。约50%的人类癌症中发生p53突变。Li-Fraumeni综合征：先天性p53突变→50岁前多发性癌症。</div>
+                <span class="gc-chapter">→ 第4章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch8">
+                <div class="gc-term">蛋白尿</div>
+                <div class="gc-en">Proteinuria</div>
+                <div class="gc-def">肾小球滤过屏障损伤→蛋白质（主要白蛋白）漏入尿液。微量蛋白尿（30-300mg/g肌酐）是糖尿病/高血压肾损伤的早期信号，此时肌酐可能仍"正常"。大量蛋白尿→低白蛋白血症→水肿（肾病综合征）。</div>
+                <span class="gc-chapter">→ 第8章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- R -->
+    <div class="glossary-section">
+        <div class="glossary-letter">R</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch3 ch5">
+                <div class="gc-term">再灌注损伤</div>
+                <div class="gc-en">Reperfusion Injury</div>
+                <div class="gc-def">缺血后血流恢复时，大量氧自由基爆发生成→线粒体通透性转换孔（mPTP）开放→额外细胞死亡。约30-50%的最终梗死面积由此贡献。因此心梗治疗的关键是"尽早开通"，而非事后治疗再灌注损伤。</div>
+                <span class="gc-chapter">→ 第3章 / 第5章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch3">
+                <div class="gc-term">再生</div>
+                <div class="gc-en">Regeneration</div>
+                <div class="gc-def">用同类型细胞补充损伤部位，结构和功能完全恢复。前提：细胞能增殖+细胞外支架完整。不稳定细胞（皮肤/肠道）可完全再生；稳定细胞（肝/肾小管）有限再生；永久性细胞（心肌/神经元）几乎不再生。</div>
+                <span class="gc-chapter">→ 第3章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- S -->
+    <div class="glossary-section">
+        <div class="glossary-letter">S</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch9">
+                <div class="gc-term">脑卒中</div>
+                <div class="gc-en">Stroke</div>
+                <div class="gc-def">脑血液供应中断导致神经功能缺损。缺血性（80-85%，血栓/栓塞）vs 出血性（15-20%，血管破裂）。治疗截然相反：缺血→溶栓；出血→禁溶栓。FAST口诀（Face/Arm/Speech/Time）快速识别。</div>
+                <span class="gc-chapter">→ 第9章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch11">
+                <div class="gc-term">系统性红斑狼疮（SLE）</div>
+                <div class="gc-en">Systemic Lupus Erythematosus</div>
+                <div class="gc-def">全身性自身免疫病，产生抗ds-DNA等多种自身抗体→免疫复合物沉积→多器官损伤（肾/心/皮肤/关节/血液/神经）。好发育龄女性（女:男≈9:1）。"千面女郎"——症状极多样。现代治疗下10年生存率>90%。</div>
+                <span class="gc-chapter">→ 第11章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- T -->
+    <div class="glossary-section">
+        <div class="glossary-letter">T</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch3">
+                <div class="gc-term">TGF-β</div>
+                <div class="gc-en">Transforming Growth Factor-β</div>
+                <div class="gc-def">转化生长因子-β，纤维化的"主开关"。损伤→巨噬细胞释放TGF-β→成肌纤维细胞激活→大量合成胶原蛋白→胶原沉积。几乎所有器官纤维化（肝/肺/肾/心）都与TGF-β信号通路有关。</div>
+                <span class="gc-chapter">→ 第3章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch10">
+                <div class="gc-term">甲亢</div>
+                <div class="gc-en">Hyperthyroidism</div>
+                <div class="gc-def">甲状腺激素（T3/T4）过多→全身代谢率增加（油门踩死）。症状：心跳快/怕热多汗/消瘦/手抖/烦躁。最常见原因：Graves病（自身抗体激活TSH受体）。治疗：抗甲药/放射碘/手术。甲亢危象是急症。</div>
+                <span class="gc-chapter">→ 第10章</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- W/X/Y/Z（中文词汇） -->
+    <div class="glossary-section">
+        <div class="glossary-letter">其他核心术语</div>
+        <div class="glossary-grid">
+            <div class="glossary-card" data-chapter="ch7">
+                <div class="gc-term">门脉高压</div>
+                <div class="gc-en">Portal Hypertension</div>
+                <div class="gc-def">门静脉系统压力升高（正常<12mmHg，>12mmHg时出现并发症）。主因：肝硬化→肝内血管阻力增加。三大并发症：腹水/食管静脉曲张出血/脾功能亢进（血小板减少）。食管静脉曲张破裂→大量呕血→首次死亡率约20-30%。</div>
+                <span class="gc-chapter">→ 第7章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch12">
+                <div class="gc-term">痛风</div>
+                <div class="gc-en">Gout</div>
+                <div class="gc-def">尿酸盐结晶沉积在关节→中性粒细胞吞噬→NLRP3炎性小体激活→IL-1β大量释放→急性剧烈炎症。典型：第一跖趾关节（大拇趾根）。急性期先抗炎（秋水仙碱），不能立即降尿酸（可能诱发再次发作）。</div>
+                <span class="gc-chapter">→ 第12章</span>
+            </div>
+            <div class="glossary-card" data-chapter="ch2">
+                <div class="gc-term">幽门螺旋杆菌（Hp）</div>
+                <div class="gc-en">Helicobacter pylori</div>
+                <div class="gc-def">胃黏膜定植的革兰阴性螺旋菌，是胃炎/胃溃疡/胃癌/MALT淋巴瘤的主要病因。全球约50%成人感染。Marshall自己喝菌液证明其致病性（2005年诺贝尔奖）。三联/四联疗法根除Hp后，溃疡复发率从80%→5%以下。</div>
+                <span class="gc-chapter">→ 第2章 / 第7章</span>
+            </div>
+        </div>
+    </div>
+
+    </div><!-- /glossaryContainer -->
+
+    <div style="text-align:center; margin: 2rem 0;">
+        <a href="index.html" style="display:inline-block; padding:0.75rem 2rem; background:#b91c1c; color:white; border-radius:8px; text-decoration:none; font-weight:600;">← 返回首页</a>
+        <a href="disease-map.html" style="display:inline-block; padding:0.75rem 2rem; background:white; border:2px solid #b91c1c; color:#b91c1c; border-radius:8px; text-decoration:none; font-weight:600; margin-left:1rem;">🗺️ 疾病关联地图 →</a>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>🔬 病理学入门 · 术语词典</p>
+    <p style="margin-top:6px; font-size:0.8rem;">内容以科学通识为目的，不构成医疗建议。</p>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+let currentFilter = 'all';
+
+function filterGlossary() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.glossary-card');
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const chapter = card.dataset.chapter || '';
+        const matchSearch = text.includes(query);
+        const matchFilter = currentFilter === 'all' || chapter.includes(currentFilter);
+        card.classList.toggle('hidden', !(matchSearch && matchFilter));
+    });
+    // Hide empty sections
+    document.querySelectorAll('.glossary-section').forEach(section => {
+        const hasVisible = [...section.querySelectorAll('.glossary-card')].some(c => !c.classList.contains('hidden'));
+        section.style.display = hasVisible ? '' : 'none';
+    });
+}
+
+function setFilter(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterGlossary();
+}
+</script>
+</body>
+</html>

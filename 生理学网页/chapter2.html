@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2章 · 细胞与电信号 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第2章 · 细胞与电信号</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第一阶段 · 基础核心 · 第 2 章</div>
+    <h1>细胞与电信号</h1>
+    <p class="subtitle">神经和肌肉的底层硬件。电信号怎么产生、怎么传递、为什么"全或无"。</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐⭐ 神经与肌肉的硬件基础</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第11章（神经系统）</strong> — 你已经知道神经元的结构（树突、轴突、髓鞘），这章来讲神经元为什么能传递电信号。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>打了局部麻醉针之后，牙医在钻牙，你看得见却感觉不到痛——为什么？</li>
+            <li>高血钾（血钾偏高）为什么会引起心脏骤停？</li>
+            <li>神经信号为什么是"要么不响、响就全力"，而不是"轻触一下就轻响一下"？</li>
+        </ul>
+    </div>
+
+    <!-- 一、细胞膜：信号传递的硬件 -->
+    <h2 id="一细胞膜不只是边界">一、细胞膜：不只是"边界"</h2>
+
+    <p>大多数人理解细胞膜，觉得它就是一道"围墙"，把细胞里面和外面分开。但从生理学角度看，细胞膜是一套精密的<strong>选择性通信系统</strong>——它不只是隔离，更重要的是控制离子进出，从而产生电信号。</p>
+
+    <p>细胞膜由磷脂双分子层构成，嵌入了大量蛋白质，其中最关键的是<strong>离子通道</strong>和<strong>离子泵</strong>。</p>
+
+    <h3>离子的分布：里外不对称</h3>
+    <p>细胞膜内外的离子浓度是严重不对称的，这种不对称是电信号的能量来源：</p>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>离子</th><th>细胞外浓度</th><th>细胞内浓度</th><th>主要作用</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Na⁺（钠离子）</td><td>145 mmol/L（高）</td><td>12 mmol/L（低）</td><td>动作电位去极化主角</td></tr>
+                <tr><td>K⁺（钾离子）</td><td>4 mmol/L（低）</td><td>140 mmol/L（高）</td><td>维持静息电位主角</td></tr>
+                <tr><td>Cl⁻（氯离子）</td><td>120 mmol/L（高）</td><td>4 mmol/L（低）</td><td>参与抑制性突触</td></tr>
+                <tr><td>Ca²⁺（钙离子）</td><td>1.2 mmol/L（高）</td><td>极低（0.0001 mmol/L）</td><td>触发肌肉收缩、神经递质释放</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>这种不对称不是自然形成的——它靠<strong>Na⁺-K⁺泵（钠钾泵）</strong>持续主动维护：每消耗1个ATP，把3个Na⁺泵出去、2个K⁺泵进来。神经元安静时，大约30%的ATP都花在了维持这个不对称上。</p>
+
+    <div class="key-concept">
+        <strong>离子通道的三种类型：</strong><br>
+        ① <strong>漏通道</strong>：一直开着，K⁺持续缓慢外漏，维持静息电位<br>
+        ② <strong>电压门控通道</strong>：膜电位变化才开，Na⁺、K⁺的主通道，动作电位的执行者<br>
+        ③ <strong>配体门控通道</strong>：神经递质等化学物质结合才开，突触传递的核心
+    </div>
+
+    <!-- 二、静息膜电位 -->
+    <h2 id="二静息膜电位待机时的-70-mv">二、静息膜电位：待机时的 -70 mV</h2>
+
+    <p>当神经元静止不活动时，细胞膜内外存在一个稳定的电位差：<strong>内负外正，约 -70 mV</strong>。这叫做<strong>静息膜电位（Resting Membrane Potential, RMP）</strong>。</p>
+
+    <p>为什么是负的？主要原因是K⁺的行为：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚡ 静息电位形成机制</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">细胞内K⁺<br>浓度高</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">K⁺通过漏通道<br>向外扩散</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">带正电的K⁺<br>流出，内侧变负</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">电场阻力增大<br>（内负吸引K⁺回来）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">电化学平衡<br>≈ -70 mV</div>
+        </div>
+    </div>
+
+    <p>Na⁺也想进来（浓度梯度驱动），但静息时Na⁺通道几乎关闭，Na⁺漏入量很少。钠钾泵持续工作，把漏进来的Na⁺泵出去，维持平衡。</p>
+
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：静息电位 = 电容的待机充电状态</div>
+        <p>细胞膜就像一个<strong>电容器</strong>：两侧积累了不同电荷（外正内负），两侧之间是绝缘的磷脂层。</p>
+        <p>-70 mV 就是这个"生物电容"的充电状态。离子泵（钠钾泵）就像给电容充电的电源，持续维持这个电位差。</p>
+        <p>当电容"放电"（即动作电位发生），电位差短暂崩塌然后重新充回去。</p>
+        <p>神经元的"待机功耗"相当高——维持这个 -70 mV 就要消耗大量 ATP，这也是大脑极其耗能的根本原因。</p>
+    </div>
+
+    <!-- 三、动作电位 -->
+    <h2 id="三动作电位数字脉冲的产生">三、动作电位：数字脉冲的产生</h2>
+
+    <p>当细胞膜被充分刺激，膜电位从 -70 mV 升高到约 <strong>-55 mV（阈电位）</strong>时，一个爆炸性的事件被触发——<strong>动作电位（Action Potential, AP）</strong>。</p>
+
+    <p>动作电位分为几个清晰的阶段：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚡ 动作电位的完整过程（单个神经纤维）</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-default">静息<br>-70 mV</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">阈值<br>-55 mV</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">去极化<br>Na⁺通道开放<br>Na⁺大量内流<br>→ +30 mV</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">复极化<br>Na⁺通道关闭<br>K⁺通道开放<br>K⁺外流</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">超极化<br>-80 mV<br>（K⁺通道慢关）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">恢复<br>-70 mV</div>
+        </div>
+    </div>
+
+    <h3>阶段详解</h3>
+
+    <div class="info-box blue">
+        <div class="box-title">① 去极化（Depolarization）：约 0.5 ms</div>
+        <p>膜电位触及 -55 mV 阈值，电压门控 <strong>Na⁺通道</strong>大量开放。Na⁺浓度梯度（外高内低）+ 电场力（内负吸引Na⁺）双重驱动，Na⁺以极高速度涌入。膜电位从 -70 mV 飞速升至 +30 mV，这段过程叫"过冲（overshoot）"。</p>
+    </div>
+    <div class="info-box green">
+        <div class="box-title">② 复极化（Repolarization）：约 1 ms</div>
+        <p>Na⁺通道迅速进入"失活状态"（即使电压还在，也强制关闭）。同时，电压门控 <strong>K⁺通道</strong>延迟开放（比Na⁺通道慢），K⁺大量外流，膜电位从 +30 mV 快速跌回。</p>
+    </div>
+    <div class="info-box yellow">
+        <div class="box-title">③ 超极化（Hyperpolarization）：约 1-2 ms</div>
+        <p>K⁺通道比Na⁺通道关得慢，K⁺继续外流，膜电位暂时跌至约 -80 mV，比静息电位还低。随后K⁺通道完全关闭，钠钾泵工作，回归 -70 mV。</p>
+    </div>
+
+    <!-- 四、全或无定律 -->
+    <h2 id="四全或无定律0-和-1-的数字逻辑">四、全或无定律：0 和 1 的数字逻辑</h2>
+
+    <p>动作电位有一个极其重要的特性：<strong>要么不产生，产生了就是全力以赴——幅度固定，不可调节。</strong>这叫做<strong>全或无定律（All-or-None Law）</strong>。</p>
+
+    <p>刺激强度低于阈值 -55 mV？膜电位会产生局部的、衰减的"局部电位"，不会触发动作电位，信号在原地消失。</p>
+    <p>刺激强度达到或超过阈值？动作电位被触发，幅度始终是约100 mV（-70 → +30），不管刺激强弱，幅度一模一样。</p>
+
+    <div class="info-box teal">
+        <div class="box-title">🤔 那"轻触"和"重击"感觉不一样，为什么？</div>
+        <p>不是因为单个动作电位幅度不同，而是因为：<br>
+        ① <strong>频率编码</strong>：重刺激 → 单位时间内触发更多个动作电位（频率更高）<br>
+        ② <strong>招募更多神经纤维</strong>：重刺激 → 激活更多条神经纤维同时放电<br>
+        大脑通过解读"频率"和"纤维数量"来区分刺激强度，而不是解读单个信号的幅度。</p>
+    </div>
+
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：动作电位 = 数字脉冲信号（1 bit）</div>
+        <p>动作电位本质上是一个<strong>数字信号，不是模拟信号</strong>：</p>
+        <ul>
+            <li>低于阈值 = <code>0</code>（无信号）</li>
+            <li>超过阈值 = <code>1</code>（固定幅度的脉冲）</li>
+        </ul>
+        <p>信息的编码方式是<strong>脉冲频率调制（PFM，Pulse Frequency Modulation）</strong>，而不是幅度调制（AM）。</p>
+        <p>类比 UART 通信：单个比特的高低电平固定（全或无），信息含量取决于比特序列的频率和数量，而非单个比特的电压高低。</p>
+        <p>离子通道 ≈ 逻辑门：<br>
+        <code>电压门控通道</code> = 当输入电压（膜电位）超过阈值（逻辑高），输出"开放"状态<br>
+        <code>配体门控通道</code> = 化学物质结合 = 接收到使能信号才打开的三态门</p>
+    </div>
+
+    <!-- 五、不应期 -->
+    <h2 id="五不应期为什么信号有方向性">五、不应期：为什么信号有方向性</h2>
+
+    <p>动作电位之后，Na⁺通道会进入"失活状态"——<strong>在这段时间内，不管给多强的刺激，都无法再次触发动作电位</strong>，这叫<strong>绝对不应期（Absolute Refractory Period）</strong>，约 1-2 ms。</p>
+    <p>之后进入<strong>相对不应期</strong>（约 2-5 ms）：Na⁺通道逐渐复活，但此时膜电位还在超极化状态，需要更强的刺激才能触发下一个动作电位。</p>
+
+    <p>不应期有两个重要意义：</p>
+    <div class="info-box green">
+        <div class="box-title">① 信号单向传导</div>
+        <p>动作电位在轴突上传导时，已激发部分正处于不应期，无法被重新激发，所以信号只能向前走，不会"回头"。</p>
+    </div>
+    <div class="info-box blue">
+        <div class="box-title">② 限制最高放电频率</div>
+        <p>绝对不应期约 1 ms，意味着单个神经纤维最高放电频率约 500-1000 次/秒。这是神经元"带宽"的物理上限。</p>
+    </div>
+
+    <!-- 六、传导速度与髓鞘 -->
+    <h2 id="六为什么要有髓鞘跳跃传导">六、为什么要有髓鞘？——跳跃传导</h2>
+
+    <p>动作电位在轴突上传导，如果沿着整段轴突一点一点激发，速度非常慢（约0.5-2 m/s）。但有髓鞘包裹的神经纤维，传导速度可以达到<strong>70-120 m/s</strong>，快了几十倍。</p>
+
+    <p>原因是<strong>跳跃传导（Saltatory Conduction）</strong>：髓鞘是绝缘层，电流无法穿透，只有在髓鞘间隙（郎飞节，Nodes of Ranvier）才有离子通道。动作电位在郎飞节之间"跳跃"传播，大幅提升速度。</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚡ 跳跃传导示意</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-alert">郎飞节1<br>AP爆发</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">髓鞘段<br>（绝缘，跳过）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">郎飞节2<br>AP爆发</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">髓鞘段<br>（跳过）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">郎飞节3<br>AP爆发</div>
+        </div>
+    </div>
+
+    <p>多发性硬化症（MS）就是髓鞘被免疫系统攻击，跳跃传导被破坏，导致神经信号传导减慢甚至中断，引发各种感觉和运动障碍。</p>
+
+    <!-- 七、局部麻醉的机制 -->
+    <h2 id="七局部麻醉直接封锁通道">七、局部麻醉：直接封锁通道</h2>
+
+    <div class="life-example">
+        <strong>案例：打了麻药，为什么不痛了？</strong><br>
+        局部麻醉药（如利多卡因、布比卡因）的作用机制非常直接：<strong>进入神经纤维，从内侧阻断电压门控Na⁺通道</strong>，使其无法开放。<br><br>
+        结果：膜电位无法达到去极化，动作电位无法产生。疼痛信号从受伤部位出发，走到被麻醉的神经段就被截断了——信号永远到不了大脑，你自然感觉不到痛。<br><br>
+        注意：<strong>感觉纤维（细、无髓鞘）比运动纤维（粗、有髓鞘）更容易被麻醉</strong>，所以局麻后你通常是"感觉不到痛，但肌肉还能动一点"，随着麻药浓度增加才完全失去运动功能。
+    </div>
+
+    <!-- 八、高钾血症 -->
+    <h2 id="八高钾血症为什么危险静息电位的陷阱">八、高钾血症为什么危险？——静息电位的陷阱</h2>
+
+    <p>血液中K⁺浓度正常是 3.5-5.0 mmol/L。如果因为肾衰竭、过量补钾等原因升高，会引发严重心律不齐甚至心脏骤停——为什么？</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚠️ 高钾血症对心肌细胞的影响</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-alert">血K⁺升高<br>（>6 mmol/L）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">细胞外K⁺升高<br>→ K⁺外流驱动力↓</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">静息膜电位<br>从-70升至-50 mV</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">Na⁺通道部分<br>持续失活</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">动作电位<br>异常/无法正常产生</div>
+        </div>
+    </div>
+
+    <p>静息电位变浅（从 -70 mV 变成 -50 mV）→ 离阈值 -55 mV 更近 → 更容易被意外触发（心律不齐）。同时Na⁺通道在 -50 mV 时已有部分进入失活态 → 动作电位幅度下降 → 心肌收缩力减弱。严重时心脏停止。</p>
+    <p>这就是为什么长期服用保钾利尿剂的人需要监测血钾，也是为什么肾衰竭患者需要定期透析——肾脏是排钾的主要器官。</p>
+
+    <!-- CS类比完整版 -->
+    <h2 id="九-cs类比汇总">九、💻 CS类比汇总</h2>
+    <div class="mechanism-box">
+        <div class="mb-title">⚙️ 神经电信号的完整计算机类比</div>
+        <p>把神经细胞的电信号系统类比成嵌入式系统：</p>
+        <div class="mb-formula">钠钾泵 ≈ 电源管理芯片（PMIC）：维持工作电压，消耗 ATP ≈ 消耗电流</div>
+        <div class="mb-formula">细胞膜 ≈ 电容：存储电荷，维持膜电位</div>
+        <div class="mb-formula">离子通道 ≈ MOSFET 开关：门控信号（电压/配体）控制导通</div>
+        <div class="mb-formula">动作电位 ≈ 数字脉冲（TTL逻辑高电平）：固定幅度，全或无</div>
+        <div class="mb-formula">髓鞘 ≈ 高速串行总线（PCIe vs I2C）：绝缘+跳跃 → 极大提升传输速率</div>
+        <div class="mb-formula">不应期 ≈ 流水线冒险（Hazard）：前一条指令未完成，无法接受新触发</div>
+        <p>整个神经系统本质上是一套<strong>分布式事件驱动的数字通信网络</strong>，以 ATP 为电源，以动作电位为信号，以离子通道为逻辑单元。</p>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="十常见误区">十、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：神经传导就是"电流在神经里流动"，像导线一样</span>
+        <span class="truth">✅ 真相：神经传导不是电子流动，而是离子浓度变化的级联反应。每个郎飞节依靠化学离子泵重新"点火"。更像多米诺骨牌，而不是铜导线。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：感觉越强烈，单个动作电位的幅度越大</span>
+        <span class="truth">✅ 真相：动作电位全或无，幅度固定约 100 mV。感觉强弱由放电频率和参与纤维数量编码，而不是单个脉冲的大小。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：Na⁺-K⁺泵产生静息电位</span>
+        <span class="truth">✅ 真相：静息电位主要由K⁺通过漏通道的自然扩散产生。钠钾泵的作用是维持离子浓度梯度，间接维持静息电位，而不是直接产生它。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：局部麻醉是"让神经休眠"</span>
+        <span class="truth">✅ 真相：局麻药是直接的物理阻断——卡在Na⁺通道里，让通道无法开放。神经元不是睡着了，是"嘴被堵住了"，有信号但发不出去。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="十一病理预告">十一、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">多发性硬化症（MS）</span>：自身免疫攻击髓鞘 → 跳跃传导失败 → 神经信号减慢、中断 → 肌力下降、感觉异常、视力问题。</p>
+        <p>👉 <span class="condition">癫痫</span>：神经元异常同步放电，正反馈失控（大量神经元同时动作电位 → 招募更多 → 扩散至全脑）。发作时脑内电活动如"短路风暴"。</p>
+        <p>👉 <span class="condition">高钾血症</span>：如前所述，血钾>6 mmol/L引起心律不齐，>7 mmol/L有心脏骤停风险，是肾衰竭的危急并发症。</p>
+        <p>👉 <span class="condition">河豚毒素（TTX）中毒</span>：TTX是Na⁺通道的强效阻断剂（比利多卡因强得多），全身神经肌肉麻痹，呼吸肌瘫痪窒息致死。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter1.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第1章 · 稳态与调节</div>
+        </a>
+        <a href="chapter3.html" class="next">
+            <div><span class="nav-label">下一章</span>第3章 · 血液生理</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<!-- 右侧目录 -->
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一细胞膜不只是边界">一、细胞膜</a></li>
+            <li><a href="#二静息膜电位待机时的-70-mv">二、静息膜电位</a></li>
+            <li><a href="#三动作电位数字脉冲的产生">三、动作电位</a></li>
+            <li><a href="#四全或无定律0-和-1-的数字逻辑">四、全或无定律</a></li>
+            <li><a href="#五不应期为什么信号有方向性">五、不应期</a></li>
+            <li><a href="#六为什么要有髓鞘跳跃传导">六、髓鞘与跳跃传导</a></li>
+            <li><a href="#七局部麻醉直接封锁通道">七、局部麻醉</a></li>
+            <li><a href="#八高钾血症为什么危险静息电位的陷阱">八、高钾血症</a></li>
+            <li><a href="#九-cs类比汇总">九、💻 CS类比</a></li>
+            <li><a href="#十常见误区">十、⚠️ 误区</a></li>
+            <li><a href="#十一病理预告">十一、🔮 病理预告</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">静息膜电位 RMP</a></li>
+            <li><a href="glossary.html">动作电位 AP</a></li>
+            <li><a href="glossary.html">去极化 Depolarization</a></li>
+            <li><a href="glossary.html">全或无定律</a></li>
+            <li><a href="glossary.html">绝对不应期</a></li>
+            <li><a href="glossary.html">跳跃传导</a></li>
+            <li><a href="glossary.html">Na⁺-K⁺泵</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>📍 本章关联</h3>
+        <ul class="toc-list">
+            <li><a href="chapter4.html">→ 心脏电活动（第4章）</a></li>
+            <li><a href="chapter8.html">→ 突触传递（第8章）</a></li>
+            <li><a href="chapter9.html">→ 肌肉兴奋收缩（第9章）</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第2章 · 细胞与电信号</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter1.html">← 上一章</a> &nbsp;·&nbsp; <a href="chapter3.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

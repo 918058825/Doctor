@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>药物逻辑解析 — 病理学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ─── Drug Filter ─── */
+        .drug-filter {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .drug-filter-btn {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            border: 2px solid #fca5a5;
+            background: white;
+            color: #b91c1c;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .drug-filter-btn:hover, .drug-filter-btn.active {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+        }
+        /* ─── Drug Card ─── */
+        .drug-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .drug-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.2s;
+        }
+        .drug-card:hover { box-shadow: 0 4px 16px rgba(185,28,28,0.13); }
+        .drug-card.hidden { display: none; }
+        .dc-header {
+            background: linear-gradient(135deg, #7c2d12, #b91c1c);
+            color: white;
+            padding: 0.85rem 1rem;
+        }
+        .dc-name { font-size: 1rem; font-weight: 700; }
+        .dc-en { font-size: 0.8rem; opacity: 0.85; margin-top: 0.1rem; }
+        .dc-body { padding: 1rem; }
+        .dc-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+            margin-bottom: 0.55rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        .dc-label {
+            flex-shrink: 0;
+            font-weight: 700;
+            color: #b91c1c;
+            min-width: 3.8rem;
+        }
+        .dc-val { color: #374151; }
+        .dc-tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 4px;
+            background: #fee2e2;
+            color: #b91c1c;
+            margin-right: 0.3rem;
+            margin-top: 0.2rem;
+        }
+        /* ─── Section header ─── */
+        .drug-section-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #b91c1c;
+            border-bottom: 2px solid #fca5a5;
+            padding-bottom: 0.3rem;
+            margin: 1.5rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        /* ─── Drug Logic Insight ─── */
+        .drug-insight {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            color: #e0e7ff;
+            border-radius: 10px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+        .drug-insight h4 { color: #a5b4fc; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .drug-insight strong { color: white; }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="top-nav-inner"></div>
+</nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a>
+    <span>›</span>
+    <span>💊 药物逻辑解析</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">工具页 · Tool</div>
+    <h1>💊 药物逻辑解析</h1>
+    <p class="subtitle">本课程出现的所有重要药物汇总。理解药物的核心是：<strong>靶点在哪里？为什么攻击这个靶点？会带来什么后果？</strong></p>
+</div>
+
+<div class="main-content" style="display:block; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+
+    <div class="drug-insight">
+        <h4>💡 读药物的正确姿势</h4>
+        不要死记"某药治某病"。要理解：<strong>①疾病的关键靶点</strong>（哪个分子/通路失控了？）→ <strong>②药物如何干预靶点</strong>（激活/抑制/替代？）→ <strong>③干预后的预期效果与副作用</strong>（关掉这个靶点，其他依赖它的系统会受什么影响？）。药物副作用几乎都能从机制推导出来。
+    </div>
+
+    <div class="drug-filter">
+        <button class="drug-filter-btn active" onclick="setDrugFilter('all', this)">全部</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('heart', this)">💔 心血管</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('lung', this)">🫁 呼吸</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('gut', this)">🫙 消化</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('diabetes', this)">🩺 糖尿病</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('neuro', this)">🧠 神经</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('immune', this)">🛡️ 免疫/风湿</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('cancer', this)">🦠 肿瘤</button>
+        <button class="drug-filter-btn" onclick="setDrugFilter('bone', this)">🦴 骨/代谢</button>
+    </div>
+
+    <!-- 心血管 -->
+    <div class="drug-section-title">💔 心血管系统药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="heart">
+            <div class="dc-header">
+                <div class="dc-name">阿司匹林（小剂量）</div>
+                <div class="dc-en">Aspirin (low-dose)</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">COX-1（不可逆抑制）→血小板TXA₂合成↓</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">血小板终生没有细胞核，一旦COX-1被乙酰化就无法修复→抗血小板聚集持续整个血小板寿命（7-10天）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">心梗/脑梗二级预防；动脉粥样硬化急性事件预防</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">同时抑制胃黏膜保护性PGE₂→胃出血风险↑；高剂量退烧（不同机制）</span></div>
+                <span class="dc-tag">→ 第5章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="heart">
+            <div class="dc-header">
+                <div class="dc-name">他汀类药物</div>
+                <div class="dc-en">Statins (HMG-CoA reductase inhibitors)</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">HMG-CoA还原酶（胆固醇合成限速酶）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">抑制肝脏内源性胆固醇合成→LDL受体上调→血LDL↓。额外"多效性"：抗炎+稳定斑块+改善内皮功能（LDL下降无法完全解释的获益）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">动脉粥样硬化性心血管病（ASCVD）一级/二级预防；LDL-C降低</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">肌病/横纹肌溶解（罕见，CK升高）；妊娠禁忌；肝毒性（监测转氨酶）</span></div>
+                <span class="dc-tag">→ 第5章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="heart">
+            <div class="dc-header">
+                <div class="dc-name">RAAS抑制剂（ACEI/ARB）</div>
+                <div class="dc-en">ACE Inhibitors / Angiotensin Receptor Blockers</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">ACEI：抑制ACE（血管紧张素转换酶）；ARB：阻断AT₁受体</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">减少AngII→血管扩张+醛固酮↓（排钠保钾）→降血压。同时减少肾小球出球小动脉收缩→降低肾小球内压→保护肾功能</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">高血压、心衰（降低后负荷）、糖尿病肾病（首选，降蛋白尿）、心梗后心肌重构</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">ACEI：干咳（缓激肽积累，改ARB）；高钾血症；双侧肾动脉狭窄禁忌（会引发急性肾衰）</span></div>
+                <span class="dc-tag">→ 第5章</span><span class="dc-tag">→ 第8章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="heart">
+            <div class="dc-header">
+                <div class="dc-name">β受体阻滞剂</div>
+                <div class="dc-en">Beta-Blockers</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">β1肾上腺素受体（心脏）；β2（支气管/血管）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">阻断交感神经→心率↓+心肌收缩力↓→心脏耗氧↓。长期使用改善心梗后心肌重构，降低猝死率</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">高血压、心绞痛、心梗后（标准治疗）、心衰（小剂量起）、心率控制（房颤）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">哮喘患者禁β2阻断→支气管痉挛；糖尿病患者慎用（掩盖低血糖心率加快的警觉信号）；不能突然停药（反弹）</span></div>
+                <span class="dc-tag">→ 第5章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 呼吸 -->
+    <div class="drug-section-title">🫁 呼吸系统药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="lung">
+            <div class="dc-header">
+                <div class="dc-name">短效β₂激动剂（SABA）</div>
+                <div class="dc-en">Short-Acting Beta₂ Agonists（如沙丁胺醇）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">气道平滑肌β₂肾上腺素受体</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">激活β₂受体→腺苷酸环化酶→cAMP↑→平滑肌松弛→支气管扩张。起效5分钟，持续4-6小时</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">哮喘急性发作"救援药"；COPD急性加重缓解症状</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">仅缓解症状，不治疗炎症；长期依赖SABA而不用ICS是危险信号（哮喘未控制）</span></div>
+                <span class="dc-tag">→ 第6章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="lung">
+            <div class="dc-header">
+                <div class="dc-name">吸入糖皮质激素（ICS）</div>
+                <div class="dc-en">Inhaled Corticosteroids（如氟替卡松）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">糖皮质激素受体（GR）→基因表达调控→炎症介质↓</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">减少气道嗜酸性粒细胞/肥大细胞浸润→IL-5/IL-4/IL-13↓→黏液分泌↓+气道高反应性↓。是哮喘长期管理的基石</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">哮喘长期控制（持续性哮喘的一线治疗）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">局部副作用：口咽念珠菌感染（用后漱口）；大剂量长期→全身吸收→骨质疏松/肾上腺抑制</span></div>
+                <span class="dc-tag">→ 第6章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 消化 -->
+    <div class="drug-section-title">🫙 消化系统药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="gut">
+            <div class="dc-header">
+                <div class="dc-name">质子泵抑制剂（PPI）</div>
+                <div class="dc-en">Proton Pump Inhibitors（如奥美拉唑）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">胃壁细胞H⁺/K⁺-ATP酶（质子泵）——不可逆抑制</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">直接阻断最终的胃酸分泌步骤→胃内pH显著升高→溃疡愈合环境改善。是目前最强效的抑酸药</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">胃溃疡/十二指肠溃疡（常联合Hp根除）；GERD（胃食管反流）；长期NSAIDs用户的胃保护</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">长期使用：镁/钙吸收↓（骨质疏松风险）；肠道菌群改变（艰难梭菌感染风险↑）；突然停药→反跳性高酸</span></div>
+                <span class="dc-tag">→ 第7章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="gut">
+            <div class="dc-header">
+                <div class="dc-name">Hp根除三联/四联疗法</div>
+                <div class="dc-en">H. pylori Eradication Therapy</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">方案</span><span class="dc-val">PPI + 克拉霉素 + 阿莫西林（三联）；或 + 铋剂（四联，抗性地区）</span></div>
+                <div class="dc-row"><span class="dc-label">逻辑</span><span class="dc-val">PPI升高pH→细菌更易被抗生素杀灭（抗生素在碱性环境中活性更高）；多药联合防止耐药</span></div>
+                <div class="dc-row"><span class="dc-label">效果</span><span class="dc-val">根除成功→溃疡复发率从~80%降至&lt;5%；胃癌风险显著下降</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">疗程10-14天须完成，不能因症状缓解而停药；根除后须确认检查（尿素呼气试验）</span></div>
+                <span class="dc-tag">→ 第7章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 糖尿病/内分泌 -->
+    <div class="drug-section-title">🩺 糖尿病与内分泌药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="diabetes">
+            <div class="dc-header">
+                <div class="dc-name">二甲双胍</div>
+                <div class="dc-en">Metformin</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">AMPK激活（线粒体复合物I抑制→AMP:ATP↑）→肝脏糖异生↓</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">主要减少肝糖输出，改善胰岛素敏感性，不促进胰岛素分泌（不引起低血糖）。可能有改善肠道菌群的额外效益</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">T2DM一线药物（首选，除非禁忌）；有心血管保护证据（UKPDS）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">GI副作用常见（餐中服减少）；造影剂前后48h停用（乳酸酸中毒风险，eGFR&lt;30禁用）；维生素B12吸收↓</span></div>
+                <span class="dc-tag">→ 第10章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="diabetes">
+            <div class="dc-header">
+                <div class="dc-name">GLP-1受体激动剂</div>
+                <div class="dc-en">GLP-1 RAs（如司美格鲁肽 Semaglutide）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">GLP-1受体（胰腺β细胞 + 下丘脑饱食中枢 + 胃肠道）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">葡萄糖依赖性促胰岛素分泌（血糖正常时不分泌，低血糖风险极低）；抑制胰高糖素；减慢胃排空；作用于下丘脑→饱腹感↑→食量↓→显著减重</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">T2DM降糖；心血管高风险患者的心血管保护（LEADER/SUSTAIN-6）；肥胖症减重</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">GI副作用（恶心、呕吐）最常见，从小剂量递增；胰腺炎风险（监测）；成本较高</span></div>
+                <span class="dc-tag">→ 第10章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="diabetes">
+            <div class="dc-header">
+                <div class="dc-name">胰岛素</div>
+                <div class="dc-en">Insulin</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">胰岛素受体（肌肉/脂肪/肝脏）→GLUT4转位→细胞摄取葡萄糖</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">直接提供缺乏的激素（T1DM）或克服胰岛素抵抗（T2DM晚期）。多种剂型：速效（餐前）/中长效（基础）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">T1DM（终身必需）；T2DM（口服药控制不佳时）；糖尿病酮症酸中毒（DKA）急症</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">低血糖（最主要风险）；体重增加；注射部位脂肪萎缩/增生（需轮换）</span></div>
+                <span class="dc-tag">→ 第10章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="diabetes">
+            <div class="dc-header">
+                <div class="dc-name">SGLT-2抑制剂</div>
+                <div class="dc-en">SGLT-2 Inhibitors（如恩格列净 Empagliflozin）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">肾近曲小管SGLT-2转运体（负责90%肾小管葡萄糖重吸收）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">抑制SGLT-2→葡萄糖随尿液排出（"尿糖"）→降血糖。额外效益：渗透性利尿→降血压；减重；对肾脏和心脏有独立保护作用（机制仍研究中）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">T2DM降糖；CKD保护（独立于血糖）；心力衰竭（现已扩展至非糖尿病心衰）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">泌尿生殖道感染（糖尿滋养细菌/真菌）；罕见糖尿病酮症酸中毒（血糖可不高）</span></div>
+                <span class="dc-tag">→ 第10章</span><span class="dc-tag">→ 第8章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 神经系统 -->
+    <div class="drug-section-title">🧠 神经系统药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="neuro">
+            <div class="dc-header">
+                <div class="dc-name">左旋多巴（L-DOPA）</div>
+                <div class="dc-en">Levodopa + Carbidopa</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">补充脑内多巴胺（多巴胺本身无法穿越血脑屏障）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">L-DOPA是多巴胺前体，可穿越BBB→在脑内被DOPA脱羧酶转化为多巴胺。卡比多巴（外周DOPA脱羧酶抑制剂）同服→减少外周转化→减少副作用+增加脑内浓度</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">帕金森病（最有效的症状控制药）；改善运动症状（震颤/僵直/运动迟缓）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">长期使用→"剂末效应"（wearing-off）+异动症（多巴胺波动）；不能治疗根本病理（黑质神经元仍继续死亡）</span></div>
+                <span class="dc-tag">→ 第9章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="neuro">
+            <div class="dc-header">
+                <div class="dc-name">组织型纤溶酶原激活剂（tPA）</div>
+                <div class="dc-en">Alteplase / rt-PA（溶栓药）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">纤维蛋白→激活纤溶酶原→纤溶酶→溶解血栓</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">促进血栓溶解→恢复缺血区血供→"挽救缺血半暗带"。时间窗：发病4.5小时内（大血管闭塞可至24h机械取栓）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">急性缺血性卒中（排除出血后）；急性心肌梗死（无PCI条件时）；肺栓塞</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">出血性卒中禁忌（反而会加重出血）——这是"正确诊断"决定"正确治疗"的典型案例</span></div>
+                <span class="dc-tag">→ 第9章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 免疫/风湿 -->
+    <div class="drug-section-title">🛡️ 免疫与风湿药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="immune">
+            <div class="dc-header">
+                <div class="dc-name">布洛芬（NSAIDs）</div>
+                <div class="dc-en">Ibuprofen / NSAIDs</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">COX-1 + COX-2（可逆性抑制前列腺素合成）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">抑制COX→前列腺素↓→发热调定点复位（退烧）+痛觉敏感化↓（镇痛）+血管通透性↓（消炎）；但同时抑制胃黏膜保护性PGE₂和血小板TXA₂</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">发热/疼痛/炎症（短期）；类风湿关节炎症状控制</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">胃肠道损伤（联用PPI保护）；肾毒性（减少PGE₂→肾血流↓，老年/脱水/CKD患者高风险）；心血管风险（长期使用）</span></div>
+                <span class="dc-tag">→ 第2章</span><span class="dc-tag">→ 第11章</span><span class="dc-tag">→ 第8章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="immune">
+            <div class="dc-header">
+                <div class="dc-name">糖皮质激素（全身）</div>
+                <div class="dc-en">Systemic Corticosteroids（如泼尼松）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">糖皮质激素受体（几乎所有细胞核）→广谱基因表达调控</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">强效抑制炎症（↓NF-κB→↓多种细胞因子）；抑制免疫细胞功能。"最强但代价最大"的抗炎药</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">SLE急性期/肾小球肾炎/重症哮喘/器官移植抗排斥/类风湿关节炎桥接治疗</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">长期副作用：骨质疏松/类固醇糖尿病/高血压/Cushing综合征/感染易感性↑/肾上腺轴抑制（不能突然停药）。原则：最短疗程、最低有效剂量</span></div>
+                <span class="dc-tag">→ 第11章</span><span class="dc-tag">→ 第12章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="immune">
+            <div class="dc-header">
+                <div class="dc-name">生物制剂（TNF-α抑制剂等）</div>
+                <div class="dc-en">Biologics: Anti-TNF / Anti-IL / Anti-CD20</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">代表</span><span class="dc-val">依那西普/英夫利昔单抗（抗TNF）；利妥昔单抗（抗CD20/B细胞）；托珠单抗（抗IL-6受体）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">精准靶向驱动自身免疫的特定分子/细胞，"精准打击"而非全面免疫抑制</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">类风湿关节炎（传统DMARDs失败后）；克罗恩病；银屑病；SLE（贝利木单抗）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">感染风险↑（尤其结核再激活，用前必须TB筛查）；费用高；长期安全性数据仍在积累</span></div>
+                <span class="dc-tag">→ 第11章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 肿瘤 -->
+    <div class="drug-section-title">🦠 肿瘤相关药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="cancer">
+            <div class="dc-header">
+                <div class="dc-name">PD-1/PD-L1免疫检查点抑制剂</div>
+                <div class="dc-en">Anti-PD-1 / Anti-PD-L1（如帕博利珠单抗）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">PD-1（T细胞抑制性受体）或PD-L1（肿瘤细胞表面的"免疫逃逸信号"）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">肿瘤细胞过表达PD-L1→与T细胞PD-1结合→"刹车"T细胞活性→免疫逃逸。抑制剂解除这个刹车→T细胞重新识别并杀伤肿瘤。2018年诺贝尔生理学或医学奖</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">黑色素瘤/肺癌/肾癌等多种实体瘤；部分血液肿瘤</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">免疫相关不良反应（irAE）——解除刹车后T细胞可攻击正常组织：肺炎/结肠炎/肝炎/内分泌腺破坏（甲状腺炎/垂体炎）。有效率约20-40%（需筛选适合患者）</span></div>
+                <span class="dc-tag">→ 第4章</span><span class="dc-tag">→ 第11章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 骨/代谢 -->
+    <div class="drug-section-title">🦴 骨代谢与痛风药物</div>
+    <div class="drug-grid">
+
+        <div class="drug-card" data-cat="bone">
+            <div class="dc-header">
+                <div class="dc-name">双膦酸盐</div>
+                <div class="dc-en">Bisphosphonates（如阿仑膦酸钠）</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">破骨细胞的法尼基焦磷酸合成酶（甲羟戊酸通路）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">与骨基质羟基磷灰石结合→破骨细胞吞入→抑制其甲羟戊酸通路→破骨细胞凋亡→骨吸收↓→破骨/成骨平衡向后者倾斜→骨密度↑</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">骨质疏松（一线治疗）；绝经后骨质疏松；糖皮质激素性骨质疏松；肿瘤骨转移（高剂量）</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">需空腹服用+站立30分钟（预防食管损伤）；非典型股骨骨折（长期用药极罕见）；下颌骨坏死（高剂量IV用于癌症时）</span></div>
+                <span class="dc-tag">→ 第12章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="bone">
+            <div class="dc-header">
+                <div class="dc-name">秋水仙碱</div>
+                <div class="dc-en">Colchicine</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">微管蛋白（抑制微管聚合）→中性粒细胞迁移和趋化受阻</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">抑制中性粒细胞向关节腔聚集和脱颗粒→IL-1β释放↓→痛风急性炎症迅速控制。对尿酸水平无影响（不降尿酸）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">痛风急性发作（首选，越早越好）；痛风发作预防（低剂量）；心包炎</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">GI副作用（腹泻，剂量相关）；急性期不能立即加降尿酸药（可能诱发再次发作，须急性期控制完全后再降尿酸）</span></div>
+                <span class="dc-tag">→ 第12章</span>
+            </div>
+        </div>
+
+        <div class="drug-card" data-cat="bone">
+            <div class="dc-header">
+                <div class="dc-name">别嘌醇 / 非布司他</div>
+                <div class="dc-en">Allopurinol / Febuxostat</div>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">靶点</span><span class="dc-val">黄嘌呤氧化酶（尿酸合成最后一步的酶）</span></div>
+                <div class="dc-row"><span class="dc-label">机制</span><span class="dc-val">抑制嘌呤→尿酸的转化→血尿酸↓→长期降低尿酸盐结晶负荷。目标：血尿酸&lt;360 µmol/L（有痛风石者&lt;300）</span></div>
+                <div class="dc-row"><span class="dc-label">用途</span><span class="dc-val">慢性痛风（缓解期的长期尿酸管理）；痛风石溶解；尿酸性肾病预防</span></div>
+                <div class="dc-row"><span class="dc-label">注意</span><span class="dc-val">不在急性发作期启用（可加重发作）；别嘌醇：HLA-B*5801基因型→Stevens-Johnson综合征（汉族高风险，用前筛查）</span></div>
+                <span class="dc-tag">→ 第12章</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align:center; margin: 2.5rem 0;">
+        <a href="disease-map.html" style="display:inline-block; padding:0.75rem 2rem; background:white; border:2px solid #b91c1c; color:#b91c1c; border-radius:8px; text-decoration:none; font-weight:600;">← 疾病关联地图</a>
+        <a href="index.html" style="display:inline-block; padding:0.75rem 2rem; background:#b91c1c; color:white; border-radius:8px; text-decoration:none; font-weight:600; margin-left:1rem;">🏠 返回首页</a>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>🔬 病理学入门 · 药物逻辑解析</p>
+    <p style="margin-top:6px; font-size:0.8rem;">内容以科学通识为目的，不构成医疗建议。实际用药请遵医嘱。</p>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+let currentDrugFilter = 'all';
+function setDrugFilter(filter, btn) {
+    currentDrugFilter = filter;
+    document.querySelectorAll('.drug-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.drug-card').forEach(card => {
+        const cat = card.dataset.cat || '';
+        card.classList.toggle('hidden', filter !== 'all' && cat !== filter);
+    });
+    document.querySelectorAll('.drug-section-title').forEach(title => {
+        const next = title.nextElementSibling;
+        if (!next) return;
+        const hasVisible = [...next.querySelectorAll('.drug-card')].some(c => !c.classList.contains('hidden'));
+        title.style.display = hasVisible ? '' : 'none';
+        next.style.display = hasVisible ? '' : 'none';
+    });
+}
+</script>
+</body>
+</html>

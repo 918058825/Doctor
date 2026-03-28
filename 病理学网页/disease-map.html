@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>疾病关联地图 — 病理学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ─── Map Layout ─── */
+        .map-intro {
+            background: #fff8f8;
+            border: 2px solid #fca5a5;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+            color: #374151;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        .map-section { margin-bottom: 2.5rem; }
+        .map-section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #b91c1c;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        /* ─── Common Mechanism Cluster ─── */
+        .mechanism-cluster {
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        .mc-header {
+            background: linear-gradient(135deg, #7c2d12, #b91c1c);
+            color: white;
+            padding: 0.9rem 1.3rem;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .mc-body { padding: 1.2rem; }
+        .mc-center {
+            background: #fee2e2;
+            border: 2px solid #b91c1c;
+            border-radius: 8px;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            color: #b91c1c;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .mc-branches {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        .mc-branch {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 0.7rem 1rem;
+        }
+        .mc-branch-title { font-weight: 600; color: #1f2937; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .mc-branch-detail { font-size: 0.8rem; color: #6b7280; }
+        .mc-branch a { color: #b91c1c; text-decoration: none; font-weight: 600; }
+        .mc-branch a:hover { text-decoration: underline; }
+
+        /* ─── Chain / Cascade ─── */
+        .cascade-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 0.75rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+        }
+        .cascade-node {
+            background: #fee2e2;
+            border: 1.5px solid #fca5a5;
+            border-radius: 6px;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #7c2d12;
+            white-space: nowrap;
+        }
+        .cascade-node.key {
+            background: #b91c1c;
+            color: white;
+            border-color: #b91c1c;
+        }
+        .cascade-arrow { color: #b91c1c; font-size: 1.1rem; font-weight: 700; }
+        .cascade-label { font-size: 0.78rem; color: #6b7280; margin-left: 0.2rem; }
+
+        /* ─── Chapter Cross-Link Grid ─── */
+        .cross-link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+        .cl-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-top: 4px solid #b91c1c;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .cl-card-title { font-weight: 700; color: #1f2937; margin-bottom: 0.6rem; font-size: 0.95rem; }
+        .cl-link-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+            font-size: 0.82rem;
+            color: #374151;
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed #f3f4f6;
+        }
+        .cl-link-item:last-child { border-bottom: none; }
+        .cl-link-arrow { color: #b91c1c; flex-shrink: 0; font-weight: 700; }
+        .cl-link-item a { color: #b91c1c; text-decoration: none; font-weight: 600; }
+        .cl-link-item a:hover { text-decoration: underline; }
+
+        /* ─── "Big Picture" summary box ─── */
+        .big-picture {
+            background: linear-gradient(135deg, #1e1b4b, #312e81);
+            color: #e0e7ff;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .big-picture h3 { color: #a5b4fc; margin-bottom: 1rem; font-size: 1.05rem; }
+        .big-picture ul { padding-left: 1.2rem; font-size: 0.9rem; line-height: 2; }
+        .big-picture li { color: #c7d2fe; }
+        .big-picture strong { color: white; }
+    </style>
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="top-nav-inner"></div>
+</nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a>
+    <span>›</span>
+    <span>🗺️ 疾病关联地图</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">工具页 · Tool</div>
+    <h1>🗺️ 疾病关联地图</h1>
+    <p class="subtitle">病理学的各章内容并非孤立存在，而是通过"共同底层机制"紧密相连。本页帮你看清疾病之间的全局网络。</p>
+</div>
+
+<div class="main-content" style="display:block; max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+
+    <div class="map-intro">
+        💡 <strong>如何使用这张地图：</strong>当你在某一章遇到一个疾病，试着在这里找到它在全局网络中的位置——它上游是什么机制驱动了它？它又是其他哪些疾病的风险因素？理解"连接"比理解"孤立事实"更有价值。
+    </div>
+
+    <!-- 第一部分：共同底层机制 -->
+    <div class="map-section">
+        <div class="map-section-title">🔗 第一层：共同底层机制（跨越多系统的"公共病理通路"）</div>
+
+        <div class="mechanism-cluster">
+            <div class="mc-header">🔥 慢性低度炎症 — 现代疾病的"公共底层"</div>
+            <div class="mc-body">
+                <div class="mc-center">慢性低度炎症（炎症因子持续低水平激活：IL-6↑、TNF-α↑、CRP↑）</div>
+                <div class="mc-branches">
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">💔 动脉粥样硬化</div>
+                        <div class="mc-branch-detail">oxLDL激活内皮→泡沫细胞→斑块<br><a href="chapter5.html">→ 第5章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🩸 胰岛素抵抗/T2DM</div>
+                        <div class="mc-branch-detail">脂肪因子干扰胰岛素信号通路<br><a href="chapter10.html">→ 第10章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🦠 癌症促进</div>
+                        <div class="mc-branch-detail">炎性微环境→突变积累+免疫逃逸<br><a href="chapter4.html">→ 第4章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🧠 阿尔茨海默病</div>
+                        <div class="mc-branch-detail">神经炎症参与Aβ积累与tau磷酸化<br><a href="chapter9.html">→ 第9章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">💊 抑郁症</div>
+                        <div class="mc-branch-detail">细胞因子透过BBB→神经递质失调<br><a href="chapter9.html">→ 第9章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🦴 痛风/肌腱病</div>
+                        <div class="mc-branch-detail">NLRP3炎性小体激活→IL-1β暴发<br><a href="chapter12.html">→ 第12章</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mechanism-cluster">
+            <div class="mc-header">⚡ 氧化应激 — 细胞损伤的"通用信号"</div>
+            <div class="mc-body">
+                <div class="mc-center">活性氧（ROS）积累 → 氧化损伤细胞膜/蛋白/DNA</div>
+                <div class="mc-branches">
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">⚠️ 再灌注损伤</div>
+                        <div class="mc-branch-detail">缺血后血流恢复→ROS暴发→额外坏死<br><a href="chapter5.html">→ 第5章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🫁 COPD</div>
+                        <div class="mc-branch-detail">烟草中自由基→中性粒细胞蛋白酶激活<br><a href="chapter6.html">→ 第6章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🧠 帕金森病</div>
+                        <div class="mc-branch-detail">黑质多巴胺神经元对氧化应激高度敏感<br><a href="chapter9.html">→ 第9章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🩺 糖尿病并发症</div>
+                        <div class="mc-branch-detail">高血糖→AGEs生成+多元醇通路→微血管ROS↑<br><a href="chapter10.html">→ 第10章</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mechanism-cluster">
+            <div class="mc-header">🧱 纤维化——修复过度的"终点站"</div>
+            <div class="mc-body">
+                <div class="mc-center">反复损伤 → TGF-β↑ → 成肌纤维细胞激活 → 胶原沉积 → 器官硬化失功</div>
+                <div class="mc-branches">
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🫀 心梗后心脏纤维化</div>
+                        <div class="mc-branch-detail">瘢痕替代心肌→心律失常+心衰<br><a href="chapter5.html">→ 第5章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🫁 肺纤维化（IPF）</div>
+                        <div class="mc-branch-detail">弥漫性肺泡损伤→TGF-β→蜂窝肺<br><a href="chapter6.html">→ 第6章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🫙 肝硬化</div>
+                        <div class="mc-branch-detail">酒精/Hp/NAFLD→星状细胞激活→肝纤维化<br><a href="chapter7.html">→ 第7章</a></div>
+                    </div>
+                    <div class="mc-branch">
+                        <div class="mc-branch-title">🩺 糖尿病肾病</div>
+                        <div class="mc-branch-detail">肾小球系膜扩张→K-W结节→间质纤维化<br><a href="chapter8.html">→ 第8章</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二部分：疾病级联链 -->
+    <div class="map-section">
+        <div class="map-section-title">⛓️ 第二层：疾病级联链（一个疾病如何"引发"下一个）</div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">腹型肥胖</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">胰岛素抵抗</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">T2DM</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">糖尿病肾病</div>
+            <div class="cascade-arrow">+</div>
+            <div class="cascade-node">视网膜病变</div>
+            <div class="cascade-arrow">+</div>
+            <div class="cascade-node">神经病变</div>
+            <div class="cascade-label">（三大微血管并发症）</div>
+        </div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">高血压</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">左心室肥厚</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">心力衰竭</div>
+            <div class="cascade-arrow">+</div>
+            <div class="cascade-node">肾硬化→CKD</div>
+            <div class="cascade-arrow">+</div>
+            <div class="cascade-node">脑卒中</div>
+            <div class="cascade-label">（靶器官CRABS）</div>
+        </div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">Hp感染</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">慢性胃炎</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">肠化生</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">异型增生</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">胃癌</div>
+            <div class="cascade-label">（多步骤癌变）</div>
+        </div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">长期大量饮酒</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">酒精性脂肪肝</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">酒精性肝炎</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">肝硬化</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">门脉高压</div>
+            <div class="cascade-arrow">+</div>
+            <div class="cascade-node">肝癌</div>
+        </div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">房颤</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">心房血栓</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">脑栓塞（缺血性卒中）</div>
+            <div class="cascade-label">（抗凝治疗的核心原因）</div>
+        </div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">吸烟/高龄</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">动脉粥样硬化</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">斑块破裂+血栓</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">冠心病/心梗</div>
+            <div class="cascade-arrow">或</div>
+            <div class="cascade-node">缺血性卒中</div>
+            <div class="cascade-arrow">或</div>
+            <div class="cascade-node">下肢动脉闭塞</div>
+        </div>
+
+        <div class="cascade-row">
+            <div class="cascade-node">CKD进展→肾功能&lt;15%</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node key">尿毒症</div>
+            <div class="cascade-arrow">→</div>
+            <div class="cascade-node">透析（每周3次）</div>
+            <div class="cascade-arrow">或</div>
+            <div class="cascade-node">肾移植</div>
+        </div>
+    </div>
+
+    <!-- 第三部分：章节间疾病网络 -->
+    <div class="map-section">
+        <div class="map-section-title">📌 第三层：章节间疾病连接（按章节查看对外"输出"和"输入"）</div>
+
+        <div class="cross-link-grid">
+
+            <div class="cl-card">
+                <div class="cl-card-title">第1章 · 细胞损伤与死亡</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>坏死的四种形态是<a href="chapter5.html">心梗（凝固性）</a>、<a href="chapter9.html">脑梗（液化性）</a>的形态基础</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>细胞适应（肥大/化生）理解<a href="chapter5.html">高血压→心肌肥厚</a>、<a href="chapter6.html">吸烟→鳞化</a></span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第2章 · 炎症</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>急性炎症→慢性炎症→纤维化，是<a href="chapter3.html">第3章修复</a>的前提</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>Hp感染性炎症是<a href="chapter7.html">胃溃疡/胃癌</a>的病因</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>慢性炎症是<a href="chapter4.html">肿瘤发生</a>的促进因素</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第3章 · 修复与再生</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>心梗后心脏纤维化（<a href="chapter5.html">第5章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>肺纤维化→IPF（<a href="chapter6.html">第6章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>肝纤维化→肝硬化（<a href="chapter7.html">第7章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>慢性肌腱病（胶原退行性变）（<a href="chapter12.html">第12章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第4章 · 肿瘤基础</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>结直肠癌→肝转移（<a href="chapter7.html">第7章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>肺癌（吸烟+COPD背景）（<a href="chapter6.html">第6章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>PD-1免疫逃逸→免疫检查点治疗（<a href="chapter11.html">第11章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>Hp→胃癌（<a href="chapter2.html">第2章</a>炎症驱动）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第5章 · 循环系统病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>高血压→肾硬化（<a href="chapter8.html">第8章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>心衰→肺水肿（<a href="chapter6.html">第6章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>房颤→脑栓塞（<a href="chapter9.html">第9章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>代谢综合征+动脉粥样硬化（<a href="chapter10.html">第10章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第6章 · 呼吸系统病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>COPD→肺心病→右心衰（<a href="chapter5.html">第5章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>哮喘/湿疹/过敏性鼻炎三联征（<a href="chapter11.html">第11章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>吸烟→鳞化→肺癌（<a href="chapter4.html">第4章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第7章 · 消化系统病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>胰腺炎→继发糖尿病（<a href="chapter10.html">第10章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>肠道菌群失调→自身免疫（<a href="chapter11.html">第11章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>NAFLD←→胰岛素抵抗（<a href="chapter10.html">第10章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第8章 · 泌尿系统病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>糖尿病肾病（<a href="chapter10.html">第10章</a>双向）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>肾性高血压←→肾功能下降（<a href="chapter5.html">第5章</a>恶性循环）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>狼疮性肾炎（<a href="chapter11.html">第11章</a>SLE最严重并发症）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>高尿酸→痛风肾（<a href="chapter12.html">第12章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第9章 · 神经系统病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>睡眠不足→Aβ积累→AD进展</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>帕金森病→可能起源于肠道（<a href="chapter7.html">第7章</a>肠脑轴）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>神经炎症+细胞因子→抑郁症（<a href="chapter11.html">第11章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第10章 · 内分泌病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>代谢综合征→动脉粥样硬化（<a href="chapter5.html">第5章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>桥本甲状腺炎→甲减（<a href="chapter11.html">第11章</a>自身免疫）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>Cushing综合征→糖尿病+骨质疏松（<a href="chapter12.html">第12章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第11章 · 免疫与自身免疫</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>SLE→狼疮性肾炎（<a href="chapter8.html">第8章</a>最严重并发症）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>T1DM是自身免疫（胰岛β细胞）（<a href="chapter10.html">第10章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>RA→激素治疗→骨质疏松（<a href="chapter12.html">第12章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>免疫逃逸（PD-L1）→肿瘤治疗（<a href="chapter4.html">第4章</a>）</span></div>
+            </div>
+
+            <div class="cl-card">
+                <div class="cl-card-title">第12章 · 运动与代谢病理</div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>高尿酸→痛风肾（<a href="chapter8.html">第8章</a>）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>骨质疏松←激素治疗（<a href="chapter11.html">第11章</a>RA/SLE）</span></div>
+                <div class="cl-link-item"><span class="cl-link-arrow">→</span><span>骨骼是内分泌器官（骨钙素→胰岛素）（<a href="chapter10.html">第10章</a>）</span></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 大局观总结 -->
+    <div class="big-picture">
+        <h3>🌐 大局观：理解"现代病"的三大共同主题</h3>
+        <ul>
+            <li><strong>慢性炎症</strong>：心血管病、T2DM、癌症、抑郁症、阿尔茨海默病——共享"慢性低度炎症"这一底层。</li>
+            <li><strong>代谢功能障碍</strong>：肥胖→胰岛素抵抗→代谢综合征→多系统并发症，是21世纪最主要的疾病连锁。</li>
+            <li><strong>修复失控</strong>：纤维化（肝硬化/肺纤维化/糖尿病肾病/心梗后心脏）——都是"本想修复，结果过度"的故事。</li>
+        </ul>
+    </div>
+
+    <div style="text-align:center; margin: 2rem 0;">
+        <a href="glossary.html" style="display:inline-block; padding:0.75rem 2rem; background:white; border:2px solid #b91c1c; color:#b91c1c; border-radius:8px; text-decoration:none; font-weight:600;">← 术语词典</a>
+        <a href="drug-logic.html" style="display:inline-block; padding:0.75rem 2rem; background:#b91c1c; color:white; border-radius:8px; text-decoration:none; font-weight:600; margin-left:1rem;">💊 药物逻辑解析 →</a>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>🔬 病理学入门 · 疾病关联地图</p>
+    <p style="margin-top:6px; font-size:0.8rem;">内容以科学通识为目的，不构成医疗建议。</p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

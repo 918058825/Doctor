@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>受体靶点图谱 — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* 受体图谱专用样式 */
+.receptor-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.receptor-family-card {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  border: 1px solid transparent;
+  transition: transform .2s, box-shadow .2s;
+}
+.receptor-family-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+}
+.rfc-header {
+  padding: 1.2rem 1.4rem .8rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+.rfc-icon { font-size: 2rem; }
+.rfc-title { font-size: 1.1rem; font-weight: 800; }
+.rfc-sub { font-size: .78rem; opacity: .8; }
+.rfc-body { padding: .5rem 1.4rem 1.2rem; background: white; }
+
+/* GPCR */
+.card-gpcr { border-color: #7c3aed; }
+.card-gpcr .rfc-header { background: linear-gradient(135deg, #7c3aed, #a855f7); color: white; }
+/* 离子通道 */
+.card-ion  { border-color: #0284c7; }
+.card-ion  .rfc-header { background: linear-gradient(135deg, #0284c7, #38bdf8); color: white; }
+/* 酶联受体 */
+.card-enzyme { border-color: #059669; }
+.card-enzyme .rfc-header { background: linear-gradient(135deg, #059669, #34d399); color: white; }
+/* 核受体 */
+.card-nuclear { border-color: #d97706; }
+.card-nuclear .rfc-header { background: linear-gradient(135deg, #d97706, #fcd34d); color: white; }
+
+.receptor-row {
+  padding: .6rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  gap: .5rem;
+  font-size: .82rem;
+  align-items: start;
+}
+.receptor-row:last-child { border-bottom: none; }
+.rr-name { font-weight: 700; color: #334155; }
+.rr-effect { color: #475569; }
+.rr-drugs { }
+.rr-drug-tag {
+  display: inline-block;
+  padding: .12rem .4rem;
+  border-radius: 4px;
+  font-size: .72rem;
+  font-weight: 600;
+  margin: .1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.rr-drug-tag.agonist { background: #dcfce7; color: #15803d; }
+.rr-drug-tag.antagonist { background: #fee2e2; color: #b91c1c; }
+.rr-drug-tag.partial { background: #fef9c3; color: #854d0e; }
+.rr-drug-tag.inhibitor { background: #dbeafe; color: #1d4ed8; }
+.rr-col-hdr {
+  font-size: .7rem;
+  font-weight: 700;
+  color: #94a3b8;
+  padding-bottom: .3rem;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: .3rem;
+  grid-column: 1 / -1;
+}
+
+/* 通路图 */
+.pathway-section {
+  margin-top: 2rem;
+}
+.pathway-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.pathway-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e0f2fe;
+  padding: 1.4rem;
+  box-shadow: 0 2px 8px rgba(3,105,161,.06);
+}
+.pathway-title {
+  font-weight: 800;
+  color: var(--primary-dark);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.pathway-flow {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.pf-step {
+  display: flex;
+  gap: .6rem;
+  align-items: center;
+}
+.pf-node {
+  background: var(--primary-light);
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: .3rem .7rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  white-space: nowrap;
+}
+.pf-arrow { color: #94a3b8; font-size: .9rem; }
+.pf-drug {
+  font-size: .75rem;
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 4px;
+  padding: .1rem .4rem;
+  font-weight: 600;
+}
+.pf-drug.green { background: #dcfce7; color: #15803d; }
+
+/* 靶点-药物矩阵 */
+.target-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .82rem;
+}
+.target-matrix th {
+  background: var(--primary);
+  color: white;
+  padding: .6rem .5rem;
+  text-align: center;
+  font-weight: 700;
+  writing-mode: horizontal-tb;
+}
+.target-matrix td {
+  padding: .5rem .5rem;
+  border: 1px solid #e0f2fe;
+  text-align: center;
+  vertical-align: middle;
+}
+.target-matrix tr:nth-child(even) td { background: #f8fafc; }
+.target-matrix td:first-child { text-align: left; font-weight: 600; background: var(--primary-light)!important; color: var(--primary-dark); }
+.dot-agonist    { color: #15803d; font-size: 1.2rem; }
+.dot-antagonist { color: #b91c1c; font-size: 1.2rem; }
+.dot-inhibitor  { color: #1d4ed8; font-size: 1.2rem; }
+.dot-na { color: #d1d5db; }
+
+.legend-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  font-size: .8rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>🛠️ 工具页</span>
+  <span>›</span>
+  <span>受体靶点图谱</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">🛠️ 工具页</div>
+  <h1>受体靶点图谱</h1>
+  <p class="hero-sub">按受体超家族可视化分类——GPCR / 离子通道 / 酶联受体 / 核受体，每个靶点对应的代表药物一览无余</p>
+</div>
+
+<div class="main-content" style="display:block">
+<div class="content-body" style="max-width:100%">
+
+<!-- ① 四大受体超家族 -->
+<div class="section-card">
+  <h2>四大受体超家族概览</h2>
+  <div class="receptor-hero-grid">
+
+    <!-- GPCR -->
+    <div class="receptor-family-card card-gpcr">
+      <div class="rfc-header">
+        <div class="rfc-icon">🔮</div>
+        <div>
+          <div class="rfc-title">GPCR</div>
+          <div class="rfc-sub">G蛋白偶联受体 · 最大受体家族 · 七跨膜结构</div>
+        </div>
+      </div>
+      <div class="rfc-body">
+        <div class="receptor-row">
+          <div class="rr-col-hdr">受体 · 生理效应 · 代表药物</div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">β₁受体（Gs）</div>
+          <div class="rr-effect">心率↑/收缩力↑<br>cAMP↑</div>
+          <div class="rr-drugs">
+            <a href="chapter1.html" class="rr-drug-tag antagonist">美托洛尔（拮）</a>
+            <a href="chapter5.html" class="rr-drug-tag antagonist">比索洛尔（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">β₂受体（Gs）</div>
+          <div class="rr-effect">支气管扩张<br>血管舒张</div>
+          <div class="rr-drugs">
+            <a href="chapter6.html" class="rr-drug-tag agonist">沙丁胺醇（激）</a>
+            <a href="chapter6.html" class="rr-drug-tag agonist">福莫特罗（激）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">α₁受体（Gq）</div>
+          <div class="rr-effect">血管收缩<br>血压↑/IP₃↑</div>
+          <div class="rr-drugs">
+            <a href="chapter6.html" class="rr-drug-tag agonist">肾上腺素（激）</a>
+            <a href="chapter1.html" class="rr-drug-tag antagonist">哌唑嗪（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">M₂受体（Gi）</div>
+          <div class="rr-effect">心率↓<br>心肌抑制</div>
+          <div class="rr-drugs">
+            <a href="chapter1.html" class="rr-drug-tag antagonist">阿托品（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">M₃受体（Gq）</div>
+          <div class="rr-effect">平滑肌收缩<br>腺体分泌↑</div>
+          <div class="rr-drugs">
+            <a href="chapter6.html" class="rr-drug-tag antagonist">噻托溴铵（拮）</a>
+            <a href="chapter1.html" class="rr-drug-tag antagonist">阿托品（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">D₂受体（Gi）</div>
+          <div class="rr-effect">DA信号↓<br>运动控制</div>
+          <div class="rr-drugs">
+            <a href="chapter9.html" class="rr-drug-tag antagonist">氟哌啶醇（拮）</a>
+            <a href="chapter9.html" class="rr-drug-tag antagonist">氯氮平（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">μ受体（Gi）</div>
+          <div class="rr-effect">镇痛/欣快<br>便秘/呼吸抑制</div>
+          <div class="rr-drugs">
+            <a href="chapter8.html" class="rr-drug-tag agonist">吗啡（激）</a>
+            <a href="chapter1.html" class="rr-drug-tag antagonist">纳洛酮（拮）</a>
+            <a href="chapter8.html" class="rr-drug-tag partial">丁丙诺啡（部分）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">AT₁受体（Gq）</div>
+          <div class="rr-effect">血管收缩<br>醛固酮↑</div>
+          <div class="rr-drugs">
+            <a href="chapter5.html" class="rr-drug-tag antagonist">缬沙坦ARB（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">GLP-1受体（Gs）</div>
+          <div class="rr-effect">胰岛素↑（葡萄糖依赖）<br>食欲↓</div>
+          <div class="rr-drugs">
+            <a href="chapter10.html" class="rr-drug-tag agonist">司美格鲁肽（激）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">5-HT₃受体</div>
+          <div class="rr-effect">恶心/呕吐</div>
+          <div class="rr-drugs">
+            <a href="chapter7.html" class="rr-drug-tag antagonist">昂丹司琼（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">H₁受体（Gq）</div>
+          <div class="rr-effect">血管扩张/瘙痒<br>支气管收缩</div>
+          <div class="rr-drugs">
+            <a href="chapter6.html" class="rr-drug-tag antagonist">苯海拉明（拮）</a>
+            <a href="chapter6.html" class="rr-drug-tag antagonist">西替利嗪（拮）</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 离子通道 -->
+    <div class="receptor-family-card card-ion">
+      <div class="rfc-header">
+        <div class="rfc-icon">⚡</div>
+        <div>
+          <div class="rfc-title">配体门控离子通道</div>
+          <div class="rfc-sub">直接门控离子流 · 毫秒级响应</div>
+        </div>
+      </div>
+      <div class="rfc-body">
+        <div class="receptor-row">
+          <div class="rr-col-hdr">受体 · 生理效应 · 代表药物</div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">GABA-A（Cl⁻）</div>
+          <div class="rr-effect">神经抑制↑<br>（Cl⁻内流→超极化）</div>
+          <div class="rr-drugs">
+            <a href="chapter9.html" class="rr-drug-tag agonist">苯二氮卓（正变构）</a>
+            <a href="chapter9.html" class="rr-drug-tag antagonist">氟马西尼（逆转）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">nAChR（Na⁺/K⁺）</div>
+          <div class="rr-effect">骨骼肌收缩<br>自主神经节兴奋</div>
+          <div class="rr-drugs">
+            <a href="chapter1.html" class="rr-drug-tag antagonist">琥珀胆碱（拮）</a>
+            <a href="chapter1.html" class="rr-drug-tag antagonist">筒箭毒（拮）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">L型Ca²⁺通道</div>
+          <div class="rr-effect">心肌/平滑肌收缩<br>激素分泌</div>
+          <div class="rr-drugs">
+            <a href="chapter5.html" class="rr-drug-tag inhibitor">氨氯地平（阻）</a>
+            <a href="chapter5.html" class="rr-drug-tag inhibitor">维拉帕米（阻）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">Na⁺通道（电压门控）</div>
+          <div class="rr-effect">动作电位传导<br>痛觉传导</div>
+          <div class="rr-drugs">
+            <a href="chapter8.html" class="rr-drug-tag inhibitor">利多卡因（阻）</a>
+            <a href="chapter8.html" class="rr-drug-tag inhibitor">布比卡因（阻）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">KATP通道</div>
+          <div class="rr-effect">胰岛素分泌调节<br>血管张力</div>
+          <div class="rr-drugs">
+            <a href="chapter10.html" class="rr-drug-tag inhibitor">磺脲类（阻）</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 酶联受体 -->
+    <div class="receptor-family-card card-enzyme">
+      <div class="rfc-header">
+        <div class="rfc-icon">🔬</div>
+        <div>
+          <div class="rfc-title">酶联受体（RTK等）</div>
+          <div class="rfc-sub">受体酪氨酸激酶及相关 · 生长/分化信号</div>
+        </div>
+      </div>
+      <div class="rfc-body">
+        <div class="receptor-row">
+          <div class="rr-col-hdr">受体 · 生理效应 · 代表药物</div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">BCR-ABL（融合TK）</div>
+          <div class="rr-effect">持续活化→CML<br>无配体依赖性</div>
+          <div class="rr-drugs">
+            <a href="chapter12.html" class="rr-drug-tag inhibitor">伊马替尼（抑）</a>
+            <a href="chapter12.html" class="rr-drug-tag inhibitor">泊那替尼（抑）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">HER2（ErbB2/RTK）</div>
+          <div class="rr-effect">乳腺癌/胃癌增殖<br>过表达（扩增）</div>
+          <div class="rr-drugs">
+            <a href="chapter12.html" class="rr-drug-tag antagonist">曲妥珠单抗（mAb）</a>
+            <a href="chapter12.html" class="rr-drug-tag inhibitor">拉帕替尼（TKI）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">EGFR（ErbB1/RTK）</div>
+          <div class="rr-effect">肺癌/结直肠癌<br>L858R/del19突变</div>
+          <div class="rr-drugs">
+            <a href="chapter12.html" class="rr-drug-tag inhibitor">吉非替尼（TKI）</a>
+            <a href="chapter12.html" class="rr-drug-tag inhibitor">奥希替尼（三代）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">VEGFR（RTK）</div>
+          <div class="rr-effect">肿瘤血管生成<br>新生血管形成</div>
+          <div class="rr-drugs">
+            <a href="chapter12.html" class="rr-drug-tag antagonist">贝伐珠单抗（mAb）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">胰岛素受体（RTK）</div>
+          <div class="rr-effect">GLUT4→葡萄糖摄取↑<br>合成代谢</div>
+          <div class="rr-drugs">
+            <a href="chapter10.html" class="rr-drug-tag agonist">胰岛素（激）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">PD-1（免疫检查点）</div>
+          <div class="rr-effect">T细胞抑制<br>（肿瘤免疫逃逸）</div>
+          <div class="rr-drugs">
+            <a href="chapter12.html" class="rr-drug-tag antagonist">帕博利珠单抗（阻断）</a>
+            <a href="chapter12.html" class="rr-drug-tag antagonist">纳武利尤单抗（阻断）</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 核受体 -->
+    <div class="receptor-family-card card-nuclear">
+      <div class="rfc-header">
+        <div class="rfc-icon">🧬</div>
+        <div>
+          <div class="rfc-title">核受体（胞内受体）</div>
+          <div class="rfc-sub">配体进入细胞核→转录调控 · 小时级</div>
+        </div>
+      </div>
+      <div class="rfc-body">
+        <div class="receptor-row">
+          <div class="rr-col-hdr">受体 · 生理效应 · 代表药物</div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">糖皮质激素受体（GR）</div>
+          <div class="rr-effect">抗炎基因表达↑<br>促炎基因↓（NF-κB抑制）</div>
+          <div class="rr-drugs">
+            <a href="chapter10.html" class="rr-drug-tag agonist">泼尼松（激）</a>
+            <a href="chapter6.html" class="rr-drug-tag agonist">布地奈德（激，ICS）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">雌激素受体（ERα/β）</div>
+          <div class="rr-effect">女性性征/骨密度<br>ER+乳腺癌增殖</div>
+          <div class="rr-drugs">
+            <a href="chapter12.html" class="rr-drug-tag antagonist">他莫昔芬（拮，乳腺）</a>
+            <a href="chapter12.html" class="rr-drug-tag inhibitor">来曲唑（芳香化酶抑制）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">甲状腺素受体（TR）</div>
+          <div class="rr-effect">基础代谢↑<br>心率/体温调节</div>
+          <div class="rr-drugs">
+            <a href="chapter10.html" class="rr-drug-tag agonist">左甲状腺素（激）</a>
+            <a href="chapter10.html" class="rr-drug-tag inhibitor">甲巯咪唑（合成↓）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">矿皮质激素受体（MR）</div>
+          <div class="rr-effect">Na⁺重吸收/K⁺排泄<br>血容量/血压↑</div>
+          <div class="rr-drugs">
+            <a href="chapter5.html" class="rr-drug-tag antagonist">螺内酯（拮，MRA）</a>
+          </div>
+        </div>
+        <div class="receptor-row">
+          <div class="rr-name">维生素D受体（VDR）</div>
+          <div class="rr-effect">Ca²⁺吸收↑<br>骨代谢</div>
+          <div class="rr-drugs">
+            <a href="chapter10.html" class="rr-drug-tag agonist">骨化三醇（激）</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- receptor-hero-grid -->
+</div><!-- section-card -->
+
+<!-- ② 关键信号通路图 -->
+<div class="section-card pathway-section">
+  <h2>关键药物作用通路</h2>
+  <div class="pathway-cards">
+
+    <div class="pathway-card">
+      <div class="pathway-title">🫀 RAAS通路（血压调节）</div>
+      <div class="pathway-flow">
+        <div class="pf-step"><div class="pf-node">血压↓/低Na⁺</div><div class="pf-arrow">→</div><div class="pf-node">肾素释放</div></div>
+        <div class="pf-step"><div class="pf-node">血管紧张素原</div><div class="pf-arrow">→肾素→</div><div class="pf-node">AngⅠ</div></div>
+        <div class="pf-step"><div class="pf-node">AngⅠ</div><div class="pf-arrow">→ACE→</div><div class="pf-node">AngⅡ</div><span class="pf-drug">ACEI阻断</span></div>
+        <div class="pf-step"><div class="pf-node">AngⅡ</div><div class="pf-arrow">→AT₁→</div><div class="pf-node">血管收缩+醛固酮↑</div><span class="pf-drug">ARB阻断AT₁</span></div>
+        <div class="pf-step"><div class="pf-node">醛固酮</div><div class="pf-arrow">→MR→</div><div class="pf-node">Na⁺潴留/K⁺排泄</div><span class="pf-drug green">螺内酯阻断MR</span></div>
+      </div>
+    </div>
+
+    <div class="pathway-card">
+      <div class="pathway-title">🧠 多巴胺通路（帕金森）</div>
+      <div class="pathway-flow">
+        <div class="pf-step"><div class="pf-node">黑质纹状体DA神经元</div><div class="pf-arrow">→退化→</div><div class="pf-node">DA↓↓</div></div>
+        <div class="pf-step"><div class="pf-node">多巴胺（DA）</div><div class="pf-arrow">→无法穿BBB→</div><div class="pf-node">不可直接补充</div></div>
+        <div class="pf-step"><div class="pf-node">L-DOPA（前药）</div><div class="pf-arrow">→氨基酸转运体→</div><div class="pf-node">穿越BBB</div><span class="pf-drug green">卡比多巴保护</span></div>
+        <div class="pf-step"><div class="pf-node">脑内L-DOPA</div><div class="pf-arrow">→DOPA脱羧酶→</div><div class="pf-node">DA（补充）</div></div>
+        <div class="pf-step"><div class="pf-node">DA代谢</div><div class="pf-arrow">←MAO-B抑制←</div><div class="pf-node">司来吉兰延长DA效应</div></div>
+      </div>
+    </div>
+
+    <div class="pathway-card">
+      <div class="pathway-title">🦠 β-内酰胺抗菌通路</div>
+      <div class="pathway-flow">
+        <div class="pf-step"><div class="pf-node">细菌细胞壁合成</div><div class="pf-arrow">→PBP酶→</div><div class="pf-node">肽聚糖交联</div></div>
+        <div class="pf-step"><div class="pf-node">β-内酰胺环</div><div class="pf-arrow">→共价结合PBP→</div><div class="pf-node">交联受阻</div><span class="pf-drug">青霉素/头孢</span></div>
+        <div class="pf-step"><div class="pf-node">细胞壁缺陷</div><div class="pf-arrow">→渗透压溶解→</div><div class="pf-node">细菌死亡</div></div>
+        <div class="pf-step"><div class="pf-node">β-内酰胺酶（耐药）</div><div class="pf-arrow">→水解β-内酰胺环→</div><div class="pf-node">药物失活</div><span class="pf-drug">克拉维酸保护</span></div>
+        <div class="pf-step"><div class="pf-node">MRSA：PBP2a突变</div><div class="pf-arrow">→亲和力↓↓→</div><div class="pf-node">大多β-内酰胺无效</div><span class="pf-drug green">万古霉素有效</span></div>
+      </div>
+    </div>
+
+    <div class="pathway-card">
+      <div class="pathway-title">🩸 凝血与抗栓通路</div>
+      <div class="pathway-flow">
+        <div class="pf-step"><div class="pf-node">血小板激活</div><div class="pf-arrow">→COX-1→TXA₂→</div><div class="pf-node">血小板聚集</div><span class="pf-drug">阿司匹林抑制COX-1</span></div>
+        <div class="pf-step"><div class="pf-node">ADP受体(P2Y₁₂)</div><div class="pf-arrow">→激活血小板→</div><div class="pf-node">放大聚集</div><span class="pf-drug">氯吡格雷阻断</span></div>
+        <div class="pf-step"><div class="pf-node">凝血级联</div><div class="pf-arrow">→凝血因子Ⅱ/Ⅶ/Ⅸ/Ⅹ→</div><div class="pf-node">纤维蛋白</div></div>
+        <div class="pf-step"><div class="pf-node">维生素K（凝血因子合成）</div><div class="pf-arrow">←华法林抑制←</div><div class="pf-node">凝血因子↓</div></div>
+        <div class="pf-step"><div class="pf-node">凝血酶（Ⅱa）</div><div class="pf-arrow">←达比加群直接抑制←</div><div class="pf-node">NOAC</div><span class="pf-drug green">不需INR监测</span></div>
+      </div>
+    </div>
+
+    <div class="pathway-card">
+      <div class="pathway-title">🍬 血糖调节通路</div>
+      <div class="pathway-flow">
+        <div class="pf-step"><div class="pf-node">高血糖</div><div class="pf-arrow">→</div><div class="pf-node">胰岛B细胞</div></div>
+        <div class="pf-step"><div class="pf-node">KATP关闭→去极化</div><div class="pf-arrow">→</div><div class="pf-node">胰岛素分泌</div><span class="pf-drug">磺脲类关闭KATP</span></div>
+        <div class="pf-step"><div class="pf-node">GLP-1（肠激素）</div><div class="pf-arrow">→cAMP↑→</div><div class="pf-node">葡萄糖依赖胰岛素↑</div><span class="pf-drug green">司美格鲁肽</span></div>
+        <div class="pf-step"><div class="pf-node">肝脏糖输出</div><div class="pf-arrow">←AMPK↑←</div><div class="pf-node">二甲双胍抑制</div></div>
+        <div class="pf-step"><div class="pf-node">肾小管葡萄糖重吸收</div><div class="pf-arrow">←SGLT2←</div><div class="pf-node">达格列净阻断→尿糖↑</div></div>
+      </div>
+    </div>
+
+    <div class="pathway-card">
+      <div class="pathway-title">🎯 CML靶向治疗通路</div>
+      <div class="pathway-flow">
+        <div class="pf-step"><div class="pf-node">t(9;22)费城染色体</div><div class="pf-arrow">→</div><div class="pf-node">BCR-ABL融合基因</div></div>
+        <div class="pf-step"><div class="pf-node">BCR-ABL蛋白</div><div class="pf-arrow">→持续活化→</div><div class="pf-node">RAF-MEK-ERK/PI3K</div></div>
+        <div class="pf-step"><div class="pf-node">信号下游</div><div class="pf-arrow">→</div><div class="pf-node">增殖↑/凋亡↓→CML</div></div>
+        <div class="pf-step"><div class="pf-node">伊马替尼</div><div class="pf-arrow">→ATP位点竞争→</div><div class="pf-node">BCR-ABL失活</div><span class="pf-drug green">CML完全缓解&gt;90%</span></div>
+        <div class="pf-step"><div class="pf-node">T315I守门突变</div><div class="pf-arrow">→空间位阻→</div><div class="pf-node">伊马替尼失效</div><span class="pf-drug">泊那替尼克服</span></div>
+      </div>
+    </div>
+
+  </div><!-- pathway-cards -->
+</div>
+
+<!-- ③ 靶点-药物交叉矩阵 -->
+<div class="section-card">
+  <h2>受体靶点 × 药物作用类型 速查矩阵</h2>
+  <div class="legend-row">
+    <div class="legend-item"><span class="dot-agonist">●</span> 激动剂/Agonist</div>
+    <div class="legend-item"><span class="dot-antagonist">●</span> 拮抗剂/Antagonist</div>
+    <div class="legend-item"><span class="dot-inhibitor">●</span> 酶/转运体抑制</div>
+    <div class="legend-item"><span class="dot-na">—</span> 无直接作用</div>
+  </div>
+  <div style="overflow-x:auto; border-radius:10px; border:1px solid #e0f2fe">
+  <table class="target-matrix">
+    <thead>
+      <tr>
+        <th style="text-align:left; min-width:130px">药物 ↓ / 靶点 →</th>
+        <th>β₁</th>
+        <th>β₂</th>
+        <th>M₃</th>
+        <th>μ</th>
+        <th>D₂</th>
+        <th>GABA-A</th>
+        <th>AT₁</th>
+        <th>Ca²⁺-L</th>
+        <th>H⁺/K⁺ATPase</th>
+        <th>PBP</th>
+        <th>BCR-ABL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>美托洛尔</td>
+        <td><span class="dot-antagonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>沙丁胺醇</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-agonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>阿托品</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-antagonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>吗啡</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-agonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>氯氮平</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-antagonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>地西泮</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-agonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>缬沙坦（ARB）</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-antagonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>氨氯地平（CCB）</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-antagonist">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>奥美拉唑（PPI）</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-inhibitor">●</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>青霉素/头孢</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-inhibitor">●</span></td>
+        <td><span class="dot-na">—</span></td>
+      </tr>
+      <tr>
+        <td>伊马替尼</td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-na">—</span></td>
+        <td><span class="dot-inhibitor">●</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+</div><!-- content-body -->
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 受体靶点图谱</p>
+  <p><a href="drug-index.html">药物快查索引</a> | <a href="index.html">返回目录</a> | <a href="interaction-guide.html">相互作用速查</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

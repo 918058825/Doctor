@@ -1,0 +1,899 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常场景解析 - 解剖学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .timeline-connector {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #d1d5db;
+            margin: 0.5rem 0;
+            letter-spacing: 4px;
+        }
+        .system-involved {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .system-involved .sys-item {
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 12px;
+            border-left: 4px solid #d1d5db;
+        }
+        .system-involved .sys-item.highlight { border-left-color: #4f46e5; background: #eef2ff; }
+        .system-involved .sys-item.warm { border-left-color: #f59e0b; background: #fffbeb; }
+        .system-involved .sys-item.cool { border-left-color: #06b6d4; background: #ecfeff; }
+        .system-involved .sys-item.vital { border-left-color: #ef4444; background: #fef2f2; }
+        .system-involved .sys-item.calm { border-left-color: #10b981; background: #ecfdf5; }
+        .system-involved .sys-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 0.4rem;
+        }
+        .system-involved .sys-detail {
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.7;
+        }
+        .time-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: #fff;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        .takeaway {
+            background: linear-gradient(135deg, #f0f9ff, #eff6ff);
+            border: 2px solid #93c5fd;
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            margin-top: 1rem;
+        }
+        .takeaway strong { color: #1d4ed8; }
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .filter-bar .btn {
+            padding: 6px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .filter-bar .btn:hover { border-color: #4f46e5; color: #4f46e5; }
+        .filter-bar .btn.active { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <a href="index.html" class="logo">🫀 解剖学入门学习</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="glossary.html">📖 词典</a></li>
+            <li><a href="quiz.html">🧪 自测</a></li>
+            <li><a href="compare.html">⚖️ 对比</a></li>
+            <li><a href="daily-scenarios.html" class="active">🎬 场景</a></li>
+            <li><a href="body-signals.html">📡 信号</a></li>
+            <li><a href="hands-on.html">🖐️ 体验</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 面包屑 -->
+<div class="breadcrumb">
+    <a href="index.html">首页</a> → <span>日常场景解析</span>
+</div>
+
+<!-- 页面标题 -->
+<div class="page-hero">
+    <h1>🎬 当你……的时候，身体在忙什么？</h1>
+    <p class="subtitle">解剖学最好的学习方式不是背课本，而是<strong>理解生活</strong>。以下10个日常场景，带你看清身体每一刻的精密运作。</p>
+</div>
+
+<!-- 主内容 -->
+<div class="main-content full-width">
+    <div class="content-body">
+
+        <!-- 筛选栏 -->
+        <div class="filter-bar">
+            <button class="btn active" onclick="filterScenarios('all')">全部场景</button>
+            <button class="btn" onclick="filterScenarios('daily')">日常活动</button>
+            <button class="btn" onclick="filterScenarios('stress')">应激反应</button>
+            <button class="btn" onclick="filterScenarios('health')">健康相关</button>
+        </div>
+
+        <div class="info-box blue" style="margin-bottom: 2rem;">
+            <div class="box-title">📖 如何使用这个页面</div>
+            <p>每个场景展示了<strong>多个身体系统如何同时协作</strong>。读完一个场景后，你会发现自己能在日常生活中"看到"解剖学。建议搭配对应章节深入阅读。</p>
+        </div>
+
+        <!-- ========== 场景 1：早上醒来 ========== -->
+        <div class="scenario-card" data-category="daily">
+            <div class="scenario-header">
+                <div class="scenario-icon">🌅</div>
+                <div>
+                    <div class="scenario-title">场景一：早上醒来</div>
+                    <div class="scenario-subtitle">从睡眠到清醒，身体如何"开机"？</div>
+                </div>
+            </div>
+
+            <p>闹钟响了，你睁开眼。看似简单的"醒来"，其实是一场精密的系统级切换——就像服务器从休眠模式恢复到工作模式。</p>
+
+            <div class="system-flow">
+                <span class="system-tag purple">内分泌系统</span>
+                <span class="system-tag active">神经系统</span>
+                <span class="system-tag success">感觉器官</span>
+                <span class="system-tag warn">循环系统</span>
+                <span class="system-tag">运动系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item highlight">
+                    <div class="sys-name">🧠 神经系统 — 交接班</div>
+                    <div class="sys-detail">
+                        <strong>下丘脑的视交叉上核（SCN）</strong>是你的生物钟。天亮后光线通过视网膜→视神经传到SCN，它判断"天亮了"，于是：<br>
+                        ① <strong>副交感神经</strong>（值夜班的）开始交班<br>
+                        ② <strong>交感神经</strong>（值白班的）逐渐接管<br>
+                        这就是为什么你醒来后心跳会慢慢加快、会有精神。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🔬 内分泌系统 — 皮质醇晨峰</div>
+                    <div class="sys-detail">
+                        凌晨4-8点，<strong>肾上腺皮质</strong>分泌的<strong>皮质醇</strong>达到一天的最高峰（cortisol awakening response）。<br>
+                        皮质醇相当于给身体打了一针"咖啡"：升血糖、提精神、增强免疫准备度。<br>
+                        这也是为什么早上验血要求空腹——此时血糖受皮质醇影响会偏高。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">👁️ 感觉器官 — 瞳孔适应</div>
+                    <div class="sys-detail">
+                        刚睁眼时瞳孔很大（睡觉时副交感让瞳孔缩小、但环境暗所以散瞳）。<br>
+                        一接触光线，<strong>虹膜括约肌</strong>立刻收缩瞳孔，保护视网膜。<br>
+                        如果你一开灯就觉得刺眼，那就是瞳孔还没来得及缩小。
+                    </div>
+                </div>
+                <div class="sys-item vital">
+                    <div class="sys-name">❤️ 循环系统 — 血压升高</div>
+                    <div class="sys-detail">
+                        从卧位到坐位再到站立，血液因重力往下肢跑。<br>
+                        <strong>颈动脉窦和主动脉弓的压力感受器</strong>检测到血压下降，立刻通知延髓→交感神经兴奋→心跳加快、血管收紧。<br>
+                        如果这个机制太慢，你就会<strong>起立性低血压</strong>——眼前一黑。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>醒来 = 生物钟下令 + 交感神经接班 + 皮质醇打鸡血 + 血压自动调节。它本质上是一次 <code>系统 resume()</code> 调用，需要内分泌、神经、循环三大系统配合启动。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 2：吃早餐 ========== -->
+        <div class="scenario-card" data-category="daily">
+            <div class="scenario-header">
+                <div class="scenario-icon">🍳</div>
+                <div>
+                    <div class="scenario-title">场景二：吃一顿早餐</div>
+                    <div class="scenario-subtitle">一个鸡蛋从嘴到肠，经历了什么？</div>
+                </div>
+            </div>
+
+            <p>你咬了一口煎蛋。从现在开始，这口食物要经历一条<strong>长达8-10米的流水线</strong>，被至少5个器官接力处理。</p>
+
+            <div class="system-flow">
+                <span class="system-tag active">消化系统</span>
+                <span class="system-tag purple">神经系统</span>
+                <span class="system-tag warn">内分泌系统</span>
+                <span class="system-tag success">循环系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item highlight">
+                    <div class="sys-name">👄 口腔 — 第一道工序</div>
+                    <div class="sys-detail">
+                        <strong>牙齿</strong>物理切割（门齿切、磨牙碾），<strong>舌头</strong>搅拌混合。<br>
+                        <strong>三对唾液腺</strong>（腮腺、下颌下腺、舌下腺）分泌唾液，其中含<strong>唾液淀粉酶</strong>开始分解淀粉。<br>
+                        有趣的是：你甚至<strong>看到食物就开始分泌唾液</strong>了——这是条件反射，由<strong>面神经（VII）和舌咽神经（IX）</strong>控制。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🫁 吞咽 — 最危险的一步</div>
+                    <div class="sys-detail">
+                        吞咽时，食物要经过<strong>咽</strong>——一个"十字路口"，前面是食管、旁边是气管。<br>
+                        <strong>会厌软骨</strong>像一个盖子，吞咽时自动盖住气管入口，防止食物进入呼吸道。<br>
+                        如果你边吃边说话大笑，会厌来不及盖好 → <strong>呛到了</strong>。<br>
+                        吞咽反射由<strong>延髓的吞咽中枢</strong>控制，是半自主的——你能发起，但过程无法完全控制。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">🔥 胃 — 强酸消毒+蛋白质拆解</div>
+                    <div class="sys-detail">
+                        食物经食管（蠕动推送，约8秒）到达胃。<br>
+                        <strong>胃底腺</strong>分泌：① 盐酸（pH 1-2，能溶解铁钉！）② 胃蛋白酶原（遇酸激活，开始切割蛋白质）③ 内因子（帮助吸收维生素B12）。<br>
+                        胃壁自身靠<strong>粘液-碳酸氢盐屏障</strong>保护，否则会被自己消化——这层保护一旦破坏就是<strong>胃溃疡</strong>。<br>
+                        胃的三层肌肉疯狂搅拌，把食物变成糊状的<strong>食糜</strong>。
+                    </div>
+                </div>
+                <div class="sys-item calm">
+                    <div class="sys-name">🧬 小肠 — 真正的主战场</div>
+                    <div class="sys-detail">
+                        食糜进入<strong>十二指肠</strong>，两大援军报到：<br>
+                        ① <strong>胰腺</strong>：分泌胰液（含蛋白酶、脂肪酶、淀粉酶——什么都能切）<br>
+                        ② <strong>肝脏→胆囊</strong>：释放胆汁（乳化脂肪，把大油滴打散成小油滴）<br>
+                        小肠内壁有<strong>环形皱襞 + 绒毛 + 微绒毛</strong>三级放大结构，总吸收面积≈<strong>200平方米</strong>（一个网球场！）。<br>
+                        营养被吸收进入<strong>门静脉</strong>→送去<strong>肝脏</strong>处理 → 再入体循环。
+                    </div>
+                </div>
+                <div class="sys-item vital">
+                    <div class="sys-name">🩸 餐后血糖调控</div>
+                    <div class="sys-detail">
+                        碳水被消化成葡萄糖吸收入血 → 血糖升高。<br>
+                        <strong>胰腺的β细胞</strong>检测到血糖升高 → 分泌<strong>胰岛素</strong> → 胰岛素像"钥匙"打开细胞大门，让葡萄糖进入肌肉和肝脏储存。<br>
+                        如果β细胞坏了 → <strong>1型糖尿病</strong>；如果细胞的"锁"生锈了（胰岛素抵抗）→ <strong>2型糖尿病</strong>。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>吃饭 = 物理粉碎（口腔）→ 酸洗消毒（胃）→ 酶解吸收（小肠+胰+肝）→ 血糖调控（内分泌）。一口鸡蛋变成身体的一部分，至少需要 <strong>4-6小时、5个器官、3个系统</strong>的协作。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 3：久坐写代码 ========== -->
+        <div class="scenario-card" data-category="daily">
+            <div class="scenario-header">
+                <div class="scenario-icon">💻</div>
+                <div>
+                    <div class="scenario-title">场景三：久坐4小时写代码</div>
+                    <div class="scenario-subtitle">程序员最熟悉的场景——你的身体在"报警"</div>
+                </div>
+            </div>
+
+            <p>你戴上耳机，打开IDE，进入心流状态。4个小时不知不觉过去了——但你的身体可没闲着，好几个系统正在<strong>拉响警报</strong>。</p>
+
+            <div class="system-flow">
+                <span class="system-tag danger">运动系统</span>
+                <span class="system-tag warn">循环系统</span>
+                <span class="system-tag active">神经系统</span>
+                <span class="system-tag success">感觉器官</span>
+                <span class="system-tag">泌尿系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item vital">
+                    <div class="sys-name">🦴 脊柱 — 压力翻倍</div>
+                    <div class="sys-detail">
+                        站立时，<strong>腰椎间盘</strong>承受的压力≈100%体重。<br>
+                        坐直时 ≈ <strong>140%</strong>；弯腰驼背坐 ≈ <strong>185-200%</strong>！<br>
+                        椎间盘像一个"果冻夹心"，长期高压会导致<strong>髓核</strong>向后突出，压迫<strong>脊神经根</strong> → 腰椎间盘突出症 → 腿麻腿痛。<br>
+                        <strong>竖脊肌</strong>（沿脊柱两侧的长条肌肉）持续紧张收缩来维持姿势 → 肌肉疲劳酸痛。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🦵 下肢循环 — 血液淤积</div>
+                    <div class="sys-detail">
+                        坐着时，<strong>腘窝（膝盖后方）</strong>的静脉被压迫，下肢肌肉不收缩，失去"肌肉泵"作用。<br>
+                        静脉回流变慢 → 血液在下肢淤积 → <strong>腿部肿胀</strong>。<br>
+                        长期如此，静脉瓣膜受损 → <strong>静脉曲张</strong>（小腿蚯蚓状青筋）。<br>
+                        极端情况（如长途飞行）：<strong>深静脉血栓</strong>（DVT）→ 栓子脱落 → 肺栓塞 → 危及生命。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">👁️ 眼睛 — 睫状肌罢工</div>
+                    <div class="sys-detail">
+                        近距离盯屏幕时，<strong>睫状肌</strong>持续收缩来调节晶状体曲度（调焦）。<br>
+                        长时间不放松 → <strong>睫状肌痉挛</strong> → 视物模糊 = "假性近视"。<br>
+                        同时你不自觉地<strong>减少眨眼次数</strong>（正常15-20次/分 → 盯屏幕时4-5次/分）→ 泪膜破裂 → <strong>干眼症</strong>。<br>
+                        <strong>20-20-20法则</strong>：每20分钟，看20英尺（6米）外，持续20秒——让睫状肌休息。
+                    </div>
+                </div>
+                <div class="sys-item highlight">
+                    <div class="sys-name">🖐️ 手腕 — 腕管综合征</div>
+                    <div class="sys-detail">
+                        你的手腕里有一个"隧道"——<strong>腕管</strong>，上面是腕横韧带，下面是腕骨，里面穿过 9条肌腱 + 1条<strong>正中神经</strong>。<br>
+                        长期打字、手腕不当姿势 → 腕管内压力增高 → 正中神经被卡压 → <strong>拇指、食指、中指麻木疼痛</strong>。<br>
+                        这就是程序员常见的<strong>腕管综合征（CTS）</strong>。预防：键盘前放腕垫，手腕保持中立位。
+                    </div>
+                </div>
+                <div class="sys-item calm">
+                    <div class="sys-name">🧠 大脑 — 注意力与姿势的矛盾</div>
+                    <div class="sys-detail">
+                        进入心流时，<strong>前额叶皮质</strong>高度活跃（专注、逻辑推理）。<br>
+                        但大脑对身体姿势的监控被降低——你不会注意到自己在驼背、翘二郎腿。<br>
+                        另外，久坐不动使得大脑血供相对平稳但不够"新鲜"——<strong>站起来走动几分钟</strong>能显著提升认知表现。
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box green">
+                <div class="box-title">🛡️ 程序员自救指南</div>
+                <p>① 每45分钟站起来走动2分钟（设个定时器，比debug更重要）</p>
+                <p>② 屏幕上缘与眼睛平齐，距离一臂远（50-70cm）</p>
+                <p>③ 腰部放一个靠垫支撑腰椎前凸</p>
+                <p>④ 键盘高度让前臂与桌面平行，手腕不弯折</p>
+                <p>⑤ 20-20-20：每20分钟远眺20秒</p>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>久坐 = 椎间盘超负荷 + 静脉回流受阻 + 睫状肌痉挛 + 正中神经卡压。你的身体不是为久坐设计的——它是一台需要定期"运动中断"的精密机器。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 4：运动健身 ========== -->
+        <div class="scenario-card" data-category="daily">
+            <div class="scenario-header">
+                <div class="scenario-icon">🏃</div>
+                <div>
+                    <div class="scenario-title">场景四：跑步30分钟</div>
+                    <div class="scenario-subtitle">全身9个系统联合作战的极致展现</div>
+                </div>
+            </div>
+
+            <p>你穿上跑鞋，开始慢跑。这可能是日常生活中，<strong>最多系统同时高负荷运转</strong>的场景。</p>
+
+            <div class="system-flow">
+                <span class="system-tag danger">运动系统</span>
+                <span class="system-tag active">神经系统</span>
+                <span class="system-tag warn">循环系统</span>
+                <span class="system-tag success">呼吸系统</span>
+                <span class="system-tag purple">内分泌系统</span>
+                <span class="system-tag">消化系统</span>
+                <span class="system-tag warn">泌尿系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item vital">
+                    <div class="sys-name">🦵 运动系统 — 骨骼肌发动机</div>
+                    <div class="sys-detail">
+                        跑步主要动力来自：<strong>股四头肌</strong>（大腿前侧，伸膝蹬地）、<strong>腘绳肌</strong>（大腿后侧，屈膝摆腿）、<strong>臀大肌</strong>（伸髋）、<strong>小腿三头肌</strong>（蹬脚）。<br>
+                        每一步都是<strong>200多块骨头、上百个关节、数百块肌肉</strong>的精密协调。<br>
+                        骨骼肌消耗ATP，有氧条件下：<strong>葡萄糖/脂肪 + O₂ → ATP + CO₂ + H₂O</strong>。<br>
+                        当强度超过有氧能力 → 无氧糖酵解 → 产生<strong>乳酸</strong> → 肌肉酸胀。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">❤️ 循环系统 — 全力泵送</div>
+                    <div class="sys-detail">
+                        安静时心输出量 ≈ 5 L/min；剧烈运动时可达 <strong>20-25 L/min</strong>（翻5倍！）。<br>
+                        实现方式：① 心率从70→150+ ② 每搏输出量增大（Frank-Starling机制）<br>
+                        血液重新分配：<strong>骨骼肌血流从15%→80%</strong>，内脏血流从25%→5%。<br>
+                        这就是为什么<strong>刚吃完饭不能剧烈运动</strong>——消化系统和肌肉在"抢血"。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">🫁 呼吸系统 — 通气量飙升</div>
+                    <div class="sys-detail">
+                        安静时呼吸12-20次/min，每次500mL ≈ 通气量6-10 L/min。<br>
+                        剧烈运动时：呼吸40-60次/min，每次2-3L ≈ 通气量 <strong>100-150 L/min</strong>（翻15倍！）。<br>
+                        <strong>膈肌</strong>和<strong>肋间外肌</strong>全力收缩扩张胸廓，辅助呼吸肌（胸锁乳突肌、斜方肌）也参战。<br>
+                        <strong>3亿个肺泡</strong>全力进行O₂/CO₂交换。
+                    </div>
+                </div>
+                <div class="sys-item highlight">
+                    <div class="sys-name">🌡️ 体温调节 — 出汗散热</div>
+                    <div class="sys-detail">
+                        运动产热巨大（效率仅25%，75%变成热量）。<br>
+                        <strong>下丘脑体温调节中枢</strong>检测到核心体温升高 → 发出指令：<br>
+                        ① <strong>皮肤血管扩张</strong>：把热血送到体表散热（脸变红）<br>
+                        ② <strong>汗腺大量分泌</strong>：汗液蒸发带走热量（2-3 L/h极端情况）<br>
+                        如果散热跟不上产热 → <strong>中暑/热射病</strong>。
+                    </div>
+                </div>
+                <div class="sys-item calm">
+                    <div class="sys-name">🧪 内分泌 — 化学总动员</div>
+                    <div class="sys-detail">
+                        <strong>肾上腺髓质</strong> → 肾上腺素：心跳加快、支气管扩张、肝糖原分解<br>
+                        <strong>胰腺α细胞</strong> → 胰高血糖素：维持血糖供应<br>
+                        <strong>垂体</strong> → 生长激素：促进脂肪分解供能<br>
+                        <strong>垂体</strong> → 内啡肽：天然止痛药 → <strong>"跑步者的愉悦感"（Runner's High）</strong><br>
+                        这就是为什么跑完步心情特别好——不是心理作用，是<strong>内啡肽真的在起作用</strong>！
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>跑步 = 肌肉做功 + 心肺全力供氧 + 血流大重新分配 + 出汗散热 + 激素总动员。这是人体作为一台"精密机器"最淋漓尽致的表现——所有系统火力全开。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 5：紧张时刻 ========== -->
+        <div class="scenario-card" data-category="stress">
+            <div class="scenario-header">
+                <div class="scenario-icon">😰</div>
+                <div>
+                    <div class="scenario-title">场景五：面试/汇报前极度紧张</div>
+                    <div class="scenario-subtitle">"战斗或逃跑"反应——来自远古的生存本能</div>
+                </div>
+            </div>
+
+            <p>明天有重要面试，你躺在床上翻来覆去睡不着。心脏砰砰跳，手心出汗，胃像被揪住一样。这不是你"心理素质差"——这是一套<strong>写入基因的生存程序</strong>在运行。</p>
+
+            <div class="system-flow">
+                <span class="system-tag danger">神经系统</span>
+                <span class="system-tag warn">内分泌系统</span>
+                <span class="system-tag active">循环系统</span>
+                <span class="system-tag">消化系统</span>
+                <span class="system-tag purple">泌尿系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item vital">
+                    <div class="sys-name">🧠 HPA轴 — 应激总指挥</div>
+                    <div class="sys-detail">
+                        大脑皮质判断"面试=威胁" → <strong>杏仁核</strong>（情绪中枢）拉响警报 → <strong>下丘脑</strong>激活两条通路：<br>
+                        <strong>快通道（秒级）：</strong>交感神经 → 肾上腺髓质 → 释放<strong>肾上腺素</strong>和<strong>去甲肾上腺素</strong><br>
+                        <strong>慢通道（分钟级）：</strong>下丘脑 → CRH → 垂体 → ACTH → 肾上腺皮质 → <strong>皮质醇</strong><br>
+                        这就是经典的 <strong>HPA轴（下丘脑-垂体-肾上腺轴）</strong>。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">💓 心跳加速 + 手心出汗</div>
+                    <div class="sys-detail">
+                        肾上腺素 → 心脏<strong>β₁受体</strong> → 心率↑、收缩力↑ → 你感觉到心脏"怦怦跳"<br>
+                        交感神经 → 汗腺（特别是<strong>手掌、脚底、腋下的大汗腺</strong>）→ 分泌汗液<br>
+                        有趣的是：手心出汗是交感兴奋的标志，而散热出汗主要靠全身小汗腺——所以<strong>紧张出的汗和运动出的汗不一样</strong>。<br>
+                        测谎仪原理之一就是测<strong>皮肤电导</strong>（手心汗越多导电越强）。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">🤢 胃不舒服 + 想上厕所</div>
+                    <div class="sys-detail">
+                        交感神经兴奋时会<strong>抑制消化系统</strong>：胃肠蠕动减弱、消化液分泌减少 → 胃部不适、食欲全无。<br>
+                        但矛盾的是，很多人紧张时反而<strong>想拉肚子</strong>——这是因为：<br>
+                        ① 肠道有自己的"大脑"（<strong>肠神经系统</strong>，含1亿+神经元）<br>
+                        ② 大脑的焦虑信号通过<strong>迷走神经</strong>影响肠道 → 肠道过度蠕动<br>
+                        这就是"<strong>脑-肠轴</strong>"——为什么紧张时"肚子闹"。
+                    </div>
+                </div>
+                <div class="sys-item highlight">
+                    <div class="sys-name">😤 瞳孔放大 + 口干舌燥</div>
+                    <div class="sys-detail">
+                        交感兴奋 → <strong>瞳孔开大肌</strong>收缩 → 瞳孔散大（接收更多光线，古代是为了在危险中看清环境）<br>
+                        交感兴奋 → <strong>抑制唾液腺分泌</strong> → 口干（这就是"紧张到嘴巴发干"）<br>
+                        交感兴奋 → <strong>立毛肌</strong>收缩 → 鸡皮疙瘩（古代动物竖毛可以显大吓敌人）<br>
+                        这些反应在面试场景下没什么用，但它们是<strong>几百万年进化保留下来的</strong>"战斗或逃跑"套件。
+                    </div>
+                </div>
+            </div>
+
+            <div class="cs-analogy">
+                <div class="cs-title">🖥️ CS类比：中断处理</div>
+                <p>紧张反应就像系统收到一个<code>高优先级中断(HIGH_PRIORITY_IRQ)</code>：CPU（大脑）暂停当前任务，跳转到<code>fight_or_flight_handler()</code>中断服务程序。这个handler会：提高CPU时钟频率（心跳加快）、关闭后台进程（消化停工）、加大风扇转速（出汗散热）、切换到高性能模式。问题是——面试不需要你"逃跑"，但你的OS没法区分"老虎"和"面试官"。</p>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>紧张 = 杏仁核报警 → HPA轴+交感神经双通道激活 → 心跳加速/手心出汗/口干/胃不适。这不是你的弱点，是进化了几百万年的<strong>生存程序</strong>——只不过它分不清老虎和PPT。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 6：喝酒 ========== -->
+        <div class="scenario-card" data-category="health">
+            <div class="scenario-header">
+                <div class="scenario-icon">🍺</div>
+                <div>
+                    <div class="scenario-title">场景六：和朋友喝酒</div>
+                    <div class="scenario-subtitle">酒精在你体内的"奇幻漂流"</div>
+                </div>
+            </div>
+
+            <p>周五下班，和朋友喝了三瓶啤酒。酒精（乙醇）从第一口进嘴开始，就在你体内开启了一段跌宕起伏的旅程。</p>
+
+            <div class="system-flow">
+                <span class="system-tag active">消化系统</span>
+                <span class="system-tag danger">肝脏</span>
+                <span class="system-tag purple">神经系统</span>
+                <span class="system-tag warn">循环系统</span>
+                <span class="system-tag success">泌尿系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item highlight">
+                    <div class="sys-name">🍺 吸收 — 胃20% + 小肠80%</div>
+                    <div class="sys-detail">
+                        酒精是<strong>小分子</strong>，不需要消化就能直接被吸收。<br>
+                        约20%在<strong>胃</strong>就被吸收（所以空腹喝酒醉得快——胃黏膜直接接触高浓度酒精）。<br>
+                        剩余80%在<strong>小肠</strong>吸收（表面积大，吸收更高效）。<br>
+                        喝酒前吃东西 → 食物占据胃空间、延缓胃排空 → 酒精吸收变慢 → 不那么容易醉。
+                    </div>
+                </div>
+                <div class="sys-item vital">
+                    <div class="sys-name">🫀 肝脏 — 解毒工厂（两步走）</div>
+                    <div class="sys-detail">
+                        吸收的酒精经<strong>门静脉</strong>直达肝脏（首过效应），90-98%在肝脏代谢：<br>
+                        <strong>第一步：</strong>乙醇 →（<strong>乙醇脱氢酶 ADH</strong>）→ <strong>乙醛</strong>（剧毒！致癌！）<br>
+                        <strong>第二步：</strong>乙醛 →（<strong>乙醛脱氢酶 ALDH2</strong>）→ <strong>乙酸</strong>（无害，最终变成CO₂和水）<br>
+                        <strong>为什么有些人喝酒脸红？</strong>因为ALDH2基因突变（约36%东亚人携带），乙醛无法快速分解 → 乙醛堆积 → 毛细血管扩张 → <strong>脸红</strong>。<br>
+                        脸红不是"能喝"的标志，恰恰是<strong>"解毒能力不足"的警告</strong>！
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">🧠 大脑 — 被酒精"降频"</div>
+                    <div class="sys-detail">
+                        酒精是<strong>中枢神经抑制剂</strong>（不是兴奋剂！），它增强<strong>GABA（抑制性神经递质）</strong>的作用：<br>
+                        <strong>低剂量</strong>：先抑制<strong>前额叶皮质</strong>（理性判断区）→ 你话多、胆大、情绪外放 → 看起来像"兴奋"，其实是"刹车"被关了<br>
+                        <strong>中剂量</strong>：抑制<strong>小脑</strong> → 走路不稳、说话含糊<br>
+                        <strong>高剂量</strong>：抑制<strong>延髓</strong>（生命中枢）→ 呼吸减慢、意识丧失 → <strong>酒精中毒可致死</strong>
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🚰 利尿 — 为什么喝酒跑厕所</div>
+                    <div class="sys-detail">
+                        正常情况下，<strong>垂体后叶</strong>分泌<strong>抗利尿激素（ADH/AVP）</strong>，让肾脏回收水分。<br>
+                        酒精<strong>抑制ADH分泌</strong> → 肾脏不回收水 → 大量排尿 → <strong>脱水</strong>。<br>
+                        第二天的头痛、口渴、乏力 = 宿醉，其核心原因就是<strong>脱水 + 乙醛残留 + 电解质紊乱</strong>。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>喝酒 = 胃肠快速吸收 → 肝脏两步解毒（ADH→ALDH2）→ 大脑从高级到低级依次被抑制 → 肾脏疯狂排水。脸红 = ALDH2不够用 = 身体在说"我处理不了这么多毒素"。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 7：感冒 ========== -->
+        <div class="scenario-card" data-category="health">
+            <div class="scenario-header">
+                <div class="scenario-icon">🤧</div>
+                <div>
+                    <div class="scenario-title">场景七：感冒了</div>
+                    <div class="scenario-subtitle">发烧、流鼻涕、全身酸痛——免疫系统的"全面战争"</div>
+                </div>
+            </div>
+
+            <p>你开始打喷嚏、流鼻涕、嗓子痛、全身酸痛、发烧38.5°C。这些难受的症状，<strong>几乎全是你自己的免疫系统干的</strong>——不是病毒让你难受，是身体在"打仗"。</p>
+
+            <div class="system-flow">
+                <span class="system-tag danger">免疫/淋巴</span>
+                <span class="system-tag active">呼吸系统</span>
+                <span class="system-tag purple">神经系统</span>
+                <span class="system-tag warn">内分泌系统</span>
+                <span class="system-tag success">循环系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item vital">
+                    <div class="sys-name">🛡️ 第一道防线 — 物理屏障</div>
+                    <div class="sys-detail">
+                        病毒（比如鼻病毒）试图入侵时，首先遇到：<br>
+                        ① <strong>鼻毛</strong>：过滤大颗粒<br>
+                        ② <strong>鼻腔黏膜</strong>：分泌黏液粘住病毒<br>
+                        ③ <strong>纤毛</strong>：像传送带一样把黏液往咽部推（你把它咽下去，胃酸会杀死大部分病原体）<br>
+                        如果病毒突破这道防线感染了<strong>鼻咽部上皮细胞</strong>，战争正式开始。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🔥 发烧 — 自己升温杀毒</div>
+                    <div class="sys-detail">
+                        感染细胞释放<strong>细胞因子（IL-1, IL-6, TNF-α）</strong> → 通过血液到达<strong>下丘脑体温调节中枢</strong><br>
+                        → 下丘脑把"体温调定点"从37°C上调到38.5°C → 大脑认为"现在体温太低了"<br>
+                        → 下令：皮肤血管收缩（怕冷）、骨骼肌颤抖（打寒战产热）→ 体温升到新调定点<br>
+                        <strong>为什么要发烧？</strong>因为很多病毒在>38°C时复制效率下降，而免疫细胞在38-39°C时活性更强。<br>
+                        所以<strong>38.5°C以下的低烧不必急着吃退烧药</strong>——那是你的免疫系统在"加班"。
+                    </div>
+                </div>
+                <div class="sys-item highlight">
+                    <div class="sys-name">💧 流鼻涕 + 打喷嚏</div>
+                    <div class="sys-detail">
+                        鼻腔黏膜感染后<strong>充血水肿</strong>（局部血管扩张，让更多免疫细胞到达前线）→ 鼻塞<br>
+                        大量<strong>黏液分泌增加</strong>（试图冲洗掉病毒）→ 流鼻涕<br>
+                        病毒刺激<strong>三叉神经末梢</strong> → 信号传到<strong>延髓的喷嚏中枢</strong> → 打喷嚏（风速可达160km/h！飞沫喷出2-8米）<br>
+                        鼻涕颜色的秘密：透明=病毒感染早期；黄绿色=含大量<strong>中性粒细胞</strong>（它们吞噬病毒后"壮烈牺牲"的残骸）
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">😩 全身酸痛 + 乏力</div>
+                    <div class="sys-detail">
+                        那些细胞因子（IL-1, TNF-α等）不只调体温，还会：<br>
+                        ① 让<strong>肌肉蛋白质加速分解</strong>（提供氨基酸给免疫细胞做"子弹"）→ 全身酸痛<br>
+                        ② 让你<strong>昏昏欲睡、不想动</strong>（sickness behavior）→ 逼你休息，把能量省给免疫系统<br>
+                        ③ 让<strong>食欲下降</strong> → 减少消化耗能<br>
+                        所以感冒时<strong>全身酸痛和困倦是有意义的</strong>——身体在强制你"节能模式"，好集中资源打仗。
+                    </div>
+                </div>
+                <div class="sys-item calm">
+                    <div class="sys-name">🎯 适应性免疫 — 精确制导</div>
+                    <div class="sys-detail">
+                        先天免疫撑了2-3天后，<strong>适应性免疫</strong>开始发力：<br>
+                        <strong>T细胞</strong>（在胸腺训练的特种兵）：杀伤性T细胞直接消灭被感染的细胞<br>
+                        <strong>B细胞</strong>（在骨髓成熟）：产生<strong>抗体</strong>，像精确制导导弹一样标记病毒<br>
+                        战斗结束后，一部分B/T细胞变成<strong>记忆细胞</strong>——下次同种病毒来，几小时内就能消灭。<br>
+                        <strong>疫苗原理</strong>就是让你的免疫系统"空训"一次，提前生成记忆细胞。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>感冒症状 ≈ 免疫系统的"战争代价"。发烧是升温杀毒，流鼻涕是冲洗战场，酸痛是分解蛋白造子弹，困倦是强制节能。你不舒服，恰恰说明<strong>免疫系统在正常工作</strong>。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 8：受伤流血 ========== -->
+        <div class="scenario-card" data-category="health">
+            <div class="scenario-header">
+                <div class="scenario-icon">🩹</div>
+                <div>
+                    <div class="scenario-title">场景八：切菜不小心割伤手指</div>
+                    <div class="scenario-subtitle">止血三部曲——比任何创可贴都精密的自我修复</div>
+                </div>
+            </div>
+
+            <p>切菜时刀一滑，手指出血了。不到5分钟血就止住了。这短短几分钟里，身体启动了一套<strong>三级止血系统</strong>，精密得令人叹为观止。</p>
+
+            <div class="system-flow">
+                <span class="system-tag danger">循环系统</span>
+                <span class="system-tag active">免疫/炎症</span>
+                <span class="system-tag success">神经系统</span>
+                <span class="system-tag purple">内分泌系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item vital">
+                    <div class="sys-name">⚡ 第1步（秒级）：血管痉挛</div>
+                    <div class="sys-detail">
+                        血管壁被割破的瞬间，<strong>血管平滑肌</strong>立刻反射性收缩 → 受损血管变窄 → 血流量减少。<br>
+                        同时，受损的<strong>内皮细胞</strong>释放<strong>内皮素</strong>（强效缩血管物质），进一步收紧血管。<br>
+                        这一步争取了宝贵的几十秒时间。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🩸 第2步（分钟级）：血小板栓形成</div>
+                    <div class="sys-detail">
+                        血管破损暴露出<strong>胶原蛋白</strong>（平时被内皮细胞遮住）。<br>
+                        <strong>血小板</strong>（最小的血细胞，无核）遇到胶原蛋白就像疯了一样：<br>
+                        ① <strong>黏附</strong>：通过vWF因子粘在胶原上<br>
+                        ② <strong>激活</strong>：变形（从圆盘变成带触手的球）、释放ADP和血栓素A2<br>
+                        ③ <strong>聚集</strong>：ADP和TXA2招来更多血小板，形成<strong>血小板栓</strong>（临时补丁）<br>
+                        阿司匹林的抗血小板原理就是抑制TXA2的产生。
+                    </div>
+                </div>
+                <div class="sys-item highlight">
+                    <div class="sys-name">🧬 第3步（分钟级）：凝血级联</div>
+                    <div class="sys-detail">
+                        血小板栓只是"临时补丁"，还需要加固。<br>
+                        <strong>凝血因子</strong>（肝脏制造的12+种蛋白质）启动<strong>凝血级联反应</strong>——像多米诺骨牌一样依次激活：<br>
+                        最终生成<strong>凝血酶</strong> → 把血浆中的<strong>纤维蛋白原</strong>切割成<strong>纤维蛋白</strong> → 形成网状结构 → 把血小板、红细胞兜在一起 → <strong>坚固的血凝块</strong>。<br>
+                        这个过程涉及12+种凝血因子，其中<strong>维生素K</strong>是好几种因子合成的必需品（所以新生儿出生时要注射VitK）。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">🔧 后续：炎症修复</div>
+                    <div class="sys-detail">
+                        止血只是第一步，接下来<strong>炎症反应</strong>清扫战场：<br>
+                        <strong>中性粒细胞</strong>（最先到达，24小时内）→ 吞噬细菌和坏死组织<br>
+                        <strong>巨噬细胞</strong>（2-3天后接班）→ 继续清扫 + 释放生长因子<br>
+                        <strong>成纤维细胞</strong> → 合成胶原蛋白修补组织<br>
+                        <strong>新生血管</strong>长入（血管生成）→ 供给营养<br>
+                        最后<strong>纤溶系统</strong>激活 → 溶解不需要的血凝块 → 伤口愈合。<br>
+                        这就是"结痂→脱痂→新皮肤"的全过程。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>止血 = 血管痉挛（应急）→ 血小板栓（临时补丁）→ 纤维蛋白网（永久加固）→ 炎症修复（重建组织）。整个过程像<code>git</code>的分支修复：先<code>hotfix</code>止损，再<code>merge</code>彻底修好。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 9：睡觉 ========== -->
+        <div class="scenario-card" data-category="daily">
+            <div class="scenario-header">
+                <div class="scenario-icon">🌙</div>
+                <div>
+                    <div class="scenario-title">场景九：晚上入睡</div>
+                    <div class="scenario-subtitle">你以为身体在休息？大脑比白天还忙</div>
+                </div>
+            </div>
+
+            <p>关灯、躺下、闭眼。你觉得自己在"关机"，但实际上身体进入了一种<strong>完全不同的高效运转模式</strong>——很多关键的修复和整理工作只能在睡眠中进行。</p>
+
+            <div class="system-flow">
+                <span class="system-tag purple">神经系统</span>
+                <span class="system-tag warn">内分泌系统</span>
+                <span class="system-tag active">免疫系统</span>
+                <span class="system-tag success">运动系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item highlight">
+                    <div class="sys-name">🌑 褪黑素 — 入睡信号</div>
+                    <div class="sys-detail">
+                        天黑后，<strong>视网膜→视交叉上核（SCN）→松果体</strong>这条通路激活。<br>
+                        <strong>松果体</strong>开始大量分泌<strong>褪黑素（melatonin）</strong>。<br>
+                        褪黑素不是安眠药，它是<strong>"天黑了"的化学信号</strong>，让全身知道"该准备睡了"。<br>
+                        这就是为什么<strong>睡前看手机蓝光会影响入睡</strong>——蓝光告诉SCN"还是白天"，褪黑素分泌被抑制。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🔄 睡眠周期 — 不是一觉到天亮</div>
+                    <div class="sys-detail">
+                        一晚的睡眠由<strong>4-6个周期</strong>组成，每个约90分钟：<br>
+                        <strong>NREM 1期</strong>（浅睡，容易醒）→ <strong>NREM 2期</strong>（轻睡，出现睡眠纺锤波）→ <strong>NREM 3期</strong>（深睡，脑电δ波，最难叫醒）→ <strong>REM期</strong>（快速眼动，做梦）<br>
+                        <strong>深睡期</strong>主要在前半夜，<strong>REM期</strong>在后半夜越来越长。<br>
+                        所以<strong>"前半夜的睡眠更重要"是有道理的</strong>——深睡期的身体修复最强。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">🧹 大脑 — "清洗"模式</div>
+                    <div class="sys-detail">
+                        睡眠时大脑的<strong>类淋巴系统（glymphatic system）</strong>激活：<br>
+                        <strong>胶质细胞</strong>缩小60%，细胞间隙扩大 → <strong>脑脊液</strong>像洗碗水一样冲洗大脑<br>
+                        → 带走白天积累的代谢废物，包括<strong>β-淀粉样蛋白</strong>（堆积与阿尔茨海默病有关）<br>
+                        这就是为什么<strong>长期睡眠不足会增加痴呆风险</strong>——大脑没时间"扫地"。<br>
+                        另外，<strong>海马体</strong>在睡眠中把白天的短期记忆"搬运"到大脑皮质变成长期记忆——所以<strong>睡前学习效率最高</strong>。
+                    </div>
+                </div>
+                <div class="sys-item calm">
+                    <div class="sys-name">💪 生长与修复</div>
+                    <div class="sys-detail">
+                        深睡期，<strong>垂体前叶</strong>脉冲式分泌<strong>生长激素（GH）</strong>——一天中70%的GH在睡眠时分泌。<br>
+                        GH促进：① 蛋白质合成（肌肉修复） ② 脂肪分解 ③ 骨骼生长（青少年） ④ 免疫细胞增殖<br>
+                        这就是为什么<strong>健身后要好好睡觉</strong>——肌肉不是在健身房里长的，是在睡觉时修复加固的。<br>
+                        也是为什么说<strong>"孩子是睡大的"</strong>——完全正确。
+                    </div>
+                </div>
+                <div class="sys-item vital">
+                    <div class="sys-name">🛡️ 免疫加班</div>
+                    <div class="sys-detail">
+                        睡眠时<strong>T细胞活性增强</strong>，细胞因子（如IL-2）分泌增加。<br>
+                        研究显示：一晚只睡4小时的人，<strong>自然杀伤细胞（NK细胞）活性下降70%</strong>。<br>
+                        感冒时特别想睡觉是有道理的——免疫系统在<strong>征用你的能量</strong>打仗。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>睡觉 ≠ 关机。睡觉 = 大脑清洗垃圾 + 记忆整合搬运 + 生长激素修复身体 + 免疫系统加班巡逻。它是一次<code>scheduled maintenance</code>（计划性维护），跳过它的后果比你想象的严重得多。
+            </div>
+        </div>
+
+        <div class="timeline-connector">⬇ ⬇ ⬇</div>
+
+        <!-- ========== 场景 10：情绪崩溃大哭 ========== -->
+        <div class="scenario-card" data-category="stress">
+            <div class="scenario-header">
+                <div class="scenario-icon">😢</div>
+                <div>
+                    <div class="scenario-title">场景十：情绪崩溃大哭一场</div>
+                    <div class="scenario-subtitle">哭完为什么会舒服？——眼泪的解剖学与神经科学</div>
+                </div>
+            </div>
+
+            <p>工作压力太大，终于绷不住了，大哭了一场。哭完抹干眼泪，居然觉得轻松了不少。这不是错觉——哭泣是有<strong>真实生理基础</strong>的情绪调节机制。</p>
+
+            <div class="system-flow">
+                <span class="system-tag purple">神经系统</span>
+                <span class="system-tag active">感觉器官</span>
+                <span class="system-tag warn">内分泌系统</span>
+                <span class="system-tag success">呼吸系统</span>
+            </div>
+
+            <div class="system-involved">
+                <div class="sys-item highlight">
+                    <div class="sys-name">💧 三种眼泪，成分不同</div>
+                    <div class="sys-detail">
+                        人的<strong>泪腺</strong>（位于眼眶外上方）分泌三种不同的眼泪：<br>
+                        ① <strong>基础泪液</strong>：时刻分泌，润滑眼球（含溶菌酶杀菌）<br>
+                        ② <strong>反射泪液</strong>：切洋葱、风沙刺激时大量分泌<br>
+                        ③ <strong>情绪泪液</strong>：悲伤、感动、极度开心时流出<br>
+                        科学家发现：<strong>情绪泪液含有更多蛋白质、应激激素（如ACTH、亮脑啡肽）</strong>——所以哭泣可能是在<strong>通过眼泪排出应激化学物质</strong>。
+                    </div>
+                </div>
+                <div class="sys-item warm">
+                    <div class="sys-name">🧠 哭泣的神经通路</div>
+                    <div class="sys-detail">
+                        情绪刺激 → <strong>大脑边缘系统</strong>（杏仁核、扣带回）处理情绪<br>
+                        → <strong>下丘脑</strong>激活自主神经<br>
+                        → 先是<strong>交感神经</strong>兴奋（心跳加速、喉咙哽咽——声门括约肌痉挛）<br>
+                        → 然后<strong>副交感神经</strong>回摆 → 刺激<strong>泪腺分泌</strong>（泪腺受面神经副交感纤维支配）<br>
+                        哭完后副交感神经占主导 → 心率减慢、肌肉放松 → <strong>舒缓感</strong>。
+                    </div>
+                </div>
+                <div class="sys-item cool">
+                    <div class="sys-name">👃 为什么哭的时候会流鼻涕</div>
+                    <div class="sys-detail">
+                        眼泪不只从眼角流出。<br>
+                        眼角内侧有<strong>泪点→泪小管→泪囊→鼻泪管</strong>，最终开口在<strong>下鼻道</strong>。<br>
+                        平时基础泪液通过这条通道悄悄流入鼻腔（你不会注意到）。<br>
+                        大哭时泪液暴增，鼻泪管排不完 → 一方面从眼角溢出（流泪），另一方面大量涌入鼻腔 → <strong>流鼻涕</strong>。<br>
+                        所以<strong>哭时的鼻涕很大一部分就是眼泪</strong>！
+                    </div>
+                </div>
+                <div class="sys-item calm">
+                    <div class="sys-name">😌 为什么哭完会舒服</div>
+                    <div class="sys-detail">
+                        多重机制叠加：<br>
+                        ① <strong>副交感回摆</strong>：交感→副交感的切换让身体从紧张进入放松<br>
+                        ② <strong>内啡肽释放</strong>：哭泣激活内啡肽（天然止痛/愉悦物质）分泌<br>
+                        ③ <strong>催产素释放</strong>：特别是有人安慰你时，身体接触促进催产素分泌（社交连接激素）<br>
+                        ④ <strong>应激激素排出</strong>：情绪泪液可能帮助排出过量的应激化学物质<br>
+                        所以<strong>忍住不哭反而不好</strong>——你失去了一个重要的情绪调节出口。
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaway">
+                <strong>💡 一句话理解：</strong>哭泣 = 情绪触发边缘系统 → 交感先兴奋（哽咽） → 副交感回摆（流泪） → 内啡肽+催产素释放 → 身心放松。哭不是软弱，是身体的<strong>内置情绪垃圾回收器（GC）</strong>在工作。
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <h2 style="margin-top: 3rem;">🎯 看完这10个场景，你应该记住</h2>
+
+        <div class="info-box blue">
+            <div class="box-title">核心认知升级</div>
+            <p>1️⃣ <strong>没有哪个系统在单独工作</strong>——任何日常活动都涉及3个以上系统的协作</p>
+            <p>2️⃣ <strong>很多"不适症状"其实是身体在保护你</strong>——发烧杀毒、疼痛报警、困倦节能、哭泣排压</p>
+            <p>3️⃣ <strong>身体的"默认设置"来自远古</strong>——你的硬件是为野外生存设计的，但你在用它写代码</p>
+            <p>4️⃣ <strong>理解机制比记名词更重要</strong>——知道"为什么"比知道"叫什么"更能帮你理解自己的身体</p>
+        </div>
+
+        <div class="info-box green" style="margin-top: 1rem;">
+            <div class="box-title">📚 想深入了解？</div>
+            <p>每个场景涉及的系统都有对应章节：</p>
+            <p><a href="chapter11.html">神经系统</a> · <a href="chapter12.html">内分泌系统</a> · <a href="chapter6.html">消化系统</a> · <a href="chapter8.html">循环系统</a> · <a href="chapter7.html">呼吸系统</a> · <a href="chapter5.html">运动系统</a> · <a href="chapter9.html">泌尿系统</a> · <a href="chapter13.html">感觉器官</a></p>
+        </div>
+
+    </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+    <p>解剖学入门学习平台 · 小吴的学习笔记 · 2026</p>
+    <p style="margin-top: 4px; font-size: 0.8rem;">内容仅供学习参考，不作为医学诊断依据</p>
+</footer>
+
+<script>
+function filterScenarios(cat) {
+    document.querySelectorAll('.filter-bar .btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.scenario-card').forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    // also toggle connectors
+    document.querySelectorAll('.timeline-connector').forEach(c => {
+        c.style.display = cat === 'all' ? '' : 'none';
+    });
+}
+</script>
+
+<script src="nav.js"></script>
+</body>
+</html>
+

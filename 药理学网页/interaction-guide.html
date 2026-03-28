@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相互作用速查 — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* 相互作用页专用样式 */
+.interaction-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.risk-stat {
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+}
+.risk-stat.critical { background: linear-gradient(135deg, #450a0a, #7c2d12); color: white; }
+.risk-stat.high     { background: linear-gradient(135deg, #7c2d12, #c2410c); color: white; }
+.risk-stat.moderate { background: linear-gradient(135deg, #451a03, #92400e); color: white; }
+.risk-stat.info     { background: linear-gradient(135deg, #0c4a6e, #0369a1); color: white; }
+.rs-num  { font-size: 2.5rem; font-weight: 900; }
+.rs-label{ font-size: .85rem; opacity: .9; margin-top: .3rem; }
+
+/* 危险配伍清单 */
+.blacklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.2rem;
+}
+.blacklist-item {
+  border-radius: 10px;
+  border-left: 4px solid;
+  padding: 1rem 1.2rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.blacklist-item.critical { border-left-color: #dc2626; }
+.blacklist-item.high     { border-left-color: #ea580c; }
+.blacklist-item.moderate { border-left-color: #d97706; }
+.bl-header {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-bottom: .5rem;
+}
+.bl-risk-badge {
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  font-size: .72rem;
+  font-weight: 800;
+  color: white;
+}
+.bl-risk-badge.critical { background: #dc2626; }
+.bl-risk-badge.high     { background: #ea580c; }
+.bl-risk-badge.moderate { background: #d97706; }
+.bl-drugs { font-weight: 700; font-size: .95rem; color: #1e293b; }
+.bl-mechanism { font-size: .82rem; color: #475569; margin: .3rem 0; }
+.bl-consequence { font-size: .82rem; color: #7c2d12; font-weight: 600; }
+.bl-management { font-size: .78rem; color: #15803d; margin-top: .3rem; background: #f0fdf4; border-radius: 4px; padding: .25rem .5rem; }
+
+/* CYP450矩阵 */
+.cyp-section { margin-top: 2rem; }
+.cyp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+}
+.cyp-card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e0f2fe;
+  box-shadow: 0 2px 8px rgba(3,105,161,.06);
+}
+.cyp-header {
+  padding: .8rem 1.2rem;
+  font-weight: 800;
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.cyp-3a4 .cyp-header { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+.cyp-2c9 .cyp-header { background: linear-gradient(90deg, #0369a1, #0ea5e9); }
+.cyp-2c19 .cyp-header { background: linear-gradient(90deg, #0d9488, #2dd4bf); }
+.cyp-2d6 .cyp-header { background: linear-gradient(90deg, #dc2626, #f87171); }
+.cyp-1a2 .cyp-header { background: linear-gradient(90deg, #d97706, #fcd34d); color: #1c1917; }
+.cyp-body { padding: .8rem 1.2rem; background: white; }
+.cyp-row {
+  margin-bottom: .6rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+.cyp-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cyp-role { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: .2rem; }
+.cyp-role.inducer   { color: #16a34a; }
+.cyp-role.inhibitor { color: #dc2626; }
+.cyp-role.substrate { color: #2563eb; }
+.cyp-drugs-list {
+  font-size: .8rem;
+  color: #334155;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem;
+}
+.cyp-drug-chip {
+  padding: .12rem .4rem;
+  border-radius: 4px;
+  font-size: .75rem;
+}
+.cyp-drug-chip.inducer   { background: #dcfce7; color: #15803d; }
+.cyp-drug-chip.inhibitor { background: #fee2e2; color: #b91c1c; }
+.cyp-drug-chip.substrate { background: #dbeafe; color: #1d4ed8; }
+.cyp-consequence {
+  font-size: .75rem;
+  color: #7c2d12;
+  margin-top: .3rem;
+  font-style: italic;
+}
+
+/* QT延长 */
+.qt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+}
+.qt-table th {
+  background: #0c4a6e;
+  color: white;
+  padding: .7rem .8rem;
+  text-align: left;
+  font-weight: 700;
+}
+.qt-table td {
+  padding: .6rem .8rem;
+  border-bottom: 1px solid #e0f2fe;
+  vertical-align: top;
+}
+.qt-table tr:hover td { background: #f0f9ff; }
+.qt-risk-1 { color: #dc2626; font-weight: 700; }
+.qt-risk-2 { color: #ea580c; font-weight: 600; }
+.qt-risk-3 { color: #d97706; }
+
+/* 机制分类 */
+.mech-accordion { border: 1px solid #e0f2fe; border-radius: 12px; overflow: hidden; }
+.mech-item { border-bottom: 1px solid #e0f2fe; }
+.mech-item:last-child { border-bottom: none; }
+.mech-header {
+  padding: 1rem 1.4rem;
+  background: var(--primary-light);
+  font-weight: 700;
+  color: var(--primary-dark);
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .95rem;
+}
+.mech-body {
+  padding: 1rem 1.4rem;
+  background: white;
+}
+.mech-example {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: .5rem;
+  align-items: center;
+  padding: .5rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: .82rem;
+}
+.mech-example:last-child { border-bottom: none; }
+.me-drug-a { font-weight: 700; color: var(--primary-dark); }
+.me-arrow  { color: #94a3b8; font-size: 1.2rem; }
+.me-drug-b { font-weight: 700; color: #7c3aed; }
+.me-outcome { color: #dc2626; font-size: .78rem; }
+.me-mech-label { font-size: .7rem; color: #64748b; background: #f8fafc; padding: .1rem .4rem; border-radius: 4px; }
+
+/* 搜索 */
+.iax-search {
+  width: 100%;
+  padding: .8rem 1.2rem;
+  border: 2px solid var(--primary-light);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 1.5rem;
+  transition: border-color .2s;
+}
+.iax-search:focus { border-color: var(--primary); }
+</style>
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>🛠️ 工具页</span>
+  <span>›</span>
+  <span>相互作用速查</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">🛠️ 工具页</div>
+  <h1>相互作用速查</h1>
+  <p class="hero-sub">高危配伍禁忌 · CYP450相互作用矩阵 · QT延长药物分级 · 按机制理解而非死记硬背</p>
+</div>
+
+<div class="main-content" style="display:block">
+<div class="content-body" style="max-width:100%">
+
+<!-- 概况统计 -->
+<div class="interaction-hero">
+  <div class="risk-stat critical"><div class="rs-num">12</div><div class="rs-label">绝对禁忌配伍</div></div>
+  <div class="risk-stat high"><div class="rs-num">24</div><div class="rs-label">高风险警戒配伍</div></div>
+  <div class="risk-stat moderate"><div class="rs-num">5</div><div class="rs-label">CYP450酶系统</div></div>
+  <div class="risk-stat info"><div class="rs-num">4</div><div class="rs-label">相互作用机制类型</div></div>
+</div>
+
+<!-- ① 致死/致严重伤害高危配伍 -->
+<div class="section-card">
+  <h2>⚠️ 高危配伍禁忌清单</h2>
+  <p style="color:#64748b; margin-bottom:1.2rem; font-size:.88rem">按临床危险程度排序。标注🚫的为绝对禁忌，标注⚠️的为需密切监测</p>
+
+  <div class="blacklist-grid">
+
+    <!-- 致死级 -->
+    <div class="blacklist-item critical">
+      <div class="bl-header">
+        <span class="bl-risk-badge critical">🚫 绝对禁忌</span>
+        <span class="bl-drugs">阿片类 + 苯二氮卓类</span>
+      </div>
+      <div class="bl-mechanism">PK/PD双重相互作用：苯二氮卓增强阿片的呼吸抑制（协同性，非相加性）</div>
+      <div class="bl-consequence">致命性呼吸抑制——FDA黑框警告；年致死数万（美国阿片危机核心因素）</div>
+      <div class="bl-management">管理：避免联用；必须使用时纳洛酮备用；从最低剂量开始</div>
+    </div>
+
+    <div class="blacklist-item critical">
+      <div class="bl-header">
+        <span class="bl-risk-badge critical">🚫 绝对禁忌</span>
+        <span class="bl-drugs">MAOIs + SSRIs/SNRIs/哌替啶/曲马多</span>
+      </div>
+      <div class="bl-mechanism">5-HT综合征：MAO-A抑制→5-HT降解↓↓；SSRI→5-HT再摄取↓↓ → 突触5-HT爆炸性升高</div>
+      <div class="bl-consequence">5-HT综合征三联征：精神改变+自主神经亢进（高热/大汗/心动过速）+神经肌肉异常（阵挛/反射亢进）→可致死</div>
+      <div class="bl-management">管理：MAOIs停药2周（氟西汀停药5周）后才能用SSRI；赛庚啶（5-HT₂A拮抗）急救</div>
+    </div>
+
+    <div class="blacklist-item critical">
+      <div class="bl-header">
+        <span class="bl-risk-badge critical">🚫 绝对禁忌</span>
+        <span class="bl-drugs">华法林 + 阿司匹林（高剂量）</span>
+      </div>
+      <div class="bl-mechanism">PD协同：华法林抑制凝血因子合成 + 阿司匹林不可逆抑制血小板 → 双重抗栓 + 胃黏膜损伤（PGE₂↓）</div>
+      <div class="bl-consequence">严重出血（颅内/消化道）；消化道出血风险升高3-5倍</div>
+      <div class="bl-management">管理：低剂量阿司匹林（≤100mg/d）+华法林在特定情况下可联用但须严密监测INR；避免高剂量NSAIDs</div>
+    </div>
+
+    <div class="blacklist-item critical">
+      <div class="bl-header">
+        <span class="bl-risk-badge critical">🚫 绝对禁忌</span>
+        <span class="bl-drugs">ACE抑制剂 + ARB + 保钾利尿剂（三联）</span>
+      </div>
+      <div class="bl-mechanism">三重保钾机制：ACEI→醛固酮↓；ARB→醛固酮↓；保钾利尿→K⁺排泄↓ → 严重高钾血症</div>
+      <div class="bl-consequence">危及生命的高钾血症 → 恶性心律失常/心脏停搏</div>
+      <div class="bl-management">管理：避免三联；ACEI/ARB+MRA需监测K⁺（CKD患者尤其危险）；SGLT2i同用时也需监测</div>
+    </div>
+
+    <div class="blacklist-item critical">
+      <div class="bl-header">
+        <span class="bl-risk-badge critical">🚫 绝对禁忌</span>
+        <span class="bl-drugs">氟喹诺酮 + QT延长药物（多联）</span>
+      </div>
+      <div class="bl-mechanism">QT间期协同延长：喹诺酮（hERG钾通道抑制）+ 抗心律失常药（胺碘酮/索他洛尔）+ 抗精神病药（氟哌啶醇）</div>
+      <div class="bl-consequence">尖端扭转型室速（TdP）→ 室颤→ 猝死</div>
+      <div class="bl-management">管理：查询QT危险清单（crediblemeds.org）；低钾血症增加TdP风险；心电图监测QTc&lt;500ms</div>
+    </div>
+
+    <!-- 高风险 -->
+    <div class="blacklist-item high">
+      <div class="bl-header">
+        <span class="bl-risk-badge high">⚠️ 高风险</span>
+        <span class="bl-drugs">克拉霉素/酮康唑 + 他汀类（辛伐他汀/洛伐他汀）</span>
+      </div>
+      <div class="bl-mechanism">CYP3A4强抑制：他汀血药浓度↑10-50倍 → 骨骼肌毒性风险↑↑</div>
+      <div class="bl-consequence">横纹肌溶解症 → 急性肾衰竭（肌红蛋白尿）</div>
+      <div class="bl-management">管理：与CYP3A4抑制剂联用时换用不经CYP3A4代谢的他汀（普伐他汀/瑞舒伐他汀）；或临时停他汀</div>
+    </div>
+
+    <div class="blacklist-item high">
+      <div class="bl-header">
+        <span class="bl-risk-badge high">⚠️ 高风险</span>
+        <span class="bl-drugs">利福平 + 华法林/口服避孕药/HAART</span>
+      </div>
+      <div class="bl-mechanism">CYP450强诱导剂（CYP3A4/2C9/1A2/2B6）→ 多种药物代谢↑↑ → 血药浓度↓↓</div>
+      <div class="bl-consequence">华法林→血栓风险↑；避孕药→意外妊娠；抗HIV药→病毒学失败</div>
+      <div class="bl-management">管理：避免联用或大幅调整剂量（华法林剂量可能需增加2-5倍）；停利福平后需重新调整</div>
+    </div>
+
+    <div class="blacklist-item high">
+      <div class="bl-header">
+        <span class="bl-risk-badge high">⚠️ 高风险</span>
+        <span class="bl-drugs">锂盐 + NSAIDs/噻嗪利尿剂/ACEI</span>
+      </div>
+      <div class="bl-mechanism">
+        NSAIDs：PGE₂↓→肾血流↓→锂排泄↓；
+        噻嗪：低Na⁺→肾小管代偿保留锂；
+        ACEI：GFR↓→锂清除↓
+      </div>
+      <div class="bl-consequence">锂中毒（&gt;1.5 mEq/L）：粗颤/意识模糊/惊厥/心律失常→昏迷</div>
+      <div class="bl-management">管理：联用时密切监测血锂浓度（每周一次）；偏好对乙酰氨基酚镇痛；考虑减少锂盐剂量</div>
+    </div>
+
+    <div class="blacklist-item high">
+      <div class="bl-header">
+        <span class="bl-risk-badge high">⚠️ 高风险</span>
+        <span class="bl-drugs">氯吡格雷（Clopidogrel）+ 奥美拉唑</span>
+      </div>
+      <div class="bl-mechanism">奥美拉唑抑制CYP2C19 → 氯吡格雷前药无法转化为活性代谢物（活性硫醇形式）→ 抗血板效果↓</div>
+      <div class="bl-consequence">心脏支架患者支架内血栓形成风险↑</div>
+      <div class="bl-management">管理：换用泮托拉唑（对CYP2C19影响较弱）；或坚持使用奥美拉唑（某些研究争议，结合患者风险）</div>
+    </div>
+
+    <div class="blacklist-item high">
+      <div class="bl-header">
+        <span class="bl-risk-badge high">⚠️ 高风险</span>
+        <span class="bl-drugs">地高辛 + 低钾血症（袢利尿剂）</span>
+      </div>
+      <div class="bl-mechanism">低钾 → 心肌Na⁺/K⁺-ATPase与地高辛竞争减少 → 地高辛作用增强（等效于浓度↑）</div>
+      <div class="bl-consequence">地高辛毒性：室性心律失常/Mobitz Ⅱ度/完全性房室传导阻滞/黄绿视</div>
+      <div class="bl-management">管理：使用利尿剂时补钾（K⁺目标&gt;4 mEq/L）；监测地高辛浓度（目标0.5-0.9 ng/mL）</div>
+    </div>
+
+    <div class="blacklist-item high">
+      <div class="bl-header">
+        <span class="bl-risk-badge high">⚠️ 高风险</span>
+        <span class="bl-drugs">甲硝唑 + 酒精</span>
+      </div>
+      <div class="bl-mechanism">甲硝唑抑制乙醛脱氢酶（ALDH）→ 乙醇代谢中间产物乙醛积累（双硫仑样反应）</div>
+      <div class="bl-consequence">面部潮红/剧烈头痛/恶心呕吐/心动过速/低血压（可很严重）</div>
+      <div class="bl-management">管理：甲硝唑服药期间及停药后48小时内严禁饮酒；明确告知患者</div>
+    </div>
+
+    <!-- 中等风险 -->
+    <div class="blacklist-item moderate">
+      <div class="bl-header">
+        <span class="bl-risk-badge moderate">⚠️ 中等风险</span>
+        <span class="bl-drugs">氟喹诺酮 + 含铝/镁/钙抗酸药（铁剂）</span>
+      </div>
+      <div class="bl-mechanism">螯合反应：喹诺酮与多价阳离子形成不可溶螯合物 → 口服生物利用度↓↓（可降低70-90%）</div>
+      <div class="bl-consequence">抗生素血药浓度不足 → 治疗失败/耐药风险↑</div>
+      <div class="bl-management">管理：间隔至少2小时服用（喹诺酮前2h或后6h服用抗酸药）</div>
+    </div>
+
+    <div class="blacklist-item moderate">
+      <div class="bl-header">
+        <span class="bl-risk-badge moderate">⚠️ 中等风险</span>
+        <span class="bl-drugs">阿司匹林 + 布洛芬（NSAIDs）</span>
+      </div>
+      <div class="bl-mechanism">布洛芬可逆性占据COX-1，阻止阿司匹林到达其乙酰化位点（PD拮抗）→ 阿司匹林心脏保护效应↓</div>
+      <div class="bl-consequence">阿司匹林抗血板效果消失 → 急性冠脉事件风险↑</div>
+      <div class="bl-management">管理：服阿司匹林后≥8小时服布洛芬，或阿司匹林提前至少30分钟服用；对乙酰氨基酚是安全替代</div>
+    </div>
+
+  </div><!-- blacklist-grid -->
+</div>
+
+<!-- ② CYP450相互作用矩阵 -->
+<div class="section-card cyp-section">
+  <h2>CYP450 药物代谢相互作用矩阵</h2>
+  <p style="color:#64748b; font-size:.88rem; margin-bottom:1.2rem">
+    🔴 <strong>抑制剂</strong>：使底物浓度升高（毒性风险↑）&nbsp;&nbsp;
+    🟢 <strong>诱导剂</strong>：使底物浓度降低（疗效↓）&nbsp;&nbsp;
+    🔵 <strong>底物</strong>：经该酶代谢的药物
+  </p>
+  <div class="cyp-grid">
+
+    <div class="cyp-card cyp-3a4">
+      <div class="cyp-header">⚡ CYP3A4（最重要，&gt;50%药物经此代谢）</div>
+      <div class="cyp-body">
+        <div class="cyp-row">
+          <div class="cyp-role inhibitor">🔴 强抑制剂（使底物毒性↑↑↑）</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inhibitor">克拉霉素</span>
+            <span class="cyp-drug-chip inhibitor">酮康唑/伊曲康唑</span>
+            <span class="cyp-drug-chip inhibitor">利托那韦（HIV）</span>
+            <span class="cyp-drug-chip inhibitor">葡萄柚汁（！）</span>
+            <span class="cyp-drug-chip inhibitor">胺碘酮</span>
+            <span class="cyp-drug-chip inhibitor">维拉帕米</span>
+          </div>
+          <div class="cyp-consequence">→ 他汀横纹肌溶解；地高辛毒性；苯二氮卓过度镇静；免疫抑制剂毒性</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role inducer">🟢 强诱导剂（使底物疗效↓↓）</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inducer">利福平（最强）</span>
+            <span class="cyp-drug-chip inducer">卡马西平</span>
+            <span class="cyp-drug-chip inducer">苯妥英钠</span>
+            <span class="cyp-drug-chip inducer">苯巴比妥</span>
+            <span class="cyp-drug-chip inducer">圣约翰草</span>
+          </div>
+          <div class="cyp-consequence">→ 华法林血栓；OCP失效；抗HIV药失效；免疫抑制剂排斥反应</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role substrate">🔵 重要底物</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip substrate">辛伐他汀/阿托伐他汀</span>
+            <span class="cyp-drug-chip substrate">苯二氮卓类</span>
+            <span class="cyp-drug-chip substrate">环孢素</span>
+            <span class="cyp-drug-chip substrate">他克莫司</span>
+            <span class="cyp-drug-chip substrate">地高辛（部分）</span>
+            <span class="cyp-drug-chip substrate">伊马替尼</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cyp-card cyp-2c9">
+      <div class="cyp-header">💊 CYP2C9（华法林、NSAIDs）</div>
+      <div class="cyp-body">
+        <div class="cyp-row">
+          <div class="cyp-role inhibitor">🔴 抑制剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inhibitor">氟康唑（强）</span>
+            <span class="cyp-drug-chip inhibitor">胺碘酮</span>
+            <span class="cyp-drug-chip inhibitor">甲硝唑</span>
+            <span class="cyp-drug-chip inhibitor">磺胺甲恶唑</span>
+          </div>
+          <div class="cyp-consequence">→ 华法林出血风险↑↑；苯妥英毒性</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role inducer">🟢 诱导剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inducer">利福平</span>
+            <span class="cyp-drug-chip inducer">卡马西平</span>
+          </div>
+          <div class="cyp-consequence">→ 华法林疗效↓（血栓风险）</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role substrate">🔵 底物</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip substrate">华法林（S型，活性）</span>
+            <span class="cyp-drug-chip substrate">布洛芬</span>
+            <span class="cyp-drug-chip substrate">苯妥英钠</span>
+            <span class="cyp-drug-chip substrate">格列本脲</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cyp-card cyp-2c19">
+      <div class="cyp-header">🔬 CYP2C19（PPI、氯吡格雷）</div>
+      <div class="cyp-body">
+        <div class="cyp-row">
+          <div class="cyp-role inhibitor">🔴 抑制剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inhibitor">奥美拉唑/埃索美拉唑（中）</span>
+            <span class="cyp-drug-chip inhibitor">氟伏沙明（SSRI）</span>
+          </div>
+          <div class="cyp-consequence">→ 氯吡格雷前药活化↓→支架血栓；苯妥英毒性</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role inducer">🟢 诱导剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inducer">利福平</span>
+            <span class="cyp-drug-chip inducer">地塞米松（弱）</span>
+          </div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role substrate">🔵 底物</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip substrate">氯吡格雷（前药活化）</span>
+            <span class="cyp-drug-chip substrate">奥美拉唑</span>
+            <span class="cyp-drug-chip substrate">地西泮</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cyp-card cyp-2d6">
+      <div class="cyp-header">🧬 CYP2D6（遗传多态性最大，10%人群PM）</div>
+      <div class="cyp-body">
+        <div class="cyp-row">
+          <div class="cyp-role inhibitor">🔴 抑制剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inhibitor">帕罗西汀（强）</span>
+            <span class="cyp-drug-chip inhibitor">氟西汀（中）</span>
+            <span class="cyp-drug-chip inhibitor">安非他酮（强）</span>
+            <span class="cyp-drug-chip inhibitor">氟哌啶醇</span>
+          </div>
+          <div class="cyp-consequence">→ 可待因→吗啡转化↓（但PM本身转化↓）；β阻滞剂毒性；TCA毒性</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role substrate">🔵 底物（代谢多态性影响大）</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip substrate">可待因→吗啡（前药）</span>
+            <span class="cyp-drug-chip substrate">美托洛尔</span>
+            <span class="cyp-drug-chip substrate">三环抗抑郁药</span>
+            <span class="cyp-drug-chip substrate">阿片类多种</span>
+          </div>
+          <div class="cyp-consequence">⚠️ 超快代谢者（UM）：可待因毒性（儿童死亡）；慢代谢者（PM）：β阻滞剂心动过缓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cyp-card cyp-1a2">
+      <div class="cyp-header">☕ CYP1A2（茶碱、咖啡因、氯氮平）</div>
+      <div class="cyp-body">
+        <div class="cyp-row">
+          <div class="cyp-role inhibitor">🔴 抑制剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inhibitor">环丙沙星（中）</span>
+            <span class="cyp-drug-chip inhibitor">氟伏沙明（强）</span>
+            <span class="cyp-drug-chip inhibitor">大量咖啡因</span>
+          </div>
+          <div class="cyp-consequence">→ 茶碱毒性（心律失常/惊厥）；氯氮平浓度↑</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role inducer">🟢 诱导剂</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip inducer">吸烟（PAH）</span>
+            <span class="cyp-drug-chip inducer">奥美拉唑（弱）</span>
+          </div>
+          <div class="cyp-consequence">→ 吸烟者茶碱/氯氮平浓度↓（戒烟后需减剂量！）</div>
+        </div>
+        <div class="cyp-row">
+          <div class="cyp-role substrate">🔵 底物</div>
+          <div class="cyp-drugs-list">
+            <span class="cyp-drug-chip substrate">茶碱</span>
+            <span class="cyp-drug-chip substrate">咖啡因</span>
+            <span class="cyp-drug-chip substrate">氯氮平</span>
+            <span class="cyp-drug-chip substrate">他克林</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- cyp-grid -->
+</div>
+
+<!-- ③ QT延长药物分级 -->
+<div class="section-card">
+  <h2>QT延长药物分级</h2>
+  <p style="color:#64748b; font-size:.88rem; margin-bottom:1rem">QTc&gt;500ms 或 QTc延长&gt;60ms → TdP（尖端扭转型室速）风险；联合使用同类药物风险指数级增加</p>
+  <div style="overflow-x:auto; border-radius:10px; border:1px solid #e0f2fe">
+  <table class="qt-table">
+    <thead>
+      <tr>
+        <th>风险级别</th>
+        <th>药物类别</th>
+        <th>代表药物</th>
+        <th>机制</th>
+        <th>注意事项</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="qt-risk-1">🔴 已知TdP风险</td>
+        <td>Ia/III类抗心律失常</td>
+        <td>胺碘酮/索他洛尔/奎尼丁/伊布利特</td>
+        <td>hERG（IKr）钾通道阻断→复极↓→QT↑</td>
+        <td>与其他QT延长药物禁止联用；低钾/低镁增加风险</td>
+      </tr>
+      <tr>
+        <td class="qt-risk-1">🔴 已知TdP风险</td>
+        <td>氟喹诺酮类</td>
+        <td>莫西沙星＞左氧氟沙星&gt;环丙沙星</td>
+        <td>hERG通道阻断（莫西沙星最强）</td>
+        <td>与胺碘酮/抗精神病联用风险极高；监测心电图</td>
+      </tr>
+      <tr>
+        <td class="qt-risk-1">🔴 已知TdP风险</td>
+        <td>抗精神病药</td>
+        <td>氟哌啶醇/齐拉西酮/硫利达嗪</td>
+        <td>D₂拮抗+hERG抑制</td>
+        <td>与其他QT延长药物禁联；监测QTc基线</td>
+      </tr>
+      <tr>
+        <td class="qt-risk-2">🟠 条件性TdP风险</td>
+        <td>大环内酯类</td>
+        <td>阿奇霉素/克拉霉素/红霉素</td>
+        <td>hERG通道阻断（与CYP3A4抑制剂联用时风险↑↑）</td>
+        <td>老年/心血管病患者避免与氟喹诺酮联用</td>
+      </tr>
+      <tr>
+        <td class="qt-risk-2">🟠 条件性TdP风险</td>
+        <td>抗抑郁药（TCA/SSRI部分）</td>
+        <td>阿米替林/西酞普兰（&gt;40mg/d）</td>
+        <td>hERG阻断（TCA）；Na⁺通道（TCA）</td>
+        <td>西酞普兰剂量限制（QTc风险）；避免与MAOIs联用（5-HT综合征）</td>
+      </tr>
+      <tr>
+        <td class="qt-risk-2">🟠 条件性TdP风险</td>
+        <td>止吐药</td>
+        <td>昂丹司琼（&gt;32mg静脉）/甲氧氯普胺</td>
+        <td>hERG阻断（高剂量）</td>
+        <td>昂丹司琼静脉单次≤32mg；心电图监测（高危患者）</td>
+      </tr>
+      <tr>
+        <td class="qt-risk-3">🟡 低风险/监测</td>
+        <td>氟康唑/唑类抗真菌</td>
+        <td>氟康唑/伏立康唑</td>
+        <td>CYP3A4抑制（间接提升其他QT延长药物浓度）+直接弱抑制</td>
+        <td>与强QT延长药物联用时需审慎</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ④ 按机制分类 -->
+<div class="section-card">
+  <h2>相互作用机制分类</h2>
+  <div class="mech-accordion">
+
+    <div class="mech-item">
+      <div class="mech-header">📦 药动学（PK）相互作用 ① 吸收</div>
+      <div class="mech-body">
+        <p style="color:#475569; font-size:.85rem; margin-bottom:.8rem">发生在吸收阶段，影响生物利用度</p>
+        <div class="mech-example">
+          <div class="me-drug-a">氟喹诺酮</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">铝/镁/铁/钙制剂</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">螯合→吸收↓70-90%（治疗失败）</div>
+        </div>
+        <div class="mech-example">
+          <div class="me-drug-a">左旋多巴</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">高蛋白餐</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">氨基酸竞争转运体→吸收↓（餐前服用）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mech-item">
+      <div class="mech-header">🔬 药动学（PK）相互作用 ② 分布（蛋白置换）</div>
+      <div class="mech-body">
+        <p style="color:#475569; font-size:.85rem; margin-bottom:.8rem">竞争血浆蛋白结合，游离浓度短暂升高</p>
+        <div class="mech-example">
+          <div class="me-drug-a">华法林（高度蛋白结合）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">阿司匹林/磺胺</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">华法林游离↑→短暂抗凝增强→出血风险（临床意义有争议）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mech-item">
+      <div class="mech-header">⚗️ 药动学（PK）相互作用 ③ 代谢（CYP450）</div>
+      <div class="mech-body">
+        <p style="color:#475569; font-size:.85rem; margin-bottom:.8rem">最重要的PK相互作用，详见上方CYP450矩阵</p>
+        <div class="mech-example">
+          <div class="me-drug-a">克拉霉素（CYP3A4抑制）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">辛伐他汀（底物）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">他汀浓度↑10-50倍→横纹肌溶解</div>
+        </div>
+        <div class="mech-example">
+          <div class="me-drug-a">利福平（CYP450诱导）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">华法林（底物）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">华法林代谢↑→浓度↓→血栓风险</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mech-item">
+      <div class="mech-header">🚽 药动学（PK）相互作用 ④ 排泄</div>
+      <div class="mech-body">
+        <p style="color:#475569; font-size:.85rem; margin-bottom:.8rem">影响肾排泄，改变药物清除率</p>
+        <div class="mech-example">
+          <div class="me-drug-a">NSAIDs（PGE₂↓→肾血流↓）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">锂盐（肾排泄）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">锂清除率↓→血锂↑→中毒</div>
+        </div>
+        <div class="mech-example">
+          <div class="me-drug-a">丙磺舒（肾小管分泌竞争）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">青霉素</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">青霉素排泄↓→血药浓度↑（二战时延长疗效）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mech-item">
+      <div class="mech-header">💥 药效学（PD）相互作用 — 协同与拮抗</div>
+      <div class="mech-body">
+        <p style="color:#475569; font-size:.85rem; margin-bottom:.8rem">药物在靶点/效应器水平的相互作用，不涉及代谢</p>
+        <div class="mech-example">
+          <div class="me-drug-a">阿片（呼吸抑制）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">苯二氮卓（GABA中枢抑制）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">超相加协同呼吸抑制→致死（最经典PD协同）</div>
+        </div>
+        <div class="mech-example">
+          <div class="me-drug-a">β阻滞剂（心率↓）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">维拉帕米（CCB）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">心率↓↓↓→严重心动过缓/心脏停搏（房室传导阻滞）</div>
+        </div>
+        <div class="mech-example">
+          <div class="me-drug-a">阿司匹林（不可逆COX-1）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">布洛芬（竞争COX-1位点）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">布洛芬阻断阿司匹林乙酰化→阿司匹林心脏保护消失（PD拮抗）</div>
+        </div>
+        <div class="mech-example">
+          <div class="me-drug-a">SSRIs（5-HT↑）</div>
+          <div class="me-arrow">+</div>
+          <div class="me-drug-b">MAOIs（5-HT降解↓）</div>
+          <div class="me-arrow">→</div>
+          <div class="me-outcome">5-HT综合征（两条互补通路同时阻断→5-HT爆炸性积累）</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- mech-accordion -->
+</div>
+
+<!-- ⑤ 临床快查备忘 -->
+<div class="section-card">
+  <h2>🧾 临床处方前10问</h2>
+  <div class="cognitive-expand">
+    <p>每次开具/调整处方时，对照以下10个关键问题：</p>
+    <ol style="line-height:2; font-size:.9rem">
+      <li><strong>患者是否服用华法林/NOAC？</strong> → 检查CYP2C9/3A4相互作用；检查出血/血栓影响</li>
+      <li><strong>患者是否服用锂盐/地高辛（TI窄药物）？</strong> → 任何新药都可能改变其浓度</li>
+      <li><strong>是否有CYP3A4强抑制剂/诱导剂？</strong>（克拉霉素/利福平）→ 检查所有底物</li>
+      <li><strong>是否存在QT延长风险因素？</strong>（低钾/女性/心脏病史）→ 避免叠加QT延长药</li>
+      <li><strong>是否开具阿片类药物？</strong> → 检查苯二氮卓/CNS抑制剂并用；备纳洛酮</li>
+      <li><strong>是否使用NSAIDs？</strong> → 检查肾功能/心衰/胃溃疡史；检查与阿司匹林的拮抗</li>
+      <li><strong>是否开具抗生素？</strong> → 检查C.diff史；检查喹诺酮的QT风险；告知甲硝唑禁酒</li>
+      <li><strong>是否有肾功能损害？</strong>（GFR）→ 调整二甲双胍/万古霉素/喹诺酮/氨基糖苷剂量</li>
+      <li><strong>患者有无CYP2D6/2C19遗传多态性相关药物？</strong> → 可待因（超快代谢致死）/氯吡格雷（慢代谢失效）</li>
+      <li><strong>是否可能怀孕？</strong> → 禁忌：华法林/ACEI/ARB/四环素/喹诺酮/利福平/甲硝唑（早孕）/他汀/异维A酸</li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- content-body -->
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 相互作用速查</p>
+  <p><a href="receptor-map.html">受体靶点图谱</a> | <a href="drug-index.html">药物快查索引</a> | <a href="index.html">返回目录</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

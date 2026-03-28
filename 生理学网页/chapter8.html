@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第8章 · 神经生理 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第8章 · 神经生理</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第三阶段 · 调控系统 · 第 8 章</div>
+    <h1>神经生理</h1>
+    <p class="subtitle">多巴胺不是"快乐分子"，是"期待分子"——理解这一点，很多成瘾行为就有了解释。</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐⭐⭐ 最重要！连接第2章的电信号，进入系统级别的神经调控</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第11章（神经系统）</strong> — 你了解了大脑/脊髓/周围神经的结构，这章讲神经如何通过突触传递信号、神经递质如何决定行为和生理反应。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>喝咖啡为什么让人清醒？腺苷受体是什么？</li>
+            <li>多巴胺到底是什么感觉？为什么刷短视频上瘾？</li>
+            <li>手汗症 ETS 手术的完整机制是什么——从脊髓到手掌每一步。</li>
+        </ul>
+    </div>
+
+    <!-- 一、突触传递 -->
+    <h2 id="一突触化学信号的接力棒">一、突触：化学信号的接力棒</h2>
+
+    <p>第2章讲了动作电位沿轴突传导，但<strong>神经与神经之间、神经与效应器之间，靠的是化学信号而非电信号</strong>。这个化学信号传递的结构叫突触（Synapse）。</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚡ 突触传递的完整步骤</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">动作电位到达<br>突触前末梢</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">Ca²⁺ 通道开放<br>Ca²⁺ 内流</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">突触小泡融合<br>神经递质释放</div>
+            <div class="fd-arrow">→<br>突触间隙</div>
+            <div class="fd-node fn-hormone">结合突触后膜<br>受体 → 产生<br>EPSP/IPSP</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">递质被降解/<br>重摄取/扩散<br>信号终止</div>
+        </div>
+    </div>
+
+    <div class="info-box blue">
+        <div class="box-title">💡 EPSP vs IPSP</div>
+        <p><strong>EPSP（兴奋性突触后电位）</strong>：神经递质使突触后膜去极化（更接近阈值），促进动作电位产生。</p>
+        <p><strong>IPSP（抑制性突触后电位）</strong>：使突触后膜超极化（远离阈值），降低动作电位产生可能性。</p>
+        <p>一个神经元可以同时接受数百到数千个突触输入，最终决定是否产生动作电位的是所有 EPSP 和 IPSP 的<strong>空间+时间总和</strong>——这是神经系统信息整合的基本单元。</p>
+    </div>
+
+    <!-- 二、主要神经递质 -->
+    <h2 id="二主要神经递质功能一览">二、主要神经递质：功能一览</h2>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>神经递质</th><th>主要位置</th><th>主要功能</th><th>异常时的后果</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>乙酰胆碱（ACh）</strong></td>
+                    <td>神经肌肉接头、副交感神经末梢、基底核</td>
+                    <td>骨骼肌收缩；副交感效应；记忆和注意力</td>
+                    <td>ACh 受体缺失→重症肌无力；胆碱能不足→阿尔茨海默症</td>
+                </tr>
+                <tr>
+                    <td><strong>多巴胺（DA）</strong></td>
+                    <td>中脑腹侧被盖区→伏隔核（奖赏回路）；黑质→纹状体（运动控制）</td>
+                    <td>期待、动机、奖赏预测；精细运动控制</td>
+                    <td>多巴胺↓→帕金森病（运动僵硬）；多巴胺通路异常→精神分裂症；过度激活奖赏回路→成瘾</td>
+                </tr>
+                <tr>
+                    <td><strong>血清素（5-HT）</strong></td>
+                    <td>中缝核→全脑广泛投射；肠道（90%！）</td>
+                    <td>情绪稳定、焦虑调节；睡眠；肠蠕动</td>
+                    <td>5-HT 不足→抑郁/焦虑（SSRI 抗抑郁药正是升高突触间隙5-HT）</td>
+                </tr>
+                <tr>
+                    <td><strong>去甲肾上腺素（NE）</strong></td>
+                    <td>蓝斑核；交感神经节后纤维</td>
+                    <td>觉醒、警觉、战斗-逃跑应激反应</td>
+                    <td>NE 系统过度激活→焦虑、PTSD；NE 不足→注意力下降（ADHD部分机制）</td>
+                </tr>
+                <tr>
+                    <td><strong>GABA</strong></td>
+                    <td>脑内最广泛的<strong>抑制性</strong>递质</td>
+                    <td>降低神经元兴奋性；抗焦虑；镇静</td>
+                    <td>GABA 不足→焦虑/惊厥。酒精/苯二氮卓类（地西泮）增强 GABA 受体→镇静</td>
+                </tr>
+                <tr>
+                    <td><strong>谷氨酸（Glu）</strong></td>
+                    <td>脑内最广泛的<strong>兴奋性</strong>递质</td>
+                    <td>学习记忆（LTP长时程增强）；感觉传导</td>
+                    <td>过多→神经毒性（脑缺血时谷氨酸泄漏大量杀死神经元）</td>
+                </tr>
+                <tr>
+                    <td><strong>腺苷（Adenosine）</strong></td>
+                    <td>全脑广泛分布</td>
+                    <td>睡眠压力积累；神经元活动抑制</td>
+                    <td>腺苷↑→困倦感；咖啡因阻断腺苷受体→清醒</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 三、咖啡因机制 -->
+    <h2 id="三咖啡因清醒的机制">三、咖啡因：清醒的机制</h2>
+
+    <div class="flow-diagram">
+        <div class="fd-title">☕ 咖啡因清醒机制</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">清醒时间↑<br>神经元活动↑</div>
+            <div class="fd-arrow">→<br>ATP消耗</div>
+            <div class="fd-node fn-default">腺苷（副产物）<br>在脑内积累</div>
+            <div class="fd-arrow">→<br>结合受体</div>
+            <div class="fd-node fn-alert">腺苷受体激活<br>→ 神经元活动↓<br>→ 困倦感</div>
+        </div>
+        <div style="text-align:center;margin:10px 0;font-weight:bold;color:#0e7490;">⬇️ 咖啡因的作用</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-brain">咖啡因分子<br>（结构类似腺苷）</div>
+            <div class="fd-arrow">→<br>竞争性结合</div>
+            <div class="fd-node fn-organ">占据腺苷受体<br>（但不激活）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">腺苷无法结合<br>→ 困倦感被屏蔽<br>→ DA/NE间接升高</div>
+        </div>
+    </div>
+
+    <div class="info-box yellow">
+        <div class="box-title">⚠️ 咖啡因的四个重要细节</div>
+        <p>① <strong>腺苷仍在积累</strong>：咖啡因只是"挡住了感受器"，腺苷本身仍在持续积累。咖啡因代谢后，堆积的腺苷迅速结合受体→"咖啡崩"（crash），更困。</p>
+        <p>② <strong>半衰期约5-6小时</strong>：下午2点喝的咖啡，晚上8点仍有半量在血中。会影响深睡眠质量（即使入睡正常）。</p>
+        <p>③ <strong>耐受性</strong>：长期喝咖啡 → 脑内腺苷受体上调（数量增多）→ 需要更多咖啡因才能达到同等效果 → 这就是咖啡耐受的机制。</p>
+        <p>④ <strong>最佳时机</strong>：皮质醇（觉醒激素）在起床后1-2小时内最高，本身就能维持清醒。此时喝咖啡意义不大且加速耐受。起床后90分钟后再喝，效果最佳。</p>
+    </div>
+
+    <!-- 四、多巴胺 -->
+    <h2 id="四多巴胺是期待不是快乐">四、多巴胺：是"期待"，不是"快乐"</h2>
+
+    <div class="info-box green">
+        <div class="box-title">🔬 多巴胺的真实角色（Schultz实验）</div>
+        <p>经典实验（Wolfram Schultz, 1990s）：给猴子提示音后提供食物，测量多巴胺神经元活动：</p>
+        <ul>
+            <li><strong>未训练时</strong>：得到食物时多巴胺爆发（食物本身是奖励）</li>
+            <li><strong>训练后</strong>：<strong>听到提示音时</strong>多巴胺就爆发了（不再等食物），得到食物时反而没有多巴胺变化</li>
+            <li><strong>取消提示音后给食物</strong>：多巴胺反而<strong>下降</strong>（预测错误，负信号）</li>
+        </ul>
+        <p>结论：多巴胺编码的是<strong>奖赏预测误差（Reward Prediction Error）</strong>——期待到来时升高，超出预期时升高，未实现预期时下降。它是"期待/动机"信号，不是"快乐"本身。</p>
+    </div>
+
+    <div class="life-example">
+        <strong>案例：为什么刷短视频那么上瘾？</strong><br>
+        短视频平台的算法本质上是一个<strong>随机奖赏调度系统（Variable Ratio Reinforcement）</strong>，是强化成瘾性最强的奖赏类型：<br>
+        → 你不知道下一条视频是不是你喜欢的（随机性）<br>
+        → 这种不确定性让多巴胺系统持续保持高度激活（期待状态）<br>
+        → 有趣的视频出现 → 短暂多巴胺爆发（奖赏实现）<br>
+        → 无聊视频 → 多巴胺轻微下降（驱动你继续刷，寻找"下一次"）<br><br>
+        这与老虎机成瘾的机制完全相同。真正的"快乐"（享受某件事本身）涉及的是阿片系统，而不是多巴胺系统——这就是为什么人们可以一直刷但刷完并不开心。
+    </div>
+
+    <!-- 五、自主神经系统 -->
+    <h2 id="五自主神经系统两套调控模式">五、自主神经系统：两套调控模式</h2>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>特征</th><th>交感神经（SNS）</th><th>副交感神经（PNS）</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>功能模式</td><td>战斗-逃跑（Fight-or-Flight）</td><td>休息-消化（Rest-and-Digest）</td></tr>
+                <tr><td>来源</td><td>胸腰段脊髓（T1-L2）</td><td>脑干（III/VII/IX/X脑神经）+ 骶段</td></tr>
+                <tr><td>节前/节后纤维</td><td>节前短/节后长</td><td>节前长/节后短</td></tr>
+                <tr><td>节后递质</td><td>去甲肾上腺素（NE）</td><td>乙酰胆碱（ACh）</td></tr>
+                <tr><td>心脏效应</td><td>心率↑ / 收缩力↑</td><td>心率↓ / 收缩力↓</td></tr>
+                <tr><td>消化道</td><td>抑制蠕动和分泌</td><td>促进蠕动和分泌</td></tr>
+                <tr><td>瞳孔</td><td>散大</td><td>缩小</td></tr>
+                <tr><td>汗腺（手掌）</td><td>刺激出汗（ACh，不是NE！）</td><td>无支配</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="info-box yellow">
+        <div class="box-title">💡 手掌汗腺的特殊性</div>
+        <p>大部分身体的汗腺由交感神经控制，释放的递质是<strong>乙酰胆碱（ACh）</strong>，而不是典型的NE——这是唯一由交感神经但用ACh控制的效应器（正常交感用NE）。</p>
+        <p>手掌/腋窝/额部的汗腺（精神性出汗）由交感胆碱能纤维控制，这些纤维来自 T2-T4 交感节。情绪压力激活交感神经 → 手掌出汗（而非体温高）。</p>
+    </div>
+
+    <!-- 六、ETS手术 - 详细个人案例 -->
+    <h2 id="六深度解析ets-手术的完整生理机制">六、深度解析：ETS 手术的完整生理机制</h2>
+
+    <div class="personal-case">
+        <div class="box-title">🔬 个人关联：ETS 手术全程解析</div>
+        <h4>① 手汗症（Hyperhidrosis）的机制</h4>
+        <p>手掌汗腺由以下路径支配：</p>
+        <div class="flow-diagram" style="margin:12px 0;">
+            <div class="fd-title">🫀 手掌出汗的神经通路</div>
+            <div class="fd-chain">
+                <div class="fd-node fn-brain">大脑皮层/<br>下丘脑<br>（情绪/体温）</div>
+                <div class="fd-arrow">→<br>脊髓前外侧柱</div>
+                <div class="fd-node fn-default">胸段脊髓<br>T2-T4 侧角<br>（节前神经元）</div>
+                <div class="fd-arrow">→<br>白交通支</div>
+                <div class="fd-node fn-organ">胸交感神经链<br>T2-T4 神经节<br>（节后神经元）</div>
+                <div class="fd-arrow">→<br>ACh 递质</div>
+                <div class="fd-node fn-result">手掌汗腺<br>M 受体激活<br>→ 出汗</div>
+            </div>
+        </div>
+        <p>手汗症患者这条通路的兴奋性过高，轻微情绪刺激即大量出汗。</p>
+
+        <h4>② ETS 手术的切除位点</h4>
+        <p>ETS（胸腔镜交感神经切除术，Endoscopic Thoracic Sympathectomy）在 T3 或 T4 水平<strong>夹闭/切断交感神经链</strong>。切断位置在胸腔内交感干（Sympathetic Chain），阻断 T2-T4 节前纤维传入。</p>
+        <p>手术后：手掌汗腺失去交感神经支配 → 手掌不再出汗（效果确切，几乎100%）。</p>
+
+        <h4>③ 代偿性出汗（Compensatory Hyperhidrosis）</h4>
+        <p>这是 ETS 最重要的副作用（发生率 70-90%）：</p>
+        <div class="flow-diagram" style="margin:12px 0;">
+            <div class="fd-title">🌡️ 代偿性出汗的机制</div>
+            <div class="fd-chain">
+                <div class="fd-node fn-start">手掌出汗消失<br>（散热能力↓）</div>
+                <div class="fd-arrow">→<br>下丘脑感知</div>
+                <div class="fd-node fn-alert">核心体温略↑<br>散热不足</div>
+                <div class="fd-arrow">→<br>代偿</div>
+                <div class="fd-node fn-organ">未被切断的<br>交感支配区<br>过度出汗</div>
+                <div class="fd-arrow">→</div>
+                <div class="fd-node fn-result">背部/胸部/腹部/<br>大腿出汗增多<br>（代偿性）</div>
+            </div>
+        </div>
+        <p>代偿性出汗的区域和严重程度因人而异，但通常躯干部位（背、腹）最明显。它不是手术失误，而是体温调节系统的必然代偿——切掉了一个散热点，身体会激活其他散热区域来维持散热总量不变（稳态，第1章）。</p>
+
+        <h4>④ 对心率的影响</h4>
+        <p>支配心脏的交感加速纤维主要来自 T1-T4，经<strong>星状神经节（C7-T1）</strong>中继后到心脏。ETS 标准位置（T3/T4）可能轻度影响心脏交感供应，但星状神经节完整时影响有限。</p>
+        <ul>
+            <li>部分患者术后静息心率轻度升高（约 5-10 bpm），原因是交感/副交感平衡轻度改变</li>
+            <li>运动最大心率通常无明显变化</li>
+            <li>心脏的自律性（SA节自发放电）不受影响——切断交感不会停跳</li>
+        </ul>
+
+        <h4>⑤ 总结</h4>
+        <p>ETS 手术是一个"用已知副作用换取目标效果"的权衡手术：代偿性出汗是客观存在的，了解其机制可以更好地理解自身的体温调节变化，无需过度担忧，但也需要在手术前充分知情。</p>
+    </div>
+
+    <!-- CS类比 -->
+    <h2 id="七-cs-类比神经系统--消息队列--事件驱动架构">七、💻 CS 类比：神经系统 = 消息队列 + 事件驱动架构</h2>
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：神经递质系统 = 进程间通信（IPC）机制</div>
+        <ul>
+            <li><code>突触</code> = 消息队列（Message Queue）：发送者（突触前）异步发布消息（神经递质），接收者（突触后受体）订阅并处理</li>
+            <li><code>多巴胺</code> = 奖赏预测信号 / 任务调度优先级：不是"完成任务的奖励"，而是"这个任务值得执行"的优先级标记</li>
+            <li><code>腺苷</code> = 系统负载指示器：运行时间越长，腺苷（ATP副产物）积累越多，系统自动降频（困倦）——类似CPU温度过高降频保护</li>
+            <li><code>咖啡因</code> = 屏蔽负载警报的补丁（Hack）：不减少负载，只是屏蔽了"过热报警"，让系统继续运行但不减少磨损</li>
+            <li><code>交感神经激活</code> = 切换到高性能模式（Performance Mode）：CPU全速运行，I/O优先级重排，非关键后台进程（消化）降优先级</li>
+            <li><code>副交感神经</code> = 省电/恢复模式（Power Save + Repair Mode）：降低主频，启动维护进程（消化、组织修复）</li>
+            <li><code>GABA</code> = 全局中断屏蔽（Global Interrupt Mask）：降低整个系统的"中断响应灵敏度"，防止无效噪声信号触发高耗能响应</li>
+        </ul>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="八常见误区">八、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：多巴胺让你感到快乐，所以越多越好</span>
+        <span class="truth">✅ 真相：多巴胺让你感到"期待"和"动机"，真正的愉悦感主要来自内源性阿片类（β-endorphin）系统。过多刺激多巴胺系统（如成瘾性物质）会导致受体下调，需要更多刺激才能激活——这正是成瘾机制的核心。"多巴胺排毒"（dopamine detox）说的是减少低成本高频刺激，让受体敏感性恢复。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：抗抑郁药（SSRI）直接增加大脑血清素让人快乐</span>
+        <span class="truth">✅ 真相：SSRI 阻断血清素转运体，提升突触间隙5-HT浓度是对的，但"直接让人快乐"是误解。SSRI 需要2-4周才起效，且不是因为5-HT即刻升高（这秒级就发生了）——真正的效果可能来自突触可塑性改变、神经新生（neurogenesis）、受体下游信号适应等长期变化。SSRI 更准确地说是"情绪调节剂"而非"快乐药"。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：我们只用了10%的大脑</span>
+        <span class="truth">✅ 真相：完全的神话。fMRI 研究显示，所有脑区都有活动（不同任务激活不同区域），没有长期不活动的区域。大脑占体重2%却消耗约20%的能量——进化不会保留昂贵但无用的组织。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：咖啡因是"提供能量"的</span>
+        <span class="truth">✅ 真相：咖啡因本身没有热量，不提供 ATP 能量。它只是屏蔽了让你感到疲劳的腺苷信号。真正的"能量"来自食物中的糖/脂肪。咖啡因给你的是"感知上的清醒"，不是真实的能量补充——疲劳仍然积累，只是你感觉不到了。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="九病理预告">九、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">帕金森病（Parkinson's Disease）</span>：黑质多巴胺能神经元进行性死亡 → 纹状体多巴胺减少 → 运动控制失调 → 静止性震颤/肌强直/运动迟缓。左旋多巴（L-DOPA）是补充多巴胺的一线治疗。</p>
+        <p>👉 <span class="condition">癫痫（Epilepsy）</span>：大脑神经元异常同步放电（谷氨酸过度激活/GABA抑制不足）→ 意识/运动/感觉的发作性改变。不同类型癫痫（部分性/全身性）对应不同脑区的异常放电起源。</p>
+        <p>👉 <span class="condition">重症肌无力（MG）</span>：自身抗体攻击神经肌肉接头的 ACh 受体 → ACh 无法有效结合 → 肌肉收缩无力（眼睑下垂/吞咽困难/呼吸困难）。胸腺瘤与MG高度相关。</p>
+        <p>👉 <span class="condition">自主神经病变</span>：糖尿病等疾病损伤自主神经 → 各脏器自主调节失调：直立性低血压（压力感受器反射减弱）/胃排空障碍/膀胱功能障碍/心率变异性丧失。往往是糖尿病晚期的严重并发症之一。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter7.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第7章 · 泌尿生理</div>
+        </a>
+        <a href="chapter9.html" class="next">
+            <div><span class="nav-label">下一章</span>第9章 · 肌肉生理</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一突触化学信号的接力棒">一、突触传递</a></li>
+            <li><a href="#二主要神经递质功能一览">二、神经递质总览</a></li>
+            <li><a href="#三咖啡因清醒的机制">三、咖啡因机制</a></li>
+            <li><a href="#四多巴胺是期待不是快乐">四、多巴胺真相</a></li>
+            <li><a href="#五自主神经系统两套调控模式">五、自主神经系统</a></li>
+            <li><a href="#六深度解析ets-手术的完整生理机制">六、🔬 ETS手术解析</a></li>
+            <li><a href="#七-cs-类比神经系统--消息队列--事件驱动架构">七、💻 CS类比</a></li>
+            <li><a href="#八常见误区">八、⚠️ 误区</a></li>
+            <li><a href="#九病理预告">九、🔮 病理预告</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">突触 Synapse</a></li>
+            <li><a href="glossary.html">腺苷 Adenosine</a></li>
+            <li><a href="glossary.html">多巴胺 Dopamine</a></li>
+            <li><a href="glossary.html">GABA 抑制性递质</a></li>
+            <li><a href="glossary.html">EPSP/IPSP</a></li>
+            <li><a href="glossary.html">ETS 交感神经切断</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第8章 · 神经生理</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter7.html">← 上一章</a> &nbsp;·&nbsp; <a href="chapter9.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

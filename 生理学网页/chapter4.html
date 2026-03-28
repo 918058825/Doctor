@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第4章 · 循环生理 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第4章 · 循环生理</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第一阶段 · 基础核心 · 第 4 章</div>
+    <h1>循环生理</h1>
+    <p class="subtitle">心脏是一台每天跳 10 万次、终身不停机的液压泵——它是怎么做到的？</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐⭐⭐ 最核心，理解后整个生理学变清晰</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第8章（循环系统）</strong> — 你已经了解了心脏的四个腔室、瓣膜和大血管结构，这章来讲这套结构是怎么协调工作的。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>心脏不需要大脑命令就能自己跳动——"自律性"是什么意思？</li>
+            <li>测血压是量什么？120/80 的两个数字各代表什么？</li>
+            <li>运动时心跳加速是谁命令的？停止运动后为什么不会立刻停下来？</li>
+        </ul>
+    </div>
+
+    <!-- 一、心脏的自律性 -->
+    <h2 id="一心脏的自律性不需要大脑的起搏器">一、心脏的自律性：不需要大脑的起搏器</h2>
+
+    <p>在解剖学里你了解了心脏的结构，现在要理解一个关键概念：<strong>心肌细胞是可以自发去极化的</strong>——即使没有神经输入，心脏也能规律跳动。这叫做<strong>自律性（Automaticity）</strong>。</p>
+
+    <h3>心脏传导系统：电信号的路径</h3>
+    <p>心脏有一套专门的电信号传导路径，控制各部分的收缩顺序，确保血液被正确泵出：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">⚡ 心脏电传导路径</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">窦房结<br>SA Node<br>（心脏起搏点）</div>
+            <div class="fd-arrow">→<br><small>0.04s</small></div>
+            <div class="fd-node fn-organ">房室结<br>AV Node<br>（延迟0.1s）</div>
+            <div class="fd-arrow">→<br><small>0.1s</small></div>
+            <div class="fd-node fn-default">希氏束<br>Bundle of His</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">左右束支<br>Bundle Branches</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">浦肯野纤维<br>Purkinje Fibers<br>→心室收缩</div>
+        </div>
+    </div>
+
+    <div class="info-box blue">
+        <div class="box-title">🔑 窦房结：主起搏器</div>
+        <p>窦房结（SA Node）位于右心房上方，自发放电频率约 60-100 次/分，是整个心脏的"节拍器"。</p>
+        <p>AV Node 处有 0.1 秒的传导延迟，确保心房收缩完成、血液进入心室后，心室才开始收缩——这是物理上的"先装满再泵出"设计。</p>
+        <p>若窦房结失效，AV Node 会接管（40-60次/分）；再不行，浦肯野纤维也能起搏（20-40次/分）——这是多级备用机制。</p>
+    </div>
+
+    <h3>心电图（ECG/EKG）：电信号的体表记录</h3>
+    <p>心脏每次跳动的电活动会传到体表，用电极可以记录。心电图上的几个波形对应传导过程：</p>
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>心电图波形</th><th>对应事件</th><th>正常时间</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>P 波</td><td>心房去极化（窦房结→心房）</td><td>约 0.08s</td></tr>
+                <tr><td>QRS 复合波</td><td>心室去极化（心室开始收缩）</td><td>约 0.08s</td></tr>
+                <tr><td>T 波</td><td>心室复极化（心室舒张恢复）</td><td>约 0.16s</td></tr>
+                <tr><td>P-R 间期</td><td>心房→心室传导时间（含AV延迟）</td><td>0.12-0.20s</td></tr>
+                <tr><td>Q-T 间期</td><td>心室去极化+复极化总时间</td><td>约 0.35s</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 二、心动周期 -->
+    <h2 id="二心动周期每次心跳的两个阶段">二、心动周期：每次心跳的两个阶段</h2>
+
+    <p>以 75 次/分钟计算，每个心动周期约 0.8 秒：</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🫀 心动周期（0.8秒/次）</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">心房收缩<br>0.1s<br>（补充充盈）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">等容收缩期<br>0.05s<br>（压力↑瓣膜未开）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-organ">射血期<br>0.25s<br>（主动脉瓣开放）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">等容舒张期<br>0.06s<br>（压力↓瓣膜关闭）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">充盈期<br>0.43s<br>（二尖瓣开放）</div>
+        </div>
+    </div>
+
+    <div class="info-box green">
+        <div class="box-title">💡 心脏"休息时间"很长</div>
+        <p>在 0.8 秒的心动周期中，心室收缩期约 0.3 秒，舒张期（充盈）约 0.5 秒。心脏每天工作约 1/3 的时间，休息约 2/3。</p>
+        <p>心率过快时（如 >150 次/分），舒张期大幅缩短：一是充盈时间不足（每搏量下降），二是冠状动脉主要在舒张期供血，心率过快会导致心肌缺血。这就是为什么持续极高心率是危险的。</p>
+    </div>
+
+    <!-- 三、心输出量 -->
+    <h2 id="三心输出量供血能力的总指标">三、心输出量：供血能力的总指标</h2>
+
+    <div class="mechanism-box">
+        <div class="mb-title">⚙️ 核心公式</div>
+        <div class="mb-formula">心输出量（CO）= 心率（HR）× 每搏量（SV）</div>
+        <div class="mb-formula">正常静息值：CO = 70次/分 × 70 mL/次 ≈ 4.9 L/分</div>
+        <div class="mb-formula">运动时峰值：CO 可达 20-25 L/分（心率+每搏量均增加）</div>
+    </div>
+
+    <h3>影响每搏量的三个因素</h3>
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>因素</th><th>机制</th><th>临床意义</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>前负荷（Preload）</strong><br>Frank-Starling 定律</td>
+                    <td>心室舒张末期充盈量 ↑ → 心肌拉伸 → 收缩力 ↑ → SV ↑</td>
+                    <td>补液/输血可短期提升前负荷增加CO；心衰时心脏扩大是代偿机制</td>
+                </tr>
+                <tr>
+                    <td><strong>后负荷（Afterload）</strong></td>
+                    <td>心室射血时要克服的主动脉压力；血压越高，后负荷越大，SV越难维持</td>
+                    <td>高血压 → 长期高后负荷 → 心肌肥厚 → 最终心衰</td>
+                </tr>
+                <tr>
+                    <td><strong>心肌收缩力（Contractility）</strong></td>
+                    <td>交感神经/儿茶酚胺 → Ca²⁺内流增加 → 肌丝收缩更强</td>
+                    <td>肾上腺素直接增强收缩力；心脏骤停时肾上腺素是一线用药</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 四、血压 -->
+    <h2 id="四血压形成与调节">四、血压：形成与调节</h2>
+
+    <h3>血压的形成</h3>
+    <div class="mechanism-box">
+        <div class="mb-title">⚙️ 血压公式</div>
+        <div class="mb-formula">平均动脉压（MAP）= 心输出量（CO）× 总外周阻力（TPR）</div>
+        <div class="mb-formula">收缩压（Systolic）≈ 120 mmHg ← 心室收缩射血峰压</div>
+        <div class="mb-formula">舒张压（Diastolic）≈ 80 mmHg ← 心室舒张期主动脉弹性维持</div>
+        <div class="mb-formula">脉压差 = 收缩压 - 舒张压 = 约 40 mmHg</div>
+    </div>
+
+    <h3>压力感受器反射：血压的分钟级快速调节</h3>
+
+    <div class="fd-loop-box">
+        <div class="fd-loop-title">血压升高时的负反馈调节 <span class="fd-loop-badge">负反馈</span></div>
+        <div class="fd-chain">
+            <div class="fd-node fn-alert">血压升高</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-brain">颈动脉窦/主动脉弓<br>压力感受器兴奋↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-default">延髓心血管中枢<br>交感↓ 副交感↑</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-hormone">心率↓<br>心肌收缩力↓<br>血管舒张</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">CO↓ + TPR↓<br>→血压回降</div>
+        </div>
+        <div class="fd-loop-feedback-row">
+            <div class="fd-arrow feedback">↩ 负反馈：血压恢复正常后，感受器活动减弱，调节停止</div>
+        </div>
+    </div>
+
+    <p>这就是为什么健康人在改变体位（如突然站起来）时，血压只短暂波动——压力感受器反射在几秒内就完成了补偿。<strong>直立性低血压</strong>就是这个反射反应延迟或减弱的结果。</p>
+
+    <h3>RAAS：长期血压调节</h3>
+    <p>压力感受器管"秒级-分钟级"调节，<strong>肾素-血管紧张素-醛固酮系统（RAAS）</strong>管"小时-天级"调节，主要通过控制肾脏排钠量来调节血容量，进而调节血压。（详见第7章泌尿生理）</p>
+
+    <!-- 五、自主神经对心脏的控制 -->
+    <h2 id="五自主神经对心脏的调控">五、自主神经对心脏的调控</h2>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>神经系统</th><th>心率</th><th>收缩力</th><th>神经递质</th><th>受体</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>交感神经（战斗-逃跑）</td><td>↑ 增快</td><td>↑ 增强</td><td>去甲肾上腺素（NE）</td><td>β₁受体</td></tr>
+                <tr><td>副交感神经（迷走神经）</td><td>↓ 减慢</td><td>↓ 减弱</td><td>乙酰胆碱（ACh）</td><td>M₂受体</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="life-example">
+        <strong>案例：运动后心率为何不立刻回落？</strong><br>
+        运动开始时，交感神经激活，NE 增加，心率快速上升。运动结束后，交感神经活动减弱，但血液中已释放的 NE 不会立刻消失，需要数分钟代谢降解。同时，体温升高、乳酸堆积、血CO₂升高也会持续刺激心率。<br>
+        因此心率"有惯性"——剧烈运动后回到静息心率通常需要 5-10 分钟以上。心率越快恢复正常，心肺功能越好。
+    </div>
+
+    <!-- ETS手术 -->
+    <div class="personal-case">
+        <div class="box-title">🔬 个人相关：ETS 手术与心率的关系</div>
+        <p><strong>ETS（胸腔镜交感神经切断术）</strong>的手术位点在 T3 或 T4 胸段交感神经节。支配心脏的交感神经主要来自 T1-T5 脊髓侧角，经过颈上/中/下神经节（星状神经节）到达心脏。</p>
+        <p>T3/T4 位置的手术通常不会直接切断心脏的主要交感供应（星状神经节在 T1 水平），但可能影响部分心脏加速纤维：</p>
+        <ul>
+            <li><strong>实际观察</strong>：多数 ETS 术后患者静息心率会<strong>轻度升高</strong>（约增加 5-10 bpm），原因是副交感/交感平衡改变，而非单纯失去交感支配</li>
+            <li><strong>运动时心率响应</strong>：部分患者运动时心率上升略慢或峰值略低，但通常仍在正常运动范围</li>
+            <li><strong>不会心脏停跳</strong>：心脏的自律性（窦房结自发放电）不依赖交感神经——没有任何神经输入时，心脏仍能以 60-100 次/分自主跳动</li>
+        </ul>
+    </div>
+
+    <!-- 六、双循环系统 -->
+    <h2 id="六体循环与肺循环串联的双泵系统">六、体循环与肺循环：串联的双泵系统</h2>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🔄 双循环路径</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-organ">左心室<br>（高压泵）</div>
+            <div class="fd-arrow">→<br>体循环</div>
+            <div class="fd-node fn-default">全身毛细血管<br>（组织O₂交换）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">右心房/室<br>（低压泵）</div>
+            <div class="fd-arrow">→<br>肺循环</div>
+            <div class="fd-node fn-hormone">肺毛细血管<br>（气体交换）</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">左心房<br>（循环起点）</div>
+        </div>
+    </div>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>特征</th><th>体循环（左心）</th><th>肺循环（右心）</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>工作压力</td><td>约 120/80 mmHg</td><td>约 25/8 mmHg</td></tr>
+                <tr><td>血管阻力</td><td>高（全身小动脉）</td><td>低（肺血管顺应性好）</td></tr>
+                <tr><td>心室壁厚度</td><td>厚（约1cm）</td><td>薄（约0.3cm）</td></tr>
+                <tr><td>作用</td><td>向全身组织供O₂/养分</td><td>让血液在肺部充氧</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>左右心室是串联的——右心输出量等于左心输入量，任何一侧衰竭都会影响另一侧。</p>
+
+    <!-- CS类比 -->
+    <h2 id="七-cs-类比循环系统--双泵液压网络">七、💻 CS 类比：循环系统 = 双泵液压网络</h2>
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：循环系统 = 分布式液压计算集群</div>
+        <ul>
+            <li><code>窦房结</code> = 时钟振荡器（Crystal Oscillator）：产生规律的电脉冲触发心跳；自主运行，不需要外部时钟输入</li>
+            <li><code>AV Node 延迟</code> = 流水线同步信号（Pipeline Stall）：确保上游（心房）操作完成后，下游（心室）才开始——顺序依赖保证</li>
+            <li><code>左心室</code> = 高压大功率泵（High-Voltage Rail）：驱动整个体循环；电源需求大，壁厚</li>
+            <li><code>右心室</code> = 低压辅助泵（Low-Voltage Rail）：驱动肺循环；路径短阻力小，省力</li>
+            <li><code>Frank-Starling 定律</code> = 自适应功率调节：输入越多（前负荷大），输出功率自动增加——无需外部控制的自适应系统</li>
+            <li><code>压力感受器反射</code> = 闭环 PID 控制器（参考第1章）：实时监测血压，秒级调整心率+血管张力</li>
+            <li><code>心电图（ECG）</code> = 系统总线信号示波器：可以无创地观察整个"处理器"的电气活动时序</li>
+        </ul>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="八常见误区">八、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：心脏休息时不需要供血（冠心病患者才需要注意）</span>
+        <span class="truth">✅ 真相：心肌即使在舒张期也在持续消耗氧气和养分，且冠状动脉主要在<strong>心室舒张期</strong>供血（收缩期冠脉被压缩）。心率过快、舒张期过短 → 冠脉供血时间减少 → 心肌缺血。运动时心率虽加快，但血压升高维持冠脉灌注；休息时正常心率范围内是安全的。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：血压高了多喝水就能降</span>
+        <span class="truth">✅ 真相：多喝水→血容量↑→心输出量↑→血压实际会短暂升高，不是降压手段。高血压是因为血管张力异常（TPR升高），需要对因治疗（减重、限盐、药物），而非多喝水。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：心跳越慢越健康</span>
+        <span class="truth">✅ 真相：运动员的静息心率 40-60 次/分是心脏效率高（每搏量大）的标志，属于健康。但非运动人群静息心率 &lt; 50 可能是病理性心动过缓（传导阻滞），需要检查。同样，&gt;100 的持续性心动过速也不正常。正常范围是 60-100 次/分。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：高血压只影响老年人</span>
+        <span class="truth">✅ 真相：长期精神压力高、缺乏运动、高盐饮食可以在年轻人中引起高血压。长期高血压造成的靶器官损害（左心室肥厚、肾小动脉硬化、视网膜病变）是累积性的，越早控制，预后越好。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="九病理预告">九、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">心房颤动（Atrial Fibrillation）</span>：心房肌出现多个异位起搏点，产生每分钟 300-600 次的无序电活动 → 心房失去有效收缩 → AV Node 随机传导 → 心室节律不规则。长期房颤的最大风险是心房血液淤滞形成血栓，脱落后导致脑卒中。</p>
+        <p>👉 <span class="condition">心肌梗死（MI）</span>：冠状动脉被血栓急性堵塞 → 心肌缺血超过20分钟即开始坏死 → 坏死心肌不能收缩 → 心输出量骤降 → 心源性休克或猝死。"时间就是心肌"——快速再通是治疗关键。</p>
+        <p>👉 <span class="condition">心力衰竭（Heart Failure）</span>：心脏泵血能力长期低于身体需求。Frank-Starling 代偿（心腔扩大）和神经体液代偿（交感激活）最终也失效，液体在肺（肺水肿）或全身（水肿）潴留。</p>
+        <p>👉 <span class="condition">主动脉瓣狭窄</span>：主动脉瓣口变窄 → 后负荷显著增加 → 左心室代偿性肥厚（心肌增厚但不扩张）→ 最终失代偿 → 心衰。常见于老年人钙化性瓣膜病，可通过经导管主动脉瓣置换（TAVR）治疗。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter3.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第3章 · 血液生理</div>
+        </a>
+        <a href="chapter5.html" class="next">
+            <div><span class="nav-label">下一章</span>第5章 · 呼吸生理</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一心脏的自律性不需要大脑的起搏器">一、心脏自律性</a></li>
+            <li><a href="#二心动周期每次心跳的两个阶段">二、心动周期</a></li>
+            <li><a href="#三心输出量供血能力的总指标">三、心输出量</a></li>
+            <li><a href="#四血压形成与调节">四、血压调节</a></li>
+            <li><a href="#五自主神经对心脏的调控">五、自主神经调控</a></li>
+            <li><a href="#六体循环与肺循环串联的双泵系统">六、双循环系统</a></li>
+            <li><a href="#七-cs-类比循环系统--双泵液压网络">七、💻 CS类比</a></li>
+            <li><a href="#八常见误区">八、⚠️ 误区</a></li>
+            <li><a href="#九病理预告">九、🔮 病理预告</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">窦房结 SA Node</a></li>
+            <li><a href="glossary.html">Frank-Starling定律</a></li>
+            <li><a href="glossary.html">心输出量 CO</a></li>
+            <li><a href="glossary.html">压力感受器反射</a></li>
+            <li><a href="glossary.html">MAP 平均动脉压</a></li>
+            <li><a href="glossary.html">前负荷/后负荷</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔗 本章关联</h3>
+        <ul class="toc-list">
+            <li>← <a href="chapter1.html">第1章：负反馈调节</a></li>
+            <li>← <a href="chapter2.html">第2章：动作电位</a></li>
+            <li>← <a href="chapter3.html">第3章：血液成分</a></li>
+            <li>→ <a href="chapter5.html">第5章：呼吸调节</a></li>
+            <li>→ <a href="chapter7.html">第7章：RAAS血压</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第4章 · 循环生理</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter3.html">← 上一章</a> &nbsp;·&nbsp; <a href="chapter5.html">下一章 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

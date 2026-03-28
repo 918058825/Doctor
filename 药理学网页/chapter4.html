@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 不良反应与耐药 — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>基础药理</span>
+  <span>›</span>
+  <span>第4章 不良反应与耐药</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">基础药理 · 第 4 章</div>
+  <h1>不良反应与耐药</h1>
+  <p class="hero-sub">ADR分类体系、高危药物相互作用黑名单，以及细菌耐药四大机制——从"副作用"到系统性风险管理</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+<!-- 模块1：承接导读 -->
+<div class="chapter-intro">
+  <div class="intro-links">
+    <span>本章衔接：</span>
+    <a href="chapter2.html">← 第2章 药动学（CYP）</a>
+    <a href="chapter3.html">← 第3章 TI与安全窗</a>
+    <a href="chapter5.html">第5章 心血管药 →</a>
+  </div>
+  <div class="hook-questions">
+    <div class="hook-q">🧬 青霉素过敏和阿司匹林胃溃疡，为什么分属完全不同的不良反应类型？如何区分A、B两型ADR？</div>
+    <div class="hook-q">🦠 细菌为什么会对抗生素"免疫"？耐药的四大分子机制是什么？</div>
+    <div class="hook-q">⚠️ 什么是"5个高危药物组合"？为什么某些药配伍会被明令禁止？</div>
+  </div>
+  <div class="drug-preview">
+    <span>本章核心内容：</span>
+    <span class="drug-pill">A型ADR（可预测）</span>
+    <span class="drug-pill">B型ADR（过敏/特异质）</span>
+    <span class="drug-pill">DRESS综合征</span>
+    <span class="drug-pill">β-内酰胺酶</span>
+    <span class="drug-pill">MRSA机制</span>
+    <span class="drug-pill">高危配伍禁忌</span>
+  </div>
+</div>
+
+<!-- 模块2：核心机制 -->
+<div class="section-card">
+  <h2>ADR分类：五型体系</h2>
+
+  <div class="four-questions">
+    <div class="fq-item">
+      <div class="fq-label">A型（Augmented）— 可预测</div>
+      <div class="fq-content">
+        <strong>药理作用增强所致，与剂量相关</strong><br>
+        发生率高（>95% ADR属于此类）<br>
+        死亡率低（可通过减量避免）<br>
+        <em>例：β阻滞剂→心动过缓；利尿剂→低钾血症；华法林过量→出血</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">B型（Bizarre）— 不可预测</div>
+      <div class="fq-content">
+        <strong>与药理作用无关，与个体体质相关</strong><br>
+        发生率低，但死亡率高<br>
+        不能通过减量避免，必须停药<br>
+        <em>例：青霉素过敏（IgE介导）；卡马西平→DRESS（HLA-B*1502）；磺胺→再障</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">C型（Chronic）— 长期用药</div>
+      <div class="fq-content">
+        长期用药后出现，停药可改善<br>
+        <em>例：长期类固醇→骨质疏松/Cushing征；长期PPI→低镁血症/C.diff风险↑；苯二氮卓→依赖</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">D/E/F型</div>
+      <div class="fq-content">
+        D型（Delayed）：延迟出现，如他汀→肌病（数月后）<br>
+        E型（End-of-use）：停药反应，如骤停β阻滞剂→反弹心绞痛<br>
+        F型（Failure）：治疗失败（通常药物相互作用所致）
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">细菌耐药四大机制</h3>
+  <div class="drug-flow">
+    <div class="flow-step">
+      <div class="flow-label">① 灭活酶</div>
+      <div class="flow-content">
+        产生分解抗生素的酶<br>
+        <strong>β-内酰胺酶</strong>水解青霉素环<br>
+        <strong>ESBL</strong>超广谱β-内酰胺酶<br>
+        氨基糖苷修饰酶
+      </div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step">
+      <div class="flow-label">② 靶位改变</div>
+      <div class="flow-content">
+        修改药物作用靶点<br>
+        <strong>MRSA</strong>：PBP2a突变，对所有β-内酰胺无效<br>
+        喹诺酮耐药：DNA旋转酶突变<br>
+        利福平耐药：RNA聚合酶突变
+      </div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step">
+      <div class="flow-label">③ 外排泵</div>
+      <div class="flow-content">
+        主动将抗生素泵出菌体<br>
+        <strong>多药外排泵</strong>（MDR泵）<br>
+        铜绿假单胞菌MexAB-OprM泵<br>
+        覆盖多类抗生素 → 多重耐药
+      </div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step">
+      <div class="flow-label">④ 通透性↓</div>
+      <div class="flow-content">
+        减少抗生素进入菌体<br>
+        外膜孔蛋白（porin）丢失<br>
+        <em>亚胺培南耐药铜绿</em><br>
+        生物膜形成（多重机制）
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">高危药物组合——配伍禁忌黑名单</h3>
+  <div class="adverse-box">
+    <h3>⚠️ 临床高危配伍（应尽量避免）</h3>
+    <div class="adverse-grid">
+      <div class="adverse-item">
+        <div class="adverse-myth">🔴 华法林 + 阿司匹林/NSAIDs</div>
+        <div class="adverse-logic">双重抗凝/抗血小板 → 严重出血风险；NSAIDs还可胃黏膜损伤<br>→ 若必须联用，需PPI保护+频繁INR监测</div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">🔴 阿片类 + 苯二氮卓</div>
+        <div class="adverse-logic">协同呼吸抑制 → 致死风险（美国每年数万人）<br>→ FDA黑框警告；必须联用时备纳洛酮</div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">🔴 MAO抑制剂 + 含5-HT药物（SSRIs/曲坦类/哌替啶）</div>
+        <div class="adverse-logic">5-HT综合征：高热、肌阵挛、精神状态改变、自主神经紊乱 → 致命<br>→ 停MAOIs后需等待2周（5半衰期）再换药</div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">🔴 他汀类 + CYP3A4强抑制剂</div>
+        <div class="adverse-logic">辛伐他汀/洛伐他汀 + 克拉霉素/伊曲康唑 → 他汀浓度↑10倍 → 横纹肌溶解<br>→ 感染期间暂停他汀或换瑞舒伐他汀/普伐他汀</div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">🔴 ACE抑制剂/ARB + 保钾利尿剂 + 大量补钾</div>
+        <div class="adverse-logic">三重保钾 → 高钾血症 → 心脏传导阻滞/室颤<br>→ 联用时必须监测血钾；肾功能减退者风险×3</div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">🔴 氟喹诺酮类 + QT延长药物（胺碘酮/氯丙嗪/西沙必利）</div>
+        <div class="adverse-logic">叠加QT延长 → 尖端扭转型室速（TdP）→ 猝死<br>→ 用药前检查基线QTc；电解质异常（低钾/低镁）增加风险</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块3：CS类比 -->
+<div class="section-card">
+  <h2>CS类比：耐药机制 = 系统安全攻防</h2>
+  <div class="cs-analogy">
+    <h3>🖥️ 细菌耐药 ≈ 黑客对付安全系统的四种策略</h3>
+    <div class="analogy-grid">
+      <div class="analogy-item">
+        <div class="analogy-concept">① 灭活酶（β-内酰胺酶）</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">SQL注入过滤绕过<br>
+          不阻止请求进入，而是在执行前解析并中和威胁<br>
+          <code>waf.intercept(antibiotic) → neutralized_payload</code><br>
+          克拉维酸（β-内酰胺酶抑制剂）= WAF规则更新，识别并拦截灭活酶
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">② 靶位改变（MRSA PBP2a）</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">API接口版本更迭，旧客户端失效<br>
+          <code>PBP2a = /api/v2/cell_wall_synthesis</code><br>
+          所有β-内酰胺类 = 旧版SDK，无法识别v2接口<br>
+          只有万古霉素（不同协议）才能识别新版接口
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">③ 外排泵（MDR）</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">防火墙+出口过滤<br>
+          任何进入系统的payload都被主动推送到/dev/null<br>
+          <code>while(antibiotic_detected): efflux_pump.push_out()</code><br>
+          同时覆盖多种"威胁" → 多重耐药，新药进去就被泵出
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">④ 通透性↓（孔蛋白丢失）</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">关闭所有公开端口<br>
+          <code>iptables -A INPUT -j DROP  # 关闭外膜孔蛋白</code><br>
+          药物根本无法进入菌体内部<br>
+          生物膜 = 在服务器外面再套一层物理隔离的防火墙房间
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块4：认知扩展 -->
+<div class="section-card">
+  <h2>认知扩展</h2>
+  <div class="cognitive-expand">
+    <h3>💡 扩展①：DRESS综合征——为什么某些过敏致死且无法预判？</h3>
+    <p>DRESS（药物反应伴嗜酸粒细胞增多和系统症状）是严重B型ADR，由卡马西平、别嘌醇、苯妥英、柳氮磺吡啶等引起，死亡率约10%。</p>
+    <p>关键发现：卡马西平诱发的DRESS与<strong>HLA-B*1502</strong>等位基因高度相关（95%以上案例携带此基因）——该基因在东南亚/华南人群中频率5–15%（欧洲仅0.1%）。</p>
+    <p><strong>临床启示</strong>：FDA/EMA建议亚裔患者使用卡马西平前进行HLA-B*1502基因检测。这是精准医学在ADR预防中的第一批成功案例之一。</p>
+    <p>别嘌醇相关严重ADR（SJS/TEN）与<strong>HLA-B*5801</strong>相关，同样在汉族人群中频率较高。</p>
+
+    <h3 style="margin-top:1.5rem">💡 扩展②：超级细菌的演化逻辑——为什么抗生素使用越多，耐药越快？</h3>
+    <p>这是一个完美的自然选择实验：</p>
+    <ol>
+      <li>正常菌群中随机存在少量携带耐药基因的细菌（突变或质粒获得）</li>
+      <li>抗生素清除敏感菌，耐药菌相对存活</li>
+      <li>耐药菌通过<strong>质粒水平转移</strong>（HGT）将耐药基因"拷贝"给其他细菌——这比基因突变快得多</li>
+      <li>抗生素暴露越频繁、疗程越不完整，筛选压力越大，耐药菌越快扩增</li>
+    </ol>
+    <p><strong>对策</strong>：完整疗程（避免"半途而废"留下耐药菌）；抗生素降阶梯（先广谱，培养结果出来后换窄谱）；避免病毒感染时使用抗生素。</p>
+  </div>
+</div>
+
+<!-- 模块5：临床逻辑 -->
+<div class="section-card">
+  <h2>临床逻辑</h2>
+  <div class="clinical-logic">
+    <h3>⚕️ 临床决策三要点</h3>
+    <div class="logic-points">
+      <div class="logic-point">
+        <div class="logic-num">01</div>
+        <div class="logic-content">
+          <strong>青霉素过敏史的处理——交叉过敏率只有1–2%</strong><br>
+          历史上认为青霉素过敏者头孢菌素交叉反应率高（10%），但现代数据显示实际只有1–2%。青霉素IgE介导的过敏反应10年后自然消退率>80%。<br>
+          <strong>对策</strong>：有严重过敏史（过敏性休克）者做皮试或选用无结构相关性抗生素；单纯"皮疹"史不等于真正过敏，需仔细鉴别
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">02</div>
+        <div class="logic-content">
+          <strong>5-HT综合征的识别三联征</strong><br>
+          精神状态改变（激越/混乱）+ 自主神经紊乱（高热/心动过速/出汗）+ 神经肌肉异常（肌阵挛/腱反射亢进/共济失调）<br>
+          <strong>高危联合</strong>：SSRI+MAOIs/曲坦类/哌替啶/右美沙芬/圣约翰草<br>
+          <strong>处理</strong>：停所有5-HT药；苯二氮卓控制激越；重症用赛庚啶（5-HT₂A拮抗）；MAOIs→其他5-HT药需等14天
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">03</div>
+        <div class="logic-content">
+          <strong>类固醇长期使用的"撤退陷阱"</strong><br>
+          外源性糖皮质激素（泼尼松/地塞米松）通过负反馈抑制下丘脑-垂体-肾上腺（HPA）轴，导致肾上腺萎缩。<br>
+          <strong>突然停药</strong> → 肾上腺危象（低血压/低血糖/高热）<br>
+          <strong>原则</strong>：使用>3周必须逐渐减量（每周减10–20%）；应激时（手术/感染）需额外补充类固醇（"应激剂量"）
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块6：副作用推导 -->
+<div class="section-card">
+  <h2>副作用推导：不良反应的系统性预测</h2>
+  <div class="adverse-box">
+    <h3>❌ 临床常见误判 vs ✅ 机制推导</h3>
+    <div class="adverse-grid">
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "氨基糖苷类剂量不大，不会有肾毒性"</div>
+        <div class="adverse-logic">
+          ✅ 推导：氨基糖苷类（庆大霉素/阿米卡星）肾毒性与<strong>累积剂量</strong>和<strong>谷浓度</strong>相关<br>
+          → 每日一次给药方案（post-antibiotic effect，PAE长）比分次给药肾毒性更低<br>
+          → 老年/脱水/合用利尿剂者风险×3；监测谷浓度&lt;2 mg/L
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "停用类固醇后症状复发，说明疾病还在，要继续用"</div>
+        <div class="adverse-logic">
+          ✅ 推导：停药后症状可能是肾上腺皮质功能不全（停药综合征），而非原病复发<br>
+          → 区别：停药综合征=低血压/乏力/低钠；疾病复发=原有症状回归<br>
+          → 不能因为症状复发就立刻增量，需先排除停药综合征
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "只用了一次青霉素，不可能过敏"</div>
+        <div class="adverse-logic">
+          ✅ 推导：过敏反应需要<strong>致敏期</strong>（首次暴露）和<strong>激发期</strong>（再次暴露）<br>
+          → 首次注射不会立即过敏；但致敏后，第二次注射（数天~数年后）可在数分钟内发生过敏性休克<br>
+          → 每次注射后观察至少30分钟是基本安全措施
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块7：药物关联网 -->
+<div class="section-card">
+  <h2>药物关联网</h2>
+  <div class="drug-network">
+    <div class="network-node">
+      <a href="chapter2.html">第2章</a>
+      <span>CYP450相互作用→最常见ADR源头</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter3.html">第3章</a>
+      <span>TI决定ADR发生的阈值</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter9.html">第9章</a>
+      <span>5-HT综合征：SSRI+MAOIs</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter11.html">第11章</a>
+      <span>耐药机制：β-内酰胺酶/MRSA/ESBL</span>
+    </div>
+    <div class="network-node">
+      <a href="interaction-guide.html">相互作用速查</a>
+      <span>高危配伍禁忌完整索引</span>
+    </div>
+    <div class="network-node">
+      <a href="drug-index.html">药物索引</a>
+      <span>按ADR分类快速查找</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- content-body -->
+
+<div class="sidebar">
+  <div class="toc-box">
+    <div class="toc-title">本章目录</div>
+    <div id="toc-list"></div>
+  </div>
+  <div class="key-formula">
+    <div class="formula-title">📋 ADR分型速记</div>
+    <div class="formula-item"><strong>A型</strong>：剂量相关，可预测</div>
+    <div class="formula-item"><strong>B型</strong>：特异质，不可预测</div>
+    <div class="formula-item"><strong>C型</strong>：长期用药相关</div>
+    <div class="formula-item"><strong>E型</strong>：停药反应</div>
+    <div class="formula-item">耐药4机制：灭活酶/靶位/外排/通透</div>
+  </div>
+</div>
+
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 第4章 不良反应与耐药</p>
+  <p><a href="chapter3.html">← 第3章</a> | <a href="index.html">目录</a> | <a href="chapter5.html">第5章 →</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

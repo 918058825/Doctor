@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12章 · 体温与代谢 — 生理学入门</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+    <a href="index.html">🏠 首页</a><span>›</span>
+    <span>第12章 · 体温与代谢</span>
+</div>
+
+<div class="page-hero">
+    <div class="chapter-badge">第四阶段 · 整合应用 · 第 12 章</div>
+    <h1>体温与代谢</h1>
+    <p class="subtitle">热力学第一定律对人体严格成立——但"吃多少"和"消耗多少"，两端都有惊人的个体差异。</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+    <!-- 导读 -->
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">📌 导读</span>
+            <span class="ci-phase">⭐⭐⭐⭐ 与日常健康和体重管理关联最强的章节</span>
+        </div>
+        <div class="ci-anatomy-link">
+            🔗 解剖学对应：<strong>第11章（下丘脑 / 神经系统）</strong>、<strong>第10章内分泌（甲状腺/皮质醇）</strong>、<strong>第9章（肌肉代谢）</strong> — 此章是前面所有章节的"能量视角"汇总。
+        </div>
+        <h3>学完这章，你能解释：</h3>
+        <ul class="intro-hooks">
+            <li>体脂很低为什么反而更怕冷？（绝热层 + 产热的双重逻辑）</li>
+            <li>发烧了该不该立刻退烧？（调定点机制 + 免疫意义）</li>
+            <li>为什么"吃不胖"是真实的生理现象，不是错觉？（TEF/NEAT/BMR的个体差异）</li>
+        </ul>
+    </div>
+
+    <!-- 一、体温稳态 -->
+    <h2 id="一体温调节下丘脑的恒温控制器">一、体温调节：下丘脑的恒温控制器</h2>
+
+    <p>核心体温维持在 <strong>36.5–37.5°C</strong>（直肠温度最准，口腔/腋窝分别低约 0.5/1°C）。<strong>下丘脑前部/视前区（POAH）</strong> 是体温调定点的所在。</p>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🌡️ 体温调节负反馈双向闭环</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">核心体温<br>传感器（POAH）</div>
+            <div class="fd-arrow">低于调定点</div>
+            <div class="fd-node fn-organ">产热机制启动<br>寒战 / 非寒战产热<br>血管收缩</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">体温回升<br>至调定点</div>
+        </div>
+        <div class="fd-chain" style="margin-top:8px;">
+            <div class="fd-node fn-start">核心体温<br>传感器（POAH）</div>
+            <div class="fd-arrow">高于调定点</div>
+            <div class="fd-node fn-alert">散热机制启动<br>出汗 / 皮肤血管扩张<br>行为降温</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-result">体温降低<br>至调定点</div>
+        </div>
+    </div>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>体温偏低时：产热机制</th><th>原理</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>寒战</strong>（shivering）</td>
+                    <td>骨骼肌快速不随意收缩（频率约10-20 Hz），将化学能直接转换为热能；无做外功，效率接近100%转热</td>
+                </tr>
+                <tr>
+                    <td><strong>非寒战产热</strong>（棕色脂肪 BAT）</td>
+                    <td>棕色脂肪细胞含大量线粒体，UCP1（解偶联蛋白1）使电子传递链产生的能量直接以热的形式释放，而非储存为ATP</td>
+                </tr>
+                <tr>
+                    <td><strong>皮肤血管收缩</strong></td>
+                    <td>减少体表散热（动静脉吻合关闭），手脚末梢变凉，保护核心温度</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="compare-table">
+        <table>
+            <thead>
+                <tr><th>体温偏高时：散热机制</th><th>原理</th><th>效能</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>蒸发（出汗）</strong></td>
+                    <td>汗液蒸发：每克水蒸发带走 2428 J 热量</td>
+                    <td>最高效，高温高湿下失效（空气已饱和水蒸气）</td>
+                </tr>
+                <tr>
+                    <td><strong>辐射</strong></td>
+                    <td>体表向环境发射红外线</td>
+                    <td>安静时占散热约 60%</td>
+                </tr>
+                <tr>
+                    <td><strong>对流</strong></td>
+                    <td>皮肤加热周围空气，热气上升带走热量；风扇加速此过程</td>
+                    <td>风速越大越有效（这就是为什么电风扇感觉凉爽）</td>
+                </tr>
+                <tr>
+                    <td><strong>传导</strong></td>
+                    <td>体表直接接触低温物体传热</td>
+                    <td>冰袋/冷水浴降温最快（水的导热系数是空气25倍）</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 二、发烧 -->
+    <h2 id="二发烧调定点上移不是失控过热">二、发烧：调定点上移，不是"失控过热"</h2>
+
+    <p>发烧（fever）与中暑（heat stroke）的根本区别：</p>
+    <ul>
+        <li><strong>发烧</strong>：下丘脑调定点被<strong>主动上调</strong>（病原体 → 巨噬细胞/单核细胞 → 细胞因子IL-1/IL-6/TNF-α → 进入大脑 → 环氧化酶（COX） → PGE₂（前列腺素E₂）→ POAH 调定点升高至 38-40°C → 身体"认为自己体温太低" → 启动产热机制 → 体温升高）</li>
+        <li><strong>中暑</strong>：体温调节机制<strong>失效</strong>，散热不足，体温被动上升，属于医疗紧急状态</li>
+    </ul>
+
+    <div class="flow-diagram">
+        <div class="fd-title">🦠 发烧的完整机制</div>
+        <div class="fd-chain">
+            <div class="fd-node fn-start">病原体入侵<br>（脂多糖LPS等<br>致热原）</div>
+            <div class="fd-arrow">激活</div>
+            <div class="fd-node fn-default">免疫细胞<br>→ IL-1β/IL-6<br>/TNF-α</div>
+            <div class="fd-arrow">穿过血脑屏障<br>（或OVLT）</div>
+            <div class="fd-node fn-brain">COX → PGE₂<br>POAH调定点<br>↑38-40°C</div>
+            <div class="fd-arrow">→</div>
+            <div class="fd-node fn-alert">寒战/血管收缩<br>体温↑（达到新<br>调定点）</div>
+        </div>
+    </div>
+
+    <div class="info-box green">
+        <div class="box-title">💊 发烧要不要退？科学依据</div>
+        <p><strong>体温 &lt;38.5°C</strong>（低热）：<strong>不建议急于退烧</strong><br>
+        发烧对免疫有益的证据：①高温抑制病原体复制速度（很多细菌/病毒的最适生长温度是37°C）②增加免疫细胞活性（NK细胞、T细胞趋化活性在39°C高于37°C）③热诱导热休克蛋白（HSP）保护宿主细胞</p>
+        <p><strong>体温 &gt;39°C 或持续高烧</strong>：可以考虑退烧，主要目的是减轻不适，防止高热惊厥（尤其婴幼儿）<br>
+        <strong>NSAIDs（布洛芬/阿司匹林）退烧原理</strong>：抑制COX（环氧化酶）→ 阻断PGE₂合成 → 调定点复位 → 皮肤血管扩张/出汗 → 体温下降</p>
+    </div>
+
+    <!-- 三、代谢与能量 -->
+    <h2 id="三代谢率能量的全貌">三、代谢率：能量的全貌</h2>
+
+    <p>人体每天消耗的总能量（TDEE）由四个部分组成：</p>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-value">60-70%</div>
+            <div class="stat-label">基础代谢率（BMR）</div>
+            <div class="stat-desc">维持生命基本功能（心跳/呼吸/体温/神经活动）的能耗，即使完全静卧</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">15-30%</div>
+            <div class="stat-label">运动产热（EAT+NEAT）</div>
+            <div class="stat-desc">有意识运动（EAT）+ 非运动性活动产热（NEAT：走路/坐立不安/姿势维持）</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">8-15%</div>
+            <div class="stat-label">食物热效应（TEF）</div>
+            <div class="stat-desc">消化/吸收/代谢食物本身消耗的能量（蛋白质 25-30%，碳水 6-8%，脂肪 2-3%）</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">占TDEE变量</div>
+            <div class="stat-label">适应性产热</div>
+            <div class="stat-desc">BMR对长期能量摄入/消耗的动态调整（节食时BMR降低，过量进食时BMR略升高）</div>
+        </div>
+    </div>
+
+    <!-- 四、"吃不胖"的热力学解释 -->
+    <h2 id="四吃不胖的生理基础">四、"吃不胖"的生理基础</h2>
+
+    <div class="personal-case">
+        <div class="box-title">⚖️ 个人关联：热力学第一定律与个体差异</div>
+        <p><strong>能量守恒对人体严格适用</strong>：体重变化 = 能量摄入 - 能量消耗，这是物理定律，没有例外。但"吃不胖"的感受是真实的，因为等式的两端都存在巨大的个体差异：</p>
+
+        <div class="compare-table">
+            <table>
+                <thead>
+                    <tr><th>差异来源</th><th>个体变异幅度</th><th>对"吃不胖"的贡献</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>BMR基因差异</strong></td>
+                        <td>同体型人之间可相差 ±300-500 kcal/天</td>
+                        <td>BMR越高，每天额外消耗越多</td>
+                    </tr>
+                    <tr>
+                        <td><strong>甲状腺功能偏高</strong><br>（FT3偏高端）</td>
+                        <td>T3偏高 → BMR偏高 10-20%</td>
+                        <td>每天额外消耗 150-300 kcal</td>
+                    </tr>
+                    <tr>
+                        <td><strong>UCP1/解偶联产热效率</strong></td>
+                        <td>棕色脂肪活跃度个体差异2-3倍</td>
+                        <td>同样"进食过量"，产热多的人储存脂肪更少</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TEF差异（蛋白质偏好）</strong></td>
+                        <td>饮食蛋白质比例每增加10%，TEF增加 3-5%</td>
+                        <td>蛋白质饮食可让净热量比标签低25-30%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NEAT（无意识活动）</strong></td>
+                        <td>坐立不安/频繁起身的人比久坐者<br>每天多消耗 300-700 kcal</td>
+                        <td>这是个体间TDEE差异最大的单一来源</td>
+                    </tr>
+                    <tr>
+                        <td><strong>实际摄入评估误差</strong></td>
+                        <td>多数人低估摄入量 20-30%</td>
+                        <td>主观感觉"吃得不多"≠实际kcal少</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="margin-top:10px;">结论：两个体型相近的人，TDEE可能相差 600-1000 kcal/天。A每天吃3000 kcal而不胖，B每天吃2000 kcal仍缓慢发胖，<strong>这在生理学上是完全可能的</strong>。指责"吃不胖只是少吃了"是不了解生理差异的错误认知。</p>
+    </div>
+
+    <!-- 五、体脂低的怕冷机制 -->
+    <h2 id="五体脂低为什么更怕冷">五、体脂低为什么更怕冷？</h2>
+
+    <div class="personal-case">
+        <div class="box-title">🥶 体脂&lt;12% 的怕冷机制（与肌肉量的平衡）</div>
+
+        <div class="flow-diagram">
+            <div class="fd-title">❄️ 低体脂怕冷的三重原因</div>
+            <div class="fd-chain">
+                <div class="fd-node fn-organ">皮下脂肪薄<br>（&lt;5mm）</div>
+                <div class="fd-arrow">减少</div>
+                <div class="fd-node fn-default">体表绝热层<br>热量更快向<br>皮肤散失</div>
+            </div>
+            <div class="fd-chain" style="margin-top:8px;">
+                <div class="fd-node fn-organ">内脏/网膜<br>脂肪减少</div>
+                <div class="fd-arrow">减少</div>
+                <div class="fd-node fn-default">器官周围<br>热缓冲层薄<br>核心温度更易波动</div>
+            </div>
+            <div class="fd-chain" style="margin-top:8px;">
+                <div class="fd-node fn-organ">体脂低通常<br>伴随低能量<br>可用性（如节食）</div>
+                <div class="fd-arrow">导致</div>
+                <div class="fd-node fn-alert">甲状腺T3下降<br>+ BMR下降<br>产热总量减少</div>
+            </div>
+        </div>
+
+        <p><strong>为什么运动员体脂低却不怕冷？</strong><br>
+        关键是<strong>肌肉量</strong>——肌肉是静息时的主要产热器官（占BMR约~20%，运动时可达~40倍）。高肌肉量的人：① 基础产热率高 ② 寒战时可迅速调动大量肌肉产热 ③ 运动后余热持续时间长。<br>
+        体脂低 + 肌肉量高 → 不怕冷；体脂低 + 肌肉量也不足（如过度节食消瘦的人）→ 非常怕冷。</p>
+    </div>
+
+    <!-- 六、运动后出汗 -->
+    <h2 id="六运动后为什么还在出汗">六、运动后为什么还在出汗？</h2>
+
+    <div class="life-example">
+        <strong>运动后持续出汗（"停了还出汗"）的机制</strong><br>
+        运动结束时，<strong>肌肉仍处于高热状态</strong>——大量热量存储在肌肉组织中（肌肉有热容量）。停止运动后：<br>
+        ① 肌肉热量通过血液循环传输到体表（循环系统仍然在运转）<br>
+        ② 核心体温仍然高于调定点<br>
+        ③ 汗腺继续工作直到核心体温回落到调定点<br><br>
+        <strong>为什么健身程度越高，出汗越早、越多？</strong><br>
+        训练适应性改变：有训练经历的人体温调节更高效——提前在体温明显升高前就开始出汗（更早散热），汗腺分泌能力更强，汗液中电解质浓度更低（肾脏钠重吸收适应性增加，减少电解质流失）。<br><br>
+        <strong>实际意义</strong>：运动后要等核心体温恢复才能完全"不出汗"，这通常需要 20-40 分钟。立即进入空调房间（尤其温度设定很低）要注意：大量汗液蒸发散热过快可能导致体温过快下降，肌肉可能痉挛。
+    </div>
+
+    <!-- 七、代谢与体重 -->
+    <h2 id="七体重管理的生理学视角">七、体重管理的生理学视角</h2>
+
+    <div class="mechanism-box">
+        <div class="box-title">⚙️ 长期体重调定点（Set Point Theory）</div>
+        <p>大脑（下丘脑弓状核）通过多种激素信号维持体重在一个"调定点"附近：</p>
+        <ul>
+            <li><strong>瘦素（Leptin）</strong>：脂肪组织分泌，脂肪越多→瘦素越高→抑制食欲/增加代谢。减肥后瘦素下降→食欲↑/代谢↓（这是复胖困难的生理原因）</li>
+            <li><strong>胃饥饿素（Ghrelin）</strong>：胃分泌，饥饿时升高→促进食欲（节食后长期偏高，这就是节食后容易暴食的原因）</li>
+            <li><strong>适应性产热下调</strong>：长期负能量平衡 → BMR自动下调 5-15%（"代谢适应"，这是为什么节食到后期越来越慢的原因）</li>
+        </ul>
+        <p>这些机制是为了<strong>防止饥荒时期过度消耗</strong>而进化的。在食物充裕的现代，这套系统使减肥后保持体重非常困难。这不是意志力问题，而是<strong>对抗的是进化编程</strong>。</p>
+    </div>
+
+    <!-- CS类比 -->
+    <h2 id="八-cs-类比体温调节--双阈值恒温器">八、💻 CS 类比：体温调节 = 双阈值恒温器</h2>
+    <div class="cs-analogy">
+        <div class="cs-title">💻 类比：服务器散热系统 + 自适应功耗管理</div>
+        <ul>
+            <li><code>体温调定点</code> = BIOS温度阈值配置（正常37°C，发烧时被IL-1"hack"上调）</li>
+            <li><code>寒战产热</code> = CPU进入高负载模式专门为了升温（全力运行只是为了发热，不做任何计算工作）</li>
+            <li><code>出汗散热</code> = 液冷系统 + 蒸发冷却；<code>皮肤血管扩张</code> = 散热鳍片面积增大</li>
+            <li><code>BMR</code> = 服务器待机功耗（CPU/RAM/风扇基线耗电）；大部分"电费"即使什么都不做也要花</li>
+            <li><code>NEAT</code> = 后台进程功耗——表面上"没在运行"，实际上坐立不安/姿势调整等小进程持续消耗，累计量可超过有意识运动</li>
+            <li><code>代谢适应（BMR下调）</code> = 电源节能模式自动触发：检测到长期供电不足 → 自动降频降压维持运行，代价是性能下降（疲劳感/甲状腺轴轻度下调/NEAT减少）</li>
+            <li><code>瘦素-胃饥饿素调控</code> = 电量传感器 + 自适应功率调度器：脂肪（电池容量）减少 → 信号触发"增加进食/降低消耗"的保护策略</li>
+            <li><code>发烧退烧药（NSAIDs）</code> = 强制修改BIOS温度阈值设置，而不是关掉发热的硬件（病原体仍在）</li>
+        </ul>
+    </div>
+
+    <!-- 误区 -->
+    <h2 id="九常见误区">九、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：低热量饮食只要坚持就必然持续减重</span>
+        <span class="truth">✅ 真相：代谢适应（Metabolic Adaptation）机制会在持续负能量平衡后主动降低BMR、减少NEAT，瘦素下降还会增加食欲。"平台期"是真实的生理现象。突破平台期需要：重新评估实际摄入量（人们普遍低估30%）、增加力量训练（对抗BMR下降）、周期性"再进食日"（短期恢复摄入以重置瘦素水平）。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：发烧越高越危险，任何发烧都要立即退烧</span>
+        <span class="truth">✅ 真相：38.5°C以下的发烧在免疫层面通常是有益的。退烧药的主要目的是改善舒适度，而非治疗感染本身（感染要靠免疫系统/抗生素）。真正危险的是&gt;41°C的高热（可能导致蛋白质变性）或伴随意识改变/严重头痛/颈项强直（脑膜炎可能）等症状，这些才需要紧急处理。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：运动中喝冰水会导致胃痉挛</span>
+        <span class="truth">✅ 真相：目前没有高质量证据支持"运动中喝冰水导致胃痉挛"的说法。运动中喝适量液体（包括凉水）是安全的。胃痉挛（运动相关腹痛）更可能的原因是：运动前过饱/过于剧烈的腹部晃动/膈肌疲劳/电解质失衡。相反，运动中及时补水可以防止脱水导致的体温调节失效。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：基础代谢率主要由年龄决定，中年后不可逆下降</span>
+        <span class="truth">✅ 真相：最新研究（2021年Science大型研究，6421人）显示人体BMR在20-60岁几乎不变（！），真正导致"中年发福"的是：①肌肉量随增龄减少（而多数人没有力量训练补偿）②活动量下降（NEAT和EAT减少）。肌肉是代谢最活跃的组织，每公斤骨骼肌每天消耗约13 kcal/天。力量训练维持肌肉量是中年后维持代谢率最有效的方法。</span>
+    </div>
+
+    <!-- 病理预告 -->
+    <h2 id="十病理预告">十、🔮 病理预告</h2>
+    <div class="pathology-preview">
+        <p>👉 <span class="condition">热射病（Heat Stroke）</span>：核心体温 &gt;40°C且体温调节完全失代偿（出汗停止或无效）→ 全身炎症反应/多器官功能衰竭的风险。与发烧的本质区别：热射病是被动温度升高（散热失败），调定点并未上调。治疗核心是<strong>立即降温</strong>（冷水浸泡是最快的物理降温方法），而发烧的退烧药物降温对热射病无效。</p>
+        <p>👉 <span class="condition">低体温症（Hypothermia）</span>：核心体温 &lt;35°C → 心律不齐/意识混乱/肌肉僵硬；&lt;30°C → 室颤风险；&lt;28°C → 致命。溺水/登山低温暴露常见。医疗复温原则：先复温核心再复温外周（避免外周血液回流引发再灌注损伤和心律失常）。"人不死透不算死"——低温下心脏停跳仍可能成功复苏。</p>
+        <p>👉 <span class="condition">代谢综合征（Metabolic Syndrome）</span>：中心型肥胖 + 血糖异常 + 血脂异常 + 高血压的组合。胰岛素抵抗是核心。内脏脂肪细胞（不同于皮下脂肪）分泌促炎因子 → 慢性低度炎症 → 加重胰岛素抵抗。改善代谢综合征最有效的非药物干预：有氧+抗阻运动联合 + 低GI饮食 + 减少腹部脂肪。</p>
+        <p>👉 <span class="condition">神经性厌食症（Anorexia Nervosa）的代谢后果</span>：严重限制摄入 → 显著的代谢适应：BMR可下降30-40% / T3转换减少（低T3综合征）/ 心率下降（迷走神经张力增高）/ 骨密度降低（雌激素/睾酮减少）/ 脑萎缩（脂肪是髓鞘合成的必要原料）。恢复饮食时有"再喂养综合征"风险（磷进入细胞，血磷骤降 → 心律不齐/呼吸衰竭），需要在医疗监护下缓慢恢复摄入。</p>
+    </div>
+
+    <!-- 章节导航 -->
+    <div class="chapter-nav">
+        <a href="chapter11.html">
+            <span>‹</span>
+            <div><span class="nav-label">上一章</span>第11章 · 感觉生理</div>
+        </a>
+        <a href="glossary.html" class="next">
+            <div><span class="nav-label">下一个</span>词汇表 · 核心名词中英对照</div>
+            <span>›</span>
+        </a>
+    </div>
+
+</div><!-- end content-body -->
+
+<div class="sidebar">
+    <div class="sidebar-card">
+        <h3>📋 本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#一体温调节下丘脑的恒温控制器">一、体温调节中枢</a></li>
+            <li><a href="#二发烧调定点上移不是失控过热">二、发烧机制</a></li>
+            <li><a href="#三代谢率能量的全貌">三、代谢率组成</a></li>
+            <li><a href="#四吃不胖的生理基础">四、"吃不胖"生理基础</a></li>
+            <li><a href="#五体脂低为什么更怕冷">五、低体脂怕冷</a></li>
+            <li><a href="#六运动后为什么还在出汗">六、运动后出汗</a></li>
+            <li><a href="#七体重管理的生理学视角">七、体重调定点</a></li>
+            <li><a href="#八-cs-类比体温调节--双阈值恒温器">八、💻 CS类比</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔑 核心词汇</h3>
+        <ul class="toc-list">
+            <li><a href="glossary.html">BMR 基础代谢率</a></li>
+            <li><a href="glossary.html">NEAT 非运动产热</a></li>
+            <li><a href="glossary.html">TEF 食物热效应</a></li>
+            <li><a href="glossary.html">UCP1 解偶联蛋白</a></li>
+            <li><a href="glossary.html">PGE₂ / COX</a></li>
+            <li><a href="glossary.html">瘦素 Leptin</a></li>
+            <li><a href="glossary.html">胃饥饿素 Ghrelin</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>🔗 本章关联</h3>
+        <ul class="toc-list">
+            <li><a href="chapter1.html">第1章 稳态→负反馈（同源）</a></li>
+            <li><a href="chapter9.html">第9章 肌肉产热与DOMS</a></li>
+            <li><a href="chapter10.html">第10章 甲状腺/皮质醇对代谢</a></li>
+            <li><a href="chapter7.html">第7章 肾脏酸碱/水电平衡</a></li>
+        </ul>
+    </div>
+</div>
+
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>🧬 生理学入门 · 第12章 · 体温与代谢</p>
+    <p style="margin-top:6px;font-size:0.8rem;">
+        <a href="chapter11.html">← 上一章</a> &nbsp;·&nbsp; <a href="glossary.html">词汇表 →</a>
+    </p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

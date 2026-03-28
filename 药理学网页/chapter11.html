@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第11章 抗菌药物 — 药理学通俗讲义</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+
+<div class="breadcrumb">
+  <a href="index.html">药理学</a>
+  <span>›</span>
+  <span>系统药理·神内抗菌</span>
+  <span>›</span>
+  <span>第11章 抗菌药物</span>
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">系统药理 · 第 11 章</div>
+  <h1>抗菌药物</h1>
+  <p class="hero-sub">β-内酰胺类全家族、万古霉素的MRSA机制、氟喹诺酮的DNA旋转酶靶点、抗生素选择的PK/PD驱动逻辑</p>
+</div>
+
+<div class="main-content">
+<div class="content-body">
+
+<!-- 模块1：承接导读 -->
+<div class="chapter-intro">
+  <div class="intro-links">
+    <span>本章衔接：</span>
+    <a href="../病理学网页/chapter11.html">病理学·感染性疾病</a>
+    <a href="chapter4.html">第4章·耐药机制</a>
+    <a href="chapter10.html">← 第10章 内分泌</a>
+    <a href="chapter12.html">第12章 抗肿瘤 →</a>
+  </div>
+  <div class="hook-questions">
+    <div class="hook-q">🔬 同样是β-内酰胺，青霉素/头孢/碳青霉烯为什么抗菌谱差异如此之大？</div>
+    <div class="hook-q">🦠 万古霉素为什么专门用于MRSA，而不是所有金黄色葡萄球菌？</div>
+    <div class="hook-q">💊 PK/PD参数（fT>MIC vs AUC/MIC vs Cmax/MIC）如何指导给药方案设计？</div>
+  </div>
+  <div class="drug-preview">
+    <span>本章核心药物：</span>
+    <span class="drug-pill">阿莫西林/克拉维酸（β-内酰胺+酶抑制剂）</span>
+    <span class="drug-pill">头孢曲松（三代头孢）</span>
+    <span class="drug-pill">亚胺培南（碳青霉烯）</span>
+    <span class="drug-pill">万古霉素（糖肽类）</span>
+    <span class="drug-pill">左氧氟沙星（喹诺酮）</span>
+    <span class="drug-pill">阿奇霉素（大环内酯）</span>
+    <span class="drug-pill">甲硝唑（抗厌氧菌）</span>
+  </div>
+</div>
+
+<!-- 模块2：核心机制 -->
+<div class="section-card">
+  <h2>抗生素靶点分类——五大作用机制</h2>
+
+  <div class="drug-flow">
+    <div class="flow-step">
+      <div class="flow-label">① 细胞壁合成抑制</div>
+      <div class="flow-content">
+        β-内酰胺类（青霉素/头孢/碳青霉烯）<br>
+        糖肽类（万古霉素/替考拉宁）<br>
+        磷霉素（MurA抑制）<br>
+        → 细胞壁缺陷 → 细菌溶解（杀菌）
+      </div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step">
+      <div class="flow-label">② 蛋白质合成抑制</div>
+      <div class="flow-content">
+        30S：氨基糖苷类（庆大霉素）/四环素<br>
+        50S：大环内酯类（阿奇霉素）/克林霉素/利奈唑胺/氯霉素<br>
+        → 通常抑菌（氨基糖苷例外，杀菌）
+      </div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step">
+      <div class="flow-label">③ DNA复制/转录抑制</div>
+      <div class="flow-content">
+        喹诺酮（拓扑异构酶II/IV）<br>
+        利福平（RNA聚合酶）<br>
+        甲硝唑（DNA链断裂，厌氧选择性）<br>
+        → 杀菌
+      </div>
+    </div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step">
+      <div class="flow-label">④⑤ 叶酸/膜破坏</div>
+      <div class="flow-content">
+        磺胺/TMP→叶酸合成（协同）<br>
+        多黏菌素→细胞膜破坏（革兰阴性超级细菌）<br>
+        达托霉素→膜去极化（革兰阳性）
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">β-内酰胺家族进化史</h3>
+  <div class="four-questions">
+    <div class="fq-item">
+      <div class="fq-label">青霉素类（窄谱）</div>
+      <div class="fq-content">
+        天然：苄青霉素（G）→链球菌/梅毒螺旋体/脑膜炎球菌<br>
+        广谱：阿莫西林（口服）/氨苄西林→H.influenzae/H.pylori<br>
+        酶稳定：阿莫西林+克拉维酸→产β-内酰胺酶细菌<br>
+        <em>苯唑西林/双氯西林→甲氧西林敏感葡萄球菌（MSSA）</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">头孢菌素类（代次扩谱）</div>
+      <div class="fq-content">
+        <strong>一代</strong>（头孢氨苄）：革兰阳性为主，皮肤感染<br>
+        <strong>二代</strong>（头孢克洛）：+部分阴性菌；手术预防<br>
+        <strong>三代</strong>（头孢曲松/头孢噻肟）：强力革兰阴性；CNS感染（头孢曲松单药）<br>
+        <strong>四代</strong>（头孢吡肟）：+铜绿假单胞菌<br>
+        <strong>五代</strong>（头孢洛林）：覆盖MRSA
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">碳青霉烯（最后防线）</div>
+      <div class="fq-content">
+        亚胺培南/美罗培南/厄他培南<br>
+        <strong>最广谱</strong>：革兰阳性+阴性+厌氧（除MRSA/屎肠球菌）<br>
+        ESBL/AmpC产酶菌的唯一可靠选择<br>
+        耐碳青霉烯菌（CRE/KPC/NDM）=真正的超级细菌<br>
+        <em>亚胺培南降低癫痫发作阈值（神经外科慎用）</em>
+      </div>
+    </div>
+    <div class="fq-item">
+      <div class="fq-label">万古霉素（MRSA专杀）</div>
+      <div class="fq-content">
+        靶点：D-Ala-D-Ala末端（细胞壁肽聚糖前体）<br>
+        <strong>MRSA PBP2a突变</strong>→仍保留D-Ala-D-Ala末端→万古霉素有效<br>
+        <strong>VRE（万古耐药肠球菌）</strong>：D-Ala末端替换为D-Lac→万古霉素无法结合<br>
+        需TDM（谷浓度10–20 mg/L）；肾毒性+耳毒性<br>
+        <em>仅对革兰阳性菌有效（太大不能透过阴性菌外膜）</em>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem">PK/PD驱动的给药方案</h3>
+  <div class="drug-compare">
+    <div class="compare-item">
+      <div class="compare-label">时间依赖型（fT&gt;MIC）</div>
+      <div class="compare-body">
+        <p><strong>β-内酰胺类、大环内酯类</strong>：杀菌效果取决于血药浓度超过MIC的<em>时间占比</em></p>
+        <p>↑浓度超过4×MIC不会增加杀菌效率；需维持足够时间</p>
+        <p><strong>给药策略</strong>：多次给药（每6–8小时）或持续输注</p>
+        <p>β-内酰胺延长输注（3h滴注）→ fT&gt;MIC↑→适用于重症/MIC较高菌株</p>
+      </div>
+    </div>
+    <div class="compare-item">
+      <div class="compare-label">浓度依赖型（AUC/MIC 或 Cmax/MIC）</div>
+      <div class="compare-body">
+        <p><strong>氨基糖苷类、喹诺酮类</strong>：峰浓度越高，杀菌越强（post-antibiotic effect长）</p>
+        <p><strong>氨基糖苷每日一次</strong>：AUC/MIC↑；肾皮质暴露时间↓（减少肾毒性）</p>
+        <p><strong>万古霉素</strong>：AUC/MIC目标400–600 mg·h/L（AUC导向TDM，替代传统谷浓度监测）</p>
+        <p>高峰浓度 = 快速杀菌；集中给药 &gt; 分散给药</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块3：CS类比 -->
+<div class="section-card">
+  <h2>CS类比：抗生素靶点 = 针对细菌特有系统的精准攻击</h2>
+  <div class="cs-analogy">
+    <h3>🖥️ 细菌 = 目标服务器，人体细胞 = 友军服务器</h3>
+    <div class="analogy-grid">
+      <div class="analogy-item">
+        <div class="analogy-concept">β-内酰胺破坏细胞壁</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">针对专有协议的拒绝服务攻击<br>
+          细胞壁（肽聚糖）= 细菌独有的容器封装层<br>
+          人类细胞没有细胞壁 = 不受影响（选择性毒性的根源）<br>
+          β-内酰胺 = 专门破坏这个协议的exploit<br>
+          <code>target: peptidoglycan_protocol; friendly_fire: 0%</code>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">万古霉素 vs MRSA/VRE</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">API密钥格式更改<br>
+          万古霉素识别D-Ala-D-Ala序列 = 基于特定格式的Token验证<br>
+          MRSA仍用D-Ala-D-Ala（只改了PBP，万古还能用）<br>
+          VRE改为D-Ala-D-Lac = 修改了Token格式 → 万古霉素验证失败<br>
+          <code>vre.change_token_format() → vancomycin.auth() → fail</code>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">时间依赖型给药</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">持续连接 vs 短连接<br>
+          β-内酰胺 = 需要长时间保持连接才能彻底杀菌（类似WebSocket长连接）<br>
+          浓度堆砌（一次性大剂量）≠ 效果提升<br>
+          关键是维持连接时间（fT&gt;MIC）<br>
+          <em>持续输注 = 永久保持连接，感染最重时使用</em>
+        </div>
+      </div>
+      <div class="analogy-item">
+        <div class="analogy-concept">β-内酰胺酶抑制剂</div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-code">安全补丁+WAF规则更新<br>
+          细菌β-内酰胺酶 = 内置WAF（Web应用防火墙），专门分解β-内酰胺<br>
+          克拉维酸/舒巴坦/他唑巴坦 = 针对WAF本身的exploit（先灭活防御）<br>
+          阿莫西林+克拉维酸 = 攻击载荷 + WAF bypass<br>
+          <code>payload: amoxicillin; bypass: clavulanate</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块4：认知扩展 -->
+<div class="section-card">
+  <h2>认知扩展</h2>
+  <div class="cognitive-expand">
+    <h3>💡 扩展①：经验性抗生素选择——"先广谱，后降阶"的IDSA原则</h3>
+    <p>在获得培养结果之前（通常48–72小时），需要经验性抗生素治疗。正确策略：</p>
+    <ol>
+      <li><strong>及时治疗</strong>：败血症每延误1小时，死亡率上升约7%；在用药前先抽血培养（不能因等培养结果延误用药）</li>
+      <li><strong>初始广谱覆盖</strong>：基于感染部位/社区vs医院/耐药风险因素选择</li>
+      <li><strong>培养结果后降阶</strong>：换窄谱（减少耐药压力/副作用/费用）</li>
+      <li><strong>疗程原则</strong>：不是"用到症状消失"——症状消失早于细菌根除；但疗程也不宜过长</li>
+    </ol>
+    <p><strong>败血症经验覆盖参考</strong>：社区获得性→头孢曲松±阿奇霉素；医院获得性/ICU→碳青霉烯±万古霉素（覆盖MRSA）。</p>
+
+    <h3 style="margin-top:1.5rem">💡 扩展②：氟喹诺酮的"禁用"清单——QT延长与肌腱断裂</h3>
+    <p>氟喹诺酮（左氧氟沙星/莫西沙星/环丙沙星）是广谱高效抗生素，但被FDA赋予"黑框警告"：</p>
+    <ul>
+      <li><strong>肌腱炎/肌腱断裂</strong>：喹诺酮抑制腱细胞代谢→跟腱断裂风险增加3–4倍；≥60岁/糖皮质激素/肾衰患者风险更高</li>
+      <li><strong>QT延长</strong>（莫西沙星最显著）：禁与胺碘酮/抗精神病药联用</li>
+      <li><strong>周围神经病变</strong>：可能不可逆</li>
+      <li><strong>主动脉夹层/破裂</strong>：2018年FDA警告（机制：MMP活化→结缔组织降解）</li>
+    </ul>
+    <p>IDSA指南：氟喹诺酮应限于无其他安全有效替代方案时使用（不鼓励用于单纯性尿路感染等轻症）。</p>
+  </div>
+</div>
+
+<!-- 模块5：临床逻辑 -->
+<div class="section-card">
+  <h2>临床逻辑</h2>
+  <div class="clinical-logic">
+    <h3>⚕️ 临床决策三要点</h3>
+    <div class="logic-points">
+      <div class="logic-point">
+        <div class="logic-num">01</div>
+        <div class="logic-content">
+          <strong>青霉素过敏史的正确评估（复习第4章）</strong><br>
+          约85%"青霉素过敏"患者实际可以耐受青霉素（过敏自然消退/错误贴标签）。<br>
+          <strong>分层管理</strong>：① 低危（皮疹无全身症状）→ 皮试或直接挑战性给药；② 高危（过敏性休克/SJS）→ 皮试或选无相关结构的抗生素（大环内酯/喹诺酮）<br>
+          错误地给所有"青霉素过敏"患者换万古霉素→增加肾毒性、耐药压力、治疗失败
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">02</div>
+        <div class="logic-content">
+          <strong>万古霉素的AUC导向TDM（2020年ASHP/IDSA新指南）</strong><br>
+          传统谷浓度监测（15–20 mg/L）导致肾毒性过高；新指南推荐AUC导向监测（目标AUC/MIC≥400，且&lt;600以避免毒性）<br>
+          实际操作：测两个时间点浓度（峰+谷），贝叶斯估算AUC；或使用专业软件（PrecisePK）<br>
+          <strong>一级预防肾毒性</strong>：避免与其他肾毒性药物（袢利尿剂/氨基糖苷类/造影剂）联用
+        </div>
+      </div>
+      <div class="logic-point">
+        <div class="logic-num">03</div>
+        <div class="logic-content">
+          <strong>艰难梭菌感染（CDI）——抗生素相关腹泻的最危险形式</strong><br>
+          诱因：广谱抗生素（尤其氟喹诺酮/克林霉素/广谱头孢）破坏肠道菌群→C.diff孢子萌发→产毒素→结肠炎<br>
+          <strong>分层治疗</strong>：轻–中度→口服万古霉素（不是静脉！）或非达霉素；重症/暴发性→口服万古+静脉甲硝唑；复发性→粪菌移植（FMT，治愈率>80%）<br>
+          <em>不要用止泻药！让毒素排出</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块6：副作用推导 -->
+<div class="section-card">
+  <h2>副作用推导：抗生素选择性毒性的机制推导</h2>
+  <div class="adverse-box">
+    <h3>❌ 常见误区 vs ✅ 机制推导</h3>
+    <div class="adverse-grid">
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "氨基糖苷类打一两天就好，不需要监测"</div>
+        <div class="adverse-logic">
+          ✅ 推导：氨基糖苷肾/耳毒性与<strong>累积剂量</strong>密切相关，非单次剂量<br>
+          肾皮质近端小管主动摄取氨基糖苷 → 溶酶体磷脂酶受损 → 细胞坏死（通常用药5–7天后）<br>
+          耳毒性：外毛细胞线粒体ROS积累 → 高频听力丧失（早期无症状）<br>
+          监测要点：谷浓度&lt;2 mg/L；基线肌酐；用药前后听力评估（长期用药）
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "四环素治疗所有细菌感染都有效"</div>
+        <div class="adverse-logic">
+          ✅ 推导：四环素与二价金属离子（钙/镁/铁/铝）螯合 → 吸收大幅降低（牛奶/制酸剂/铁剂同服→吸收↓80%）<br>
+          沉积骨/牙（正在发育中）→ 骨骼生长抑制/牙齿永久黄染（"四环素牙"）<br>
+          禁用于妊娠8周后和8岁以下儿童<br>
+          光敏感性：皮肤暴露日光→光毒性皮疹（多西环素尤重）
+        </div>
+      </div>
+      <div class="adverse-item">
+        <div class="adverse-myth">❌ "大环内酯类只是肠胃不好，其他副作用不重要"</div>
+        <div class="adverse-logic">
+          ✅ 推导：大环内酯类对CYP3A4的抑制程度分级（红霉素>克拉霉素>阿奇霉素）<br>
+          克拉霉素+他汀 → 横纹肌溶解（已述）<br>
+          克拉霉素+华法林 → 出血（CYP2C19/3A4）<br>
+          QT延长：尤其阿奇霉素（hERG钾通道），+其他QT延长药物→TdP<br>
+          2013年FDA警告：阿奇霉素不应用于心律失常高危患者
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模块7：药物关联网 -->
+<div class="section-card">
+  <h2>药物关联网</h2>
+  <div class="drug-network">
+    <div class="network-node">
+      <a href="chapter4.html">第4章</a>
+      <span>细菌耐药四机制（本章的上游理论）</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter2.html">第2章</a>
+      <span>大环内酯类：CYP3A4强抑制剂</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter3.html">第3章</a>
+      <span>万古霉素TDM：AUC/MIC导向</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter7.html">第7章</a>
+      <span>Hp根除：克拉霉素+阿莫西林+PPI</span>
+    </div>
+    <div class="network-node">
+      <a href="chapter12.html">第12章 →</a>
+      <span>免疫抑制→机会感染→抗生素预防</span>
+    </div>
+    <div class="network-node">
+      <a href="drug-index.html">药物索引</a>
+      <span>按抗菌谱和适应症快速查找</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- content-body -->
+
+<div class="sidebar">
+  <div class="toc-box">
+    <div class="toc-title">本章目录</div>
+    <div id="toc-list"></div>
+  </div>
+  <div class="key-formula">
+    <div class="formula-title">🦠 MRSA治疗选择</div>
+    <div class="formula-item">一线：<strong>万古霉素</strong></div>
+    <div class="formula-item">替代：<strong>利奈唑胺</strong></div>
+    <div class="formula-item">皮肤：<strong>复方磺胺甲噁唑</strong></div>
+    <div class="formula-item">万古TDM目标：<strong>AUC 400–600</strong></div>
+    <div class="formula-item">CDI治疗：口服<strong>万古或非达霉素</strong></div>
+  </div>
+</div>
+
+</div><!-- main-content -->
+
+<footer>
+  <p>药理学通俗讲义 · 第11章 抗菌药物</p>
+  <p><a href="chapter10.html">← 第10章</a> | <a href="index.html">目录</a> | <a href="chapter12.html">第12章 →</a></p>
+</footer>
+
+<script src="nav.js"></script>
+</body>
+</html>

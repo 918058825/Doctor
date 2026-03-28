@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习进度 - 解剖学入门</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .progress-hero-bar {
+            width: 100%;
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .progress-hero-bar .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed, #a78bfa);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            position: relative;
+        }
+        .progress-hero-bar .bar-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        .phase-section {
+            margin-top: 2.5rem;
+        }
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .phase-badge {
+            padding: 4px 14px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .phase-badge.green { background: #10b981; }
+        .phase-badge.yellow { background: #f59e0b; }
+        .phase-badge.red { background: #ef4444; }
+        .phase-badge.blue { background: #3b82f6; }
+        .chapter-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .track-card {
+            background: #fff;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            user-select: none;
+        }
+        .track-card:hover { border-color: #a78bfa; box-shadow: 0 4px 12px rgba(79,70,229,0.1); }
+        .track-card.completed { border-color: #10b981; background: #f0fdf4; }
+        .track-card.reading { border-color: #3b82f6; background: #eff6ff; }
+        .track-check {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 3px solid #d1d5db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        .track-card.completed .track-check { border-color: #10b981; background: #10b981; color: #fff; }
+        .track-card.reading .track-check { border-color: #3b82f6; background: #3b82f6; color: #fff; }
+        .track-info h4 { font-size: 1rem; margin-bottom: 3px; color: var(--heading-color); }
+        .track-info .track-desc { font-size: 0.85rem; color: #6b7280; }
+        .track-info .track-meta { font-size: 0.75rem; color: #9ca3af; margin-top: 6px; }
+        .streak-card {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #fff;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        .streak-card .streak-num { font-size: 3rem; font-weight: 900; }
+        .streak-card .streak-label { font-size: 0.95rem; opacity: 0.9; }
+        .notes-area {
+            width: 100%;
+            min-height: 100px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+        .notes-area:focus { outline: none; border-color: #4f46e5; }
+        .reset-btn {
+            padding: 8px 20px;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid #fca5a5;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .reset-btn:hover { background: #ef4444; color: #fff; }
+        .suggest-box {
+            background: linear-gradient(135deg, #ede9fe, #f5f3ff);
+            border: 2px solid #c4b5fd;
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .suggest-box h3 { color: #5b21b6; margin-bottom: 0.8rem; }
+        .suggest-box a {
+            display: inline-block;
+            background: #4f46e5;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: background 0.2s;
+        }
+        .suggest-box a:hover { background: #4338ca; }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <a href="index.html" class="logo">🫀 解剖学入门学习</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="glossary.html">📖 词典</a></li>
+            <li><a href="quiz.html">🧪 自测</a></li>
+            <li><a href="daily-scenarios.html">🎬 场景</a></li>
+            <li><a href="body-signals.html">📡 信号</a></li>
+            <li><a href="hands-on.html">🖐️ 体验</a></li>
+            <li><a href="learning-path.html" class="active">📊 进度</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 面包屑 -->
+<div class="breadcrumb">
+    <a href="index.html">首页</a> → <span>学习进度追踪</span>
+</div>
+
+<!-- 页面标题 -->
+<div class="page-hero">
+    <h1>📊 我的学习进度</h1>
+    <p class="subtitle">追踪你的解剖学学习旅程。点击章节卡片标记状态，数据自动保存在浏览器本地。</p>
+</div>
+
+<!-- 主内容 -->
+<div class="main-content full-width">
+    <div class="content-body">
+
+        <!-- 总进度条 -->
+        <div id="overviewStats" class="progress-overview"></div>
+
+        <div class="progress-hero-bar">
+            <div class="bar-fill" id="mainProgressBar" style="width: 0%">
+                <span class="bar-text" id="mainProgressText">0%</span>
+            </div>
+        </div>
+
+        <!-- 推荐下一步 -->
+        <div class="suggest-box" id="suggestBox">
+            <h3>🎯 推荐下一步</h3>
+            <p id="suggestText">加载中...</p>
+            <a id="suggestLink" href="#">开始学习 →</a>
+        </div>
+
+        <!-- 第一阶段 -->
+        <div class="phase-section">
+            <div class="phase-header">
+                <h2>🟢 第一阶段：基础概念</h2>
+                <span class="phase-badge green">入门</span>
+            </div>
+            <div class="chapter-track" id="phase1"></div>
+        </div>
+
+        <!-- 第二阶段 -->
+        <div class="phase-section">
+            <div class="phase-header">
+                <h2>🟡 第二阶段：人体系统</h2>
+                <span class="phase-badge yellow">核心</span>
+            </div>
+            <div class="chapter-track" id="phase2"></div>
+        </div>
+
+        <!-- 第三阶段 -->
+        <div class="phase-section">
+            <div class="phase-header">
+                <h2>🔴 第三阶段：调控系统</h2>
+                <span class="phase-badge red">进阶</span>
+            </div>
+            <div class="chapter-track" id="phase3"></div>
+        </div>
+
+        <!-- 拓展工具 -->
+        <div class="phase-section">
+            <div class="phase-header">
+                <h2>🔧 拓展学习工具</h2>
+                <span class="phase-badge blue">工具</span>
+            </div>
+            <div class="chapter-track" id="phase4"></div>
+        </div>
+
+        <!-- 学习笔记 -->
+        <h2 style="margin-top: 2.5rem;">📝 我的学习笔记</h2>
+        <p style="color: #6b7280; margin-bottom: 0.8rem;">记录你的心得、疑问、联想——写下来的知识记得更牢。自动保存。</p>
+        <textarea class="notes-area" id="userNotes" placeholder="在这里写下你的学习笔记、感悟、疑问...&#10;&#10;例如：&#10;- 循环系统的体循环和肺循环方向总搞混，用数据流方向理解：左心→全身→右心→肺→左心&#10;- 膈神经C3-C5，记住口诀 &quot;C3-4-5 keeps the diaphragm alive&quot;&#10;- 明天要做一下手上找脉搏的实验"></textarea>
+
+        <!-- 底部操作 -->
+        <div style="margin-top: 2rem; display: flex; gap: 1rem; align-items: center;">
+            <button class="reset-btn" onclick="resetProgress()">🔄 重置所有进度</button>
+            <span style="color: #9ca3af; font-size: 0.85rem;">数据仅保存在本浏览器，不会上传</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- 页脚 -->
+<footer class="site-footer">
+    <p>解剖学入门学习平台 · 小吴的学习笔记 · 2026</p>
+    <p style="margin-top: 4px; font-size: 0.8rem;">内容仅供学习参考，不作为医学诊断依据</p>
+</footer>
+
+<script>
+// ===== 章节数据 =====
+const chapters = [
+    // Phase 1
+    { id: 'ch1', name: '第1章 解剖学是什么', desc: '学科定义与研究对象', url: 'chapter1.html', phase: 1 },
+    { id: 'ch2', name: '第2章 解剖学的分支', desc: '系统/局部/断层/组织/胚胎', url: 'chapter2.html', phase: 1 },
+    { id: 'ch3', name: '第3章 人体的结构层次', desc: '细胞→组织→器官→系统', url: 'chapter3.html', phase: 1 },
+    { id: 'ch4', name: '第4章 方位术语', desc: '上下前后内外的坐标系', url: 'chapter4.html', phase: 1 },
+    // Phase 2
+    { id: 'ch5', name: '第5章 运动系统', desc: '骨骼·关节·肌肉', url: 'chapter5.html', phase: 2 },
+    { id: 'ch6', name: '第6章 消化系统', desc: '口腔→胃→肠→肝', url: 'chapter6.html', phase: 2 },
+    { id: 'ch7', name: '第7章 呼吸系统', desc: '鼻→气管→肺', url: 'chapter7.html', phase: 2 },
+    { id: 'ch8', name: '第8章 循环系统', desc: '心脏·血管·淋巴', url: 'chapter8.html', phase: 2 },
+    { id: 'ch9', name: '第9章 泌尿系统', desc: '肾·输尿管·膀胱', url: 'chapter9.html', phase: 2 },
+    { id: 'ch10', name: '第10章 生殖系统', desc: '男性·女性', url: 'chapter10.html', phase: 2 },
+    // Phase 3
+    { id: 'ch11', name: '第11章 神经系统', desc: '大脑·脊髓·自主神经', url: 'chapter11.html', phase: 3 },
+    { id: 'ch12', name: '第12章 内分泌系统', desc: '激素·腺体', url: 'chapter12.html', phase: 3 },
+    { id: 'ch13', name: '第13章 感觉器官', desc: '眼·耳·鼻·舌·皮肤', url: 'chapter13.html', phase: 3 },
+    { id: 'ch14', name: '第14章 学习路线总结', desc: '全景回顾与下一步', url: 'chapter14.html', phase: 3 },
+    // Phase 4 - Tools
+    { id: 'glossary', name: '📖 术语词典', desc: '30+核心术语速查', url: 'glossary.html', phase: 4 },
+    { id: 'quiz', name: '🧪 自测问答', desc: '25+选择题自我检测', url: 'quiz.html', phase: 4 },
+    { id: 'compare', name: '⚖️ 系统对比', desc: '7张对比矩阵表', url: 'compare.html', phase: 4 },
+    { id: 'scenarios', name: '🎬 日常场景解析', desc: '10个生活场景解读', url: 'daily-scenarios.html', phase: 4 },
+    { id: 'signals', name: '📡 身体信号解码', desc: '24个身体信号解密', url: 'body-signals.html', phase: 4 },
+    { id: 'handson', name: '🖐️ 动手认识自己', desc: '10个在家实验', url: 'hands-on.html', phase: 4 },
+];
+
+// ===== 状态管理 =====
+const STORAGE_KEY = 'anatomy_learning_progress';
+const NOTES_KEY = 'anatomy_learning_notes';
+
+function loadProgress() {
+    try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    } catch { return {}; }
+}
+function saveProgress(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// 状态循环：未开始 → 在读 → 已完成 → 未开始
+function cycleState(chapterId) {
+    const data = loadProgress();
+    const current = data[chapterId] || 'not-started';
+    if (current === 'not-started') data[chapterId] = 'reading';
+    else if (current === 'reading') { data[chapterId] = 'completed'; data[chapterId + '_done'] = new Date().toISOString(); }
+    else { data[chapterId] = 'not-started'; delete data[chapterId + '_done']; }
+    saveProgress(data);
+    render();
+}
+
+// ===== 渲染 =====
+function render() {
+    const data = loadProgress();
+
+    // Render chapter cards
+    [1,2,3,4].forEach(phase => {
+        const container = document.getElementById('phase' + phase);
+        container.innerHTML = '';
+        chapters.filter(c => c.phase === phase).forEach(ch => {
+            const state = data[ch.id] || 'not-started';
+            const card = document.createElement('div');
+            card.className = 'track-card ' + (state === 'completed' ? 'completed' : state === 'reading' ? 'reading' : '');
+            const icon = state === 'completed' ? '✅' : state === 'reading' ? '📖' : '';
+            const doneDate = data[ch.id + '_done'] ? new Date(data[ch.id + '_done']).toLocaleDateString('zh-CN') : '';
+            card.innerHTML = `
+                <div class="track-check">${icon}</div>
+                <div class="track-info">
+                    <h4>${ch.name}</h4>
+                    <div class="track-desc">${ch.desc}</div>
+                    <div class="track-meta">
+                        ${state === 'completed' ? '✅ 已完成' + (doneDate ? ' · ' + doneDate : '') : state === 'reading' ? '📖 正在学习' : '⬜ 未开始'}
+                        · <a href="${ch.url}" style="color:#4f46e5;text-decoration:none;font-weight:600;">打开 →</a>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') return; // don't trigger on link clicks
+                cycleState(ch.id);
+            });
+            container.appendChild(card);
+        });
+    });
+
+    // Stats
+    const total = chapters.length;
+    const completed = chapters.filter(c => (data[c.id] || 'not-started') === 'completed').length;
+    const reading = chapters.filter(c => (data[c.id] || 'not-started') === 'reading').length;
+    const pct = Math.round((completed / total) * 100);
+
+    document.getElementById('mainProgressBar').style.width = pct + '%';
+    document.getElementById('mainProgressText').textContent = pct + '%';
+
+    document.getElementById('overviewStats').innerHTML = `
+        <div class="progress-stat">
+            <div class="big-num">${completed}</div>
+            <div class="stat-label">已完成</div>
+        </div>
+        <div class="progress-stat">
+            <div class="big-num">${reading}</div>
+            <div class="stat-label">正在学</div>
+        </div>
+        <div class="progress-stat">
+            <div class="big-num">${total - completed - reading}</div>
+            <div class="stat-label">未开始</div>
+        </div>
+        <div class="progress-stat">
+            <div class="big-num">${pct}%</div>
+            <div class="stat-label">完成度</div>
+        </div>
+    `;
+
+    // Suggest next
+    updateSuggestion(data);
+}
+
+function updateSuggestion(data) {
+    // Find first not-started chapter in order
+    const reading = chapters.find(c => (data[c.id] || 'not-started') === 'reading');
+    if (reading) {
+        document.getElementById('suggestText').textContent = `你正在学习「${reading.name}」，继续加油！`;
+        document.getElementById('suggestLink').href = reading.url;
+        document.getElementById('suggestLink').textContent = '继续学习 →';
+        return;
+    }
+    const next = chapters.find(c => (data[c.id] || 'not-started') === 'not-started');
+    if (next) {
+        document.getElementById('suggestText').textContent = `推荐接下来学习「${next.name}」—— ${next.desc}`;
+        document.getElementById('suggestLink').href = next.url;
+        document.getElementById('suggestLink').textContent = '开始学习 →';
+        return;
+    }
+    // All done!
+    document.getElementById('suggestText').textContent = '🎉 恭喜！你已经完成了全部内容！可以回顾薄弱章节，或去做自测问答检验掌握程度。';
+    document.getElementById('suggestLink').href = 'quiz.html';
+    document.getElementById('suggestLink').textContent = '去做自测 →';
+}
+
+function resetProgress() {
+    if (confirm('确定要重置所有学习进度吗？此操作不可撤销。')) {
+        localStorage.removeItem(STORAGE_KEY);
+        render();
+    }
+}
+
+// ===== 笔记 =====
+function initNotes() {
+    const textarea = document.getElementById('userNotes');
+    textarea.value = localStorage.getItem(NOTES_KEY) || '';
+    let timer;
+    textarea.addEventListener('input', () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            localStorage.setItem(NOTES_KEY, textarea.value);
+        }, 500);
+    });
+}
+
+// ===== 初始化 =====
+document.addEventListener('DOMContentLoaded', () => {
+    render();
+    initNotes();
+});
+</script>
+
+<script src="nav.js"></script>
+</body>
+</html>
+
