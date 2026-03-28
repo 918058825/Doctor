@@ -46,11 +46,11 @@ function buildNav() {
   const navInner = document.querySelector('.top-nav-inner');
   if (!navInner) return;
 
-  // 注入门户链接样式
+  // 注入门户样式
   if (!document.getElementById('_nps')) {
     const _s = document.createElement('style');
     _s.id = '_nps';
-    _s.textContent = '.nav-portal-link{padding:.25em .65em;border-radius:5px;border:1px solid rgba(255,255,255,.2);font-size:.8em;opacity:.75;margin-left:.3rem;transition:opacity .15s,background .15s;color:inherit;text-decoration:none;display:inline-block}.nav-portal-link:hover{opacity:1;background:rgba(255,255,255,.08)}.mobile-nav-portal{display:block;padding:.55em 1em;font-size:.83em;opacity:.65;border-bottom:1px dashed rgba(255,255,255,.15);margin-bottom:.4em;color:inherit;text-decoration:none}';
+    _s.textContent = '.nav-portal-link{padding:.25em .65em;border-radius:5px;border:1px solid rgba(255,255,255,.2);font-size:.8em;opacity:.75;margin-left:.3rem;transition:opacity .15s,background .15s;color:inherit;text-decoration:none;display:inline-block}.nav-portal-link:hover{opacity:1;background:rgba(255,255,255,.08)}.sidebar-portal-link{opacity:.65!important;font-size:.82em!important;border-bottom:1px dashed #bae6fd;padding-bottom:.55em!important;margin-bottom:.3em;color:#0369a1!important}';
     document.head.appendChild(_s);
   }
 
@@ -108,42 +108,85 @@ function buildNav() {
   const mobileNav = document.createElement('div');
   mobileNav.className = 'mobile-nav';
 
-  // 移动端总目录链接
-  const mobilePortal = document.createElement('a');
-  mobilePortal.href = '../index.html';
-  mobilePortal.className = 'mobile-nav-portal';
-  mobilePortal.textContent = '🏠 返回总目录';
-  mobileNav.appendChild(mobilePortal);
+  // 右侧序列幕遗覆层
+  const overlay = document.createElement('div');
+  overlay.className = 'nav-overlay';
+  overlay.id = 'navOverlay';
+  document.body.appendChild(overlay);
 
+  // 序列幕主体
+  const sidebar = document.createElement('div');
+  sidebar.className = 'nav-sidebar';
+  sidebar.id = 'navSidebar';
+
+  const sidebarHeader = document.createElement('div');
+  sidebarHeader.className = 'sidebar-header';
+  sidebarHeader.innerHTML = '<span>💊 药理学入门</span><button class="sidebar-close" id="sidebarClose">✕</button>';
+  sidebar.appendChild(sidebarHeader);
+
+  const sidebarBody = document.createElement('div');
+  sidebarBody.className = 'sidebar-body';
+
+  // 返回总目录
+  const portalA = document.createElement('a');
+  portalA.href = '../index.html';
+  portalA.className = 'sidebar-link sidebar-portal-link';
+  portalA.textContent = '← 返回总目录';
+  sidebarBody.appendChild(portalA);
+
+  // 首页链接
+  const indexA = document.createElement('a');
+  indexA.href = 'index.html';
+  indexA.className = 'sidebar-link' + (currentPage === 'index.html' ? ' active' : '');
+  indexA.textContent = '🏠 首页';
+  sidebarBody.appendChild(indexA);
+
+  // 各组章节
   pharmacologyNav.groups.forEach(group => {
-    const groupDiv = document.createElement('div');
-    groupDiv.className = 'mobile-nav-group';
-
-    const title = document.createElement('div');
-    title.className = 'mobile-nav-group-title';
-    title.textContent = group.label;
-    groupDiv.appendChild(title);
-
+    const section = document.createElement('div');
+    section.className = 'sidebar-section';
+    section.textContent = group.label;
+    sidebarBody.appendChild(section);
     group.pages.forEach(page => {
       const a = document.createElement('a');
       a.href = page.href;
+      a.className = 'sidebar-link' + (page.href === currentPage ? ' active' : '');
       a.textContent = page.label;
-      if (page.href === currentPage) a.className = 'current';
-      groupDiv.appendChild(a);
+      sidebarBody.appendChild(a);
     });
-    mobileNav.appendChild(groupDiv);
   });
 
-  // Insert mobile nav after top-nav
-  const topNav = document.querySelector('.top-nav');
-  if (topNav && topNav.parentNode) {
-    topNav.parentNode.insertBefore(mobileNav, topNav.nextSibling);
+  sidebar.appendChild(sidebarBody);
+  document.body.appendChild(sidebar);
+
+  // FAB（非首页才显示）
+  if (currentPage !== 'index.html') {
+    const fab = document.createElement('a');
+    fab.href = 'index.html';
+    fab.className = 'fab-home';
+    fab.title = '返回首页';
+    fab.innerHTML = '🏠';
+    document.body.appendChild(fab);
   }
 
-  hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-    hamburger.innerHTML = mobileNav.classList.contains('open') ? '✕' : '☰';
-  });
+  // Insert mobile nav after top-nav (已不需要，保留此注释以兼容)
+  const topNav = document.querySelector('.top-nav');
+  void topNav; // unused
+
+  const openSidebar = () => {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeSidebar = () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+  };
+
+  hamburger.addEventListener('click', openSidebar);
+  overlay.addEventListener('click', closeSidebar);
+  document.getElementById('sidebarClose').addEventListener('click', closeSidebar);
 
   buildTOC();
 }
