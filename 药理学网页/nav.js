@@ -6,28 +6,28 @@ const pharmacologyNav = {
     {
       label: '基础药理',
       pages: [
-        { href: 'chapter1.html', label: '第1章 · 药物与受体' },
-        { href: 'chapter2.html', label: '第2章 · 药动学 ADME' },
-        { href: 'chapter3.html', label: '第3章 · 药效学·治疗窗' },
-        { href: 'chapter4.html', label: '第4章 · 不良反应与耐药' },
+        { href: 'chapter1.html', label: '1. 药物与受体' },
+        { href: 'chapter2.html', label: '2. 药动学 ADME' },
+        { href: 'chapter3.html', label: '3. 药效学·治疗窗' },
+        { href: 'chapter4.html', label: '4. 不良反应与耐药' },
       ]
     },
     {
       label: '系统药理·循环呼消',
       pages: [
-        { href: 'chapter5.html', label: '第5章 · 心血管药物' },
-        { href: 'chapter6.html', label: '第6章 · 呼吸系统药物' },
-        { href: 'chapter7.html', label: '第7章 · 消化系统药物' },
-        { href: 'chapter8.html', label: '第8章 · 镇痛与麻醉药' },
+        { href: 'chapter5.html', label: '5. 心血管药物' },
+        { href: 'chapter6.html', label: '6. 呼吸系统药物' },
+        { href: 'chapter7.html', label: '7. 消化系统药物' },
+        { href: 'chapter8.html', label: '8. 镇痛与麻醉药' },
       ]
     },
     {
       label: '系统药理·神内抗菌',
       pages: [
-        { href: 'chapter9.html',  label: '第9章 · 中枢神经系统药物' },
-        { href: 'chapter10.html', label: '第10章 · 内分泌系统药物' },
-        { href: 'chapter11.html', label: '第11章 · 抗菌药物' },
-        { href: 'chapter12.html', label: '第12章 · 抗肿瘤药物' },
+        { href: 'chapter9.html',  label: '9. 中枢神经系统药物' },
+        { href: 'chapter10.html', label: '10. 内分泌系统药物' },
+        { href: 'chapter11.html', label: '11. 抗菌药物' },
+        { href: 'chapter12.html', label: '12. 抗肿瘤药物' },
       ]
     },
     {
@@ -104,11 +104,7 @@ function buildNav() {
   hamburger.setAttribute('aria-label', '菜单');
   navInner.appendChild(hamburger);
 
-  // Mobile nav
-  const mobileNav = document.createElement('div');
-  mobileNav.className = 'mobile-nav';
-
-  // 右侧序列幕遗覆层
+  // 右侧遮罩层
   const overlay = document.createElement('div');
   overlay.className = 'nav-overlay';
   overlay.id = 'navOverlay';
@@ -168,10 +164,6 @@ function buildNav() {
     fab.innerHTML = '🏠';
     document.body.appendChild(fab);
   }
-
-  // Insert mobile nav after top-nav (已不需要，保留此注释以兼容)
-  const topNav = document.querySelector('.top-nav');
-  void topNav; // unused
 
   const openSidebar = () => {
     sidebar.classList.add('open');
