@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>疾病用药速查 · 身体说明书</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hero -->
+<div class="page-hero">
+    <span class="hero-tag">💊 实用指南</span>
+    <h1>疾病用药速查</h1>
+    <p class="subtitle">20种常见病——了解它为什么发生、吃什么药、有什么注意事项</p>
+</div>
+
+<!-- 面包屑 -->
+<div class="breadcrumb">
+    <a href="index.html">身体说明书</a> <span>›</span> <span>疾病用药速查</span>
+</div>
+
+<div class="main-content">
+
+    <div class="tip-box tip-yellow">
+        <strong>⚠️ 重要提示</strong><br>
+        本页内容仅供学习参考，<strong>不能替代医生诊断和处方</strong>。用药前请务必咨询医生或药师。自行用药有风险！
+    </div>
+
+    <!-- Tab 分类 -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('common')">日常小病</button>
+        <button class="tab-btn" onclick="switchTab('cardio')">心血管</button>
+        <button class="tab-btn" onclick="switchTab('endo')">代谢内分泌</button>
+        <button class="tab-btn" onclick="switchTab('digest')">消化系统</button>
+        <button class="tab-btn" onclick="switchTab('resp')">呼吸系统</button>
+        <button class="tab-btn" onclick="switchTab('other2')">其他常见</button>
+    </div>
+
+    <!-- ======================== 日常小病 ======================== -->
+    <div class="tab-panel active" id="panel-common">
+
+        <!-- 1. 普通感冒 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">1. 普通感冒</span>
+                <span class="dc-category">🤧 上呼吸道感染</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>病毒（鼻病毒为主）感染鼻腔和咽喉引起的炎症，不是冻出来的</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>鼻塞、流涕、打喷嚏、咽痛、轻度咳嗽，一般7天左右自愈</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>对乙酰氨基酚</strong>（退热止痛）、<strong>伪麻黄碱</strong>（缓解鼻塞）、<strong>右美沙芬</strong>（止咳）、<strong>氯苯那敏</strong>（抗过敏，减少流涕）
+                </span></div>
+                <div class="dc-row"><span class="dc-label">复方药：</span><span>感康、泰诺、新康泰克——这些都是"打包"了上面几种成分的复方制剂</span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ <strong>不需要吃抗生素！</strong>感冒是病毒引起的，抗生素杀不了病毒。除非合并了细菌感染（医生判断）。<br>
+                ❌ 不要同时吃多种感冒药——成分可能重复，导致过量！
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../药理学网页/chapter8.html" class="extend-link el-pharmacology">💊 解热镇痛药 → 药理学</a>
+                <a href="../病理学网页/chapter3.html" class="extend-link el-pathology">🔬 炎症反应 → 病理学</a>
+            </div>
+        </div>
+
+        <!-- 2. 发热 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">2. 发热</span>
+                <span class="dc-category">🌡️ 症状处理</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>体温超过37.3℃（腋温）。发热是身体对感染的防御反应，不一定是坏事</span></div>
+                <div class="dc-row"><span class="dc-label">何时退热：</span><span>体温≥38.5℃且不舒服时考虑用药；低热（37.3~38.5）可先物理降温</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>对乙酰氨基酚</strong>（成人每次500mg，4~6小时一次，每日≤2g）<br>
+                    <strong>布洛芬</strong>（成人每次200~400mg，6~8小时一次）
+                </span></div>
+                <div class="dc-row"><span class="dc-label">两者区别：</span><span>对乙酰氨基酚对胃更温和；布洛芬抗炎效果更强但可能伤胃</span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ 两种退热药<strong>不要混着吃</strong>，选一种就好。<br>
+                ❌ 对乙酰氨基酚过量可致<strong>肝衰竭</strong>——绝对不能多吃！吃感冒药时注意里面已经含有对乙酰氨基酚。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter7.html" class="extend-link el-physiology">⚡ 体温调节 → 生理学</a>
+                <a href="../药理学网页/chapter8.html" class="extend-link el-pharmacology">💊 NSAIDs → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 3. 过敏 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">3. 过敏（过敏性鼻炎/荨麻疹）</span>
+                <span class="dc-category">🤧 免疫反应</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>免疫系统对花粉、尘螨、食物等"无害物质"过度反应，释放组胺导致症状</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>喷嚏、流涕、鼻痒、皮肤瘙痒/红疹/风团</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>氯雷他定</strong>（一天1片，不犯困）<br>
+                    <strong>西替利嗪</strong>（部分人略有嗜睡）<br>
+                    <strong>鼻喷激素</strong>（如糠酸莫米松，过敏性鼻炎首选）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 第一代抗组胺药（如扑尔敏、苯海拉明）嗜睡明显，吃了别开车。<br>
+                ⚠️ 严重过敏（呼吸困难、血压下降）= <strong>过敏性休克</strong>，必须立即打120！
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../病理学网页/chapter4.html" class="extend-link el-pathology">🔬 超敏反应 → 病理学</a>
+                <a href="../药理学网页/chapter5.html" class="extend-link el-pharmacology">💊 抗组胺药 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 4. 腹泻 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">4. 急性腹泻</span>
+                <span class="dc-category">🚽 消化道</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>多为食物不洁/病毒（诺如）/细菌导致的急性肠胃炎</span></div>
+                <div class="dc-row"><span class="dc-label">关键：</span><span><strong>补水比止泻更重要！</strong>脱水才是腹泻最大的危险</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>口服补液盐 (ORS)</strong>：补水+电解质，最重要！<br>
+                    <strong>蒙脱石散</strong>（思密达）：吸附毒素，保护肠黏膜<br>
+                    <strong>益生菌</strong>（如双歧杆菌）：辅助恢复肠道菌群
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ 不要一拉肚子就吃<strong>止泻药（洛哌丁胺）</strong>——如果是感染性腹泻，止住反而把"坏东西"留在肠子里。<br>
+                ⚠️ 出现高热、脓血便、严重脱水（眼窝凹陷、皮肤弹性差）→ 必须就医！
+            </div>
+        </div>
+
+        <!-- 5. 头痛 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">5. 头痛</span>
+                <span class="dc-category">🤕 神经系统</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">常见类型：</span><span>
+                    <strong>紧张性头痛</strong>（最常见，像箍了一圈）、<strong>偏头痛</strong>（单侧搏动性，可有恶心）、<strong>丛集性头痛</strong>（剧烈，伴流泪）
+                </span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>对乙酰氨基酚/布洛芬</strong>（紧张性头痛首选）<br>
+                    <strong>曲普坦类</strong>（如舒马普坦，偏头痛特效药）<br>
+                    <strong>避免频繁用止痛药</strong>（每月>10天用药可导致"药物过度使用性头痛"）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                🚨 突发"雷击样头痛"（一生中最剧烈的头痛）→ 可能是<strong>蛛网膜下腔出血</strong>，立即急诊！
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../解剖学网页/chapter12.html" class="extend-link el-anatomy">🦴 脑膜与脑血管 → 解剖学</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======================== 心血管 ======================== -->
+    <div class="tab-panel" id="panel-cardio">
+
+        <!-- 6. 高血压 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">6. 高血压</span>
+                <span class="dc-category">❤️ 慢性病之王</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">标准：</span><span>收缩压≥140 或 舒张压≥90 mmHg（诊室测量，非同日3次）</span></div>
+                <div class="dc-row"><span class="dc-label">为何危险：</span><span>长期高压损伤血管壁 → 动脉硬化 → 心梗、脑梗、肾衰竭</span></div>
+                <div class="dc-row"><span class="dc-label">五大类药：</span><span>
+                    <strong>ACEI</strong>（如依那普利）：扩张血管，保护肾脏。副作用：干咳<br>
+                    <strong>ARB</strong>（如缬沙坦）：和ACEI类似但不咳嗽<br>
+                    <strong>CCB</strong>（如氨氯地平）：放松血管平滑肌。副作用：脚踝水肿<br>
+                    <strong>利尿剂</strong>（如氢氯噻嗪）：排水排钠降压<br>
+                    <strong>β受体阻滞剂</strong>（如美托洛尔）：减慢心率，降低心输出量
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ 降压药要<strong>每天吃，不能感觉好了就停</strong>！高血压是终身管理。<br>
+                ❌ 不要自行加量或换药，血压波动比高血压本身更危险。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter4.html" class="extend-link el-physiology">⚡ 血压调节 → 生理学</a>
+                <a href="../病理学网页/chapter5.html" class="extend-link el-pathology">🔬 高血压病变 → 病理学</a>
+                <a href="../药理学网页/chapter4.html" class="extend-link el-pharmacology">💊 降压药详解 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 7. 冠心病 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">7. 冠心病（冠状动脉粥样硬化性心脏病）</span>
+                <span class="dc-category">💔 心脏缺血</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>冠状动脉被斑块堵了一部分，心肌供血不足</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>活动时胸闷胸痛（心绞痛），休息或含硝酸甘油后缓解</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>阿司匹林</strong>（100mg/天，抗血小板，防血栓）<br>
+                    <strong>他汀类</strong>（如阿托伐他汀，降LDL，稳定斑块）<br>
+                    <strong>硝酸甘油</strong>（舌下含服，急性发作时扩张冠脉）<br>
+                    <strong>β受体阻滞剂</strong>（减少心肌耗氧）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                🚨 如果胸痛<strong>持续>15分钟、休息不缓解、含3次硝酸甘油无效</strong> → 高度怀疑<strong>急性心肌梗死</strong>，立即拨打120！<br>
+                ⚠️ 阿司匹林有出血风险，不能随意增加剂量。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../解剖学网页/chapter7.html" class="extend-link el-anatomy">🦴 冠状动脉 → 解剖学</a>
+                <a href="../病理学网页/chapter5.html" class="extend-link el-pathology">🔬 动脉粥样硬化 → 病理学</a>
+                <a href="../药理学网页/chapter3.html" class="extend-link el-pharmacology">💊 抗心绞痛药 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 8. 心力衰竭 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">8. 心力衰竭</span>
+                <span class="dc-category">💗 心脏泵衰竭</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>心脏"泵"血能力下降，身体各器官供血不足，同时血液淤积</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>活动后气促、夜间不能平卧（要垫高枕头）、下肢水肿</span></div>
+                <div class="dc-row"><span class="dc-label">核心用药：</span><span>
+                    <strong>ACEI/ARB</strong>（减轻心脏负荷，延长寿命）<br>
+                    <strong>β受体阻滞剂</strong>（从小剂量开始，逐渐增加）<br>
+                    <strong>利尿剂</strong>（如呋塞米，消除水肿）<br>
+                    <strong>螺内酯</strong>（保钾利尿+抗心室重构）<br>
+                    <strong>SGLT2i</strong>（如达格列净，近年新证据支持）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 心衰患者要<strong>限盐限水</strong>（每天盐 < 5g，水 < 1.5L）。<br>
+                ⚠️ 每天称体重——3天内增加 > 2kg 提示水钠潴留，需调药。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter4.html" class="extend-link el-physiology">⚡ 心脏泵功能 → 生理学</a>
+                <a href="../病理学网页/chapter5.html" class="extend-link el-pathology">🔬 心衰病理 → 病理学</a>
+                <a href="../药理学网页/chapter3.html" class="extend-link el-pharmacology">💊 强心/利尿药 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 9. 高脂血症 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">9. 高脂血症</span>
+                <span class="dc-category">🩸 血管隐患</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>血液中胆固醇或甘油三酯超标，是动脉粥样硬化的"幕后黑手"</span></div>
+                <div class="dc-row"><span class="dc-label">特点：</span><span><strong>没有症状！</strong>只能靠抽血发现。等出现症状（心梗/脑梗）就晚了</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>他汀类</strong>（如阿托伐他汀、瑞舒伐他汀）：降LDL的"王牌药"<br>
+                    <strong>依折麦布</strong>：减少胆固醇吸收，常和他汀联用<br>
+                    <strong>贝特类</strong>（如非诺贝特）：主要降甘油三酯
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 他汀类少数人可能出现<strong>肌肉酸痛</strong>——如果疼痛明显，查肌酸激酶(CK)，及时告知医生。<br>
+                ⚠️ 降脂也是<strong>长期治疗</strong>，不能指标正常了就停药。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../药理学网页/chapter4.html" class="extend-link el-pharmacology">💊 调血脂药 → 药理学</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======================== 代谢内分泌 ======================== -->
+    <div class="tab-panel" id="panel-endo">
+
+        <!-- 10. 糖尿病 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">10. 2型糖尿病</span>
+                <span class="dc-category">🍬 代谢病</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>胰岛素分泌不够或身体对胰岛素"不听话"（胰岛素抵抗），血糖持续偏高</span></div>
+                <div class="dc-row"><span class="dc-label">三多一少：</span><span>多饮、多尿、多食、体重减少（典型症状，但很多人没有明显症状）</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>二甲双胍</strong>：一线首选！减少肝糖输出+增加胰岛素敏感性<br>
+                    <strong>SGLT2i</strong>（如恩格列净）：让肾脏排出多余糖分，还能保护心肾<br>
+                    <strong>GLP-1RA</strong>（如利拉鲁肽/司美格鲁肽）：促胰岛素分泌+抑制食欲+减重<br>
+                    <strong>胰岛素</strong>：当口服药控制不住时使用
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 糖尿病最可怕的是<strong>并发症</strong>：糖尿病肾病、视网膜病变、糖尿病足、心脑血管病。<br>
+                ⚠️ 控糖目标：HbA1c < 7%（老年人可放宽到 < 7.5%~8%）。<br>
+                ❌ 不要相信"根治糖尿病"的广告——目前<strong>无法根治</strong>，只能控制。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter7.html" class="extend-link el-physiology">⚡ 胰岛素与血糖 → 生理学</a>
+                <a href="../病理学网页/chapter9.html" class="extend-link el-pathology">🔬 糖尿病病理 → 病理学</a>
+                <a href="../药理学网页/chapter6.html" class="extend-link el-pharmacology">💊 降糖药详解 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 11. 甲减 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">11. 甲状腺功能减退（甲减）</span>
+                <span class="dc-category">🦋 内分泌</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>甲状腺激素分泌不足，全身代谢减慢</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>怕冷、乏力、嗜睡、体重增加、皮肤干燥、便秘、记忆力下降</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>左甲状腺素钠</strong>（优甲乐）：补充甲状腺激素。<br>
+                    早晨空腹服用，服药后30~60分钟再吃饭。
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 甲减需要<strong>终身服药</strong>（多数情况下）。<br>
+                ⚠️ 定期查TSH，根据结果调整剂量。<br>
+                ⚠️ 豆制品、钙片、铁剂与优甲乐间隔4小时以上服用（影响吸收）。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter11.html" class="extend-link el-physiology">⚡ 甲状腺激素 → 生理学</a>
+            </div>
+        </div>
+
+        <!-- 12. 痛风 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">12. 痛风</span>
+                <span class="dc-category">🦶 代谢关节病</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>血中尿酸过高 → 尿酸盐结晶沉积在关节（尤其大脚趾）→ 剧烈疼痛</span></div>
+                <div class="dc-row"><span class="dc-label">急性发作：</span><span>
+                    <strong>秋水仙碱</strong>（越早吃越好，发作12h内服用效果最佳）<br>
+                    <strong>NSAIDs</strong>（如吲哚美辛、依托考昔）<br>
+                    <strong>糖皮质激素</strong>（上述不能用时的备选）
+                </span></div>
+                <div class="dc-row"><span class="dc-label">长期降尿酸：</span><span>
+                    <strong>别嘌醇</strong>（减少尿酸生成）<br>
+                    <strong>非布司他</strong>（新一代，效果更强）<br>
+                    <strong>苯溴马隆</strong>（促进尿酸排泄）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ 急性发作时<strong>不要开始降尿酸药</strong>！会加重症状。先消炎止痛，缓解后再降尿酸。<br>
+                ⚠️ 管住嘴：少吃内脏、海鲜、啤酒；多喝水（每天 > 2L）。
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======================== 消化系统 ======================== -->
+    <div class="tab-panel" id="panel-digest">
+
+        <!-- 13. 胃食管反流 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">13. 胃食管反流 (GERD)</span>
+                <span class="dc-category">🔥 烧心泛酸</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>胃酸反流到食管引起烧灼感，因为食管没有胃那样的保护层</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>烧心（胸骨后烧灼感）、反酸、嗳气，平躺/饭后加重</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>质子泵抑制剂 (PPI)</strong>（如奥美拉唑、雷贝拉唑）：最强效抑酸药，饭前30分钟服用<br>
+                    <strong>H2受体拮抗剂</strong>（如法莫替丁）：轻症或夜间症状使用<br>
+                    <strong>铝碳酸镁</strong>（达喜）：中和胃酸，快速缓解症状
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 生活方式很重要：睡前3小时不进食、抬高床头、减肥、戒烟。<br>
+                ⚠️ PPI不宜长期使用（>8周需医生评估），长期可能影响钙和镁吸收。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../药理学网页/chapter5.html" class="extend-link el-pharmacology">💊 抗酸药 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 14. 消化性溃疡 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">14. 消化性溃疡（胃溃疡/十二指肠溃疡）</span>
+                <span class="dc-category">🕳️ 胃壁破损</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>胃酸/胃蛋白酶消化了自己的黏膜，形成溃疡。主要因素：幽门螺杆菌(Hp)感染、NSAIDs长期使用</span></div>
+                <div class="dc-row"><span class="dc-label">区别：</span><span>胃溃疡——饭后痛；十二指肠溃疡——空腹痛、夜间痛（进食缓解）</span></div>
+                <div class="dc-row"><span class="dc-label">Hp阳性治疗：</span><span>
+                    <strong>四联疗法</strong>（14天）：PPI + 铋剂 + 2种抗生素（如阿莫西林+克拉霉素）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 长期吃止痛药（布洛芬、阿司匹林）的人要小心胃溃疡，必要时加用PPI保护胃。<br>
+                🚨 突然剧烈腹痛 + 腹肌紧绷（板状腹）→ 可能是溃疡穿孔，急诊手术！
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../病理学网页/chapter8.html" class="extend-link el-pathology">🔬 消化性溃疡 → 病理学</a>
+                <a href="../解剖学网页/chapter8.html" class="extend-link el-anatomy">🦴 胃的解剖 → 解剖学</a>
+            </div>
+        </div>
+
+        <!-- 15. 便秘 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">15. 便秘</span>
+                <span class="dc-category">🚻 排便困难</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">定义：</span><span>每周排便 < 3次，或排便费力、干硬</span></div>
+                <div class="dc-row"><span class="dc-label">首选：</span><span><strong>调整生活方式</strong>：多喝水、多吃膳食纤维（蔬菜水果全谷）、规律运动、定时排便</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>乳果糖</strong>：渗透性泻药，安全温和，适合老人和孕妇<br>
+                    <strong>聚乙二醇</strong>（如福松）：同上，效果好<br>
+                    <strong>开塞露</strong>：急性便秘时临时使用<br>
+                    <strong>益生菌</strong>：辅助调节肠道功能
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ <strong>不要长期依赖刺激性泻药</strong>（如番泻叶、芦荟胶囊）——会导致肠道变懒，越来越不好使。<br>
+                ⚠️ 50岁以上新出现的便秘+大便变细+便血 → 需排除<strong>肠道肿瘤</strong>。
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======================== 呼吸系统 ======================== -->
+    <div class="tab-panel" id="panel-resp">
+
+        <!-- 16. 哮喘 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">16. 支气管哮喘</span>
+                <span class="dc-category">🌬️ 气道高反应</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>气道慢性炎症 → 气管痉挛变窄 → 呼吸困难。过敏原、冷空气、运动可诱发</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>反复发作的喘息、胸闷、咳嗽，尤其夜间和清晨加重</span></div>
+                <div class="dc-row"><span class="dc-label">缓解药：</span><span>
+                    <strong>沙丁胺醇（万托林）</strong>：速效β2激动剂，急性发作时喷2下，几分钟见效
+                </span></div>
+                <div class="dc-row"><span class="dc-label">控制药：</span><span>
+                    <strong>吸入性糖皮质激素 (ICS)</strong>（如布地奈德）：长期抗炎，每天用<br>
+                    <strong>ICS + LABA联合</strong>（如信必可/舒利迭）：中重度哮喘首选
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ 吸入激素 ≠ 口服激素！吸入量很小，局部作用，<strong>长期使用是安全的</strong>。<br>
+                ⚠️ 吸入激素后要<strong>漱口</strong>，防止口腔念珠菌感染。<br>
+                ❌ 不能只用缓解药不用控制药——"治标不治本"，气道炎症会持续恶化。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter5.html" class="extend-link el-physiology">⚡ 呼吸调节 → 生理学</a>
+                <a href="../病理学网页/chapter7.html" class="extend-link el-pathology">🔬 哮喘病理 → 病理学</a>
+                <a href="../药理学网页/chapter5.html" class="extend-link el-pharmacology">💊 平喘药 → 药理学</a>
+            </div>
+        </div>
+
+        <!-- 17. 肺炎 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">17. 社区获得性肺炎</span>
+                <span class="dc-category">🫁 肺部感染</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>细菌/病毒/支原体感染肺组织，引起肺泡炎症和渗出</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>咳嗽（可有脓痰）、发热、气促、胸痛（呼吸时加重）</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>细菌性</strong>：阿莫西林、头孢类、阿奇霉素、左氧氟沙星<br>
+                    <strong>支原体肺炎</strong>：阿奇霉素/多西环素<br>
+                    <strong>病毒性</strong>（如流感）：奥司他韦（发病48h内使用效果最好）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 老年人肺炎可能<strong>不发热</strong>，只表现为精神差、食欲不振——容易延误诊治。<br>
+                ⚠️ 抗生素要<strong>按疗程吃完</strong>，不要"好了就停"——容易导致耐药。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../解剖学网页/chapter6.html" class="extend-link el-anatomy">🦴 肺的结构 → 解剖学</a>
+                <a href="../病理学网页/chapter7.html" class="extend-link el-pathology">🔬 肺炎分类 → 病理学</a>
+                <a href="../药理学网页/chapter9.html" class="extend-link el-pharmacology">💊 抗菌药物 → 药理学</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ======================== 其他常见 ======================== -->
+    <div class="tab-panel" id="panel-other2">
+
+        <!-- 18. 尿路感染 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">18. 尿路感染</span>
+                <span class="dc-category">🚰 泌尿系统</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>细菌（主要是大肠杆菌）逆行感染膀胱或肾脏。女性更常见（尿道短）</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>尿频、尿急、尿痛（膀胱炎）；发热+腰痛（肾盂肾炎）</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>呋喃妥因</strong>（单纯性膀胱炎首选之一，5天疗程）<br>
+                    <strong>磷霉素氨丁三醇</strong>（单剂治疗，很方便）<br>
+                    <strong>左氧氟沙星/头孢类</strong>（复杂性或肾盂肾炎）
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 多喝水！每天 > 2L，有助于"冲洗"细菌。<br>
+                ⚠️ 女性注意：如厕后"从前往后"擦，减少感染机会。
+            </div>
+        </div>
+
+        <!-- 19. 贫血 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">19. 缺铁性贫血</span>
+                <span class="dc-category">🩸 最常见贫血</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">是什么：</span><span>体内铁不够 → 血红蛋白合成减少 → 红细胞"装不满氧气"</span></div>
+                <div class="dc-row"><span class="dc-label">症状：</span><span>面色苍白、头晕、乏力、心悸、指甲变脆、异食癖（想吃冰/土）</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>硫酸亚铁</strong>（经典铁剂，便宜有效）<br>
+                    <strong>多糖铁复合物</strong>（胃肠反应更小）<br>
+                    <strong>维生素C</strong>：和铁剂一起吃，促进铁吸收
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ⚠️ 铁剂要吃到<strong>Hb正常后再继续3~6个月</strong>（补充储备铁）。<br>
+                ⚠️ 铁剂会让大便变黑——是正常的，不用紧张。<br>
+                ⚠️ 茶、咖啡、牛奶影响铁吸收，间隔2小时。<br>
+                ❌ 找到缺铁原因比补铁更重要！年轻女性多因月经，中老年要排除消化道出血。
+            </div>
+            <div class="extend-links" style="margin-top:0.8rem">
+                <a href="../生理学网页/chapter3.html" class="extend-link el-physiology">⚡ 红细胞生成 → 生理学</a>
+                <a href="../病理学网页/chapter6.html" class="extend-link el-pathology">🔬 贫血分类 → 病理学</a>
+            </div>
+        </div>
+
+        <!-- 20. 失眠 -->
+        <div class="drug-card">
+            <div class="dc-header">
+                <span class="dc-name">20. 失眠</span>
+                <span class="dc-category">😴 睡眠障碍</span>
+            </div>
+            <div class="dc-body">
+                <div class="dc-row"><span class="dc-label">定义：</span><span>入睡困难（>30分钟）、早醒、睡眠维持困难，且影响白天功能</span></div>
+                <div class="dc-row"><span class="dc-label">首选：</span><span><strong>认知行为疗法 (CBT-I)</strong>：比药物更根本有效。包括：限制卧床时间、刺激控制、放松训练</span></div>
+                <div class="dc-row"><span class="dc-label">常用药：</span><span>
+                    <strong>唑吡坦</strong>（思诺思）：短效安眠药，适合入睡困难<br>
+                    <strong>右佐匹克隆</strong>：适合入睡和维持困难<br>
+                    <strong>褪黑素</strong>：对时差/昼夜节律紊乱有帮助，普通失眠效果有限
+                </span></div>
+            </div>
+            <div class="dc-warn">
+                ❌ 安眠药<strong>不要长期使用</strong>（建议 < 4周），有依赖性。<br>
+                ⚠️ 睡前避免：手机（蓝光抑制褪黑素）、咖啡因（下午2点后）、剧烈运动（3小时内）、酒精（虽然助眠但影响深度睡眠）。
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 底部引导 -->
+    <div class="cta-section">
+        <h3>📚 想了解药物背后的原理？</h3>
+        <p>每种药是怎么起效的？在药理学课程里有详细讲解</p>
+        <a href="../药理学网页/index.html" class="cta-btn">查看药理学课程 →</a>
+    </div>
+
+</div>
+
+<footer class="site-footer"></footer>
+
+<script src="nav.js"></script>
+<script>
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById('panel-' + tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

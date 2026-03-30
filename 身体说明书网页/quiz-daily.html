@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日一题 · 身体说明书</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.quiz-card{background:#fff;border-radius:12px;border:1px solid #e5e7eb;margin-bottom:1.5rem;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.quiz-header{padding:0.9rem 1.2rem;display:flex;align-items:center;gap:0.6rem;border-bottom:1px solid #f3f4f6}
+.quiz-num{background:var(--c-green);color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem;flex-shrink:0}
+.quiz-subj{font-size:0.75rem;padding:2px 10px;border-radius:10px;font-weight:600}
+.qs-anatomy{background:#dbeafe;color:#1e40af}
+.qs-physiology{background:#d1fae5;color:#047857}
+.qs-pathology{background:#fee2e2;color:#991b1b}
+.qs-pharmacology{background:#f3e8ff;color:#7c3aed}
+.quiz-body{padding:1.2rem}
+.quiz-question{font-size:0.95rem;font-weight:600;color:#1f2937;margin-bottom:1rem;line-height:1.7}
+.quiz-options{list-style:none;padding:0;margin:0}
+.quiz-options li{padding:0.6rem 1rem;margin-bottom:0.5rem;border-radius:8px;border:1px solid #e5e7eb;cursor:pointer;transition:all .2s;font-size:0.88rem;line-height:1.5}
+.quiz-options li:hover:not(.correct):not(.wrong){border-color:var(--c-green);background:#f0fdf4}
+.quiz-options li.correct{border-color:#16a34a;background:#bbf7d0;font-weight:600;cursor:default}
+.quiz-options li.wrong{border-color:#dc2626;background:#fecaca;cursor:default}
+.quiz-answer{display:none;padding:1rem 1.2rem;background:#f8fafc;border-top:1px solid #f3f4f6}
+.quiz-answer.show{display:block}
+.answer-label{font-weight:700;color:#16a34a;margin-bottom:0.5rem;font-size:0.9rem}
+.answer-explain{font-size:0.85rem;color:#374151;line-height:1.8}
+.answer-explain strong{color:#059669}
+/* 顶部状态栏 */
+.quiz-status{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:1rem 1.2rem;margin:1.2rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.6rem}
+.status-score{font-size:1.6rem;font-weight:800;color:var(--c-green)}
+.status-info{color:#6b7280;font-size:0.82rem;margin-top:0.1rem}
+.btn-refresh{padding:0.5rem 1.2rem;background:var(--c-green);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:0.84rem;font-weight:600;transition:background .2s}
+.btn-refresh:hover{background:#047857}
+/* 筛选栏 */
+.quiz-filter{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.filter-btn{padding:0.4rem 1rem;border-radius:20px;border:1px solid #d1d5db;background:#fff;font-size:0.82rem;cursor:pointer;transition:all .2s;font-weight:500}
+.filter-btn:hover,.filter-btn.active{background:var(--c-green);color:#fff;border-color:var(--c-green)}
+/* 完成提示 */
+.finish-banner{display:none;background:linear-gradient(135deg,#059669,#047857);color:#fff;border-radius:12px;padding:1.5rem;text-align:center;margin:1.5rem 0}
+.finish-banner.show{display:block}
+.finish-score-big{font-size:2.5rem;font-weight:900;margin:0.3rem 0}
+.finish-msg{font-size:0.9rem;opacity:.9;margin-top:0.3rem}
+.finish-actions{margin-top:1rem;display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap}
+.finish-btn{padding:0.5rem 1.4rem;background:rgba(255,255,255,.25);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:8px;cursor:pointer;font-size:0.85rem;font-weight:600;transition:all .2s;text-decoration:none;display:inline-block}
+.finish-btn:hover{background:rgba(255,255,255,.4)}
+</style>
+</head>
+<body>
+
+<div class="page-hero">
+    <span class="hero-tag">✏️ 越练越熟</span>
+    <h1>每日一题</h1>
+    <p class="subtitle">每次随机抽取 10 道题，做完查看解析，换一批再练</p>
+</div>
+
+<div class="breadcrumb">
+    <a href="index.html">身体说明书</a> <span>›</span> <span>每日一题</span>
+</div>
+
+<div class="main-content">
+
+    <div class="tip-box tip-green">
+        <strong>🎯 做题建议</strong>：先自己选出答案，再点击验证。看完解析后用自己的话复述一遍——能说出来才算真的会了。
+    </div>
+
+    <div class="quiz-filter">
+        <button class="filter-btn active" data-filter="all"   onclick="setFilter('all',this)">全部</button>
+        <button class="filter-btn" data-filter="anatomy"      onclick="setFilter('anatomy',this)">🦴 解剖学</button>
+        <button class="filter-btn" data-filter="physiology"   onclick="setFilter('physiology',this)">⚡ 生理学</button>
+        <button class="filter-btn" data-filter="pathology"    onclick="setFilter('pathology',this)">🔬 病理学</button>
+        <button class="filter-btn" data-filter="pharmacology" onclick="setFilter('pharmacology',this)">💊 药理学</button>
+    </div>
+
+    <div class="quiz-status">
+        <div>
+            <div class="status-score" id="scoreDisplay">0 / 10</div>
+            <div class="status-info" id="statusInfo">已答对 / 本次 10 题</div>
+        </div>
+        <button class="btn-refresh" onclick="drawNew()">🔀 换一批</button>
+    </div>
+
+    <div class="finish-banner" id="finishBanner">
+        <div>🎉 本次答题完成！</div>
+        <div class="finish-score-big" id="finishScore">10 / 10</div>
+        <div class="finish-msg" id="finishMsg"></div>
+        <div class="finish-actions">
+            <button class="finish-btn" onclick="drawNew()">🔀 再来一批</button>
+            <a href="../index.html" class="finish-btn">📚 去看课程</a>
+        </div>
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <div class="cta-section">
+        <h3>📚 想深入理解每道题背后的原理？</h3>
+        <p>题目对应的完整知识点都在四门课程中</p>
+        <a href="../index.html" class="cta-btn">查看全部课程 →</a>
+    </div>
+
+</div>
+
+<footer class="site-footer"></footer>
+
+<script src="nav.js"></script>
+<script>
+/* ===== 题库（共60题）===== */
+var BANK = [
+/* ---- 解剖学 15题 ---- */
+{s:'anatomy',sn:'解剖学',
+ q:'椎间盘突出最常见的部位是？',
+ o:['C3~C4','T11~T12','L4~L5','S1~S2'],a:2,
+ e:'腰椎间盘突出最常发生在 <strong>L4~L5</strong> 和 L5~S1，腰椎承重最大、活动度最高，突出的椎间盘常压迫坐骨神经。',
+ l:'../解剖学网页/chapter3.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'McBurney 点（麦氏点）是哪个器官的体表投影？',
+ o:['胆囊','阑尾','胰腺','脾脏'],a:1,
+ e:'McBurney 点位于脐与<strong>右髂前上棘</strong>连线中外 1/3 交点，是<strong>阑尾</strong>根部的体表投影。急性阑尾炎时该点压痛（麦氏征阳性）。',
+ l:'../解剖学网页/chapter7.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'桡神经损伤后最典型的表现是？',
+ o:['猿手','爪形手','垂腕','垂足'],a:2,
+ e:'桡神经支配前臂伸肌群，损伤后不能伸腕伸指，出现<strong>垂腕</strong>。猿手=正中神经，爪形手=尺神经，垂足=腓总神经。',
+ l:'../解剖学网页/chapter13.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'分布最广的脑神经是哪一对？',
+ o:['三叉神经（Ⅴ）','面神经（Ⅶ）','迷走神经（Ⅹ）','舌下神经（Ⅻ）'],a:2,
+ e:'<strong>迷走神经（Ⅹ）</strong>是分布最广的脑神经，支配颈部→胸腔→腹腔的心、肺、胃、肠等脏器，占全身副交感纤维约 75%。',
+ l:'../解剖学网页/chapter12.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'全身最灵活但最容易脱位的关节是？',
+ o:['髋关节','膝关节','肩关节','踝关节'],a:2,
+ e:'<strong>肩关节</strong>关节窝浅（仅为肱骨头的 1/3~1/4），关节囊松弛，活动范围最大但稳定性差，最易脱位（多向前下方）。',
+ l:'../解剖学网页/chapter4.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'正常成人颈椎共有几块？',
+ o:['5块','6块','7块','8块'],a:2,
+ e:'颈椎共 <strong>7</strong> 块，胸椎 12 块，腰椎 5 块。记忆法：早餐 7 点，中餐 12 点，晚餐 5 点。',
+ l:'../解剖学网页/chapter3.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'门静脉高压时，以下哪个部位最容易发生静脉曲张？',
+ o:['颈静脉','食管下段','股静脉','颅内静脉窦'],a:1,
+ e:'门静脉高压时，门-腔侧支循环开放，最典型是<strong>食管下段及胃底静脉曲张</strong>，破裂出血是最危险的并发症。脐周静脉曲张（"海蛇头"）也是常见体征。',
+ l:'../解剖学网页/chapter7.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'内囊出血的典型表现是？',
+ o:['同侧偏瘫','对侧偏瘫+偏身感觉障碍+同向偏盲（三偏）','双侧偏瘫','四肢瘫痪'],a:1,
+ e:'内囊是大脑皮层下行纤维必经之路，出血后对侧皮层功能全受损，典型为<strong>"三偏综合征"</strong>：对侧偏瘫、偏身感觉障碍、同向偏盲。',
+ l:'../解剖学网页/chapter12.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'尺神经损伤后的典型表现是？',
+ o:['垂腕','猿手','爪形手','垂足'],a:2,
+ e:'尺神经损伤导致第 4、5 指不能伸直，呈<strong>爪形手</strong>（环小指屈曲，掌指关节过伸）。还伴有手内在肌萎缩和第 4~5 指感觉丧失。',
+ l:'../解剖学网页/chapter13.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'主动脉弓从右向左发出的第一个分支是？',
+ o:['左颈总动脉','右锁骨下动脉','头臂干（无名动脉）','左锁骨下动脉'],a:2,
+ e:'主动脉弓从右向左依次发出：<strong>头臂干（无名动脉）→左颈总动脉→左锁骨下动脉</strong>。头臂干再分为右颈总动脉和右锁骨下动脉。',
+ l:'../解剖学网页/chapter6.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'肝脏双重血供中，门静脉和肝动脉的供血比例大约是？',
+ o:['各占50%','肝动脉75%，门静脉25%','门静脉75%，肝动脉25%','肝动脉90%，门静脉10%'],a:2,
+ e:'肝脏有双重血供：<strong>门静脉约 75%</strong>（来自消化道，富含营养），<strong>肝动脉约 25%</strong>（含氧丰富）。两者共同保证肝脏功能。',
+ l:'../解剖学网页/chapter7.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'膝关节内、外侧半月板的形状分别是？',
+ o:['内侧O形，外侧C形','内侧C形，外侧O形','两者均为C形','两者均为O形'],a:1,
+ e:'内侧半月板呈 <strong>C形</strong>（较大），外侧半月板呈 <strong>O形</strong>（近圆形）。内侧半月板与内侧副韧带相连，活动度小，损伤更常见。',
+ l:'../解剖学网页/chapter5.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'成人脊髓末端（脊髓圆锥）通常止于哪个平面？',
+ o:['T12','L1~L2','L3~L4','S1'],a:1,
+ e:'成人脊髓末端止于 <strong>L1~L2</strong> 之间。因此腰椎穿刺通常选择 L3~L4 或 L4~L5 间隙，以避免损伤脊髓。',
+ l:'../解剖学网页/chapter11.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'胆总管和胰管共同开口于十二指肠的哪个部分？',
+ o:['上部（球部）','降部','水平部','升部'],a:1,
+ e:'胆总管和胰管在十二指肠<strong>降部</strong>的大乳头处汇合开口（Oddi括约肌所在位置）。',
+ l:'../解剖学网页/chapter7.html'},
+{s:'anatomy',sn:'解剖学',
+ q:'正中神经损伤后的典型表现是？',
+ o:['垂腕','爪形手','猿手','垂足'],a:2,
+ e:'正中神经损伤后，大鱼际肌萎缩，拇指不能外展和对掌，手变得扁平，形似<strong>猿手</strong>。同时伴有桡侧三指半感觉丧失。',
+ l:'../解剖学网页/chapter13.html'},
+
+/* ---- 生理学 15题 ---- */
+{s:'physiology',sn:'生理学',
+ q:'静息电位主要是由哪种离子的外流形成的？',
+ o:['Na⁺','K⁺','Ca²⁺','Cl⁻'],a:1,
+ e:'静息状态下，细胞膜对 <strong>K⁺</strong> 通透性最高，K⁺ 顺浓度梯度外流，使膜内变负、膜外变正，形成静息电位（约 -70mV）。',
+ l:'../生理学网页/chapter1.html'},
+{s:'physiology',sn:'生理学',
+ q:'心脏的正常起搏点是？',
+ o:['房室结','窦房结','房室束','浦肯野纤维'],a:1,
+ e:'<strong>窦房结</strong>自律性最高（60~100次/分），是心脏正常起搏点。房室结的自律性为 40~60次/分，是次级起搏点。',
+ l:'../生理学网页/chapter4.html'},
+{s:'physiology',sn:'生理学',
+ q:'Frank-Starling 机制（心的异长自身调节）描述的是？',
+ o:['心率越快，心输出量越大','血压越高，心脏收缩越强','回心血量越多，心脏收缩力越强','交感兴奋使心脏收缩力增强'],a:2,
+ e:'在一定范围内，心室充盈量（前负荷）越大，心肌纤维被拉得越长，收缩力越强，每搏输出量越多——<strong>Frank-Starling机制</strong>，是心脏无需神经参与的自身调节。',
+ l:'../生理学网页/chapter4.html'},
+{s:'physiology',sn:'生理学',
+ q:'正常人每天肾小球滤过约180L液体，最终尿量约为？',
+ o:['约10L','约5L','约1.5L','约0.5L'],a:2,
+ e:'肾小球每天滤出约 180L 原尿，<strong>99% 以上被肾小管重吸收</strong>，最终排出约 1~2L 尿液。',
+ l:'../生理学网页/chapter8.html'},
+{s:'physiology',sn:'生理学',
+ q:'以下关于交感神经的描述，错误的是？',
+ o:['使心率加快','使瞳孔散大','使支气管收缩','使消化活动减弱'],a:2,
+ e:'交感兴奋时支气管<strong>扩张</strong>（不是收缩），目的是增加通气量。副交感（迷走）才使支气管收缩。口诀："交感打仗，迷走吃饭"。',
+ l:'../生理学网页/chapter10.html'},
+{s:'physiology',sn:'生理学',
+ q:'动作电位的去极化阶段主要是由哪种离子内流引起的？',
+ o:['K⁺','Ca²⁺','Na⁺','Cl⁻'],a:2,
+ e:'动作电位去极化时，<strong>Na⁺大量内流</strong>，使膜电位迅速从 -70mV 升至约 +30mV。动作电位具有"全或无"特性。',
+ l:'../生理学网页/chapter1.html'},
+{s:'physiology',sn:'生理学',
+ q:'血压的计算公式是？',
+ o:['心率×每搏量','心输出量×外周阻力','血容量×血管弹性','心肌收缩力×心率'],a:1,
+ e:'<strong>血压 = 心输出量 × 外周阻力</strong>。高血压本质上是心输出量增多或外周阻力升高。这也解释了为什么降压药分别针对这两个靶点。',
+ l:'../生理学网页/chapter5.html'},
+{s:'physiology',sn:'生理学',
+ q:'肺泡表面活性物质由哪种细胞分泌？',
+ o:['Ⅰ型肺泡细胞','Ⅱ型肺泡细胞','肺泡巨噬细胞','毛细血管内皮细胞'],a:1,
+ e:'<strong>Ⅱ型肺泡细胞</strong>分泌肺泡表面活性物质（主要成分磷脂酰胆碱），降低肺泡表面张力，防止肺泡塌陷。早产儿缺乏→新生儿呼吸窘迫综合征。',
+ l:'../生理学网页/chapter6.html'},
+{s:'physiology',sn:'生理学',
+ q:'ADH（抗利尿激素）主要作用于哪个部位？',
+ o:['近曲小管','远曲小管和集合管','髓袢升支','肾小球'],a:1,
+ e:'ADH 作用于<strong>远曲小管和集合管</strong>，促进水的重吸收，使尿液浓缩、尿量减少。ADH缺乏→中枢性尿崩症（每天尿量可达10L以上）。',
+ l:'../生理学网页/chapter8.html'},
+{s:'physiology',sn:'生理学',
+ q:'RAAS 系统中，使血管收缩升压的关键效应物质是？',
+ o:['肾素','血管紧张素Ⅰ','血管紧张素Ⅱ','醛固酮'],a:2,
+ e:'<strong>血管紧张素Ⅱ（AngⅡ）</strong>是 RAAS 中最核心的效应物质：强烈收缩血管+刺激醛固酮分泌（保钠保水）→升高血压。ACEI 和 ARB 均针对此靶点。',
+ l:'../生理学网页/chapter4.html'},
+{s:'physiology',sn:'生理学',
+ q:'红细胞的正常寿命约为？',
+ o:['约30天','约60天','约120天','约180天'],a:2,
+ e:'红细胞寿命约 <strong>120 天</strong>，这是 HbA1c 能反映过去 2~3 个月平均血糖水平的原因。HbA1c 是糖尿病长期管理的重要指标（目标 <7%）。',
+ l:'../生理学网页/chapter3.html'},
+{s:'physiology',sn:'生理学',
+ q:'胰岛素促进葡萄糖摄取的主要靶组织是？',
+ o:['肝脏和肾脏','骨骼肌和脂肪组织','大脑和心肌','小肠上皮'],a:1,
+ e:'胰岛素主要作用于<strong>骨骼肌和脂肪组织</strong>（通过 GLUT4 转运），促进葡萄糖摄取和糖原合成。大脑摄取葡萄糖不依赖胰岛素（GLUT1/3），所以低血糖时大脑先受损。',
+ l:'../生理学网页/chapter11.html'},
+{s:'physiology',sn:'生理学',
+ q:'吸气的最重要动力肌是？',
+ o:['肋间外肌','膈肌','胸锁乳突肌','腹肌'],a:1,
+ e:'<strong>膈肌</strong>是最重要的吸气肌，承担约 60~70% 的呼吸功。膈肌收缩→膈下降→胸腔容积增大→肺被动扩张吸气。肋间外肌是辅助吸气肌。',
+ l:'../生理学网页/chapter6.html'},
+{s:'physiology',sn:'生理学',
+ q:'醛固酮的主要生理作用是？',
+ o:['促进肾脏排钠保钾','促进肾脏保钠排钾','抑制肾脏对水的重吸收','升高血钾'],a:1,
+ e:'醛固酮（肾上腺皮质球状带分泌）作用于远曲小管和集合管，促进<strong>Na⁺重吸收和K⁺排泄</strong>（保钠排钾），同时水随钠重吸收，血容量增加，血压升高。',
+ l:'../生理学网页/chapter8.html'},
+{s:'physiology',sn:'生理学',
+ q:'以下关于血液凝固最后一步，正确的是？',
+ o:['血小板直接形成血栓','凝血酶将纤维蛋白原转变为纤维蛋白','FXIII激活血小板聚集','纤溶酶溶解血栓'],a:1,
+ e:'凝血过程最终一步：凝血酶→作用于纤维蛋白原→形成<strong>纤维蛋白</strong>（网状），捕获红细胞形成血栓。维生素K参与合成凝血因子Ⅱ、Ⅶ、Ⅸ、Ⅹ，华法林通过拮抗维生素K抗凝。',
+ l:'../生理学网页/chapter3.html'},
+
+/* ---- 病理学 15题 ---- */
+{s:'pathology',sn:'病理学',
+ q:'脑梗死属于哪种类型的坏死？',
+ o:['凝固性坏死','干酪样坏死','液化性坏死','坏疽'],a:2,
+ e:'脑组织富含<strong>脂质和水分</strong>，坏死后蛋白酶分解快，容易液化，形成<strong>液化性坏死</strong>。心、肾、脾蛋白含量高→凝固性坏死；结核病→干酪样坏死。',
+ l:'../病理学网页/chapter1.html'},
+{s:'pathology',sn:'病理学',
+ q:'血栓形成的 Virchow 三要素不包括哪项？',
+ o:['血管内皮损伤','血流速度加快','血液高凝状态','血流减慢或涡流'],a:1,
+ e:'Virchow三要素：<strong>内皮损伤 + 血流减慢/涡流 + 高凝状态</strong>。血流"加快"不是血栓形成的条件。恰恰相反，血流减慢才容易血栓。',
+ l:'../病理学网页/chapter2.html'},
+{s:'pathology',sn:'病理学',
+ q:'上皮性恶性肿瘤（癌）最早最常见的转移途径是？',
+ o:['血行转移','淋巴转移','种植转移','直接蔓延'],a:1,
+ e:'上皮性恶性肿瘤（癌）最早最常见的转移是<strong>淋巴转移</strong>，这是为什么外科手术切除癌时要做淋巴结清扫。肉瘤（间叶组织）多血行转移。',
+ l:'../病理学网页/chapter4.html'},
+{s:'pathology',sn:'病理学',
+ q:'长期吸烟→支气管假复层纤毛柱状上皮变为鳞状上皮，这属于？',
+ o:['增生','萎缩','化生','肥大'],a:2,
+ e:'<strong>化生</strong>是一种分化成熟的细胞被另一种细胞所替代。支气管鳞状上皮化生是支气管鳞癌的发生基础。化生本身不是肿瘤，但有癌变潜力。',
+ l:'../病理学网页/chapter1.html'},
+{s:'pathology',sn:'病理学',
+ q:'DIC（弥散性血管内凝血）的核心病理过程是？',
+ o:['只表现为血栓','只表现为出血','先微血栓消耗凝血因子，后期出血','仅见于感染性休克'],a:2,
+ e:'DIC = <strong>先凝后出</strong>：大量微血栓形成→消耗凝血因子和血小板→凝血功能衰竭→广泛出血。病因包括感染、羊水栓塞、广泛烧伤、严重创伤等。',
+ l:'../病理学网页/chapter2.html'},
+{s:'pathology',sn:'病理学',
+ q:'炎症的基本病理变化三项是？',
+ o:['增生、坏死、化生','变质、渗出、增生','萎缩、肥大、增生','出血、坏死、渗出'],a:1,
+ e:'炎症三个基本病理变化：<strong>变质</strong>（组织损伤）+<strong>渗出</strong>（液体和细胞渗出血管，是炎症特征性改变）+<strong>增生</strong>（修复）。',
+ l:'../病理学网页/chapter3.html'},
+{s:'pathology',sn:'病理学',
+ q:'干酪样坏死是哪种疾病的特征性病变？',
+ o:['病毒性肝炎','结核病','急性心肌梗死','化脓性脑膜炎'],a:1,
+ e:'<strong>结核病</strong>的特征性坏死是干酪样坏死——肉眼观呈灰黄色，质地松软，像豆腐渣或奶酪。周围有上皮样细胞和朗汉斯巨细胞（结核性肉芽肿）。',
+ l:'../病理学网页/chapter1.html'},
+{s:'pathology',sn:'病理学',
+ q:'急性炎症早期（6~24小时），最先到达炎症灶的白细胞是？',
+ o:['淋巴细胞','单核细胞','嗜酸性粒细胞','中性粒细胞'],a:3,
+ e:'急性炎症早期，<strong>中性粒细胞</strong>首先在趋化因子吸引下游走到炎症灶，吞噬细菌和坏死物。24~48小时后单核细胞逐渐增多（慢性炎症以淋巴/单核为主）。',
+ l:'../病理学网页/chapter3.html'},
+{s:'pathology',sn:'病理学',
+ q:'良性肿瘤与恶性肿瘤最根本的区别是？',
+ o:['生长速度快慢','有无包膜','细胞异型性和侵袭转移能力','肿瘤大小'],a:2,
+ e:'良恶性的根本区别在于<strong>细胞异型性（分化程度）和侵袭转移能力</strong>。良性细胞与正常细胞相似（高分化），不转移；恶性肿瘤异型性大，具有侵袭和转移能力。',
+ l:'../病理学网页/chapter4.html'},
+{s:'pathology',sn:'病理学',
+ q:'肺癌中，与吸烟关系最密切的两种类型是？',
+ o:['腺癌和大细胞癌','小细胞肺癌和鳞状细胞癌','腺癌和鳞癌','类癌和腺癌'],a:1,
+ e:'<strong>鳞状细胞癌</strong>和<strong>小细胞肺癌</strong>与吸烟关系最密切（多为中央型）。腺癌多见于女性非吸烟者，位于肺周边部，与 EGFR 突变相关。',
+ l:'../病理学网页/chapter4.html'},
+{s:'pathology',sn:'病理学',
+ q:'肝硬化最危急、致死率最高的并发症是？',
+ o:['腹水','脾大','食管胃底静脉曲张破裂出血','门脉血栓'],a:2,
+ e:'<strong>食管胃底静脉曲张破裂出血</strong>是肝硬化最危急的并发症，急性大出血死亡率高达 30~50%。肝性脑病虽然严重，但通常为慢性进展过程。',
+ l:'../病理学网页/chapter9.html'},
+{s:'pathology',sn:'病理学',
+ q:'细胞凋亡与坏死最本质的区别是？',
+ o:['凋亡细胞变大，坏死细胞变小','凋亡是主动程序性死亡，无炎症；坏死是被动死亡，引起炎症','凋亡只发生在病理情况下','坏死不引起任何反应'],a:1,
+ e:'<strong>凋亡</strong>是基因调控的主动死亡，形成凋亡小体，被邻近细胞吞噬，<strong>无炎症反应</strong>。坏死是被动死亡（缺血、毒素），细胞破裂，内容物释放→引发炎症。',
+ l:'../病理学网页/chapter1.html'},
+{s:'pathology',sn:'病理学',
+ q:'动脉粥样硬化最易发生在哪类血管？',
+ o:['毛细血管','小静脉','大中动脉','淋巴管'],a:2,
+ e:'动脉粥样硬化主要累及<strong>大中动脉</strong>（主动脉、冠状动脉、脑动脉等），这些部位分叉处流速慢、涡流，内皮容易受损，LDL-C 渗入内膜堆积。',
+ l:'../病理学网页/chapter5.html'},
+{s:'pathology',sn:'病理学',
+ q:'糖尿病肾病最早期的可检测指标是？',
+ o:['大量蛋白尿（>3.5g/天）','微量白蛋白尿（30~300mg/天）','肉眼血尿','肾功能衰竭'],a:1,
+ e:'糖尿病肾病最早期表现为<strong>微量白蛋白尿</strong>（UAE 30~300mg/天）。此时积极控糖、控压、使用ACEI/ARB可延缓进展。进展后才出现大量蛋白尿和肾功能下降。',
+ l:'../病理学网页/chapter10.html'},
+{s:'pathology',sn:'病理学',
+ q:'心肌梗死后，坏死区肉芽组织开始替代通常在多少天内？',
+ o:['1~2天','1~2周','1~2个月','半年以上'],a:1,
+ e:'心肌梗死后约 <strong>1~2 周</strong>肉芽组织开始长入坏死区，最终（4~6周）形成瘢痕组织（纤维化）。因此梗死后 2 周内患者需绝对卧床，避免心脏破裂。',
+ l:'../病理学网页/chapter5.html'},
+
+/* ---- 药理学 15题 ---- */
+{s:'pharmacology',sn:'药理学',
+ q:'ACEI 类降压药最常见的不良反应是？',
+ o:['踝部水肿','干咳','低血钾','心动过缓'],a:1,
+ e:'ACEI 抑制 ACE 的同时减少了缓激肽降解，<strong>缓激肽蓄积</strong>刺激气道引起干咳，发生率约 10~20%。不耐受者可换 ARB（如缬沙坦）。',
+ l:'../药理学网页/chapter4.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'以下哪种药物使用前必须做皮试？',
+ o:['阿莫西林','头孢克洛','青霉素','阿奇霉素'],a:2,
+ e:'<strong>青霉素</strong>过敏反应发生率最高，严重时导致过敏性休克，每次使用前必须皮试。即使以前用过，停药超过 3 天也需重新皮试。',
+ l:'../药理学网页/chapter9.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'对乙酰氨基酚（扑热息痛）过量最主要的毒性靶器官是？',
+ o:['肾脏','耳蜗','肝脏','心脏'],a:2,
+ e:'过量时正常代谢饱和，产生大量有毒代谢物 NAPQI，导致<strong>急性肝坏死</strong>。成人每天剂量不超过 2g，严禁饮酒时服用。解毒药：<strong>N-乙酰半胱氨酸（NAC）</strong>。',
+ l:'../药理学网页/chapter7.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'以下哪类抗菌药物禁用于 18 岁以下？',
+ o:['大环内酯类','β-内酰胺类','喹诺酮类','头孢菌素类'],a:2,
+ e:'<strong>喹诺酮类</strong>（沙星类）影响幼龄动物关节软骨发育，禁用于 18 岁以下、孕妇和哺乳期。还可引起跟腱炎和光敏感反应。',
+ l:'../药理学网页/chapter9.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'华法林的抗凝效果用什么指标监测？',
+ o:['PT/INR','APTT','血小板计数','D-二聚体'],a:0,
+ e:'华法林是维生素 K 拮抗剂，影响外源性凝血途径，用 <strong>PT/INR</strong> 监测（目标 INR 2~3）。肝素用 APTT；D-二聚体用于诊断血栓；血小板用于评估血小板减少。',
+ l:'../药理学网页/chapter3.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'强心苷（地高辛）中毒最早、最常见的表现是？',
+ o:['黄绿色视觉','室颤','恶心呕吐等胃肠道反应','窦性心动过缓'],a:2,
+ e:'地高辛中毒最早出现的是<strong>胃肠道反应</strong>（恶心、呕吐、厌食），其后才出现视觉异常（黄绿视）和各种心律失常（最危险）。安全窗窄，需监测血药浓度（0.5~2 ng/mL）。',
+ l:'../药理学网页/chapter3.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'硝酸甘油缓解心绞痛的主要机制是？',
+ o:['直接扩张冠状动脉增加供血','扩张静脉→减少回心血量→降低前负荷→降低心肌耗氧','收缩外周动脉升高血压','抑制血小板聚集'],a:1,
+ e:'硝酸甘油主要<strong>扩张静脉</strong>（容量血管），减少回心血量，降低心脏前负荷和心肌耗氧量。也扩张冠状动脉，但主要获益来自减少耗氧。',
+ l:'../药理学网页/chapter3.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'2 型糖尿病无禁忌时，首选的口服降糖药是？',
+ o:['格列本脲（磺脲类）','二甲双胍','阿卡波糖','胰岛素'],a:1,
+ e:'<strong>二甲双胍</strong>是2型糖尿病的首选口服药。机制：抑制肝糖输出+改善胰岛素抵抗；不增加体重，不引起低血糖；是唯一有证据减少心血管事件的口服降糖药。',
+ l:'../药理学网页/chapter6.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'氨基糖苷类抗生素（如庆大霉素）需特别注意的不良反应是？',
+ o:['肝毒性','耳毒性和肾毒性','过敏性休克','骨髓抑制'],a:1,
+ e:'氨基糖苷类最重要的不良反应是<strong>耳毒性</strong>（损害内耳毛细胞→不可逆耳聋）和<strong>肾毒性</strong>（急性肾小管坏死）。不可与呋塞米合用；老年人和肾功能不全者慎用。',
+ l:'../药理学网页/chapter9.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'阿托品（M受体阻断药）的作用不包括？',
+ o:['使心率加快','使瞳孔缩小','减少唾液分泌','解除胃肠平滑肌痉挛'],a:1,
+ e:'阿托品阻断 M 受体，效应与副交感相反：心率加快、瞳孔<strong>散大</strong>（不是缩小）、唾液腺/汗腺分泌减少、胃肠平滑肌松弛。青光眼患者禁用（散瞳→眼内压升高）。',
+ l:'../药理学网页/chapter2.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'β受体阻滞剂（如美托洛尔）的禁忌证是？',
+ o:['高血压','心绞痛','支气管哮喘','心肌梗死后预防'],a:2,
+ e:'β受体阻滞剂阻断 β₂ 受体→支气管收缩，<strong>支气管哮喘和 COPD</strong> 是其禁忌证。对高血压、稳定性心绞痛、心衰、心梗后都有明确获益。',
+ l:'../药理学网页/chapter4.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'长期使用糖皮质激素后不能突然停药的原因是？',
+ o:['停药引起过敏反应','外源性激素抑制了HPA轴，突然停药出现肾上腺皮质功能不足','停药引起严重高血压','停药加重骨质疏松'],a:1,
+ e:'长期外源性糖皮质激素使 <strong>HPA 轴受到负反馈抑制</strong>，肾上腺皮质萎缩。突然停药→肾上腺皮质功能不足危象（低血压、低血糖、休克）。必须缓慢减量停药。',
+ l:'../药理学网页/chapter8.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'他汀类药物（如阿托伐他汀）降脂的主要机制是？',
+ o:['促进LDL受体合成，增加LDL清除','抑制HMG-CoA还原酶，减少肝脏胆固醇合成','抑制胆固醇肠道吸收','促进胆固醇从粪便排出'],a:1,
+ e:'他汀类<strong>抑制 HMG-CoA 还原酶</strong>（胆固醇合成限速酶）→肝脏胆固醇合成减少→肝细胞表面 LDL 受体代偿性增加→血液中 LDL-C 清除增加。最重要的副作用：肌病/横纹肌溶解（需查 CK）。',
+ l:'../药理学网页/chapter5.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'使用利福平治疗结核病时，需告知患者的特殊副作用是？',
+ o:['皮肤变黑','尿液/泪液/汗液呈橘红色','牙齿变黄','头发脱落'],a:1,
+ e:'利福平的代谢产物会使<strong>尿液、泪液、汗液、唾液呈橘红色</strong>，属正常现象，无需停药。但需告知患者，以免引起恐慌。还有肝毒性，需监测肝功能。',
+ l:'../药理学网页/chapter9.html'},
+{s:'pharmacology',sn:'药理学',
+ q:'阿司匹林抗血小板的机制是？',
+ o:['阻断ADP受体（P2Y12）','不可逆抑制COX-1，减少TXA2合成','竞争性拮抗凝血酶','抑制血小板GPⅡb/Ⅲa受体'],a:1,
+ e:'阿司匹林<strong>不可逆抑制 COX-1</strong>→花生四烯酸不能转化为 TXA₂（强促血小板聚集）→血小板聚集功能降低。血小板没有细胞核，不能重新合成 COX，抑制效果持续整个血小板寿命（7~10天）。',
+ l:'../药理学网页/chapter3.html'}
+];
+
+/* ===== 核心逻辑 ===== */
+var DRAW_COUNT = 10;
+var currentSet   = [];  // 本次抽到的题（题库对象）
+var answered     = {};  // { 本次位置pos : 选择的选项oi }
+var correctCount = 0;
+var currentFilter = 'all';
+
+function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+}
+
+function drawNew() {
+    var pool = BANK.filter(function(q) {
+        return currentFilter === 'all' || q.s === currentFilter;
+    });
+    var count = Math.min(DRAW_COUNT, pool.length);
+    currentSet   = shuffle(pool).slice(0, count);
+    answered     = {};
+    correctCount = 0;
+    document.getElementById('finishBanner').classList.remove('show');
+    updateScore();
+    renderQuiz();
+    window.scrollTo({ top: document.querySelector('.quiz-status').offsetTop - 80, behavior: 'smooth' });
+}
+
+function setFilter(filter, btn) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    drawNew();
+}
+
+function selectOption(pos, oi) {
+    if (answered[pos] !== undefined) return;
+    answered[pos] = oi;
+    if (oi === currentSet[pos].a) correctCount++;
+    updateScore();
+    renderQuiz();
+    checkFinish();
+}
+
+function updateScore() {
+    var total = currentSet.length;
+    document.getElementById('scoreDisplay').textContent = correctCount + ' / ' + total;
+    document.getElementById('statusInfo').textContent =
+        '已答对 / 本次 ' + total + ' 题  ·  题库共 ' + BANK.length + ' 题';
+}
+
+function checkFinish() {
+    if (Object.keys(answered).length < currentSet.length) return;
+    var banner = document.getElementById('finishBanner');
+    banner.classList.add('show');
+    document.getElementById('finishScore').textContent = correctCount + ' / ' + currentSet.length;
+    var rate = correctCount / currentSet.length;
+    var msg = rate === 1 ? '🏆 全部答对！继续保持！'
+            : rate >= .8 ? '👍 非常不错，再接再厉！'
+            : rate >= .6 ? '💪 还需加强，建议查看解析再练一遍。'
+            : '📖 建议回到课程复习相关章节，再来挑战！';
+    document.getElementById('finishMsg').textContent = msg;
+    banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function renderQuiz() {
+    var container = document.getElementById('quizContainer');
+    container.innerHTML = '';
+    var labels = ['A', 'B', 'C', 'D'];
+    currentSet.forEach(function(q, pos) {
+        var optHTML = '';
+        q.o.forEach(function(opt, j) {
+            var cls = '';
+            if (answered[pos] !== undefined) {
+                if (j === q.a)                              cls = ' correct';
+                else if (j === answered[pos] && j !== q.a) cls = ' wrong';
+            }
+            optHTML += '<li class="' + cls + '" onclick="selectOption(' + pos + ',' + j + ')">' +
+                       labels[j] + '. ' + opt + '</li>';
+        });
+        var ansShow = answered[pos] !== undefined ? ' show' : '';
+        var card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML =
+            '<div class="quiz-header">' +
+                '<div class="quiz-num">' + (pos + 1) + '</div>' +
+                '<span class="quiz-subj qs-' + q.s + '">' + q.sn + '</span>' +
+            '</div>' +
+            '<div class="quiz-body">' +
+                '<div class="quiz-question">' + q.q + '</div>' +
+                '<ul class="quiz-options">' + optHTML + '</ul>' +
+            '</div>' +
+            '<div class="quiz-answer' + ansShow + '">' +
+                '<div class="answer-label">✅ 正确答案：' + labels[q.a] + '</div>' +
+                '<div class="answer-explain">' + q.e + '</div>' +
+                (q.l ? '<div class="extend-links" style="margin-top:0.6rem"><a href="' + q.l +
+                    '" class="extend-link el-' + q.s + '">📖 查看完整知识点 →</a></div>' : '') +
+            '</div>';
+        container.appendChild(card);
+    });
+}
+
+// 页面加载立即抽题
+drawNew();
+</script>
+</body>
+</html>

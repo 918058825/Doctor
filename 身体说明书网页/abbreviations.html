@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>医学缩写词典 · 身体说明书</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hero -->
+<div class="page-hero">
+    <span class="hero-tag">🔤 即查即用</span>
+    <h1>医学缩写词典</h1>
+    <p class="subtitle">医院报告、化验单上满篇英文缩写？在这里一查就知道是什么意思</p>
+</div>
+
+<div class="breadcrumb">
+    <a href="index.html">身体说明书</a> <span>›</span> <span>医学缩写词典</span>
+</div>
+
+<div class="main-content">
+
+    <div class="tip-box tip-green">
+        <strong>💡 使用方法</strong>：按字母分类浏览，或者直接 <strong>Ctrl+F</strong>（手机用浏览器的"在页面中查找"）搜索你想查的缩写。
+    </div>
+
+    <!-- 搜索提示 -->
+    <div class="search-box" style="max-width:100%;margin-bottom:2rem">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="输入缩写或中文名称搜索，如 CBC、血常规……" oninput="filterTable()">
+    </div>
+
+    <div class="section-card" id="abbr-table-card">
+        <h2>📋 常用医学缩写速查表</h2>
+
+        <table class="data-table" id="abbrTable">
+            <thead>
+                <tr><th style="width:100px">缩写</th><th>英文全称</th><th>中文含义</th><th>常见场景</th></tr>
+            </thead>
+            <tbody>
+                <!-- A -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">A</td></tr>
+                <tr><td><strong>ABG</strong></td><td>Arterial Blood Gas</td><td>动脉血气分析</td><td>呼吸科、ICU，判断酸碱平衡和氧合状态</td></tr>
+                <tr><td><strong>ACE</strong></td><td>Angiotensin Converting Enzyme</td><td>血管紧张素转换酶</td><td>高血压用药（ACEI类药物的靶点）</td></tr>
+                <tr><td><strong>ACEI</strong></td><td>ACE Inhibitor</td><td>血管紧张素转换酶抑制剂</td><td>降压药，如依那普利、贝那普利</td></tr>
+                <tr><td><strong>ACTH</strong></td><td>Adrenocorticotropic Hormone</td><td>促肾上腺皮质激素</td><td>内分泌检查，由垂体前叶分泌</td></tr>
+                <tr><td><strong>ADH</strong></td><td>Antidiuretic Hormone</td><td>抗利尿激素（血管升压素）</td><td>调节尿量和血浆渗透压</td></tr>
+                <tr><td><strong>AF / AFib</strong></td><td>Atrial Fibrillation</td><td>心房颤动（房颤）</td><td>心电图报告，最常见的心律失常之一</td></tr>
+                <tr><td><strong>AFP</strong></td><td>Alpha-Fetoprotein</td><td>甲胎蛋白</td><td>肝癌筛查标志物</td></tr>
+                <tr><td><strong>AIDS</strong></td><td>Acquired Immunodeficiency Syndrome</td><td>获得性免疫缺陷综合征</td><td>HIV感染晚期</td></tr>
+                <tr><td><strong>ALB</strong></td><td>Albumin</td><td>白蛋白</td><td>肝功能指标，反映营养状态</td></tr>
+                <tr><td><strong>ALP</strong></td><td>Alkaline Phosphatase</td><td>碱性磷酸酶</td><td>骨病、胆道疾病时升高</td></tr>
+                <tr><td><strong>ALT</strong></td><td>Alanine Aminotransferase</td><td>谷丙转氨酶</td><td>肝功能检查，肝细胞损伤最灵敏的指标</td></tr>
+                <tr><td><strong>AMI</strong></td><td>Acute Myocardial Infarction</td><td>急性心肌梗死</td><td>心内科急症</td></tr>
+                <tr><td><strong>ANA</strong></td><td>Antinuclear Antibody</td><td>抗核抗体</td><td>自身免疫病筛查（如系统性红斑狼疮）</td></tr>
+                <tr><td><strong>ARB</strong></td><td>Angiotensin Receptor Blocker</td><td>血管紧张素受体拮抗剂</td><td>降压药，如缬沙坦、氯沙坦</td></tr>
+                <tr><td><strong>ARDS</strong></td><td>Acute Respiratory Distress Syndrome</td><td>急性呼吸窘迫综合征</td><td>ICU常见危重症</td></tr>
+                <tr><td><strong>AST</strong></td><td>Aspartate Aminotransferase</td><td>谷草转氨酶</td><td>肝功能和心肌损伤指标</td></tr>
+                <tr><td><strong>AV</strong></td><td>Atrioventricular</td><td>房室的</td><td>如AV block = 房室传导阻滞</td></tr>
+
+                <!-- B -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">B</td></tr>
+                <tr><td><strong>BBB</strong></td><td>Blood-Brain Barrier</td><td>血脑屏障</td><td>药物能否进入脑组织的关键屏障</td></tr>
+                <tr><td><strong>bid</strong></td><td>bis in die</td><td>每日两次</td><td>处方用语</td></tr>
+                <tr><td><strong>BMI</strong></td><td>Body Mass Index</td><td>体质指数</td><td>体重(kg)÷身高²(m²)，≥24超重，≥28肥胖</td></tr>
+                <tr><td><strong>BMR</strong></td><td>Basal Metabolic Rate</td><td>基础代谢率</td><td>甲亢时升高，甲减时降低</td></tr>
+                <tr><td><strong>BP</strong></td><td>Blood Pressure</td><td>血压</td><td>如BP 120/80 mmHg</td></tr>
+                <tr><td><strong>BPH</strong></td><td>Benign Prostatic Hyperplasia</td><td>良性前列腺增生</td><td>老年男性常见，排尿困难</td></tr>
+                <tr><td><strong>BUN</strong></td><td>Blood Urea Nitrogen</td><td>血尿素氮</td><td>肾功能指标</td></tr>
+
+                <!-- C -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">C</td></tr>
+                <tr><td><strong>CABG</strong></td><td>Coronary Artery Bypass Grafting</td><td>冠状动脉搭桥术</td><td>冠心病手术治疗方式</td></tr>
+                <tr><td><strong>CBC</strong></td><td>Complete Blood Count</td><td>全血细胞计数（血常规）</td><td>最基础的血液检查</td></tr>
+                <tr><td><strong>CCB</strong></td><td>Calcium Channel Blocker</td><td>钙通道阻滞剂</td><td>降压药，如氨氯地平、硝苯地平</td></tr>
+                <tr><td><strong>CHF</strong></td><td>Congestive Heart Failure</td><td>充血性心力衰竭</td><td>心脏泵血能力下降导致体液潴留</td></tr>
+                <tr><td><strong>CK</strong></td><td>Creatine Kinase</td><td>肌酸激酶</td><td>心肌梗死和肌肉损伤时升高</td></tr>
+                <tr><td><strong>CNS</strong></td><td>Central Nervous System</td><td>中枢神经系统</td><td>包括脑和脊髓</td></tr>
+                <tr><td><strong>COPD</strong></td><td>Chronic Obstructive Pulmonary Disease</td><td>慢性阻塞性肺疾病</td><td>长期吸烟是主要原因</td></tr>
+                <tr><td><strong>Cr</strong></td><td>Creatinine</td><td>肌酐</td><td>肾功能核心指标</td></tr>
+                <tr><td><strong>CRP</strong></td><td>C-Reactive Protein</td><td>C-反应蛋白</td><td>炎症/感染标志物</td></tr>
+                <tr><td><strong>CSF</strong></td><td>Cerebrospinal Fluid</td><td>脑脊液</td><td>腰穿化验，用于脑膜炎等诊断</td></tr>
+                <tr><td><strong>CT</strong></td><td>Computed Tomography</td><td>计算机断层扫描</td><td>影像学检查，对骨骼和出血敏感</td></tr>
+                <tr><td><strong>cTnI</strong></td><td>Cardiac Troponin I</td><td>心肌肌钙蛋白I</td><td>心肌梗死诊断"金标准"</td></tr>
+                <tr><td><strong>CVA</strong></td><td>Cerebrovascular Accident</td><td>脑血管意外（中风）</td><td>包括脑梗死和脑出血</td></tr>
+
+                <!-- D -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">D</td></tr>
+                <tr><td><strong>DIC</strong></td><td>Disseminated Intravascular Coagulation</td><td>弥散性血管内凝血</td><td>严重感染、产科并发症</td></tr>
+                <tr><td><strong>DKA</strong></td><td>Diabetic Ketoacidosis</td><td>糖尿病酮症酸中毒</td><td>1型糖尿病急症</td></tr>
+                <tr><td><strong>DM</strong></td><td>Diabetes Mellitus</td><td>糖尿病</td><td>T1DM=1型，T2DM=2型</td></tr>
+                <tr><td><strong>DNA</strong></td><td>Deoxyribonucleic Acid</td><td>脱氧核糖核酸</td><td>遗传信息载体</td></tr>
+                <tr><td><strong>DVT</strong></td><td>Deep Vein Thrombosis</td><td>深静脉血栓</td><td>下肢多见，久坐/术后高发</td></tr>
+
+                <!-- E -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">E</td></tr>
+                <tr><td><strong>ECG / EKG</strong></td><td>Electrocardiogram</td><td>心电图</td><td>心脏电活动记录</td></tr>
+                <tr><td><strong>EEG</strong></td><td>Electroencephalogram</td><td>脑电图</td><td>癫痫诊断常用</td></tr>
+                <tr><td><strong>eGFR</strong></td><td>Estimated Glomerular Filtration Rate</td><td>估算肾小球滤过率</td><td>评估肾功能的综合指标</td></tr>
+                <tr><td><strong>EMG</strong></td><td>Electromyography</td><td>肌电图</td><td>神经肌肉疾病诊断</td></tr>
+                <tr><td><strong>ENT</strong></td><td>Ear, Nose, Throat</td><td>耳鼻喉科</td><td>科室名称</td></tr>
+                <tr><td><strong>EPO</strong></td><td>Erythropoietin</td><td>促红细胞生成素</td><td>肾脏分泌，刺激红细胞生成</td></tr>
+                <tr><td><strong>ESR</strong></td><td>Erythrocyte Sedimentation Rate</td><td>红细胞沉降率（血沉）</td><td>非特异性炎症指标</td></tr>
+
+                <!-- F-G -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">F - G</td></tr>
+                <tr><td><strong>FBG</strong></td><td>Fasting Blood Glucose</td><td>空腹血糖</td><td>糖尿病筛查基本项目</td></tr>
+                <tr><td><strong>FEV1</strong></td><td>Forced Expiratory Volume in 1 second</td><td>第1秒用力呼气容积</td><td>肺功能检查核心指标</td></tr>
+                <tr><td><strong>FSH</strong></td><td>Follicle-Stimulating Hormone</td><td>卵泡刺激素</td><td>生殖内分泌检查</td></tr>
+                <tr><td><strong>GERD</strong></td><td>Gastroesophageal Reflux Disease</td><td>胃食管反流病</td><td>烧心、反酸</td></tr>
+                <tr><td><strong>GFR</strong></td><td>Glomerular Filtration Rate</td><td>肾小球滤过率</td><td>肾功能的核心评估指标</td></tr>
+                <tr><td><strong>GGT</strong></td><td>Gamma-Glutamyl Transferase</td><td>γ-谷氨酰转肽酶</td><td>胆道疾病和饮酒后常升高</td></tr>
+                <tr><td><strong>GI</strong></td><td>Gastrointestinal</td><td>胃肠道的</td><td>如GI bleeding = 消化道出血</td></tr>
+                <tr><td><strong>GLP-1</strong></td><td>Glucagon-Like Peptide-1</td><td>胰高血糖素样肽-1</td><td>降糖药靶点（司美格鲁肽等）</td></tr>
+
+                <!-- H -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">H</td></tr>
+                <tr><td><strong>Hb / HGB</strong></td><td>Hemoglobin</td><td>血红蛋白</td><td>贫血的核心判断指标</td></tr>
+                <tr><td><strong>HbA1c</strong></td><td>Glycated Hemoglobin</td><td>糖化血红蛋白</td><td>反映近2~3个月平均血糖水平</td></tr>
+                <tr><td><strong>HBV</strong></td><td>Hepatitis B Virus</td><td>乙型肝炎病毒</td><td>乙肝两对半检查</td></tr>
+                <tr><td><strong>HCT</strong></td><td>Hematocrit</td><td>红细胞压积</td><td>血液浓缩程度</td></tr>
+                <tr><td><strong>HDL</strong></td><td>High-Density Lipoprotein</td><td>高密度脂蛋白</td><td>"好胆固醇"，越高越好</td></tr>
+                <tr><td><strong>HIV</strong></td><td>Human Immunodeficiency Virus</td><td>人类免疫缺陷病毒</td><td>艾滋病病原体</td></tr>
+                <tr><td><strong>Hp</strong></td><td>Helicobacter pylori</td><td>幽门螺杆菌</td><td>胃溃疡和胃癌的重要病因</td></tr>
+                <tr><td><strong>HR</strong></td><td>Heart Rate</td><td>心率</td><td>正常60~100次/分</td></tr>
+                <tr><td><strong>HTN</strong></td><td>Hypertension</td><td>高血压</td><td>≥140/90 mmHg</td></tr>
+
+                <!-- I-K -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">I - K</td></tr>
+                <tr><td><strong>IBS</strong></td><td>Irritable Bowel Syndrome</td><td>肠易激综合征</td><td>功能性肠病，反复腹痛+排便异常</td></tr>
+                <tr><td><strong>ICU</strong></td><td>Intensive Care Unit</td><td>重症监护室</td><td>收治危重患者</td></tr>
+                <tr><td><strong>IM</strong></td><td>Intramuscular</td><td>肌肉注射</td><td>给药方式</td></tr>
+                <tr><td><strong>INR</strong></td><td>International Normalized Ratio</td><td>国际标准化比值</td><td>监测华法林抗凝效果</td></tr>
+                <tr><td><strong>ITP</strong></td><td>Immune Thrombocytopenic Purpura</td><td>免疫性血小板减少性紫癜</td><td>血小板低、皮肤紫癜</td></tr>
+                <tr><td><strong>IV</strong></td><td>Intravenous</td><td>静脉注射/输液</td><td>给药方式</td></tr>
+                <tr><td><strong>K⁺</strong></td><td>Potassium</td><td>钾离子</td><td>正常3.5~5.5 mmol/L，关乎心脏安全</td></tr>
+
+                <!-- L -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">L</td></tr>
+                <tr><td><strong>LDL</strong></td><td>Low-Density Lipoprotein</td><td>低密度脂蛋白</td><td>"坏胆固醇"，越低越好</td></tr>
+                <tr><td><strong>LFT</strong></td><td>Liver Function Test</td><td>肝功能检查</td><td>包括ALT、AST、胆红素、白蛋白等</td></tr>
+                <tr><td><strong>LH</strong></td><td>Luteinizing Hormone</td><td>黄体生成素</td><td>生殖内分泌检查</td></tr>
+                <tr><td><strong>LP</strong></td><td>Lumbar Puncture</td><td>腰椎穿刺</td><td>获取脑脊液做化验</td></tr>
+
+                <!-- M -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">M</td></tr>
+                <tr><td><strong>MCV</strong></td><td>Mean Corpuscular Volume</td><td>平均红细胞体积</td><td>区分贫血类型的关键指标</td></tr>
+                <tr><td><strong>MI</strong></td><td>Myocardial Infarction</td><td>心肌梗死</td><td>心内科急症</td></tr>
+                <tr><td><strong>MRI</strong></td><td>Magnetic Resonance Imaging</td><td>磁共振成像</td><td>软组织分辨力强，无辐射</td></tr>
+
+                <!-- N-O -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">N - O</td></tr>
+                <tr><td><strong>Na⁺</strong></td><td>Sodium</td><td>钠离子</td><td>正常135~145 mmol/L，影响体液平衡</td></tr>
+                <tr><td><strong>NSAID</strong></td><td>Non-Steroidal Anti-Inflammatory Drug</td><td>非甾体抗炎药</td><td>如布洛芬、阿司匹林</td></tr>
+                <tr><td><strong>NPO</strong></td><td>Nil Per Os</td><td>禁食</td><td>术前或检查前要求</td></tr>
+                <tr><td><strong>OTC</strong></td><td>Over-The-Counter</td><td>非处方药</td><td>药店可直接购买</td></tr>
+
+                <!-- P -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">P</td></tr>
+                <tr><td><strong>PCI</strong></td><td>Percutaneous Coronary Intervention</td><td>经皮冠状动脉介入术</td><td>冠心病支架治疗</td></tr>
+                <tr><td><strong>PE</strong></td><td>Pulmonary Embolism</td><td>肺栓塞</td><td>血栓堵塞肺动脉，可致猝死</td></tr>
+                <tr><td><strong>PLT</strong></td><td>Platelet</td><td>血小板</td><td>正常100~300×10⁹/L</td></tr>
+                <tr><td><strong>PO</strong></td><td>Per Os</td><td>口服</td><td>给药方式</td></tr>
+                <tr><td><strong>PPI</strong></td><td>Proton Pump Inhibitor</td><td>质子泵抑制剂</td><td>抑酸药，如奥美拉唑</td></tr>
+                <tr><td><strong>PRN</strong></td><td>Pro Re Nata</td><td>必要时（按需）</td><td>处方用语</td></tr>
+                <tr><td><strong>PSA</strong></td><td>Prostate-Specific Antigen</td><td>前列腺特异性抗原</td><td>前列腺癌筛查标志物</td></tr>
+                <tr><td><strong>PT</strong></td><td>Prothrombin Time</td><td>凝血酶原时间</td><td>凝血功能检查</td></tr>
+                <tr><td><strong>PTH</strong></td><td>Parathyroid Hormone</td><td>甲状旁腺激素</td><td>调节钙磷代谢</td></tr>
+
+                <!-- Q-R -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">Q - R</td></tr>
+                <tr><td><strong>qd</strong></td><td>Quaque Die</td><td>每日一次</td><td>处方用语</td></tr>
+                <tr><td><strong>qid</strong></td><td>Quater In Die</td><td>每日四次</td><td>处方用语</td></tr>
+                <tr><td><strong>RAAS</strong></td><td>Renin-Angiotensin-Aldosterone System</td><td>肾素-血管紧张素-醛固酮系统</td><td>血压调节的核心通路</td></tr>
+                <tr><td><strong>RBC</strong></td><td>Red Blood Cell</td><td>红细胞</td><td>运输氧气的细胞</td></tr>
+                <tr><td><strong>RNA</strong></td><td>Ribonucleic Acid</td><td>核糖核酸</td><td>参与蛋白质合成</td></tr>
+                <tr><td><strong>Rx</strong></td><td>Prescription</td><td>处方</td><td>需要医生开具才能购买的药物</td></tr>
+
+                <!-- S -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">S</td></tr>
+                <tr><td><strong>SBP</strong></td><td>Systolic Blood Pressure</td><td>收缩压（高压）</td><td>心脏收缩时的血管壁压力</td></tr>
+                <tr><td><strong>DBP</strong></td><td>Diastolic Blood Pressure</td><td>舒张压（低压）</td><td>心脏舒张时的血管壁压力</td></tr>
+                <tr><td><strong>SGLT2</strong></td><td>Sodium-Glucose Co-Transporter 2</td><td>钠-葡萄糖共转运蛋白2</td><td>降糖药靶点（达格列净等）</td></tr>
+                <tr><td><strong>SLE</strong></td><td>Systemic Lupus Erythematosus</td><td>系统性红斑狼疮</td><td>自身免疫病</td></tr>
+                <tr><td><strong>SOB</strong></td><td>Shortness of Breath</td><td>呼吸急促/气短</td><td>病历常用缩写</td></tr>
+                <tr><td><strong>SpO₂</strong></td><td>Peripheral Oxygen Saturation</td><td>脉搏血氧饱和度</td><td>正常≥95%，指夹式血氧仪测量</td></tr>
+                <tr><td><strong>SSRI</strong></td><td>Selective Serotonin Reuptake Inhibitor</td><td>选择性5-HT再摄取抑制剂</td><td>抗抑郁药，如氟西汀、舍曲林</td></tr>
+                <tr><td><strong>STI</strong></td><td>Sexually Transmitted Infection</td><td>性传播感染</td><td>如梅毒、淋病、HIV等</td></tr>
+
+                <!-- T -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">T</td></tr>
+                <tr><td><strong>T3</strong></td><td>Triiodothyronine</td><td>三碘甲状腺原氨酸</td><td>甲状腺功能检查</td></tr>
+                <tr><td><strong>T4</strong></td><td>Thyroxine</td><td>甲状腺素</td><td>甲状腺功能检查</td></tr>
+                <tr><td><strong>TB</strong></td><td>Tuberculosis</td><td>结核病</td><td>结核分枝杆菌感染</td></tr>
+                <tr><td><strong>TBil</strong></td><td>Total Bilirubin</td><td>总胆红素</td><td>升高→黄疸</td></tr>
+                <tr><td><strong>TC</strong></td><td>Total Cholesterol</td><td>总胆固醇</td><td>血脂检查项目</td></tr>
+                <tr><td><strong>TG</strong></td><td>Triglyceride</td><td>甘油三酯</td><td>血脂检查项目</td></tr>
+                <tr><td><strong>tid</strong></td><td>Ter In Die</td><td>每日三次</td><td>处方用语</td></tr>
+                <tr><td><strong>TSH</strong></td><td>Thyroid-Stimulating Hormone</td><td>促甲状腺激素</td><td>甲状腺功能筛查首选指标</td></tr>
+
+                <!-- U-Z -->
+                <tr class="highlight"><td colspan="4" style="font-weight:700;color:#047857;background:#d1fae5">U - Z</td></tr>
+                <tr><td><strong>UA</strong></td><td>Uric Acid</td><td>尿酸</td><td>痛风的关键指标</td></tr>
+                <tr><td><strong>URI</strong></td><td>Upper Respiratory Infection</td><td>上呼吸道感染</td><td>就是常说的"感冒"</td></tr>
+                <tr><td><strong>UTI</strong></td><td>Urinary Tract Infection</td><td>尿路感染</td><td>尿频、尿急、尿痛</td></tr>
+                <tr><td><strong>WBC</strong></td><td>White Blood Cell</td><td>白细胞</td><td>免疫系统的"士兵"</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 处方用语专区 -->
+    <div class="section-card">
+        <h2>📝 处方常见拉丁语缩写</h2>
+        <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1rem">在医生处方和药品说明书上经常能看到这些缩写，它们大多来源于拉丁语。</p>
+        <table class="data-table">
+            <thead><tr><th>缩写</th><th>拉丁文</th><th>含义</th><th>举例</th></tr></thead>
+            <tbody>
+                <tr><td><strong>qd</strong></td><td>quaque die</td><td>每日一次</td><td>阿司匹林 100mg qd</td></tr>
+                <tr><td><strong>bid</strong></td><td>bis in die</td><td>每日两次</td><td>二甲双胍 500mg bid</td></tr>
+                <tr><td><strong>tid</strong></td><td>ter in die</td><td>每日三次</td><td>阿莫西林 500mg tid</td></tr>
+                <tr><td><strong>qid</strong></td><td>quater in die</td><td>每日四次</td><td>较少用，间隔6小时</td></tr>
+                <tr><td><strong>qn</strong></td><td>quaque nocte</td><td>每晚一次</td><td>他汀类药物 qn</td></tr>
+                <tr><td><strong>prn</strong></td><td>pro re nata</td><td>必要时</td><td>止痛药 prn</td></tr>
+                <tr><td><strong>ac</strong></td><td>ante cibum</td><td>饭前</td><td>PPI ac 30min</td></tr>
+                <tr><td><strong>pc</strong></td><td>post cibum</td><td>饭后</td><td>铁剂 pc（减少胃刺激）</td></tr>
+                <tr><td><strong>po</strong></td><td>per os</td><td>口服</td><td>最常见的给药方式</td></tr>
+                <tr><td><strong>iv</strong></td><td>intravenous</td><td>静脉注射</td><td>iv drip = 静脉滴注</td></tr>
+                <tr><td><strong>im</strong></td><td>intramuscular</td><td>肌肉注射</td><td>如破伤风抗毒素 im</td></tr>
+                <tr><td><strong>sc / sq</strong></td><td>subcutaneous</td><td>皮下注射</td><td>胰岛素 sc</td></tr>
+                <tr><td><strong>stat</strong></td><td>statim</td><td>立即</td><td>急诊用药：硝酸甘油 stat</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="cta-section">
+        <h3>📚 想了解这些指标背后的原理？</h3>
+        <p>四门课程里有系统讲解</p>
+        <a href="../index.html" class="cta-btn">查看全部课程 →</a>
+    </div>
+
+</div>
+
+<footer class="site-footer"></footer>
+
+<script src="nav.js"></script>
+<script>
+function filterTable() {
+    var input = document.getElementById('searchInput').value.toLowerCase();
+    var rows = document.querySelectorAll('#abbrTable tbody tr');
+    rows.forEach(function(row) {
+        if (row.querySelector('.highlight') || row.cells[0] && row.cells[0].colSpan > 1) {
+            // 字母分隔行：如果下一组有匹配则显示
+            row.style.display = '';
+            return;
+        }
+        var text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? '' : 'none';
+    });
+}
+</script>
+</body>
+</html>

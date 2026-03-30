@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人体正常值手册 · 身体说明书</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hero -->
+<div class="page-hero">
+    <span class="hero-tag">📊 速查工具</span>
+    <h1>人体正常值手册</h1>
+    <p class="subtitle">拿到体检报告不用慌——对照这张表，看看自己的数字在不在正常范围</p>
+</div>
+
+<!-- 面包屑 -->
+<div class="breadcrumb">
+    <a href="index.html">身体说明书</a> <span>›</span> <span>人体正常值手册</span>
+</div>
+
+<div class="main-content">
+
+    <!-- 使用说明 -->
+    <div class="tip-box tip-green">
+        <strong>📋 怎么用这张表？</strong><br>
+        找到你的体检项目 → 对照正常范围 → 看看异常时可能意味着什么。<br>
+        注意：不同医院、不同仪器的参考值可能略有差异，具体以报告上标注的参考范围为准。
+    </div>
+
+    <!-- Tab 导航 -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('vital')">生命体征</button>
+        <button class="tab-btn" onclick="switchTab('blood')">血常规</button>
+        <button class="tab-btn" onclick="switchTab('biochem')">生化指标</button>
+        <button class="tab-btn" onclick="switchTab('urine')">尿常规</button>
+        <button class="tab-btn" onclick="switchTab('ecg')">心电图</button>
+        <button class="tab-btn" onclick="switchTab('other')">其他常用</button>
+    </div>
+
+    <!-- ======================== 生命体征 ======================== -->
+    <div class="tab-panel active" id="panel-vital">
+        <div class="section-card">
+            <h2>🫀 生命体征 —— 最基础的四项指标</h2>
+            <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1rem">
+                生命体征是评估一个人"活得怎么样"的最基本指标。每次看病，护士第一件事就是量这些。
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常范围</th><th>偏高可能意味着</th><th>偏低可能意味着</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>体温</strong></td>
+                        <td>36.1 ~ 37.0 ℃（腋温）</td>
+                        <td>发热：感染、炎症、中暑、甲亢</td>
+                        <td>体温过低：低血糖、甲减、休克</td>
+                    </tr>
+                    <tr>
+                        <td><strong>心率</strong></td>
+                        <td>60 ~ 100 次/分</td>
+                        <td>心动过速：紧张、发热、贫血、心脏病、甲亢</td>
+                        <td>心动过缓：运动员体质、甲减、房室传导阻滞</td>
+                    </tr>
+                    <tr>
+                        <td><strong>呼吸频率</strong></td>
+                        <td>12 ~ 20 次/分</td>
+                        <td>呼吸急促：肺炎、哮喘、酸中毒、焦虑</td>
+                        <td>呼吸过缓：脑损伤、药物中毒（镇静剂）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>血压</strong></td>
+                        <td>收缩压 90~139 mmHg<br>舒张压 60~89 mmHg</td>
+                        <td>高血压：心脑血管风险↑、肾脏损害</td>
+                        <td>低血压：头晕、乏力、休克风险</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 知识卡片 -->
+        <div class="knowledge-card">
+            <div class="kc-title">💡 生活小知识：体温为什么量腋下？</div>
+            <div class="kc-body">
+                人体核心温度（如直肠温度）大约 37.0~37.5℃，但测起来不方便。腋下温度比核心温度低约 0.5℃，所以腋温正常值是 36.1~37.0℃。如果你用耳温枪或额温枪测，数值会稍有不同——看说明书上的参考范围就行。
+            </div>
+            <div class="kc-tip">🧊 趣味冷知识：人在清晨体温最低（约36.2℃），下午4-6点最高（约36.8℃），这叫"昼夜节律"。</div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter7.html" class="extend-link el-physiology">⚡ 体温调节 → 生理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 为什么紧张时心跳会加快？</div>
+            <div class="kc-body">
+                紧张时交感神经兴奋 → 肾上腺释放肾上腺素 → 心率加快、血压升高。这其实是身体的"战斗模式"——心脏泵更多血到肌肉，准备跑或打。这就是生理学里说的"交感-肾上腺髓质系统"。
+            </div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter4.html" class="extend-link el-physiology">⚡ 心血管生理 → 生理学</a>
+                <a href="../解剖学网页/chapter7.html" class="extend-link el-anatomy">🦴 心脏结构 → 解剖学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 血压的两个数字是什么意思？</div>
+            <div class="kc-body">
+                <strong>收缩压</strong>（高压）= 心脏收缩泵血时血管壁承受的压力<br>
+                <strong>舒张压</strong>（低压）= 心脏舒张时血管壁的压力<br>
+                比如"120/80 mmHg"，读作"120比80"。高压≥140 或 低压≥90 就算高血压了。<br>
+                想象水管：心脏每泵一次，管壁压力一高一低，就是这两个数字。
+            </div>
+            <div class="kc-tip">⚠️ 测血压前要安静休息5分钟，不要喝咖啡/浓茶，不要憋尿——这些都会让数值偏高。</div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter4.html" class="extend-link el-physiology">⚡ 血压调节 → 生理学</a>
+                <a href="../病理学网页/chapter5.html" class="extend-link el-pathology">🔬 高血压病 → 病理学</a>
+                <a href="../药理学网页/chapter4.html" class="extend-link el-pharmacology">💊 降压药 → 药理学</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== 血常规 ======================== -->
+    <div class="tab-panel" id="panel-blood">
+        <div class="section-card">
+            <h2>🩸 血常规 —— 一管血能看出什么？</h2>
+            <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1rem">
+                血常规是最常见的检查，就抽一小管血。它能告诉你：有没有感染、贫不贫血、凝血功能好不好。
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常范围</th><th>偏高</th><th>偏低</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>白细胞 (WBC)</strong><br><span class="badge badge-gray">免疫部队</span></td>
+                        <td>4.0 ~ 10.0 × 10⁹/L</td>
+                        <td>细菌感染、炎症、白血病</td>
+                        <td>病毒感染、免疫低下、放化疗后</td>
+                    </tr>
+                    <tr>
+                        <td><strong>中性粒细胞%</strong><br><span class="badge badge-gray">细菌杀手</span></td>
+                        <td>50% ~ 70%</td>
+                        <td>细菌感染（最常见原因）</td>
+                        <td>病毒感染、伤寒、某些血液病</td>
+                    </tr>
+                    <tr>
+                        <td><strong>淋巴细胞%</strong><br><span class="badge badge-gray">免疫指挥官</span></td>
+                        <td>20% ~ 40%</td>
+                        <td>病毒感染（流感、单核细胞增多症）</td>
+                        <td>HIV感染、免疫抑制</td>
+                    </tr>
+                    <tr>
+                        <td><strong>红细胞 (RBC)</strong><br><span class="badge badge-gray">氧气快递员</span></td>
+                        <td>男 4.0~5.5 × 10¹²/L<br>女 3.5~5.0 × 10¹²/L</td>
+                        <td>脱水、真性红细胞增多症、高原生活</td>
+                        <td>贫血（最常见）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>血红蛋白 (Hb)</strong><br><span class="badge badge-gray">运氧色素</span></td>
+                        <td>男 120~160 g/L<br>女 110~150 g/L</td>
+                        <td>脱水浓缩、红细胞增多</td>
+                        <td>贫血（缺铁、失血、慢性病）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>血小板 (PLT)</strong><br><span class="badge badge-gray">止血工人</span></td>
+                        <td>100 ~ 300 × 10⁹/L</td>
+                        <td>缺铁性贫血时反应性↑、骨髓增殖</td>
+                        <td>出血风险↑、免疫性血小板减少、白血病</td>
+                    </tr>
+                    <tr>
+                        <td><strong>红细胞压积 (HCT)</strong><br><span class="badge badge-gray">血液浓度</span></td>
+                        <td>男 40%~50%<br>女 37%~48%</td>
+                        <td>脱水、红细胞增多</td>
+                        <td>贫血、出血后</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MCV</strong><br><span class="badge badge-gray">红细胞大小</span></td>
+                        <td>80 ~ 100 fL</td>
+                        <td>巨幼贫（维B12/叶酸缺乏）</td>
+                        <td>缺铁性贫血（小红细胞）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 一句话判断感染类型</div>
+            <div class="kc-body">
+                <strong>白细胞总数高 + 中性粒细胞高</strong> → 大概率是<strong>细菌感染</strong>（如扁桃体炎、肺炎）<br>
+                <strong>白细胞正常或偏低 + 淋巴细胞高</strong> → 大概率是<strong>病毒感染</strong>（如感冒、流感）<br><br>
+                这就是为什么医生看完血常规就能大致判断你该不该用抗生素——因为抗生素只杀细菌，对病毒没用。
+            </div>
+            <div class="kc-tip">🩺 记忆口诀："中性吃细菌，淋巴打病毒"</div>
+            <div class="extend-links">
+                <a href="../病理学网页/chapter3.html" class="extend-link el-pathology">🔬 炎症反应 → 病理学</a>
+                <a href="../药理学网页/chapter9.html" class="extend-link el-pharmacology">💊 抗菌药 → 药理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 贫血不只是"缺铁"这么简单</div>
+            <div class="kc-body">
+                贫血 = 血红蛋白低于正常。但原因很多：<br>
+                • <strong>缺铁性贫血</strong>（最常见）：月经量大、饮食缺铁 → MCV偏小<br>
+                • <strong>巨幼细胞性贫血</strong>：缺维B12或叶酸 → MCV偏大<br>
+                • <strong>再生障碍性贫血</strong>：骨髓出了问题 → 三系都低<br>
+                • <strong>溶血性贫血</strong>：红细胞被破坏过快<br>
+                所以医生不只看Hb，还要看MCV、铁蛋白、网织红细胞等才能判断原因。
+            </div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter3.html" class="extend-link el-physiology">⚡ 血液生理 → 生理学</a>
+                <a href="../病理学网页/chapter6.html" class="extend-link el-pathology">🔬 贫血分类 → 病理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 血小板太低会怎样？</div>
+            <div class="kc-body">
+                血小板是"止血工人"，负责在血管破口处聚集形成血栓堵住伤口。<br>
+                • <strong>低于 100×10⁹/L</strong>：轻度减少，一般没明显症状<br>
+                • <strong>低于 50×10⁹/L</strong>：容易瘀青、牙龈出血<br>
+                • <strong>低于 20×10⁹/L</strong>：有自发出血风险，需要紧急处理<br>
+                常见原因：免疫性血小板减少症（ITP）、白血病、脾亢、药物副作用。
+            </div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter3.html" class="extend-link el-physiology">⚡ 凝血机制 → 生理学</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== 生化指标 ======================== -->
+    <div class="tab-panel" id="panel-biochem">
+        <div class="section-card">
+            <h2>🧪 生化指标 —— 肝、肾、血糖、血脂全在这</h2>
+            <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1rem">
+                生化检查需要空腹抽血，能反映你的肝功能、肾功能、血糖和血脂情况。
+            </p>
+
+            <h3 style="font-size:1rem;color:#047857;margin:1.2rem 0 0.5rem">🔶 肝功能</h3>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常范围</th><th>意义</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>谷丙转氨酶 (ALT)</strong></td>
+                        <td>0 ~ 40 U/L</td>
+                        <td>肝细胞损伤的最灵敏指标。升高常见于：肝炎、脂肪肝、药物性肝损、饮酒</td>
+                    </tr>
+                    <tr>
+                        <td><strong>谷草转氨酶 (AST)</strong></td>
+                        <td>0 ~ 40 U/L</td>
+                        <td>肝细胞和心肌细胞都含有。AST/ALT > 2 提示酒精性肝病</td>
+                    </tr>
+                    <tr>
+                        <td><strong>总胆红素 (TBil)</strong></td>
+                        <td>3.4 ~ 17.1 μmol/L</td>
+                        <td>升高 → 黄疸（皮肤/眼睛发黄）。原因：肝炎、胆道梗阻、溶血</td>
+                    </tr>
+                    <tr>
+                        <td><strong>白蛋白 (ALB)</strong></td>
+                        <td>35 ~ 50 g/L</td>
+                        <td>由肝脏合成。偏低 → 肝功能差、营养不良、肾病综合征（漏蛋白）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GGT (γ-谷氨酰转肽酶)</strong></td>
+                        <td>0 ~ 50 U/L</td>
+                        <td>胆汁淤积或长期饮酒时明显升高</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="font-size:1rem;color:#047857;margin:1.5rem 0 0.5rem">🔶 肾功能</h3>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常范围</th><th>意义</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>肌酐 (Cr)</strong></td>
+                        <td>男 54~106 μmol/L<br>女 44~97 μmol/L</td>
+                        <td>反映肾脏的"过滤能力"。升高 → 肾功能下降（肾小球滤过率↓）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿素氮 (BUN)</strong></td>
+                        <td>2.9 ~ 8.2 mmol/L</td>
+                        <td>蛋白质代谢产物，经肾排出。升高 → 肾功能不全、高蛋白饮食、脱水</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿酸 (UA)</strong></td>
+                        <td>男 208~428 μmol/L<br>女 155~357 μmol/L</td>
+                        <td>嘌呤代谢产物。升高 → 痛风风险↑、肾结石风险↑</td>
+                    </tr>
+                    <tr>
+                        <td><strong>eGFR（估算肾小球滤过率）</strong></td>
+                        <td>≥ 90 mL/min</td>
+                        <td>综合肌酐+年龄+性别算出。< 60 → 慢性肾病；< 15 → 可能需要透析</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="font-size:1rem;color:#047857;margin:1.5rem 0 0.5rem">🔶 血糖</h3>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常范围</th><th>意义</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>空腹血糖 (FBG)</strong></td>
+                        <td>3.9 ~ 6.1 mmol/L</td>
+                        <td>6.1~7.0 为"空腹血糖受损"；≥7.0 考虑糖尿病</td>
+                    </tr>
+                    <tr>
+                        <td><strong>餐后2h血糖</strong></td>
+                        <td>< 7.8 mmol/L</td>
+                        <td>7.8~11.1 为"糖耐量异常"；≥11.1 考虑糖尿病</td>
+                    </tr>
+                    <tr>
+                        <td><strong>糖化血红蛋白 (HbA1c)</strong></td>
+                        <td>4% ~ 6%</td>
+                        <td>反映近2~3个月的平均血糖水平。≥6.5% 诊断糖尿病。控制目标 < 7%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="font-size:1rem;color:#047857;margin:1.5rem 0 0.5rem">🔶 血脂</h3>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>理想范围</th><th>意义</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>总胆固醇 (TC)</strong></td>
+                        <td>< 5.2 mmol/L</td>
+                        <td>升高 → 动脉粥样硬化风险↑</td>
+                    </tr>
+                    <tr>
+                        <td><strong>甘油三酯 (TG)</strong></td>
+                        <td>< 1.7 mmol/L</td>
+                        <td>升高 → 与肥胖、高糖饮食、饮酒相关；极高时(>11.3)可诱发急性胰腺炎</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LDL-C（低密度脂蛋白）</strong></td>
+                        <td>< 3.4 mmol/L</td>
+                        <td>"坏胆固醇"——越高越危险，是动脉粥样硬化的元凶</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HDL-C（高密度脂蛋白）</strong></td>
+                        <td>> 1.0 mmol/L</td>
+                        <td>"好胆固醇"——越高越好，能把多余胆固醇运走</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 转氨酶高就是肝不好吗？</div>
+            <div class="kc-body">
+                不一定！ALT升高不等于肝硬化。常见的"无害"原因：<br>
+                • 前一天<strong>剧烈运动</strong>（肌肉损伤释放酶）<br>
+                • 吃了某些<strong>药物</strong>（感冒药、中草药、他汀类）<br>
+                • <strong>熬夜、饮酒</strong><br>
+                • <strong>脂肪肝</strong>（最常见的原因之一）<br><br>
+                如果只是轻度升高（40~80），调整生活方式后复查即可。持续升高或超过正常上限3倍，需要进一步检查。
+            </div>
+            <div class="extend-links">
+                <a href="../病理学网页/chapter8.html" class="extend-link el-pathology">🔬 肝脏病变 → 病理学</a>
+                <a href="../解剖学网页/chapter8.html" class="extend-link el-anatomy">🦴 肝脏解剖 → 解剖学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 LDL 和 HDL：坏人和好人的故事</div>
+            <div class="kc-body">
+                想象血管是一条公路：<br>
+                • <strong>LDL（低密度脂蛋白）</strong>像一辆满载胆固醇的卡车，到处往血管壁上"卸货"，堆得多了就形成斑块，堵住血管 → 动脉粥样硬化 → 心梗/脑梗<br>
+                • <strong>HDL（高密度脂蛋白）</strong>像清洁车，专门把血管壁上多余的胆固醇"装走"运回肝脏处理<br><br>
+                所以：<strong>LDL 越低越好，HDL 越高越好</strong>。
+            </div>
+            <div class="kc-tip">🥑 提高HDL的方法：有氧运动、吃好脂肪（鱼、坚果、橄榄油）、戒烟。</div>
+            <div class="extend-links">
+                <a href="../病理学网页/chapter5.html" class="extend-link el-pathology">🔬 动脉粥样硬化 → 病理学</a>
+                <a href="../药理学网页/chapter4.html" class="extend-link el-pharmacology">💊 他汀类降脂药 → 药理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 糖化血红蛋白为什么比空腹血糖更靠谱？</div>
+            <div class="kc-body">
+                空腹血糖只是"此刻"的快照——前一天大吃一顿或紧张，都会影响。<br>
+                糖化血红蛋白（HbA1c）反映的是过去<strong>2~3个月</strong>的平均血糖——因为红细胞寿命约120天，血糖越高，和血红蛋白"粘"在一起的比例越高。<br>
+                所以 HbA1c 是糖尿病管理的"金标准"，不受饮食和短期波动影响。
+            </div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter7.html" class="extend-link el-physiology">⚡ 糖代谢调节 → 生理学</a>
+                <a href="../病理学网页/chapter9.html" class="extend-link el-pathology">🔬 糖尿病病理 → 病理学</a>
+                <a href="../药理学网页/chapter6.html" class="extend-link el-pharmacology">💊 降糖药 → 药理学</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== 尿常规 ======================== -->
+    <div class="tab-panel" id="panel-urine">
+        <div class="section-card">
+            <h2>🧫 尿常规 —— 尿液也能看出病？</h2>
+            <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1rem">
+                尿液是血液经肾脏过滤后的"废水"。正常的尿液应该是"干净"的——如果里面出现了不该有的东西，说明某个环节出了问题。
+            </p>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常</th><th>异常意味着什么</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>尿蛋白 (PRO)</strong></td>
+                        <td>阴性 (−)</td>
+                        <td>阳性 → 肾小球或肾小管有问题（肾炎、糖尿病肾病）；剧烈运动后可短暂阳性</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿糖 (GLU)</strong></td>
+                        <td>阴性 (−)</td>
+                        <td>阳性 → 血糖超过肾糖阈（约10 mmol/L），多见于糖尿病</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿潜血 (BLD)</strong></td>
+                        <td>阴性 (−)</td>
+                        <td>阳性 → 尿路感染、结石、肾炎、肿瘤；女性月经期可假阳性</td>
+                    </tr>
+                    <tr>
+                        <td><strong>白细胞 (WBC)</strong></td>
+                        <td>0~5 个/HPF</td>
+                        <td>升高 → 尿路感染（尿频、尿急、尿痛）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿酮体 (KET)</strong></td>
+                        <td>阴性 (−)</td>
+                        <td>阳性 → 糖尿病酮症酸中毒、饥饿、生酮饮食</td>
+                    </tr>
+                    <tr>
+                        <td><strong>酸碱度 (pH)</strong></td>
+                        <td>4.6 ~ 8.0（通常5~7）</td>
+                        <td>偏酸 → 高蛋白饮食、糖尿病；偏碱 → 素食、尿路感染</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尿比重 (SG)</strong></td>
+                        <td>1.005 ~ 1.030</td>
+                        <td>偏高 → 脱水、糖尿病；偏低 → 喝水过多、肾浓缩功能差</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 为什么肾有问题尿里会出现蛋白质？</div>
+            <div class="kc-body">
+                肾脏就像一个超级滤网——肾小球的基底膜有"孔"，只让小分子（水、电解质、尿素）通过，大分子（蛋白质）被挡住。<br>
+                如果滤网被破坏了（比如肾炎），蛋白质就漏出来了 → 尿蛋白阳性。<br>
+                长期大量蛋白漏出 → 血里白蛋白降低 → 全身水肿 → 这就是"肾病综合征"。
+            </div>
+            <div class="extend-links">
+                <a href="../解剖学网页/chapter9.html" class="extend-link el-anatomy">🦴 肾脏结构 → 解剖学</a>
+                <a href="../生理学网页/chapter8.html" class="extend-link el-physiology">⚡ 肾脏滤过 → 生理学</a>
+                <a href="../病理学网页/chapter9.html" class="extend-link el-pathology">🔬 肾小球疾病 → 病理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 尿液颜色也有学问</div>
+            <div class="kc-body">
+                • <strong>淡黄色/透明</strong>：正常，喝水多颜色浅<br>
+                • <strong>深黄色</strong>：脱水/喝水少，或吃了维生素B<br>
+                • <strong>红色/粉色</strong>：血尿！但也可能是吃了红心火龙果/甜菜<br>
+                • <strong>茶色/酱油色</strong>：胆红素升高（黄疸）或横纹肌溶解<br>
+                • <strong>白色浑浊</strong>：尿路感染（脓尿）<br>
+                • <strong>泡沫很多且不消</strong>：可能是蛋白尿
+            </div>
+            <div class="kc-tip">🚰 最简单的健康指标：每天尿液颜色保持在淡黄色，说明喝水量刚好。</div>
+        </div>
+    </div>
+
+    <!-- ======================== 心电图 ======================== -->
+    <div class="tab-panel" id="panel-ecg">
+        <div class="section-card">
+            <h2>📈 心电图基础 —— 看懂波形没那么难</h2>
+            <p style="color:#6b7280;font-size:0.88rem;margin-bottom:1rem">
+                心电图（ECG）记录的是心脏电活动。别被那些弯弯曲曲的线吓到——你只需要认识几个关键的"波"就行。
+            </p>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">📌 认识心电图上的"波"</div>
+            <div class="kc-body">
+                每一次心跳，心电图上会出现一组波形，按顺序是：<br><br>
+                <strong>P 波</strong> → 心房收缩（心房把血挤到心室）<br>
+                <strong>QRS 波群</strong> → 心室收缩（心室把血泵到全身）——这是最高最明显的那个尖峰<br>
+                <strong>T 波</strong> → 心室恢复（准备下一次收缩）<br><br>
+                简单记：<strong>P = 心房干活，QRS = 心室干活，T = 心室休息</strong>
+            </div>
+            <div class="kc-tip">🎵 记忆口诀：P波起跳房先动，QRS室在忙，T波一到心休整，一次心跳全跑完</div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter4.html" class="extend-link el-physiology">⚡ 心脏电活动 → 生理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">📌 心电图上的重要时间间隔</div>
+            <div class="kc-body">
+                <table class="data-table">
+                    <thead><tr><th>间隔</th><th>正常值</th><th>意义</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>心率</strong></td><td>60~100 次/分</td><td>用 300 ÷ 两个R波之间的大格数 = 大概心率</td></tr>
+                        <tr><td><strong>PR 间期</strong></td><td>0.12~0.20 秒</td><td>延长 → 房室传导阻滞（电信号传得慢）</td></tr>
+                        <tr><td><strong>QRS 时限</strong></td><td>< 0.12 秒</td><td>延长 → 束支传导阻滞</td></tr>
+                        <tr><td><strong>QT 间期</strong></td><td>< 0.44 秒</td><td>延长 → 容易发生恶性心律失常</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">📌 几种常见的异常心电图（简化版）</div>
+            <div class="kc-body">
+                <strong>1. 窦性心动过速</strong>：心率 > 100，波形正常 → 可能是紧张、发热、贫血<br>
+                <strong>2. 窦性心动过缓</strong>：心率 < 60，波形正常 → 运动员常见，也可能是甲减<br>
+                <strong>3. 房颤（AF）</strong>：P波消失，RR间距不齐 → 心房在"哆嗦"，不规则跳动<br>
+                <strong>4. ST段抬高</strong>：可能是<span style="color:#dc2626;font-weight:700">急性心肌梗死！</span>需紧急处理<br>
+                <strong>5. 室性早搏</strong>：偶尔出现一个宽大畸形的QRS → 大多数人偶尔有，通常无害
+            </div>
+            <div class="kc-tip">⚠️ 心电图解读需要专业知识，这里只是让你有个基本概念。如果报告提示异常，请咨询心内科医生。</div>
+            <div class="extend-links">
+                <a href="../解剖学网页/chapter7.html" class="extend-link el-anatomy">🦴 心脏传导系统 → 解剖学</a>
+                <a href="../病理学网页/chapter5.html" class="extend-link el-pathology">🔬 心肌梗死 → 病理学</a>
+                <a href="../药理学网页/chapter3.html" class="extend-link el-pharmacology">💊 抗心律失常药 → 药理学</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== 其他常用 ======================== -->
+    <div class="tab-panel" id="panel-other">
+        <div class="section-card">
+            <h2>🔬 其他常用检查指标</h2>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目</th><th>正常范围</th><th>临床意义</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>甲状腺 TSH</strong></td>
+                        <td>0.27 ~ 4.2 mIU/L</td>
+                        <td>升高 → 甲减（怕冷、乏力、发胖）；降低 → 甲亢（心慌、消瘦、手抖）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>C-反应蛋白 (CRP)</strong></td>
+                        <td>< 10 mg/L</td>
+                        <td>炎症标志物，感染/自身免疫病/心血管事件时升高</td>
+                    </tr>
+                    <tr>
+                        <td><strong>血沉 (ESR)</strong></td>
+                        <td>男 0~15 mm/h<br>女 0~20 mm/h</td>
+                        <td>非特异性炎症指标。升高 → 感染、风湿、肿瘤等</td>
+                    </tr>
+                    <tr>
+                        <td><strong>铁蛋白</strong></td>
+                        <td>男 30~400 μg/L<br>女 15~150 μg/L</td>
+                        <td>体内铁的"仓库"。偏低 → 缺铁（贫血前期）；极高 → 炎症/肿瘤标志物</td>
+                    </tr>
+                    <tr>
+                        <td><strong>维生素D</strong></td>
+                        <td>30 ~ 100 ng/mL</td>
+                        <td>偏低（< 20）很常见，影响钙吸收 → 骨质疏松风险↑</td>
+                    </tr>
+                    <tr>
+                        <td><strong>电解质：钾 (K⁺)</strong></td>
+                        <td>3.5 ~ 5.5 mmol/L</td>
+                        <td>偏低 → 乏力、心律失常；偏高 → 心脏骤停风险（> 6.5 很危险）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>电解质：钠 (Na⁺)</strong></td>
+                        <td>135 ~ 145 mmol/L</td>
+                        <td>偏低 → 头晕、恶心（老人常见）；偏高 → 脱水</td>
+                    </tr>
+                    <tr>
+                        <td><strong>电解质：钙 (Ca²⁺)</strong></td>
+                        <td>2.1 ~ 2.7 mmol/L</td>
+                        <td>偏低 → 手脚麻木、抽筋；偏高 → 甲旁亢、肿瘤骨转移</td>
+                    </tr>
+                    <tr>
+                        <td><strong>肌钙蛋白 (cTnI/cTnT)</strong></td>
+                        <td>< 0.04 ng/mL</td>
+                        <td>心肌损伤的"金标准"。急性升高 → 高度怀疑心肌梗死</td>
+                    </tr>
+                    <tr>
+                        <td><strong>D-二聚体</strong></td>
+                        <td>< 500 μg/L</td>
+                        <td>升高 → 提示体内有血栓形成或溶解（深静脉血栓、肺栓塞筛查）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 为什么低钾很危险？</div>
+            <div class="kc-body">
+                钾离子是维持心脏正常跳动的"电池"。细胞内外的钾浓度差产生电位差，驱动心肌细胞有节奏地收缩。<br>
+                如果钾太低（< 3.5），心肌细胞的电活动紊乱 → 心律失常 → 严重时心脏骤停。<br>
+                常见原因：长期腹泻/呕吐、利尿剂使用、进食少。<br>
+                <strong>补钾方法</strong>：香蕉、橙子、土豆（食补）；严重时口服/静脉补钾。
+            </div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter2.html" class="extend-link el-physiology">⚡ 细胞电位 → 生理学</a>
+                <a href="../生理学网页/chapter8.html" class="extend-link el-physiology">⚡ 电解质平衡 → 生理学</a>
+            </div>
+        </div>
+
+        <div class="knowledge-card">
+            <div class="kc-title">💡 甲状腺 TSH：理解起来其实不难</div>
+            <div class="kc-body">
+                TSH 是脑垂体分泌的"催促激素"，催促甲状腺干活。<br>
+                • <strong>甲减</strong>：甲状腺偷懒不干活 → 脑垂体拼命催 → TSH 升高<br>
+                • <strong>甲亢</strong>：甲状腺过度干活 → 脑垂体觉得够了，不催了 → TSH 降低<br><br>
+                所以：<strong>TSH高 = 甲减，TSH低 = 甲亢</strong>（和直觉相反！）<br>
+                这就是医学里经典的"负反馈"机制。
+            </div>
+            <div class="kc-tip">🧠 类比：老板（垂体）觉得工人（甲状腺）干得少就多催（TSH↑），干得太多就少催（TSH↓）</div>
+            <div class="extend-links">
+                <a href="../生理学网页/chapter11.html" class="extend-link el-physiology">⚡ 内分泌系统 → 生理学</a>
+                <a href="../解剖学网页/chapter3.html" class="extend-link el-anatomy">🦴 甲状腺位置 → 解剖学</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 底部引导 ====== -->
+    <div class="cta-section">
+        <h3>📚 想了解更多？</h3>
+        <p>这些指标背后的原理，在四门课程里都有详细讲解</p>
+        <a href="../index.html" class="cta-btn">查看全部课程 →</a>
+    </div>
+
+</div><!-- /.main-content -->
+
+<footer class="site-footer"></footer>
+
+<script src="nav.js"></script>
+<script>
+/* Tab 切换 */
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById('panel-' + tabId).classList.add('active');
+    event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

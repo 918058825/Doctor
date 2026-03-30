@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>医学基础四门课 · 总目录</title>
+<title>求学少年 · 医学基础学习平台</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
+  --c0: #059669;
   --c1: #0d9488;
   --c2: #0284c7;
   --c3: #be123c;
@@ -95,6 +96,7 @@ main {
   box-shadow: 0 10px 24px rgba(0,0,0,.35);
 }
 .card-accent { width: 4px; flex-shrink: 0; }
+.c0 .card-accent { background: var(--c0); }
 .c1 .card-accent { background: var(--c1); }
 .c2 .card-accent { background: var(--c2); }
 .c3 .card-accent { background: var(--c3); }
@@ -118,6 +120,7 @@ main {
   text-transform: uppercase;
   margin-bottom: .18rem;
 }
+.c0 .card-stage { color: var(--c0); }
 .c1 .card-stage { color: var(--c1); }
 .c2 .card-stage { color: var(--c2); }
 .c3 .card-stage { color: var(--c3); }
@@ -151,15 +154,26 @@ main {
   transition: opacity .15s;
 }
 .card-btn:hover { opacity: .8; }
+.c0 .card-btn { background: var(--c0); }
 .c1 .card-btn { background: var(--c1); }
 .c2 .card-btn { background: var(--c2); }
 .c3 .card-btn { background: var(--c3); }
 .c4 .card-btn { background: var(--c4); }
 
 /* footer */
+.tag-free {
+  display: inline-block; padding: .1rem .45rem; border-radius: 999px;
+  font-size: .62rem; font-weight: 700; background: #059669; color: white; margin-left: .3rem; vertical-align: middle;
+}
+.tag-course {
+  display: inline-block; padding: .1rem .45rem; border-radius: 999px;
+  font-size: .62rem; font-weight: 700; background: #334155; color: #94a3b8; margin-left: .3rem; vertical-align: middle;
+}
+
 footer {
+  position: relative;
   text-align: center;
-  padding: 1.2rem 2rem;
+  padding: 1.2rem 2rem 1.6rem;
   border-top: 1px solid var(--border);
   font-size: .73rem;
   color: #475569;
@@ -167,14 +181,24 @@ footer {
 }
 footer a { color: #64748b; text-decoration: none; border-bottom: 1px solid #334155; }
 footer a:hover { color: var(--text); }
+.ver-tag {
+  position: absolute;
+  right: 1.2rem;
+  bottom: .6rem;
+  font-size: .62rem;
+  color: #334155;
+  letter-spacing: .04em;
+  user-select: none;
+}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="site-title">📚 医学基础四门课</div>
-  <div class="site-sub">解剖 → 生理 → 病理 → 药理，从结构到机制，从疾病到干预</div>
+  <div class="site-title">📚 求学少年 · 医学基础学习平台</div>
+  <div class="site-sub">免费入门指南 + 四门系统课程，从零开始读懂人体</div>
   <div class="subject-pills">
+    <span class="pill" style="color:var(--c0);border-color:var(--c0);background:rgba(5,150,105,.08)">📖 身体说明书</span>
     <span class="pill pill-1">🫀 解剖学</span>
     <span class="pill pill-2">⚡ 生理学</span>
     <span class="pill pill-3">🔬 病理学</span>
@@ -185,13 +209,27 @@ footer a:hover { color: var(--text); }
 <main>
   <div class="grid">
 
+    <a class="card c0" href="身体说明书网页/index.html" style="border:1px solid #059669">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">📖</div>
+        <div class="card-info">
+          <div class="card-stage">免费开放 · 入门指南</div>
+          <div class="card-name">身体说明书 <span class="tag-free">免费</span></div>
+          <div class="card-desc">体检报告速查、常见病用药、知识图谱——看懂自己的身体</div>
+          <div class="card-meta">8大模块 · 持续更新 · 零门槛</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
     <a class="card c1" href="解剖学网页/index.html">
       <div class="card-accent"></div>
       <div class="card-body">
         <div class="card-icon">🫀</div>
         <div class="card-info">
           <div class="card-stage">第一阶段 · 基础结构</div>
-          <div class="card-name">解剖学</div>
+          <div class="card-name">解剖学 <span class="tag-course">课程</span></div>
           <div class="card-desc">9大系统的结构与空间关系，医学的坐标系</div>
           <div class="card-meta">14章 · 7工具页 · 动手实验</div>
         </div>
@@ -205,7 +243,7 @@ footer a:hover { color: var(--text); }
         <div class="card-icon">⚡</div>
         <div class="card-info">
           <div class="card-stage">第二阶段 · 运行机制</div>
-          <div class="card-name">生理学</div>
+          <div class="card-name">生理学 <span class="tag-course">课程</span></div>
           <div class="card-desc">RAAS、激素轴、心电图——正常是什么样的</div>
           <div class="card-meta">12章 · 3工具页 · 经典机制</div>
         </div>
@@ -219,7 +257,7 @@ footer a:hover { color: var(--text); }
         <div class="card-icon">🔬</div>
         <div class="card-info">
           <div class="card-stage">第三阶段 · 疾病机制</div>
-          <div class="card-name">病理学</div>
+          <div class="card-name">病理学 <span class="tag-course">课程</span></div>
           <div class="card-desc">细胞损伤、炎症、肿瘤——身体为什么会坏</div>
           <div class="card-meta">12章 · 3工具页 · 疾病地图</div>
         </div>
@@ -233,7 +271,7 @@ footer a:hover { color: var(--text); }
         <div class="card-icon">💊</div>
         <div class="card-info">
           <div class="card-stage">第四阶段 · 干预手段</div>
-          <div class="card-name">药理学</div>
+          <div class="card-name">药理学 <span class="tag-course">课程</span></div>
           <div class="card-desc">受体靶点、ADME、高危配伍——怎么修复</div>
           <div class="card-meta">12章 · 3工具页 · 受体图谱</div>
         </div>
@@ -245,9 +283,9 @@ footer a:hover { color: var(--text); }
 </main>
 
 <footer>
-  <div>求学少年 · 2026 · 免费开放</div>
+  <div>蓝牙小门童 · 2026 · 免费开放 &nbsp;·&nbsp; <span style="font-size:.68rem">内容仅供学习参考，不构成医疗建议</span></div>
   <div>微信公众号：<strong style="color:#94a3b8">求学少年</strong> &nbsp;·&nbsp; 邮箱：<a href="mailto:bitw@foxmail.com">bitw@foxmail.com</a></div>
-  <div style="margin-top:.3rem;font-size:.68rem">内容仅供学习参考，不构成医疗建议</div>
+  <span class="ver-tag">v2.0</span>
 </footer>
 
 </body>
