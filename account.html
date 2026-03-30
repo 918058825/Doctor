@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的账号 · 求学少年</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f172a; --surface: #1e293b; --surface2: #243047;
+  --border: #334155; --text: #f1f5f9; --muted: #94a3b8;
+  --green: #059669; --accent: #0284c7; --red: #dc2626;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 2rem 1rem;
+}
+a { color: inherit; text-decoration: none; }
+.back {
+  position: fixed; top: 1.2rem; left: 1.5rem;
+  font-size: .83rem; color: var(--muted);
+  padding: .38rem .85rem; border-radius: 8px;
+  background: var(--surface); border: 1px solid var(--border);
+  transition: color .15s;
+}
+.back:hover { color: var(--text); }
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2.5rem 2rem;
+  width: 100%; max-width: 420px;
+  box-shadow: 0 25px 50px rgba(0,0,0,.45);
+}
+.logo { font-size: 2.4rem; text-align: center; margin-bottom: .9rem; }
+h1 { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: .3rem; }
+.sub { text-align: center; color: var(--muted); font-size: .82rem; margin-bottom: 2rem; }
+
+/* 信息区块 */
+.info-block {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.2rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.info-row {
+  display: flex; align-items: flex-start; gap: .8rem;
+  padding: .55rem 0;
+}
+.info-row + .info-row { border-top: 1px solid var(--border); }
+.info-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+.info-content { flex: 1; min-width: 0; }
+.info-label { font-size: .73rem; color: var(--muted); margin-bottom: .18rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.info-value { font-size: .9rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.info-value.loading { color: var(--muted); font-weight: 400; }
+
+/* VIP 徽章 */
+.badge-vip {
+  display: inline-flex; align-items: center; gap: .3rem;
+  background: rgba(251,191,36,.12); border: 1px solid rgba(251,191,36,.3);
+  color: #fbbf24; padding: .28rem .8rem; border-radius: 999px;
+  font-size: .78rem; font-weight: 700;
+}
+.badge-free {
+  display: inline-flex; align-items: center; gap: .3rem;
+  background: rgba(148,163,184,.08); border: 1px solid rgba(148,163,184,.2);
+  color: var(--muted); padding: .28rem .8rem; border-radius: 999px;
+  font-size: .78rem; font-weight: 600;
+}
+
+/* 已解锁列表 */
+.unlock-list { margin-top: .5rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+.unlock-tag {
+  background: rgba(5,150,105,.15); border: 1px solid rgba(5,150,105,.3);
+  color: #6ee7b7; padding: .2rem .65rem; border-radius: 6px;
+  font-size: .76rem; font-weight: 600;
+}
+
+/* 按钮 */
+.btn-group { display: flex; flex-direction: column; gap: .65rem; margin-top: 1.2rem; }
+.btn {
+  display: block; width: 100%; padding: .82rem; text-align: center;
+  border-radius: 10px; font-size: .9rem; font-weight: 700;
+  cursor: pointer; transition: opacity .15s; font-family: inherit;
+  border: none;
+}
+.btn:hover { opacity: .88; }
+.btn-green { background: var(--green); color: white; }
+.btn-blue { background: var(--accent); color: white; }
+.btn-outline {
+  background: transparent; color: var(--muted);
+  border: 1px solid var(--border) !important;
+}
+.btn-outline:hover { color: var(--text); border-color: #475569 !important; }
+.btn-danger {
+  background: rgba(220,38,38,.1); color: #fca5a5;
+  border: 1px solid rgba(220,38,38,.25) !important;
+}
+.btn-danger:hover { background: rgba(220,38,38,.18); }
+
+/* 加载状态 */
+.spinner {
+  text-align: center; padding: 2rem; color: var(--muted); font-size: .9rem;
+}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html">← 返回首页</a>
+
+<div class="card">
+  <div class="logo">👤</div>
+  <h1>我的账号</h1>
+  <p class="sub">求学少年 · 医学基础学习平台</p>
+
+  <div id="loading-state" class="spinner">加载中…</div>
+
+  <div id="account-state" style="display:none">
+    <div class="info-block">
+      <div class="info-row">
+        <div class="info-icon">📧</div>
+        <div class="info-content">
+          <div class="info-label">登录邮箱</div>
+          <div class="info-value" id="disp-email">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">⭐</div>
+        <div class="info-content">
+          <div class="info-label">账号等级</div>
+          <div class="info-value" id="disp-vip">—</div>
+        </div>
+      </div>
+      <div class="info-row" id="row-unlocked" style="display:none">
+        <div class="info-icon">🔓</div>
+        <div class="info-content">
+          <div class="info-label">已解锁内容</div>
+          <div class="unlock-list" id="disp-unlocked"></div>
+        </div>
+      </div>
+      <div class="info-row" id="row-date" style="display:none">
+        <div class="info-icon">📅</div>
+        <div class="info-content">
+          <div class="info-label">兑换时间</div>
+          <div class="info-value" id="disp-date">—</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <a href="redeem.html" class="btn btn-green">🎟️ 输入兑换码解锁</a>
+      <a href="index.html" class="btn btn-blue">📚 去学习</a>
+      <button class="btn btn-danger" id="logout-btn" onclick="doLogout()">退出登录</button>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+<script>
+// 未登录跳转
+if (!XWAuth.isLoggedIn()) {
+  location.replace('login.html?next=' + encodeURIComponent(location.href));
+}
+
+// 加载账号信息
+(async function () {
+  var sess = XWAuth.getSess();
+  var profile = await XWAuth.getProfile();
+
+  document.getElementById('loading-state').style.display = 'none';
+  document.getElementById('account-state').style.display = 'block';
+
+  // 邮箱
+  var email = (sess && sess.user) ? sess.user.email : '未知';
+  document.getElementById('disp-email').textContent = email;
+
+  if (!profile) {
+    document.getElementById('disp-vip').innerHTML = '<span class="badge-free">获取失败，请刷新</span>';
+    return;
+  }
+
+  // VIP 状态
+  if (profile.is_vip) {
+    document.getElementById('disp-vip').innerHTML = '<span class="badge-vip">✨ VIP · 永久有效</span>';
+
+    // 已解锁列表
+    var unlocked = profile.unlocked || [];
+    if (unlocked.length > 0) {
+      document.getElementById('row-unlocked').style.display = 'flex';
+      var listEl = document.getElementById('disp-unlocked');
+      unlocked.forEach(function (k) {
+        var tag = document.createElement('span');
+        tag.className = 'unlock-tag';
+        tag.textContent = XWAuth.COURSE_NAMES[k] || k;
+        listEl.appendChild(tag);
+      });
+    }
+
+    // 兑换时间
+    if (profile.redeemed_at) {
+      document.getElementById('row-date').style.display = 'flex';
+      var d = new Date(profile.redeemed_at);
+      document.getElementById('disp-date').textContent =
+        d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    }
+  } else {
+    document.getElementById('disp-vip').innerHTML = '<span class="badge-free">免费用户</span>';
+  }
+})();
+
+function doLogout() {
+  if (confirm('确认退出登录？')) XWAuth.signOut();
+}
+</script>
+</body>
+</html>
