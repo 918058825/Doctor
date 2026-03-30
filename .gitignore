@@ -3,3 +3,6 @@ admin.html
 
 # PowerShell 管理脚本 - 含密钥，不提交远程
 manage-codes.ps1
+
+# 一键推送脚本 - 本地工具，不提交远程
+push.bat
