@@ -8,6 +8,7 @@
   var SUPA_URL = 'https://zehnaclrzehoetuiobrd.supabase.co';
   var SUPA_KEY = 'sb_publishable_gXoC13G2xfS6Nbp3hDgoKg_L38_axGF';
   var SESS_KEY = 'xw_sess_v1';
+  var PROF_KEY = 'xw_prof_v1';  // profile 本地缓存
 
   // ROOT路径：子目录页面在加载 auth.js 前设置 window._AUTH_ROOT = '../'
   var ROOT = (typeof window._AUTH_ROOT !== 'undefined') ? window._AUTH_ROOT : './';
@@ -19,6 +20,41 @@
   function setSess(d) {
     if (d) localStorage.setItem(SESS_KEY, JSON.stringify(d));
     else localStorage.removeItem(SESS_KEY);
+  }
+
+  // ---------- Profile 缓存（24小时有效，网络失败时兜底） ----------
+  function getCachedProfile() {
+    try {
+      var p = JSON.parse(localStorage.getItem(PROF_KEY));
+      if (p && p._ts && (Date.now() - p._ts) < 86400000) return p;
+    } catch (e) {}
+    return null;
+  }
+  function setCachedProfile(p) {
+    if (p) { p._ts = Date.now(); localStorage.setItem(PROF_KEY, JSON.stringify(p)); }
+  }
+
+  // ---------- Token 是否过期 ----------
+  function isTokenExpired(sess) {
+    if (!sess || !sess.expires_at) return true;
+    return (sess.expires_at - 60) < Math.floor(Date.now() / 1000);
+  }
+
+  // ---------- 自动刷新 Token ----------
+  async function refreshSess() {
+    var sess = getSess();
+    if (!sess || !sess.refresh_token) return null;
+    try {
+      var r = await fetch(SUPA_URL + '/auth/v1/token?grant_type=refresh_token', {
+        method: 'POST',
+        headers: makeHeaders(),
+        body: JSON.stringify({ refresh_token: sess.refresh_token })
+      });
+      if (!r.ok) { setSess(null); localStorage.removeItem(PROF_KEY); return null; }
+      var d = await r.json();
+      setSess(d);
+      return d;
+    } catch (e) { return null; }
   }
 
   // ---------- HTTP ----------
@@ -52,12 +88,8 @@
 
   // ---------- 课程类型名称映射 ----------
   var COURSE_NAMES = {
-    'medical4': '基础医学四门课（解剖+生理+病理+药理）',
-    'all': '全站所有内容',
-    'anatomy': '解剖学',
-    'physiology': '生理学',
-    'pathology': '病理学',
-    'pharmacology': '药理学'
+    'medical4': '基础医学全套（解剖+生理+病理+药理）',
+    'all': '全站所有内容'
   };
 
   // ---------- 公开 API ----------
@@ -90,17 +122,25 @@
         } catch (e) {}
       }
       setSess(null);
+      localStorage.removeItem(PROF_KEY);
       window.location.href = ROOT + 'index.html';
     },
 
     async getProfile() {
       var sess = getSess();
       if (!sess) return null;
+      // token 过期先尝试刷新
+      if (isTokenExpired(sess)) {
+        sess = await refreshSess();
+        if (!sess) return getCachedProfile(); // 刷新失败用缓存
+      }
       try {
         var d = await apiGet('/rest/v1/profiles?select=*', sess.access_token);
-        return Array.isArray(d) ? (d[0] || null) : null;
+        var profile = Array.isArray(d) ? (d[0] || null) : null;
+        if (profile) setCachedProfile(profile); // 成功则更新缓存
+        return profile;
       } catch (e) {
-        return null;
+        return getCachedProfile(); // 网络失败用缓存兜底
       }
     },
 
@@ -120,7 +160,7 @@
     canAccessCourse: function (profile, courseId) {
       if (!profile || !profile.is_vip) return false;
       var u = profile.unlocked || [];
-      return u.indexOf('medical4') >= 0 || u.indexOf('all') >= 0 || u.indexOf(courseId) >= 0;
+      return u.indexOf('medical4') >= 0 || u.indexOf('all') >= 0;
     }
   };
 
@@ -161,7 +201,7 @@
         + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">还没有账号？免费注册</a>'
       : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">小红书「求学少年」购买兑换码<br>¥9.9 解锁全部四门课程 · 永久有效</p>'
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">小红书「求学少年」购买兑换码<br>一码解锁全套四门课程 · 长期有效</p>'
         + '<a href="' + ROOT + 'redeem.html" style="display:block;background:#059669;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">🎟️ 已有兑换码？去兑换</a>'
         + '<a href="https://www.xiaohongshu.com" target="_blank" style="display:block;background:#3f0d22;color:#fda4af;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">📕 去小红书购买</a>'
         + '<p style="color:#475569;font-size:.72rem;margin-top:1.2rem">公众号：求学少年 &nbsp;·&nbsp; 邮箱：bitw@foxmail.com</p>';
