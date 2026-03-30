@@ -1,0 +1,5 @@
+# 后台管理页面 - 仅本地使用，不提交远程
+admin.html
+
+# PowerShell 管理脚本 - 含密钥，不提交远程
+manage-codes.ps1
