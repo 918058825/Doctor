@@ -75,7 +75,7 @@
                 <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}">🛠️ 工具 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu tools-menu">${toolGroup}</div>
             </li>
-            <li>${lnk('learning-path.html', isAct('learning-path.html') ? 'active' : null, '📊 进度')}</li>
+
             <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
         </ul>
         <button class="nav-hamburger" id="navHamburger" aria-label="打开菜单">
@@ -95,7 +95,7 @@
     sidebarContent += tools.map(t =>
         lnk(t.h, 'sidebar-link' + (isAct(t.h) ? ' active' : ''), `${t.i} ${t.t}`)
     ).join('');
-    sidebarContent += lnk('learning-path.html', 'sidebar-link' + (isAct('learning-path.html') ? ' active' : ''), '📊 学习进度');
+
 
     const sidebarHTML = `
     <div class="nav-overlay" id="navOverlay"></div>
