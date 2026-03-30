@@ -148,13 +148,6 @@ a { color: inherit; text-decoration: none; }
   <!-- 会员状态 -->
   <div class="section-card">
     <div class="section-title">会员状态</div>
-    <div class="row">
-      <div class="row-icon">⭐</div>
-      <div class="row-body">
-        <div class="row-label">账号等级</div>
-        <div class="row-value" id="disp-vip">—</div>
-      </div>
-    </div>
     <div class="row" id="row-unlocked" style="display:none">
       <div class="row-icon">🔓</div>
       <div class="row-body">
@@ -220,13 +213,9 @@ if (!XWAuth.isLoggedIn()) {
       '注册于 ' + d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
   }
 
-  if (!profile) {
-    document.getElementById('disp-vip').innerHTML = '<span class="badge-free">获取失败，请刷新</span>';
-    return;
-  }
+  if (!profile) { return; }
 
   if (profile.is_vip) {
-    document.getElementById('disp-vip').innerHTML = '<span class="badge-vip">✨ 付费会员</span>';
     document.getElementById('disp-expire').textContent = '长期有效';
     document.getElementById('disp-expire').style.color = '#6ee7b7';
 
@@ -242,7 +231,6 @@ if (!XWAuth.isLoggedIn()) {
       });
     }
   } else {
-    document.getElementById('disp-vip').innerHTML = '<span class="badge-free">免费用户</span>';
     document.getElementById('disp-expire').textContent = '购买后长期有效';
   }
 })();
