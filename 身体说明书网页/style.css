@@ -421,33 +421,81 @@ img { max-width: 100%; display: block; }
 
 /* 模块卡片网格 */
 .module-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.2rem; margin: 1.5rem 0;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 0.8rem; margin: 1.2rem 0;
 }
 .module-card {
-    background: white; border-radius: var(--radius); padding: 1.5rem;
+    background: white; border-radius: var(--radius);
     box-shadow: var(--shadow); border: 1px solid var(--border);
-    transition: var(--transition); display: flex; gap: 1rem;
-    align-items: flex-start; text-decoration: none; color: var(--text-main);
+    transition: var(--transition); display: flex; align-items: stretch;
+    text-decoration: none; color: var(--text-main); overflow: hidden;
 }
 .module-card:hover {
-    box-shadow: var(--shadow-md); transform: translateY(-2px);
-    border-color: var(--primary); color: var(--text-main);
+    box-shadow: var(--shadow-md); transform: translateY(-2px); color: var(--text-main);
+}
+.mc-accent {
+    width: 4px; flex-shrink: 0;
+}
+.mc-inner {
+    display: flex; align-items: center; gap: 0.85rem;
+    padding: 0.85rem 1rem; flex: 1; min-width: 0;
 }
 .module-card .mc-icon {
-    font-size: 2rem; flex-shrink: 0;
-    width: 52px; height: 52px; border-radius: 12px;
+    font-size: 1.45rem; flex-shrink: 0;
+    width: 42px; height: 42px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     background: var(--primary-light);
 }
-.module-card .mc-body { flex: 1; }
-.module-card .mc-title { font-weight: 700; font-size: 1rem; color: var(--heading-color); margin-bottom: 0.3rem; }
-.module-card .mc-desc { font-size: 0.85rem; color: var(--gray-600); line-height: 1.5; }
+.module-card .mc-body { flex: 1; min-width: 0; }
+.module-card .mc-title {
+    font-weight: 700; font-size: 0.9rem; color: var(--heading-color); margin-bottom: 0.18rem;
+}
+.module-card .mc-desc {
+    font-size: 0.76rem; color: var(--gray-500); line-height: 1.45;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .module-card .mc-tag {
-    display: inline-block; margin-top: 0.5rem; font-size: 0.72rem;
-    padding: 0.1rem 0.5rem; border-radius: 20px;
+    display: inline-block; margin-top: 0.28rem; font-size: 0.66rem;
+    padding: 0.1rem 0.45rem; border-radius: 20px;
     background: var(--primary-light); color: var(--primary-dark); font-weight: 600;
 }
+.mc-btn {
+    flex-shrink: 0; align-self: center; margin-right: 0.9rem;
+    padding: 0.32rem 0.8rem; border-radius: 7px;
+    font-size: 0.73rem; font-weight: 700; color: white;
+    white-space: nowrap; background: var(--primary);
+    transition: opacity 0.15s;
+}
+.module-card:hover .mc-btn { opacity: 0.82; }
+/* 颜色变体 */
+.mc-green .mc-accent  { background: #059669; }
+.mc-green .mc-icon    { background: #d1fae5; }
+.mc-green .mc-title   { color: #065f46; }
+.mc-green .mc-btn     { background: #059669; }
+.mc-teal  .mc-accent  { background: #0d9488; }
+.mc-teal  .mc-icon    { background: #ccfbf1; }
+.mc-teal  .mc-title   { color: #0f766e; }
+.mc-teal  .mc-btn     { background: #0d9488; }
+.mc-blue  .mc-accent  { background: #0284c7; }
+.mc-blue  .mc-icon    { background: #e0f2fe; }
+.mc-blue  .mc-title   { color: #0369a1; }
+.mc-blue  .mc-btn     { background: #0284c7; }
+.mc-red   .mc-accent  { background: #be123c; }
+.mc-red   .mc-icon    { background: #ffe4e6; }
+.mc-red   .mc-title   { color: #9f1239; }
+.mc-red   .mc-btn     { background: #be123c; }
+.mc-purple .mc-accent { background: #7c3aed; }
+.mc-purple .mc-icon   { background: #ede9fe; }
+.mc-purple .mc-title  { color: #5b21b6; }
+.mc-purple .mc-btn    { background: #7c3aed; }
+.mc-orange .mc-accent { background: #d97706; }
+.mc-orange .mc-icon   { background: #fef3c7; }
+.mc-orange .mc-title  { color: #92400e; }
+.mc-orange .mc-btn    { background: #d97706; }
+.mc-cyan  .mc-accent  { background: #0891b2; }
+.mc-cyan  .mc-icon    { background: #e0f2fe; }
+.mc-cyan  .mc-title   { color: #0e7490; }
+.mc-cyan  .mc-btn     { background: #0891b2; }
 
 /* ===== 课程引导区 ===== */
 .course-promo {
@@ -489,8 +537,34 @@ img { max-width: 100%; display: block; }
 .extend-link.el-pharmacology { background: #f5f3ff; color: #5b21b6; }
 .extend-link:hover { filter: brightness(0.95); transform: translateY(-1px); }
 
+/* ===== 模块前后导航条 ===== */
+.module-nav-bar {
+    max-width: 860px; margin: 0 auto 1.5rem;
+    padding: 0 1.5rem;
+    display: flex; justify-content: space-between; align-items: center; gap: 0.6rem;
+}
+.mnav-prev, .mnav-home, .mnav-next {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.55rem 1rem; border-radius: 8px;
+    font-size: 0.84rem; font-weight: 600;
+    text-decoration: none; transition: var(--transition);
+    white-space: nowrap; flex: 1;
+}
+.mnav-prev {
+    background: #f3f4f6; color: #374151; border: 1px solid #e5e7eb;
+}
+.mnav-prev:hover { background: #e5e7eb; color: #111827; }
+.mnav-home {
+    background: #f0fdf4; color: #059669; border: 1px solid #a7f3d0;
+}
+.mnav-home:hover { background: #dcfce7; color: #047857; }
+.mnav-next {
+    background: var(--primary); color: white !important;
+}
+.mnav-next:hover { background: var(--primary-dark); color: white !important; }
+
 /* ===== Responsive ===== */
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     .module-grid { grid-template-columns: 1fr; }
     .course-grid { grid-template-columns: 1fr 1fr; }
     .flow-chain { flex-direction: column; align-items: center; }
