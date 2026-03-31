@@ -171,9 +171,9 @@ a { color: inherit; text-decoration: none; }
       <div style="font-size:.82rem;color:var(--muted);line-height:1.6">输入激活码即可立即解锁全套课程</div>
       <div style="display:flex;gap:.6rem">
         <input type="text" id="code-input"
-          placeholder="输入激活码，如 XW-ABCD1234EF56"
-          style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.65rem .9rem;color:var(--text);font-size:.88rem;outline:none;font-family:inherit;letter-spacing:.04em"
-          oninput="this.value=this.value.toUpperCase()">
+          placeholder="如 XW-ABCD-1234-EF56"
+          style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.65rem .9rem;color:var(--text);font-size:.88rem;outline:none;font-family:monospace;letter-spacing:.06em"
+          oninput="formatCodeInput(this)">
         <button onclick="doRedeem()"
           style="padding:.65rem 1.1rem;border:none;border-radius:8px;background:var(--green);color:white;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap"
           id="redeem-btn">激活</button>
@@ -256,6 +256,16 @@ if (!XWAuth.isLoggedIn()) {
   }
 })();
 
+function formatCodeInput(el) {
+  // 保留光标位置感知：先去掉所有非字母数字，再按已有分段重新插入连字符
+  var raw = el.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  // 超过16位截断（前缀最多4位+3段各4位=16字符）
+  if (raw.length > 16) raw = raw.substring(0, 16);
+  // 按每4位插入 -
+  var parts = raw.match(/.{1,4}/g) || [];
+  el.value = parts.join('-');
+}
+
 async function doRedeem() {
   var code = document.getElementById('code-input').value.trim();
   var btn  = document.getElementById('redeem-btn');
@@ -265,8 +275,13 @@ async function doRedeem() {
   try {
     var result = await XWAuth.useActivationCode(code);
     if (result === 'ok') {
-      showRedeemMsg('✅ 激活成功！正在刷新…', 'success');
-      setTimeout(function() { location.reload(); }, 1500);
+      showRedeemMsg('✅ 激活成功！正在跳转…', 'success');
+      setTimeout(function() {
+        var params = new URLSearchParams(window.location.search);
+        var next = params.get('next');
+        if (next) { window.location.href = next; }
+        else { location.reload(); }
+      }, 1500);
     } else if (result === 'used') {
       showRedeemMsg('该激活码已被使用', 'error');
     } else {
