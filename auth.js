@@ -161,6 +161,33 @@
       if (!profile || !profile.is_vip) return false;
       var u = profile.unlocked || [];
       return u.indexOf('medical4') >= 0 || u.indexOf('all') >= 0;
+    },
+
+    // 发送重置密码邮件
+    async sendResetEmail(email) {
+      var r = await fetch(SUPA_URL + '/auth/v1/recover', {
+        method: 'POST',
+        headers: makeHeaders(),
+        body: JSON.stringify({ email: email })
+      });
+      if (!r.ok) {
+        var d = await r.json();
+        throw new Error(d.error_description || d.message || '发送失败');
+      }
+    },
+
+    // 用新密码更新（用户点邮件链接跳回后调用）
+    async updatePassword(newPassword) {
+      var sess = getSess();
+      if (!sess) throw new Error('登录状态已失效，请重新点击邮件中的链接');
+      var r = await fetch(SUPA_URL + '/auth/v1/user', {
+        method: 'PUT',
+        headers: makeHeaders(sess.access_token),
+        body: JSON.stringify({ password: newPassword })
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.error_description || d.message || '更新失败');
+      return d;
     }
   };
 
@@ -198,7 +225,7 @@
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">此章节需要登录</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">登录账号后即可查看已解锁的内容</p>'
         + '<a href="' + ROOT + 'login.html?next=' + next + '" style="display:block;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">登录账号</a>'
-        + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">还没有账号？免费注册</a>'
+        + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">没有账号？联系管理员开通</a>'
       : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">小红书「求学少年」购买兑换码<br>一码解锁全套四门课程 · 长期有效</p>'

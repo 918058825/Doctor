@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>注册 · 求学少年</title>
+<title>账号开通 · 求学少年</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -30,151 +30,58 @@ a { color: inherit; text-decoration: none; }
   border-radius: 16px; padding: 2.5rem 2rem;
   width: 100%; max-width: 400px;
   box-shadow: 0 25px 50px rgba(0,0,0,.45);
+  text-align: center;
 }
-.logo { font-size: 2.4rem; text-align: center; margin-bottom: .9rem; }
-h1 { font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: .3rem; }
-.sub { text-align: center; color: var(--muted); font-size: .82rem; margin-bottom: 2rem; }
-label { display: block; font-size: .82rem; font-weight: 600; color: var(--muted); margin-bottom: .4rem; }
-input {
-  display: block; width: 100%;
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 8px; padding: .75rem 1rem;
-  color: var(--text); font-size: .9rem; margin-bottom: 1.25rem;
-  outline: none; transition: border-color .15s; font-family: inherit;
+.icon { font-size: 3rem; margin-bottom: 1rem; }
+h1 { font-size: 1.3rem; font-weight: 800; margin-bottom: .6rem; }
+.desc {
+  color: var(--muted); font-size: .88rem; line-height: 1.8;
+  margin-bottom: 2rem;
 }
-input:focus { border-color: var(--accent); }
-input::placeholder { color: #475569; }
+.info-box {
+  background: rgba(5,150,105,.1); border: 1px solid rgba(5,150,105,.3);
+  border-radius: 10px; padding: 1.1rem 1.2rem;
+  font-size: .85rem; line-height: 1.8; margin-bottom: 1.8rem;
+  text-align: left;
+}
+.info-box .label { color: #6ee7b7; font-weight: 700; font-size: .75rem;
+  text-transform: uppercase; letter-spacing: .05em; margin-bottom: .3rem; }
+.info-box .val { color: var(--text); }
 .btn {
   display: block; width: 100%; padding: .88rem;
   border: none; border-radius: 10px;
   font-size: .95rem; font-weight: 700; cursor: pointer;
   transition: opacity .15s; font-family: inherit;
-  background: var(--accent); color: white;
+  background: var(--accent); color: white; text-decoration: none;
+  text-align: center;
 }
-.btn:hover:not(:disabled) { opacity: .88; }
-.btn:disabled { opacity: .5; cursor: default; }
-.err-box {
-  background: rgba(220,38,38,.12); border: 1px solid rgba(220,38,38,.3);
-  color: #fca5a5; padding: .72rem 1rem; border-radius: 8px;
-  font-size: .84rem; margin-bottom: 1.2rem; display: none;
+.btn:hover { opacity: .88; }
+.login-link {
+  margin-top: 1.2rem; font-size: .84rem; color: var(--muted);
 }
-.ok-box {
-  background: rgba(5,150,105,.12); border: 1px solid rgba(5,150,105,.3);
-  color: #6ee7b7; padding: .72rem 1rem; border-radius: 8px;
-  font-size: .84rem; margin-bottom: 1.2rem; display: none;
-}
-.links {
-  margin-top: 1.5rem; text-align: center;
-  font-size: .84rem; color: var(--muted); line-height: 2.2;
-}
-.links a { color: #7dd3fc; }
-.links a:hover { text-decoration: underline; }
-/* 注册成功状态 */
-.success-state { text-align: center; display: none; }
-.success-state .icon { font-size: 3rem; margin-bottom: 1rem; }
-.success-state h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: .5rem; }
-.success-state p { color: var(--muted); font-size: .85rem; line-height: 1.7; margin-bottom: 1.8rem; }
-.btn-outline {
-  display: block; width: 100%; padding: .8rem; border-radius: 10px;
-  border: 1px solid var(--accent); color: #6ee7b7;
-  font-size: .9rem; font-weight: 700; text-align: center;
-  background: transparent; cursor: pointer; font-family: inherit;
-  transition: background .15s;
-}
-.btn-outline:hover { background: rgba(5,150,105,.1); }
+.login-link a { color: #7dd3fc; }
+.login-link a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>
 
-<a class="back" href="login.html">← 返回登录</a>
+<a class="back" href="index.html">← 返回首页</a>
 
 <div class="card">
-  <div class="logo">📚</div>
-  <h1>创建账号</h1>
-  <p class="sub">注册后即可使用已解锁的全部内容</p>
+  <div class="icon">🔐</div>
+  <h1>账号由管理员开通</h1>
+  <p class="desc">本平台不开放自助注册<br>购课后，账号将由管理员为你创建并发送</p>
 
-  <!-- 注册表单 -->
-  <div id="form-state">
-    <div id="err-box" class="err-box"></div>
-    <div id="ok-box" class="ok-box"></div>
-
-    <form id="form">
-      <label for="email">邮箱</label>
-      <input type="email" id="email" placeholder="your@email.com" autocomplete="email" required>
-      <label for="password">密码</label>
-      <input type="password" id="password" placeholder="至少6位" autocomplete="new-password" required minlength="6">
-      <label for="confirm">确认密码</label>
-      <input type="password" id="confirm" placeholder="再输一次" autocomplete="new-password" required>
-      <button class="btn" id="btn" type="submit">注册</button>
-    </form>
-
-    <div class="links">
-      <a href="login.html">已有账号？直接登录 →</a>
-    </div>
+  <div class="info-box">
+    <div class="label">购课 / 咨询渠道</div>
+    <div class="val">� 搜索「求学少年」<br>
+    📣 公众号：求学少年<br>
+    📧 邮件：bitw@foxmail.com</div>
   </div>
 
-  <!-- 注册成功（需验证邮件时显示） -->
-  <div id="success-state" class="success-state">
-    <div class="icon">📬</div>
-    <h2>注册成功！</h2>
-    <p>已向你的邮箱发送了确认邮件<br>请点击邮件中的链接完成验证<br>然后回来登录即可</p>
-    <a href="login.html" class="btn" style="text-align:center">去登录</a>
-  </div>
+  <a href="login.html" class="btn">已有账号，去登录 →</a>
+  <div class="login-link">购课后收到账号再来登录即可</div>
 </div>
 
-<script src="auth.js"></script>
-<script>
-// 已登录则跳首页
-if (XWAuth.isLoggedIn()) location.replace('index.html');
-
-document.getElementById('form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  var btn = document.getElementById('btn');
-  var errBox = document.getElementById('err-box');
-  var okBox = document.getElementById('ok-box');
-  var email = document.getElementById('email').value.trim();
-  var password = document.getElementById('password').value;
-  var confirm = document.getElementById('confirm').value;
-
-  errBox.style.display = 'none';
-  okBox.style.display = 'none';
-
-  if (password !== confirm) {
-    errBox.textContent = '两次输入的密码不一致';
-    errBox.style.display = 'block';
-    return;
-  }
-  if (password.length < 6) {
-    errBox.textContent = '密码至少需要6位';
-    errBox.style.display = 'block';
-    return;
-  }
-
-  btn.disabled = true;
-  btn.textContent = '注册中…';
-
-  try {
-    var result = await XWAuth.signUp(email, password);
-
-    if (result.access_token) {
-      // 邮件确认已关闭，直接登录成功
-      location.replace('index.html');
-    } else {
-      // 需要邮件确认
-      document.getElementById('form-state').style.display = 'none';
-      document.getElementById('success-state').style.display = 'block';
-    }
-  } catch (err) {
-    var msg = err.message || '注册失败';
-    if (msg.includes('already registered') || msg.includes('already been registered')) {
-      msg = '该邮箱已注册，请直接登录';
-    }
-    errBox.textContent = msg;
-    errBox.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = '注册';
-  }
-});
-</script>
 </body>
 </html>
