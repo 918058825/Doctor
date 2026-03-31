@@ -247,7 +247,7 @@
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">此章节需要登录</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">登录账号后即可查看已解锁的内容</p>'
         + '<a href="' + ROOT + 'login.html?next=' + next + '" style="display:block;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">登录账号</a>'
-        + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">没有账号？联系管理员开通</a>'
+        + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">📝 没有账号？免费注册</a>'
       : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">此章节为付费内容<br>已有激活码可直接解锁</p>'
