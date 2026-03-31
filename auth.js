@@ -188,6 +188,28 @@
       var d = await r.json();
       if (!r.ok) throw new Error(d.error_description || d.message || '更新失败');
       return d;
+    },
+
+    // 使用激活码
+    async useActivationCode(code) {
+      var sess = getSess();
+      if (!sess) throw new Error('请先登录');
+      if (isTokenExpired(sess)) {
+        sess = await refreshSess();
+        if (!sess) throw new Error('登录已过期，请重新登录');
+      }
+      var r = await fetch(SUPA_URL + '/rest/v1/rpc/use_activation_code', {
+        method: 'POST',
+        headers: makeHeaders(sess.access_token),
+        body: JSON.stringify({ input_code: code })
+      });
+      if (!r.ok) {
+        var d = await r.json();
+        throw new Error(d.message || '请求失败');
+      }
+      // 激活成功后清除本地 profile 缓存，强制下次重新拉取
+      localStorage.removeItem('xw_prof_v1');
+      return await r.json(); // 返回 'ok' / 'used' / 'invalid'
     }
   };
 
@@ -228,10 +250,9 @@
         + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">没有账号？联系管理员开通</a>'
       : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">小红书「求学少年」购买兑换码<br>一码解锁全套四门课程 · 长期有效</p>'
-        + '<a href="' + ROOT + 'redeem.html" style="display:block;background:#059669;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">🎟️ 已有兑换码？去兑换</a>'
-        + '<a href="https://www.xiaohongshu.com" target="_blank" style="display:block;background:#3f0d22;color:#fda4af;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">📕 去小红书购买</a>'
-        + '<p style="color:#475569;font-size:.72rem;margin-top:1.2rem">公众号：求学少年 &nbsp;·&nbsp; 邮箱：bitw@foxmail.com</p>';
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">此章节为付费内容<br>已有激活码可直接解锁</p>'
+        + '<a href="' + ROOT + 'account.html" style="display:block;background:#059669;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">🎟️ 已有激活码，去激活</a>'
+        + '<button onclick="document.getElementById(\'xw-lock-overlay\').remove()" style="display:block;width:100%;background:transparent;border:1px solid #334155;color:#64748b;padding:.8rem;border-radius:10px;font-weight:600;cursor:pointer;font-size:.9rem">取消</button>';
 
     var el = document.createElement('div');
     el.id = 'xw-lock-overlay';
