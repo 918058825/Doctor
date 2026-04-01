@@ -127,11 +127,6 @@ a { color: inherit; text-decoration: none; }
 </head>
 <body>
 
-<div class="topbar">
-  <span class="topbar-brand">👤 我的账号</span>
-  <a class="topbar-back" href="index.html">← 首页</a>
-</div>
-
 <div id="loading-mask" class="loading-mask">加载中…</div>
 
 <div id="panel" class="panel" style="display:none">
@@ -142,43 +137,6 @@ a { color: inherit; text-decoration: none; }
     <div class="profile-info">
       <div class="profile-email" id="disp-email">—</div>
       <div class="profile-since" id="disp-since">—</div>
-    </div>
-  </div>
-
-  <!-- 会员状态 -->
-  <div class="section-card">
-    <div class="section-title">会员状态</div>
-    <div class="row" id="row-unlocked" style="display:none">
-      <div class="row-icon">🔓</div>
-      <div class="row-body">
-        <div class="row-label">已解锁内容</div>
-        <div class="tag-list" id="disp-unlocked"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="row-icon">📅</div>
-      <div class="row-body">
-        <div class="row-label">有效期</div>
-        <div class="row-value" id="disp-expire" style="color:var(--muted)">—</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 授权码 -->
-  <div class="section-card" id="redeem-card">
-    <div class="section-title">授权码</div>
-    <div class="row" style="flex-direction:column;align-items:stretch;gap:.6rem">
-      <div style="font-size:.82rem;color:var(--muted);line-height:1.6">输入授权码即可立即解锁全套课程</div>
-      <div style="display:flex;gap:.6rem">
-        <input type="text" id="code-input"
-          placeholder="如 XW-ABCD-1234-EF56"
-          style="flex:1;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.65rem .9rem;color:var(--text);font-size:.88rem;outline:none;font-family:monospace;letter-spacing:.06em"
-          oninput="formatCodeInput(this)" onpaste="setTimeout(function(){formatCodeInput(document.getElementById('code-input'))},0)">
-        <button onclick="doRedeem()"
-          style="padding:.65rem 1.1rem;border:none;border-radius:8px;background:var(--green);color:white;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap"
-          id="redeem-btn">激活</button>
-      </div>
-      <div id="redeem-msg" style="font-size:.82rem;display:none;border-radius:7px;padding:.55rem .85rem"></div>
     </div>
   </div>
 
@@ -216,7 +174,6 @@ if (!XWAuth.isLoggedIn()) {
 
 (async function () {
   var sess = XWAuth.getSess();
-  var profile = await XWAuth.getProfile();
 
   document.getElementById('loading-mask').style.display = 'none';
   document.getElementById('panel').style.display = 'flex';
@@ -231,81 +188,7 @@ if (!XWAuth.isLoggedIn()) {
     document.getElementById('disp-since').textContent =
       '注册于 ' + d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
   }
-
-  if (!profile) { return; }
-
-  if (profile.is_vip) {
-    document.getElementById('disp-expire').textContent = '长期有效';
-    document.getElementById('disp-expire').style.color = '#6ee7b7';
-    // 已是VIP则隐藏授权码入口
-    var rc = document.getElementById('redeem-card');
-    if (rc) rc.style.display = 'none';
-
-    var unlocked = profile.unlocked || [];
-    if (unlocked.length > 0) {
-      document.getElementById('row-unlocked').style.display = 'flex';
-      var listEl = document.getElementById('disp-unlocked');
-      unlocked.forEach(function (k) {
-        var tag = document.createElement('span');
-        tag.className = 'unlock-tag';
-        tag.textContent = XWAuth.COURSE_NAMES[k] || k;
-        listEl.appendChild(tag);
-      });
-    }
-  } else {
-    document.getElementById('disp-expire').textContent = '免费版，升级后长期有效';
-  }
 })();
-
-function formatCodeInput(el) {
-  var raw = el.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
-  if (raw.length > 20) raw = raw.substring(0, 20);
-  // 最后12个字符为三段每段4位，前面剩余的为前缀
-  var suffix = raw.slice(-12);
-  var prefix = raw.slice(0, raw.length - 12);
-  var segs = suffix.match(/.{1,4}/g) || [];
-  if (prefix) {
-    el.value = prefix + '-' + segs.join('-');
-  } else {
-    el.value = segs.join('-');
-  }
-}
-
-async function doRedeem() {
-  var code = document.getElementById('code-input').value.trim();
-  var btn  = document.getElementById('redeem-btn');
-  var msg  = document.getElementById('redeem-msg');
-  if (!code) { showRedeemMsg('请输入授权码', 'error'); return; }
-  btn.disabled = true; btn.textContent = '验证中…';
-  try {
-    var result = await XWAuth.useActivationCode(code);
-    if (result === 'ok') {
-      showRedeemMsg('✅ 激活成功！正在跳转…', 'success');
-      setTimeout(function() {
-        var params = new URLSearchParams(window.location.search);
-        var next = params.get('next');
-        if (next) { window.location.href = next; }
-        else { location.reload(); }
-      }, 1500);
-    } else if (result === 'used') {
-      showRedeemMsg('该授权码已被使用', 'error');
-    } else {
-      showRedeemMsg('授权码无效，请检查是否输入有误', 'error');
-    }
-  } catch(e) {
-    showRedeemMsg(e.message || '激活失败，请重试', 'error');
-  }
-  btn.disabled = false; btn.textContent = '激活';
-}
-
-function showRedeemMsg(text, type) {
-  var el = document.getElementById('redeem-msg');
-  el.textContent = text;
-  el.style.display = 'block';
-  el.style.background = type === 'success' ? 'rgba(5,150,105,.12)' : 'rgba(220,38,38,.1)';
-  el.style.color = type === 'success' ? '#6ee7b7' : '#fca5a5';
-  el.style.border = '1px solid ' + (type === 'success' ? 'rgba(5,150,105,.3)' : 'rgba(220,38,38,.25)');
-}
 
 function doLogout() {
   if (confirm('确认退出登录？')) XWAuth.signOut();

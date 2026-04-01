@@ -332,6 +332,43 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
   }
   window.openAuthModal = openAuthModal;
 
+  function openAccountModal() {
+    if (!XWAuth.isLoggedIn()) { openAuthModal('login'); return; }
+    closeAccountModal(); _ensureModalStyle();
+    var sess = getSess() || {};
+    var user = sess.user || {};
+    var rawEmail = user.email || '';
+    var phone = rawEmail.endsWith('@qxsn.user') ? rawEmail.replace('@qxsn.user', '') : rawEmail;
+    var created = user.created_at ? new Date(user.created_at) : null;
+    var since = created
+      ? (created.getFullYear() + '-' + String(created.getMonth() + 1).padStart(2, '0') + '-' + String(created.getDate()).padStart(2, '0'))
+      : '未知';
+
+    var ov = document.createElement('div');
+    ov.className = 'xw-modal-ov'; ov.id = 'xw-account-modal';
+    ov.addEventListener('click', function (e) { if (e.target === ov) closeAccountModal(); });
+    ov.innerHTML = ''
+      + '<div class="xw-mc">'
+      + '<button class="xw-mc-x" onclick="closeAccountModal()">✕</button>'
+      + '<div class="xw-mc-ttl">我的账号</div>'
+      + '<div class="xw-mc-sub">已登录，当前账号可访问全部课程</div>'
+      + '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:.9rem 1rem;margin-bottom:1rem">'
+      +   '<div style="font-size:.82rem;color:#64748b;margin-bottom:.2rem">手机号</div>'
+      +   '<div style="font-size:1rem;font-weight:700;color:#0f172a">' + (phone || '未知') + '</div>'
+      +   '<div style="font-size:.78rem;color:#64748b;margin-top:.35rem">注册于 ' + since + '</div>'
+      + '</div>'
+      + '<button class="xw-mb" onclick="closeAccountModal()">继续学习</button>'
+      + '<button class="xw-mb" style="margin-top:.55rem;background:#ef4444" onclick="XWAuth.signOut()">退出登录</button>'
+      + '</div>';
+    document.body.appendChild(ov);
+  }
+  window.openAccountModal = openAccountModal;
+
+  function closeAccountModal() {
+    var el = document.getElementById('xw-account-modal'); if (el) el.remove();
+  }
+  window.closeAccountModal = closeAccountModal;
+
   function closeAuthModal() {
     var el = document.getElementById('xw-auth-modal'); if (el) el.remove();
   }
@@ -480,7 +517,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 
     var loggedIn = XWAuth.isLoggedIn();
     var authHtml = loggedIn
-      ? '<a href="' + ROOT + 'account.html" class="xw-btn-account" id="xw-account-btn">👤 我的账号</a>'
+      ? '<button class="xw-btn-account" id="xw-account-btn" onclick="openAccountModal()">👤 我的账号</button>'
       : '<button class="xw-btn-login" onclick="openAuthModal(\'login\')">登录</button>';
 
     document.body.insertAdjacentHTML('afterbegin',
@@ -561,13 +598,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       });
     }
 
-    // VIP 账号样式
-    if (loggedIn) {
-      XWAuth.getProfile().then(function (p) {
-        var btn = document.getElementById('xw-account-btn');
-        if (btn && p && p.is_vip) { btn.textContent = '✨ 我的账号'; btn.classList.add('vip'); }
-      });
-    }
   }
 
   document.addEventListener('DOMContentLoaded', injectTopNav);
