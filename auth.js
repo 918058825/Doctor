@@ -7,7 +7,7 @@
 
   // 立即应用已保存的主题，避免闪烁
   (function () {
-    var t = localStorage.getItem('xw-theme') || 'light';
+    var t = localStorage.getItem('xw-theme') || 'dark';
     if (t === 'dark') document.documentElement.classList.add('xw-dark');
   })();
 
