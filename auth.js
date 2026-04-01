@@ -272,7 +272,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       return d;
     },
 
-    // 使用激活码
+    // 使用授权码
     async useActivationCode(code) {
       var sess = getSess();
       if (!sess) throw new Error('请先登录');
@@ -292,6 +292,18 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       // 激活成功后清除本地 profile 缓存，强制下次重新拉取
       localStorage.removeItem('xw_prof_v1');
       return await r.json(); // 返回 'ok' / 'used' / 'invalid'
+    },
+
+    // 使用授权码重置密码
+    async resetPasswordWithCode(email, code, newPassword) {
+      var r = await fetch(SUPA_URL + '/rest/v1/rpc/reset_password_with_code', {
+        method: 'POST',
+        headers: makeHeaders(),
+        body: JSON.stringify({ p_email: email, p_auth_code: code, p_new_password: newPassword })
+      });
+      var d = await r.json();
+      if (!r.ok) throw new Error(d.message || d.error_description || '请求失败');
+      return d; // 'ok' / 'invalid' / 'not_found'
     }
   };
 
@@ -402,16 +414,28 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 
   async function _doRegister() {
     var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
+    var code = (document.getElementById('xw-code').value || '').trim();
     var pw = document.getElementById('xw-pw').value;
     var pw2 = document.getElementById('xw-pw2').value;
     var btn = document.getElementById('xw-mb-btn');
     if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
+    if (!code) { _showMErr('请输入授权码'); return; }
     if (!pw || pw.length < 6) { _showMErr('密码至少需要 6 位'); return; }
     if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
     btn.disabled = true; btn.textContent = '注册中…';
     try {
       await XWAuth.signUp(phoneToEmail(ph), pw);
       await XWAuth.signIn(phoneToEmail(ph), pw);
+      // 注册后立即使用授权码激活
+      var result = await XWAuth.useActivationCode(code);
+      if (result === 'invalid') {
+        _showMErr('授权码无效，请检查后重试（账号已创建，可直接登录）');
+        btn.disabled = false; btn.textContent = '创建账户'; return;
+      }
+      if (result === 'used') {
+        _showMErr('该授权码已被使用，请联系管理员获取新码');
+        btn.disabled = false; btn.textContent = '创建账户'; return;
+      }
       closeAuthModal();
       var next = new URLSearchParams(location.search).get('next');
       var curr = location.pathname.split('/').pop() || '';
@@ -424,6 +448,45 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     }
   }
   window._doRegister = _doRegister;
+
+  async function _doReset() {
+    var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
+    var name = (document.getElementById('xw-name').value || '').trim();
+    var code = (document.getElementById('xw-code').value || '').trim();
+    var pw = document.getElementById('xw-pw').value;
+    var pw2 = document.getElementById('xw-pw2').value;
+    var btn = document.getElementById('xw-mb-btn');
+    if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
+    if (!name) { _showMErr('请输入姓名'); return; }
+    if (!code) { _showMErr('请输入授权码'); return; }
+    if (!pw || pw.length < 6) { _showMErr('新密码至少需要 6 位'); return; }
+    if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
+    btn.disabled = true; btn.textContent = '重置中…';
+    try {
+      var res = await XWAuth.resetPasswordWithCode(phoneToEmail(ph), code, pw);
+      if (res === 'ok') {
+        var mc = document.getElementById('xw-mc');
+        if (mc) mc.innerHTML = '<div style="text-align:center;padding:2rem 1.5rem">'
+          + '<div style="font-size:2.5rem;margin-bottom:.75rem">✅</div>'
+          + '<div style="font-size:1.1rem;font-weight:800;color:#0f172a;margin-bottom:.5rem">密码已重置</div>'
+          + '<div style="font-size:.85rem;color:#64748b;margin-bottom:1.5rem">请使用新密码登录</div>'
+          + '<button class="xw-mb" onclick="_renderModal(\'login\')"返回登录</button></div>';
+      } else if (res === 'invalid') {
+        _showMErr('授权码与手机号不匹配，请检查后重试');
+        btn.disabled = false; btn.textContent = '重置密码';
+      } else if (res === 'not_found') {
+        _showMErr('该手机号未注册，请先注册账号');
+        btn.disabled = false; btn.textContent = '重置密码';
+      } else {
+        _showMErr('重置失败，请重试');
+        btn.disabled = false; btn.textContent = '重置密码';
+      }
+    } catch (e) {
+      _showMErr(e.message || '重置失败，请重试');
+      btn.disabled = false; btn.textContent = '重置密码';
+    }
+  }
+  window._doReset = _doReset;
 
   // ---------- 主题切换 ----------
   function applyTheme(t) {
