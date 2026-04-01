@@ -23,12 +23,12 @@
   var NAV_CSS = `
 html:not(.xw-dark){--bg:#f8fafc;--surface:#ffffff;--border:#e2e8f0;--text:#0f172a;--muted:#475569}
 html:not(.xw-dark) body{background:#f8fafc!important;color:#0f172a!important}
-body{padding-top:52px!important}
-#xw-topnav{position:fixed;top:0;left:0;right:0;z-index:9997;height:52px;display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:0 1.25rem;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;border-bottom:1px solid var(--border,#334155);background:var(--surface,#1e293b);box-shadow:0 1px 6px rgba(0,0,0,.12)}
+body{padding-top:44px!important}
+#xw-topnav{position:fixed;top:0;left:0;right:0;z-index:9997;height:44px;display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:0 1rem;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;border-bottom:1px solid var(--border,#334155);background:var(--surface,#1e293b);box-shadow:0 1px 6px rgba(0,0,0,.12)}
 html:not(.xw-dark) #xw-topnav{background:#fff;border-bottom-color:#e2e8f0;box-shadow:0 1px 6px rgba(0,0,0,.06)}
 .xw-nav-left{display:flex;align-items:center;gap:.9rem}
 .xw-logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0}
-.xw-avatar{width:32px;height:32px;border-radius:8px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#059669,#0284c7);font-size:.88rem;font-weight:800;color:white}
+.xw-avatar{width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#059669,#0284c7);font-size:.78rem;font-weight:800;color:white}
 .xw-avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .xw-brand{font-size:.92rem;font-weight:800;white-space:nowrap;color:var(--text,#f1f5f9)}
 html:not(.xw-dark) .xw-brand{color:#0f172a}
@@ -46,11 +46,11 @@ html:not(.xw-dark) .xw-dropdown-menu{background:#fff;border-color:#e2e8f0;box-sh
 html:not(.xw-dark) .xw-dropdown-menu a{color:#475569}
 html:not(.xw-dark) .xw-dropdown-menu a:hover{background:#f1f5f9;color:#0f172a}
 .xw-nav-right{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
-#xw-theme-toggle,#xw-hamburger{width:34px;height:34px;border-radius:8px;flex-shrink:0;background:transparent;border:1px solid var(--border,#334155);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;transition:background .15s;line-height:1}
+#xw-theme-toggle,#xw-hamburger{width:30px;height:30px;border-radius:7px;flex-shrink:0;background:transparent;border:1px solid var(--border,#334155);display:flex;align-items:center;justify-content:center;font-size:.88rem;cursor:pointer;transition:background .15s;line-height:1}
 html:not(.xw-dark) #xw-theme-toggle,html:not(.xw-dark) #xw-hamburger{border-color:#e2e8f0}
 #xw-theme-toggle:hover,#xw-hamburger:hover{background:rgba(255,255,255,.08)}
 html:not(.xw-dark) #xw-theme-toggle:hover,html:not(.xw-dark) #xw-hamburger:hover{background:#f1f5f9}
-.xw-btn-login,.xw-btn-register,.xw-btn-account{padding:.3rem .8rem;border-radius:7px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-block;transition:opacity .15s}
+.xw-btn-login,.xw-btn-register,.xw-btn-account{padding:.24rem .7rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-block;transition:opacity .15s}
 .xw-btn-login{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
 html:not(.xw-dark) .xw-btn-login{border-color:#cbd5e1;color:#0f172a}
 .xw-btn-register{background:#059669;border:1px solid #059669;color:white}
@@ -58,7 +58,7 @@ html:not(.xw-dark) .xw-btn-login{border-color:#cbd5e1;color:#0f172a}
 .xw-btn-account.vip{border-color:rgba(251,191,36,.5);color:#fbbf24}
 html:not(.xw-dark) .xw-btn-account{border-color:#cbd5e1;color:#0f172a}
 .xw-btn-login:hover,.xw-btn-register:hover,.xw-btn-account:hover{opacity:.8}
-#xw-mobile-menu{display:none;position:fixed;top:52px;left:0;right:0;background:var(--surface,#1e293b);border-bottom:1px solid var(--border,#334155);padding:.6rem 1.25rem 1rem;z-index:9996;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+#xw-mobile-menu{display:none;position:fixed;top:44px;left:0;right:0;background:var(--surface,#1e293b);border-bottom:1px solid var(--border,#334155);padding:.6rem 1.25rem 1rem;z-index:9996;box-shadow:0 4px 16px rgba(0,0,0,.2)}
 html:not(.xw-dark) #xw-mobile-menu{background:#fff;border-color:#e2e8f0}
 #xw-mobile-menu.open{display:block}
 #xw-mobile-menu a{display:block;padding:.55rem .4rem;font-size:.88rem;font-weight:600;color:var(--muted,#94a3b8);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .12s}
@@ -68,6 +68,7 @@ html:not(.xw-dark) #xw-mobile-menu a{color:#475569;border-color:#f1f5f9}
 html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 @media(min-width:640px){#xw-hamburger{display:none!important}.xw-nav-links{display:flex!important}}
 @media(max-width:639px){.xw-nav-links{display:none!important}#xw-hamburger{display:flex!important}}
+.top-nav{top:44px!important}
 `;
 
   // ---------- 弹窗 CSS ----------
@@ -604,19 +605,45 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
   // ---------- 章节门禁（自动执行） ----------
   var _COURSE = window._COURSE;
   var _CHAPTER = parseInt(window._CHAPTER, 10) || 0;
-  var FREE_CHAPTERS = parseInt(window._FREE_CHAPTERS, 10) || 2;
+  var FREE_CHAPTERS = parseInt(window._FREE_CHAPTERS, 10) || 1;
 
   if (_COURSE && _CHAPTER > FREE_CHAPTERS) {
-    document.addEventListener('DOMContentLoaded', async function () {
+    // 未登录直接隐藏内容，避免闪烁
+    var _earlySess = getSess();
+    if (!_earlySess) {
+      var _earlyStyle = document.createElement('style');
+      _earlyStyle.id = 'xw-early-hide';
+      _earlyStyle.textContent = '.main-content,.chapter-content,main{visibility:hidden!important}';
+      document.head && document.head.appendChild(_earlyStyle) || document.addEventListener('DOMContentLoaded', function(){ document.head.appendChild(_earlyStyle); });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
       var sess = getSess();
-      if (!sess) { lockPage('login'); return; }
-      var profile = await XWAuth.getProfile();
-      if (!XWAuth.canAccessCourse(profile, _COURSE)) { lockPage('vip'); }
+      if (!sess) { lockPage('login'); }
+      // 登录后默认可访问全部内容，无需VIP检查
     });
   }
 
+  // ---------- 章节链接拦截（未登录时直接弹窗，不跳转页面） ----------
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var m = href.match(/chapter(\d+)\.html/);
+    if (!m) return;
+    var chNum = parseInt(m[1], 10);
+    var freeNum = parseInt(window._FREE_CHAPTERS, 10) || 1;
+    if (chNum <= freeNum) return;   // 免费章节，放行
+    if (getSess()) return;          // 已登录，放行
+    e.preventDefault();
+    e.stopPropagation();
+    openAuthModal('login');
+  }, true);
+
   // ---------- 锁定遮罩 ----------
   function lockPage(type) {
+    // 移除早期隐藏，改用模糊遮罩
+    var earlyHide = document.getElementById('xw-early-hide');
+    if (earlyHide) earlyHide.remove();
     var main = document.querySelector('.main-content') || document.querySelector('main');
     if (main) {
       main.style.cssText += 'filter:blur(8px);pointer-events:none;user-select:none;';
@@ -628,9 +655,9 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var inner = type === 'login'
       ? '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">此章节需要登录</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">登录账号后即可查看已解锁的内容</p>'
-        + '<a href="' + ROOT + 'login.html?next=' + next + '" style="display:block;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">登录账号</a>'
-        + '<a href="' + ROOT + 'register.html" style="display:block;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;text-decoration:none">📝 没有账号？免费注册</a>'
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">登录账号后即可查看所有内容</p>'
+        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem;margin-bottom:.65rem">登录账号</button>'
+        + '<button onclick="openAuthModal(\'register\')" style="display:block;width:100%;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;border:none;cursor:pointer;font-size:.9rem">📝 没有账号？立即注册</button>'
       : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">此章节为付费内容<br>已有授权码可直接解锁</p>'
