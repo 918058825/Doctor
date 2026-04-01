@@ -341,32 +341,15 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var mc = document.getElementById('xw-mc'); if (!mc) return;
     var h = '<button class="xw-mc-x" onclick="closeAuthModal()">✕</button>';
     if (type === 'login') {
-      h += '<div class="xw-mc-ttl">登录账户</div>'
-         + '<div class="xw-mc-sub">请输入您的手机号和密码来登录账户</div>'
+      h += '<div class="xw-mc-ttl">立即访问</div>'
+         + '<div class="xw-mc-sub">输入购买时使用的手机号和激活码即可解锁全部内容</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
          + '<input class="xw-mi" type="tel" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric"></div></div>'
-         + '<div class="xw-mf"><label>密码</label>'
-         + '<input class="xw-mi" type="password" id="xw-pw" placeholder="请输入您的密码"></div>'
-         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doLogin()">登录</button>'
-         + '<div class="xw-mfgt" onclick="_renderModal(\'reset\')">忘记密码？</div>'
-         + '<div class="xw-ml">还没有账户？<span class="xw-mswitch" onclick="_renderModal(\'register\')">立即注册</span></div>';
-    } else if (type === 'register') {
-      h += '<div class="xw-mc-ttl">创建账户</div>'
-         + '<div class="xw-mc-sub">请填写以下信息来创建您的新账户</div>'
-         + '<div id="xw-merr" class="xw-merr2"></div>'
-         + '<div class="xw-mf"><label>手机号</label>'
-         + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
-         + '<input class="xw-mi" type="tel" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric"></div></div>'
-         + '<div class="xw-mf"><label>邀请码</label>'
-         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入邀请码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
-         + '<div class="xw-mf"><label>密码（至少 6 个字符）</label>'
-         + '<input class="xw-mi" type="password" id="xw-pw" placeholder="请输入密码（至少6个字符）"></div>'
-         + '<div class="xw-mf"><label>确认密码</label>'
-         + '<input class="xw-mi" type="password" id="xw-pw2" placeholder="请再次输入密码"></div>'
-         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doRegister()">创建账户</button>'
-         + '<div class="xw-ml">已有账户？<span class="xw-mswitch" onclick="_renderModal(\'login\')">立即登录</span></div>';
+         + '<div class="xw-mf"><label>激活码</label>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入激活码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.1em"></div>'
+         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doLogin()">立即访问</button>';
     } else if (type === 'reset') {
       h += '<div class="xw-mc-ttl">重置密码</div>'
          + '<div class="xw-mc-sub">请联系管理员重置您的密码</div>'
@@ -382,7 +365,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     mc.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter') return;
       if (type === 'login') _doLogin();
-      else if (type === 'register') _doRegister();
+      else if (type === 'reset') _doReset();
     });
   }
   window._renderModal = _renderModal;
@@ -394,63 +377,49 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 
   async function _doLogin() {
     var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
-    var pw = document.getElementById('xw-pw').value;
+    var code = (document.getElementById('xw-code').value || '').trim().toUpperCase();
     var btn = document.getElementById('xw-mb-btn');
     if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
-    if (!pw) { _showMErr('请输入密码'); return; }
-    btn.disabled = true; btn.textContent = '登录中…';
+    if (!code) { _showMErr('请输入激活码'); return; }
+    btn.disabled = true; btn.textContent = '验证中…';
     try {
-      await XWAuth.signIn(phoneToEmail(ph), pw);
+      // 1. 查询激活码是否有效
+      var r = await fetch(SUPA_URL + '/rest/v1/activation_codes?code=eq.' + encodeURIComponent(code) + '&select=code,is_used', {
+        headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
+      });
+      var rows = await r.json();
+      if (!rows || !rows.length) { _showMErr('激活码无效，请检查后重试'); btn.disabled = false; btn.textContent = '立即访问'; return; }
+      var row = rows[0];
+      var email = phoneToEmail(ph);
+      if (!row.is_used) {
+        // 首次使用：创建账号并激活
+        btn.textContent = '创建账号中…';
+        try { await XWAuth.signUp(email, code); } catch(e2) { /* 已存在则忽略 */ }
+        btn.textContent = '登录中…';
+        await XWAuth.signIn(email, code);
+        await XWAuth.useActivationCode(code);
+      } else {
+        // 已激活：直接登录（激活码即密码）
+        btn.textContent = '登录中…';
+        try {
+          await XWAuth.signIn(email, code);
+        } catch(e3) {
+          _showMErr('手机号与激活码不匹配，请检查后重试');
+          btn.disabled = false; btn.textContent = '立即访问'; return;
+        }
+      }
       closeAuthModal();
       var next = new URLSearchParams(location.search).get('next');
       var curr = location.pathname.split('/').pop() || '';
-      if (curr === 'login.html' || curr === 'register.html') {
-        location.replace(next || ROOT + 'index.html');
-      } else { location.reload(); }
+      if (curr === 'login.html') { location.replace(next || ROOT + 'index.html'); }
+      else { location.reload(); }
     } catch (e) {
-      var msg = e.message || '登录失败';
-      if (/invalid/i.test(msg)) msg = '手机号或密码错误，请重试';
-      _showMErr(msg); btn.disabled = false; btn.textContent = '登录';
+      var msg = e.message || '验证失败';
+      if (/invalid/i.test(msg)) msg = '手机号或激活码错误，请重试';
+      _showMErr(msg); btn.disabled = false; btn.textContent = '立即访问';
     }
   }
   window._doLogin = _doLogin;
-
-  async function _doRegister() {
-    var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
-    var code = (document.getElementById('xw-code').value || '').trim();
-    var pw = document.getElementById('xw-pw').value;
-    var pw2 = document.getElementById('xw-pw2').value;
-    var btn = document.getElementById('xw-mb-btn');
-    if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
-    if (!code) { _showMErr('请输入邀请码'); return; }
-    if (!pw || pw.length < 6) { _showMErr('密码至少需要 6 位'); return; }
-    if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
-    btn.disabled = true; btn.textContent = '注册中…';
-    try {
-      await XWAuth.signUp(phoneToEmail(ph), pw);
-      await XWAuth.signIn(phoneToEmail(ph), pw);
-      // 注册后立即使用授权码激活
-      var result = await XWAuth.useActivationCode(code);
-      if (result === 'invalid') {
-        _showMErr('授权码无效，请检查后重试（账号已创建，可直接登录）');
-        btn.disabled = false; btn.textContent = '创建账户'; return;
-      }
-      if (result === 'used') {
-        _showMErr('该授权码已被使用，请联系管理员获取新码');
-        btn.disabled = false; btn.textContent = '创建账户'; return;
-      }
-      closeAuthModal();
-      var next = new URLSearchParams(location.search).get('next');
-      var curr = location.pathname.split('/').pop() || '';
-      if (curr === 'register.html') { location.replace(next || ROOT + 'index.html'); }
-      else { location.reload(); }
-    } catch (e) {
-      var msg = e.message || '注册失败';
-      if (/already|registered/i.test(msg)) msg = '该手机号已注册，请直接登录';
-      _showMErr(msg); btn.disabled = false; btn.textContent = '创建账户';
-    }
-  }
-  window._doRegister = _doRegister;
 
   async function _doReset() {
     var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
@@ -512,8 +481,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var loggedIn = XWAuth.isLoggedIn();
     var authHtml = loggedIn
       ? '<a href="' + ROOT + 'account.html" class="xw-btn-account" id="xw-account-btn">👤 我的账号</a>'
-      : '<button class="xw-btn-login" onclick="openAuthModal(\'login\')">登录</button>'
-        + '<button class="xw-btn-register" onclick="openAuthModal(\'register\')">注册</button>';
+      : '<button class="xw-btn-login" onclick="openAuthModal(\'login\')">登录</button>';
 
     document.body.insertAdjacentHTML('afterbegin',
       '<nav id="xw-topnav">'
@@ -656,10 +624,9 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var next = encodeURIComponent(window.location.href);
     var inner = type === 'login'
       ? '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
-        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">此章节需要登录</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">登录账号后即可查看所有内容</p>'
-        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem;margin-bottom:.65rem">登录账号</button>'
-        + '<button onclick="openAuthModal(\'register\')" style="display:block;width:100%;background:#172554;color:#93c5fd;padding:.8rem;border-radius:10px;font-weight:600;border:none;cursor:pointer;font-size:.9rem">📝 没有账号？立即注册</button>'
+        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">此章节需要激活码</h2>'
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">输入手机号+激活码即可解锁全部内容</p>'
+        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem">输入激活码解锁</button>'
       : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">此章节为付费内容<br>已有授权码可直接解锁</p>'
