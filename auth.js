@@ -378,13 +378,13 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var h = '<button class="xw-mc-x" onclick="closeAuthModal()">✕</button>';
     if (type === 'login') {
       h += '<div class="xw-mc-ttl">立即访问</div>'
-         + '<div class="xw-mc-sub">输入授权手机号和激活码即可访问全部内容</div>'
+         + '<div class="xw-mc-sub">输入手机号和授权码访问全部内容</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
-         + '<input class="xw-mi" type="tel" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric"></div></div>'
-         + '<div class="xw-mf"><label>激活码</label>'
-         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入激活码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.1em"></div>'
+         + '<input class="xw-mi" type="text" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric" autocomplete="tel-national" oninput="this.value=this.value.replace(/[^0-9]/g,\'\').slice(0,11)"></div></div>'
+         + '<div class="xw-mf"><label>授权码</label>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入授权码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.1em"></div>'
          + '<button class="xw-mb" id="xw-mb-btn" onclick="_doLogin()">立即访问</button>';
     } else if (type === 'reset') {
       h += '<div class="xw-mc-ttl">重置密码</div>'
@@ -416,15 +416,15 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var code = (document.getElementById('xw-code').value || '').trim().toUpperCase();
     var btn = document.getElementById('xw-mb-btn');
     if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
-    if (!code) { _showMErr('请输入激活码'); return; }
+    if (!code) { _showMErr('请输入授权码'); return; }
     btn.disabled = true; btn.textContent = '验证中…';
     try {
-      // 1. 查询激活码是否有效
+      // 1. 查询授权码是否有效
       var r = await fetch(SUPA_URL + '/rest/v1/activation_codes?code=eq.' + encodeURIComponent(code) + '&select=code,is_used', {
         headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
       });
       var rows = await r.json();
-      if (!rows || !rows.length) { _showMErr('激活码无效，请检查后重试'); btn.disabled = false; btn.textContent = '立即访问'; return; }
+      if (!rows || !rows.length) { _showMErr('授权码无效，请检查后重试'); btn.disabled = false; btn.textContent = '立即访问'; return; }
       var row = rows[0];
       var email = phoneToEmail(ph);
       if (!row.is_used) {
@@ -435,12 +435,12 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
         await XWAuth.signIn(email, code);
         await XWAuth.useActivationCode(code);
       } else {
-        // 已激活：直接登录（激活码即密码）
+        // 已授权：直接登录（授权码即密码）
         btn.textContent = '登录中…';
         try {
           await XWAuth.signIn(email, code);
         } catch(e3) {
-          _showMErr('手机号与激活码不匹配，请检查后重试');
+          _showMErr('手机号与授权码不匹配，请检查后重试');
           btn.disabled = false; btn.textContent = '立即访问'; return;
         }
       }
@@ -451,7 +451,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       else { location.reload(); }
     } catch (e) {
       var msg = e.message || '验证失败';
-      if (/invalid/i.test(msg)) msg = '手机号或激活码错误，请重试';
+      if (/invalid/i.test(msg)) msg = '手机号或授权码错误，请重试';
       _showMErr(msg); btn.disabled = false; btn.textContent = '立即访问';
     }
   }
