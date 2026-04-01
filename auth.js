@@ -359,6 +359,8 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
          + '<input class="xw-mi" type="tel" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric"></div></div>'
+         + '<div class="xw-mf"><label>邀请码</label>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入邀请码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
          + '<div class="xw-mf"><label>密码（至少 6 个字符）</label>'
          + '<input class="xw-mi" type="password" id="xw-pw" placeholder="请输入密码（至少6个字符）"></div>'
          + '<div class="xw-mf"><label>确认密码</label>'
@@ -420,7 +422,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var pw2 = document.getElementById('xw-pw2').value;
     var btn = document.getElementById('xw-mb-btn');
     if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
-    if (!code) { _showMErr('请输入授权码'); return; }
+    if (!code) { _showMErr('请输入邀请码'); return; }
     if (!pw || pw.length < 6) { _showMErr('密码至少需要 6 位'); return; }
     if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
     btn.disabled = true; btn.textContent = '注册中…';
