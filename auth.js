@@ -50,14 +50,13 @@ html:not(.xw-dark) .xw-dropdown-menu a:hover{background:#f1f5f9;color:#0f172a}
 html:not(.xw-dark) #xw-theme-toggle,html:not(.xw-dark) #xw-hamburger{border-color:#e2e8f0}
 #xw-theme-toggle:hover,#xw-hamburger:hover{background:rgba(255,255,255,.08)}
 html:not(.xw-dark) #xw-theme-toggle:hover,html:not(.xw-dark) #xw-hamburger:hover{background:#f1f5f9}
-.xw-btn-login,.xw-btn-register,.xw-btn-account{padding:.24rem .7rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-block;transition:opacity .15s}
+.xw-btn-login,.xw-btn-account{padding:.24rem .7rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-block;transition:opacity .15s}
 .xw-btn-login{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
 html:not(.xw-dark) .xw-btn-login{border-color:#cbd5e1;color:#0f172a}
-.xw-btn-register{background:#059669;border:1px solid #059669;color:white}
 .xw-btn-account{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
 .xw-btn-account.vip{border-color:rgba(251,191,36,.5);color:#fbbf24}
 html:not(.xw-dark) .xw-btn-account{border-color:#cbd5e1;color:#0f172a}
-.xw-btn-login:hover,.xw-btn-register:hover,.xw-btn-account:hover{opacity:.8}
+.xw-btn-login:hover,.xw-btn-account:hover{opacity:.8}
 #xw-mobile-menu{display:none;position:fixed;top:44px;left:0;right:0;background:var(--surface,#1e293b);border-bottom:1px solid var(--border,#334155);padding:.6rem 1.25rem 1rem;z-index:9996;box-shadow:0 4px 16px rgba(0,0,0,.2)}
 html:not(.xw-dark) #xw-mobile-menu{background:#fff;border-color:#e2e8f0}
 #xw-mobile-menu.open{display:block}
@@ -532,7 +531,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       +     '<div class="xw-dropdown">'
       +       '<button class="xw-dropdown-btn" id="xw-course-btn">课程 ▾</button>'
       +       '<div class="xw-dropdown-menu" id="xw-course-menu">'
-      +         '<a href="' + ROOT + '身体说明书网页/index.html">📖 身体说明书</a>'
+      +         '<a href="' + ROOT + '身体说明书网页/index.html">📖 速查宝典</a>'
       +         '<a href="' + ROOT + '解剖学网页/index.html">🫀 解剖学</a>'
       +         '<a href="' + ROOT + '生理学网页/index.html">⚡ 生理学</a>'
       +         '<a href="' + ROOT + '病理学网页/index.html">🔬 病理学</a>'
@@ -549,7 +548,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       + '</nav>'
       + '<div id="xw-mobile-menu">'
       +   '<a href="' + ROOT + 'index.html">🏠 首页</a>'
-      +   '<a href="' + ROOT + '身体说明书网页/index.html">📖 身体说明书</a>'
+      +   '<a href="' + ROOT + '身体说明书网页/index.html">📖 速查宝典</a>'
       +   '<a href="' + ROOT + '解剖学网页/index.html">🫀 解剖学</a>'
       +   '<a href="' + ROOT + '生理学网页/index.html">⚡ 生理学</a>'
       +   '<a href="' + ROOT + '病理学网页/index.html">🔬 病理学</a>'
@@ -566,7 +565,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     }
 
     // 应用主题
-    var theme = localStorage.getItem('xw-theme') || 'light';
+    var theme = localStorage.getItem('xw-theme') || 'dark';
     applyTheme(theme);
 
     // 主题切换按钮
@@ -651,7 +650,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var hero = document.querySelector('.page-hero');
     if (hero) hero.style.cssText += 'filter:blur(3px);pointer-events:none;';
 
-    var next = encodeURIComponent(window.location.href);
     var inner = '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
         + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">登录后才能查看此章节</h2>'
         + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">请先登录，登录后即可访问全部内容</p>'
