@@ -69,67 +69,15 @@ a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
-
-<a class="back" href="index.html"> 返回首页</a>
-
-<div class="card">
-  <div class="card-title"> 注册账号</div>
-  <p class="card-sub">注册后可免费阅读前两章<br>付费章节由管理员开通权限</p>
-
-  <div class="tip"> 注册成功即可登录，如需解锁付费章节，联系管理员开通 VIP</div>
-
-  <div class="field">
-    <label>邮箱</label>
-    <input type="email" id="reg-email" placeholder="your@email.com" autocomplete="email">
-  </div>
-  <div class="field">
-    <label>密码（至少 6 位）</label>
-    <input type="password" id="reg-pass" placeholder="设置登录密码" autocomplete="new-password">
-  </div>
-  <div class="field">
-    <label>确认密码</label>
-    <input type="password" id="reg-pass2" placeholder="再次输入密码" autocomplete="new-password">
-  </div>
-
-  <button class="btn" id="reg-btn" onclick="doRegister()">注册账号</button>
-  <div class="msg" id="reg-msg"></div>
-
-  <div class="login-link">已有账号？<a href="login.html">直接登录 </a></div>
-</div>
-
 <script src="auth.js"></script>
 <script>
-async function doRegister() {
-  var email = document.getElementById('reg-email').value.trim();
-  var pass  = document.getElementById('reg-pass').value;
-  var pass2 = document.getElementById('reg-pass2').value;
-  var btn   = document.getElementById('reg-btn');
-
-  if (!email || !pass) { showMsg('请填写邮箱和密码', 'error'); return; }
-  if (pass.length < 6)  { showMsg('密码至少需要 6 位', 'error'); return; }
-  if (pass !== pass2)   { showMsg('两次密码不一致', 'error'); return; }
-
-  btn.disabled = true; btn.textContent = '注册中';
-  try {
-    await XWAuth.signUp(email, pass);
-    showMsg(' 注册成功！即将跳转到登录页', 'success');
-    setTimeout(function() { window.location.href = 'login.html'; }, 1800);
-  } catch (e) {
-    var errMsg = e.message || '注册失败';
-    if (errMsg.indexOf('already') >= 0 || errMsg.indexOf('registered') >= 0) {
-      errMsg = '该邮箱已注册，请直接登录';
-    }
-    showMsg(errMsg, 'error');
-    btn.disabled = false; btn.textContent = '注册账号';
-  }
+if (XWAuth.isLoggedIn()) {
+  location.replace('index.html');
+} else {
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof openAuthModal === 'function') openAuthModal('register');
+  });
 }
-
-function showMsg(text, type) {
-  var el = document.getElementById('reg-msg');
-  el.textContent = text; el.className = 'msg ' + type; el.style.display = 'block';
-}
-
-document.addEventListener('keydown', function(e) { if (e.key === 'Enter') doRegister(); });
 </script>
 </body>
 </html>

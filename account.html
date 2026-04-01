@@ -164,11 +164,11 @@ a { color: inherit; text-decoration: none; }
     </div>
   </div>
 
-  <!-- 激活码 -->
+  <!-- 授权码 -->
   <div class="section-card" id="redeem-card">
-    <div class="section-title">激活码</div>
+    <div class="section-title">授权码</div>
     <div class="row" style="flex-direction:column;align-items:stretch;gap:.6rem">
-      <div style="font-size:.82rem;color:var(--muted);line-height:1.6">输入激活码即可立即解锁全套课程</div>
+      <div style="font-size:.82rem;color:var(--muted);line-height:1.6">输入授权码即可立即解锁全套课程</div>
       <div style="display:flex;gap:.6rem">
         <input type="text" id="code-input"
           placeholder="如 XW-ABCD-1234-EF56"
@@ -221,8 +221,9 @@ if (!XWAuth.isLoggedIn()) {
   document.getElementById('loading-mask').style.display = 'none';
   document.getElementById('panel').style.display = 'flex';
 
-  var email = (sess && sess.user) ? sess.user.email : '未知';
-  document.getElementById('disp-email').textContent = email;
+  var rawEmail = (sess && sess.user) ? (sess.user.email || '') : '';
+  var email = rawEmail.endsWith('@qxsn.user') ? rawEmail.replace('@qxsn.user', '') : rawEmail;
+  document.getElementById('disp-email').textContent = email || '未知';
 
   var createdAt = sess && sess.user && sess.user.created_at;
   if (createdAt) {
@@ -236,7 +237,7 @@ if (!XWAuth.isLoggedIn()) {
   if (profile.is_vip) {
     document.getElementById('disp-expire').textContent = '长期有效';
     document.getElementById('disp-expire').style.color = '#6ee7b7';
-    // 已是VIP则隐藏激活码入口
+    // 已是VIP则隐藏授权码入口
     var rc = document.getElementById('redeem-card');
     if (rc) rc.style.display = 'none';
 
@@ -274,7 +275,7 @@ async function doRedeem() {
   var code = document.getElementById('code-input').value.trim();
   var btn  = document.getElementById('redeem-btn');
   var msg  = document.getElementById('redeem-msg');
-  if (!code) { showRedeemMsg('请输入激活码', 'error'); return; }
+  if (!code) { showRedeemMsg('请输入授权码', 'error'); return; }
   btn.disabled = true; btn.textContent = '验证中…';
   try {
     var result = await XWAuth.useActivationCode(code);
@@ -287,9 +288,9 @@ async function doRedeem() {
         else { location.reload(); }
       }, 1500);
     } else if (result === 'used') {
-      showRedeemMsg('该激活码已被使用', 'error');
+      showRedeemMsg('该授权码已被使用', 'error');
     } else {
-      showRedeemMsg('激活码无效，请检查是否输入有误', 'error');
+      showRedeemMsg('授权码无效，请检查是否输入有误', 'error');
     }
   } catch(e) {
     showRedeemMsg(e.message || '激活失败，请重试', 'error');

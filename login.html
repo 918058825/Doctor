@@ -68,63 +68,16 @@ input::placeholder { color: #475569; }
 </style>
 </head>
 <body>
-
-<a class="back" href="index.html">← 返回首页</a>
-
-<div class="card">
-  <div class="logo">📚</div>
-  <h1>登录账号</h1>
-  <p class="sub">求学少年 · 医学基础学习平台</p>
-
-  <div id="err-box" class="err-box"></div>
-
-  <form id="form">
-    <label for="email">邮箱</label>
-    <input type="email" id="email" placeholder="your@email.com" autocomplete="email" required>
-    <label for="password">密码</label>
-    <input type="password" id="password" placeholder="请输入密码" autocomplete="current-password" required>
-    <button class="btn" id="btn" type="submit">登录</button>
-  </form>
-
-  <div class="links">
-    <a href="reset-password.html">忘记密码？</a><br>
-    没有账号？<a href="register.html">免费注册 →</a>
-  </div>
-</div>
-
 <script src="auth.js"></script>
 <script>
-// 已登录则直接跳转
 if (XWAuth.isLoggedIn()) {
   var next = new URLSearchParams(location.search).get('next');
   location.replace(next || 'index.html');
+} else {
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof openAuthModal === 'function') openAuthModal('login');
+  });
 }
-
-document.getElementById('form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  var btn = document.getElementById('btn');
-  var errBox = document.getElementById('err-box');
-  var email = document.getElementById('email').value.trim();
-  var password = document.getElementById('password').value;
-
-  btn.disabled = true;
-  btn.textContent = '登录中…';
-  errBox.style.display = 'none';
-
-  try {
-    await XWAuth.signIn(email, password);
-    var next = new URLSearchParams(location.search).get('next');
-    location.replace(next || 'index.html');
-  } catch (err) {
-    var msg = err.message || '登录失败';
-    if (msg.includes('Invalid login')) msg = '邮箱或密码错误，请重试';
-    if (msg.includes('Email not confirmed')) msg = '邮箱尚未验证，请先查收确认邮件';
-    errBox.textContent = msg;
-    errBox.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = '登录';
-  }
-});
 </script>
 </body>
 </html>

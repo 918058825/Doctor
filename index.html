@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>求学少年 · 医学基础学习平台</title>
+<title>求学少年学习网</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -31,56 +31,7 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 
-/* header */
-header {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.header-center {
-  flex: 1;
-  text-align: center;
-  min-width: 0;
-}
-.site-title {
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -.01em;
-  margin-bottom: .25rem;
-}
-.site-sub {
-  font-size: .8rem;
-  color: var(--muted);
-  margin-bottom: 0;
-}
-.header-btn {
-  flex-shrink: 0;
-  padding: .42rem 1rem;
-  border-radius: 8px;
-  font-size: .8rem;
-  font-weight: 700;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
-  font-family: inherit;
-  white-space: nowrap;
-  transition: border-color .15s, color .15s;
-  text-decoration: none;
-  display: inline-block;
-}
-.header-btn:hover { border-color: var(--accent); color: #7dd3fc; }
-.header-btn.vip { border-color: rgba(251,191,36,.4); color: #fbbf24; }
-/* 左侧占位，保持对称 */
-.header-spacer { flex-shrink: 0; width: 80px; }
-@media (max-width: 480px) {
-  .header-spacer { display: none; }
-  .site-title { font-size: 1.1rem; }
-  .site-sub { display: none; }
-}
+/* header styles moved to auth.js global nav */
 .subject-pills {
   display: flex;
   justify-content: center;
@@ -227,15 +178,6 @@ footer a:hover { color: var(--text); }
 </head>
 <body>
 
-<header>
-  <div class="header-spacer"></div>
-  <div class="header-center">
-    <div class="site-title">📚 求学少年 &middot; 医学基础学习平台</div>
-    <div class="site-sub">免费入门指南 + 四门系统精读，从零开始读懂人体</div>
-  </div>
-  <div id="header-auth"></div>
-</header>
-
 <main>
   <div class="grid">
 
@@ -318,22 +260,5 @@ footer a:hover { color: var(--text); }
 </footer>
 
 <script src="auth.js"></script>
-<script>
-(function() {
-  var el = document.getElementById('header-auth');
-  if (!el) return;
-  if (XWAuth.isLoggedIn()) {
-    el.innerHTML = '<a class="header-btn" href="account.html">👤 我的账号</a>';
-    // 异步获取 profile ，如果是 VIP 換个样式
-    XWAuth.getProfile().then(function(p) {
-      if (p && p.is_vip) {
-        el.innerHTML = '<a class="header-btn vip" href="account.html">✨ 我的账号</a>';
-      }
-    });
-  } else {
-    el.innerHTML = '<a class="header-btn" href="login.html">🔑 登录 / 注册</a>';
-  }
-})();
-</script>
 </body>
 </html>
