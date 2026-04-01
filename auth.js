@@ -342,7 +342,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     var h = '<button class="xw-mc-x" onclick="closeAuthModal()">✕</button>';
     if (type === 'login') {
       h += '<div class="xw-mc-ttl">立即访问</div>'
-         + '<div class="xw-mc-sub">输入购买时使用的手机号和激活码即可解锁全部内容</div>'
+         + '<div class="xw-mc-sub">输入授权手机号和激活码即可访问全部内容</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
@@ -622,16 +622,10 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     if (hero) hero.style.cssText += 'filter:blur(3px);pointer-events:none;';
 
     var next = encodeURIComponent(window.location.href);
-    var inner = type === 'login'
-      ? '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
-        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">此章节需要激活码</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">输入手机号+激活码即可解锁全部内容</p>'
-        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem">输入激活码解锁</button>'
-      : '<div style="font-size:2.6rem;margin-bottom:1rem">🔐</div>'
-        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">付费章节</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">此章节为付费内容<br>已有授权码可直接解锁</p>'
-        + '<a href="' + ROOT + 'account.html?next=' + encodeURIComponent(window.location.href) + '" style="display:block;background:#059669;color:white;padding:.8rem;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:.65rem">🎟️ 已有授权码，去激活</a>'
-        + '<button onclick="document.getElementById(\'xw-lock-overlay\').remove()" style="display:block;width:100%;background:transparent;border:1px solid #334155;color:#64748b;padding:.8rem;border-radius:10px;font-weight:600;cursor:pointer;font-size:.9rem">取消</button>';
+    var inner = '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
+        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">登录后才能查看此章节</h2>'
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">请先登录，登录后即可访问全部内容</p>'
+        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem">立即登录</button>';
 
     var el = document.createElement('div');
     el.id = 'xw-lock-overlay';
