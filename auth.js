@@ -601,38 +601,34 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 
   document.addEventListener('DOMContentLoaded', injectTopNav);
 
-  // ---------- 章节门禁（自动执行） ----------
+  // ---------- 页面门禁（自动执行） ----------
+  // 唯一判断标准：登录 = 可看，未登录 = 锁定
+  // 只要页面设置了 _COURSE 或 _REQUIRE_LOGIN，即要求登录
   var _COURSE = window._COURSE;
-  var _CHAPTER = parseInt(window._CHAPTER, 10) || 0;
-  var FREE_CHAPTERS = parseInt(window._FREE_CHAPTERS, 10) || 1;
 
-  if (_COURSE && _CHAPTER > FREE_CHAPTERS) {
+  if (_COURSE || window._REQUIRE_LOGIN) {
     // 未登录直接隐藏内容，避免闪烁
     var _earlySess = getSess();
     if (!_earlySess) {
       var _earlyStyle = document.createElement('style');
       _earlyStyle.id = 'xw-early-hide';
-      _earlyStyle.textContent = '.main-content,.chapter-content,main{visibility:hidden!important}';
+      _earlyStyle.textContent = '.main-content,.chapter-content,main,body>*:not(#xw-lock-overlay){visibility:hidden!important}';
       document.head && document.head.appendChild(_earlyStyle) || document.addEventListener('DOMContentLoaded', function(){ document.head.appendChild(_earlyStyle); });
     }
     document.addEventListener('DOMContentLoaded', function () {
       var sess = getSess();
-      if (!sess) { lockPage('login'); }
-      // 登录后默认可访问全部内容，无需VIP检查
+      if (!sess) { lockPage(); }
     });
   }
 
   // ---------- 章节链接拦截（未登录时直接弹窗，不跳转页面） ----------
+  // 所有章节链接都需要登录才能访问
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
     var href = a.getAttribute('href') || '';
-    var m = href.match(/chapter(\d+)\.html/);
-    if (!m) return;
-    var chNum = parseInt(m[1], 10);
-    var freeNum = parseInt(window._FREE_CHAPTERS, 10) || 1;
-    if (chNum <= freeNum) return;   // 免费章节，放行
-    if (getSess()) return;          // 已登录，放行
+    if (!/chapter\d+\.html/.test(href)) return;  // 非章节链接，放行
+    if (getSess()) return;                         // 已登录，放行
     e.preventDefault();
     e.stopPropagation();
     openAuthModal('login');
@@ -651,8 +647,8 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     if (hero) hero.style.cssText += 'filter:blur(3px);pointer-events:none;';
 
     var inner = '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
-        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">登录后才能查看此章节</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">请先登录，登录后即可访问全部内容</p>'
+        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">登录后即可查看全部内容</h2>'
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">输入手机号和授权码登录，登录后所有内容立即解锁</p>'
         + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem">立即登录</button>';
 
     var el = document.createElement('div');
