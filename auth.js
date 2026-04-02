@@ -294,32 +294,61 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
   function _renderModal(type) {
     var mc = document.getElementById('xw-mc'); if (!mc) return;
     var h = '<button class="xw-mc-x" onclick="closeAuthModal()">✕</button>';
+
     if (type === 'login') {
-      h += '<div class="xw-mc-ttl">立即访问</div>'
-         + '<div class="xw-mc-sub">输入手机号和授权码访问全部内容</div>'
+      h += '<div class="xw-mc-ttl">登录</div>'
+         + '<div class="xw-mc-sub">登录后可访问全部课程内容</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
          + '<input class="xw-mi" type="text" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric" autocomplete="tel-national" oninput="this.value=this.value.replace(/[^0-9]/g,\'\').slice(0,11)"></div></div>'
+         + '<div class="xw-mf"><label>密码</label>'
+         + '<input class="xw-mi" type="password" id="xw-pw" placeholder="请输入密码" autocomplete="current-password"></div>'
+         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doLogin()">登录</button>'
+         + '<div class="xw-ml">还没账号？<span class="xw-mswitch" onclick="_renderModal(\'register\')">立即注册</span></div>'
+         + '<span class="xw-mfgt" onclick="_renderModal(\'forgot\')">忘记密码？用授权码找回</span>';
+
+    } else if (type === 'register') {
+      h += '<div class="xw-mc-ttl">注册</div>'
+         + '<div class="xw-mc-sub">输入手机号、密码和授权码完成注册<br>授权码只能绑定一个手机号</div>'
+         + '<div id="xw-merr" class="xw-merr2"></div>'
+         + '<div class="xw-mf"><label>手机号</label>'
+         + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
+         + '<input class="xw-mi" type="text" id="xw-ph" placeholder="请输入手机号码" maxlength="11" inputmode="numeric" autocomplete="tel-national" oninput="this.value=this.value.replace(/[^0-9]/g,\'\').slice(0,11)"></div></div>'
+         + '<div class="xw-mf"><label>密码</label>'
+         + '<input class="xw-mi" type="password" id="xw-pw" placeholder="至少6位" autocomplete="new-password"></div>'
+         + '<div class="xw-mf"><label>确认密码</label>'
+         + '<input class="xw-mi" type="password" id="xw-pw2" placeholder="再次输入密码" autocomplete="new-password"></div>'
          + '<div class="xw-mf"><label>授权码</label>'
-         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入授权码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.1em"></div>'
-         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doLogin()">立即访问</button>';
-    } else if (type === 'reset') {
-      h += '<div class="xw-mc-ttl">重置密码</div>'
-         + '<div class="xw-mc-sub">请联系管理员重置您的密码</div>'
-         + '<div style="text-align:center;padding:1.5rem 0">'
-         + '<div style="font-size:2.5rem;margin-bottom:.75rem">📧</div>'
-         + '<div style="font-size:.88rem;color:#475569;line-height:1.9">如需重置密码，请联系管理员<br>'
-         + '<strong style="color:#0f172a">qiuxueshaonian@163.com</strong></div></div>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="格式：XW-XXXX-XXXX-XXXX" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
+         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doRegister()">注册</button>'
+         + '<div class="xw-ml">已有账号？<span class="xw-mswitch" onclick="_renderModal(\'login\')">返回登录</span></div>';
+
+    } else if (type === 'forgot') {
+      h += '<div class="xw-mc-ttl">找回密码</div>'
+         + '<div class="xw-mc-sub">输入当时注册绑定的手机号和授权码，即可重置密码</div>'
+         + '<div id="xw-merr" class="xw-merr2"></div>'
+         + '<div class="xw-mf"><label>手机号</label>'
+         + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
+         + '<input class="xw-mi" type="text" id="xw-ph" placeholder="请输入注册时的手机号" maxlength="11" inputmode="numeric" autocomplete="tel-national" oninput="this.value=this.value.replace(/[^0-9]/g,\'\').slice(0,11)"></div></div>'
+         + '<div class="xw-mf"><label>授权码</label>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="格式：XW-XXXX-XXXX-XXXX" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
+         + '<div class="xw-mf"><label>新密码</label>'
+         + '<input class="xw-mi" type="password" id="xw-pw" placeholder="至少6位" autocomplete="new-password"></div>'
+         + '<div class="xw-mf"><label>确认新密码</label>'
+         + '<input class="xw-mi" type="password" id="xw-pw2" placeholder="再次输入新密码" autocomplete="new-password"></div>'
+         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doForgot()">重置密码</button>'
          + '<div class="xw-ml">记起密码了？<span class="xw-mswitch" onclick="_renderModal(\'login\')">返回登录</span></div>';
     }
+
     mc.innerHTML = h;
     var fi = mc.querySelector('input');
     if (fi) setTimeout(function () { fi.focus(); }, 80);
     mc.addEventListener('keydown', function (e) {
       if (e.key !== 'Enter') return;
       if (type === 'login') _doLogin();
-      else if (type === 'reset') _doReset();
+      else if (type === 'register') _doRegister();
+      else if (type === 'forgot') _doForgot();
     });
   }
   window._renderModal = _renderModal;
@@ -329,51 +358,112 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     if (el) { el.textContent = m; el.style.display = 'block'; }
   }
 
+  // ---------- 登录：手机号 + 密码 ----------
   async function _doLogin() {
     var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
-    var code = (document.getElementById('xw-code').value || '').trim().toUpperCase();
+    var pw = (document.getElementById('xw-pw').value || '');
     var btn = document.getElementById('xw-mb-btn');
     if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
-    if (!code) { _showMErr('请输入授权码'); return; }
-    btn.disabled = true; btn.textContent = '验证中…';
+    if (!pw) { _showMErr('请输入密码'); return; }
+    btn.disabled = true; btn.textContent = '登录中…';
     try {
-      // 1. 查询授权码是否有效
-      var r = await fetch(SUPA_URL + '/rest/v1/activation_codes?code=eq.' + encodeURIComponent(code) + '&select=code,is_used', {
-        headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
-      });
-      var rows = await r.json();
-      if (!rows || !rows.length) { _showMErr('授权码无效，请检查后重试'); btn.disabled = false; btn.textContent = '立即访问'; return; }
-      var row = rows[0];
-      var email = phoneToEmail(ph);
-      if (!row.is_used) {
-        // 首次使用：创建账号并激活
-        btn.textContent = '创建账号中…';
-        try { await XWAuth.signUp(email, code); } catch(e2) { /* 已存在则忽略 */ }
-        btn.textContent = '登录中…';
-        await XWAuth.signIn(email, code);
-        await XWAuth.useActivationCode(code);
-      } else {
-        // 已授权：直接登录（授权码即密码）
-        btn.textContent = '登录中…';
-        try {
-          await XWAuth.signIn(email, code);
-        } catch(e3) {
-          _showMErr('手机号与授权码不匹配，请检查后重试');
-          btn.disabled = false; btn.textContent = '立即访问'; return;
-        }
-      }
+      await XWAuth.signIn(phoneToEmail(ph), pw);
       closeAuthModal();
-      var next = new URLSearchParams(location.search).get('next');
-      var curr = location.pathname.split('/').pop() || '';
-      if (curr === 'login.html') { location.replace(next || ROOT + 'index.html'); }
-      else { location.reload(); }
+      location.reload();
     } catch (e) {
-      var msg = e.message || '验证失败';
-      if (/invalid/i.test(msg)) msg = '手机号或授权码错误，请重试';
-      _showMErr(msg); btn.disabled = false; btn.textContent = '立即访问';
+      var msg = e.message || '登录失败';
+      if (/invalid/i.test(msg) || /credentials/i.test(msg)) msg = '手机号或密码错误，请检查后重试';
+      _showMErr(msg); btn.disabled = false; btn.textContent = '登录';
     }
   }
   window._doLogin = _doLogin;
+
+  // ---------- 注册：手机号 + 密码 + 授权码 ----------
+  async function _doRegister() {
+    var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
+    var pw = (document.getElementById('xw-pw').value || '');
+    var pw2 = (document.getElementById('xw-pw2').value || '');
+    var code = (document.getElementById('xw-code').value || '').trim().toUpperCase();
+    var btn = document.getElementById('xw-mb-btn');
+    if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
+    if (!pw || pw.length < 6) { _showMErr('密码至少需要6位'); return; }
+    if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
+    if (!code) { _showMErr('请输入授权码'); return; }
+    btn.disabled = true; btn.textContent = '验证授权码…';
+    try {
+      // 1. 验证授权码是否存在且未绑定
+      var r = await fetch(SUPA_URL + '/rest/v1/activation_codes?code=eq.' + encodeURIComponent(code) + '&select=code,is_used,bound_phone', {
+        headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
+      });
+      var rows = await r.json();
+      if (!rows || !rows.length) { _showMErr('授权码无效，请检查后重试'); btn.disabled = false; btn.textContent = '注册'; return; }
+      if (rows[0].is_used) { _showMErr('该授权码已被使用，每个授权码只能注册一个账号'); btn.disabled = false; btn.textContent = '注册'; return; }
+      // 2. 创建账号
+      btn.textContent = '创建账号…';
+      var email = phoneToEmail(ph);
+      try {
+        await XWAuth.signUp(email, pw);
+      } catch(e2) {
+        if (/already/i.test(e2.message) || /exists/i.test(e2.message)) {
+          _showMErr('该手机号已注册，请直接登录'); btn.disabled = false; btn.textContent = '注册'; return;
+        }
+        throw e2;
+      }
+      // 3. 登录
+      btn.textContent = '登录中…';
+      await XWAuth.signIn(email, pw);
+      // 4. 绑定授权码
+      btn.textContent = '绑定授权码…';
+      var sess = getSess();
+      var bindR = await fetch(SUPA_URL + '/rest/v1/rpc/bind_activation_code', {
+        method: 'POST',
+        headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + (sess ? sess.access_token : SUPA_KEY), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input_code: code, input_phone: ph })
+      });
+      var bindRes = await bindR.json();
+      if (bindRes === 'used') { _showMErr('该授权码已被其他账号绑定'); btn.disabled = false; btn.textContent = '注册'; return; }
+      if (bindRes === 'invalid') { _showMErr('授权码绑定失败，请联系客服'); btn.disabled = false; btn.textContent = '注册'; return; }
+      // 成功
+      closeAuthModal();
+      location.reload();
+    } catch (e) {
+      _showMErr(e.message || '注册失败，请重试'); btn.disabled = false; btn.textContent = '注册';
+    }
+  }
+  window._doRegister = _doRegister;
+
+  // ---------- 找回密码：手机号 + 授权码 + 新密码 ----------
+  async function _doForgot() {
+    var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
+    var code = (document.getElementById('xw-code').value || '').trim().toUpperCase();
+    var pw = (document.getElementById('xw-pw').value || '');
+    var pw2 = (document.getElementById('xw-pw2').value || '');
+    var btn = document.getElementById('xw-mb-btn');
+    if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
+    if (!code) { _showMErr('请输入授权码'); return; }
+    if (!pw || pw.length < 6) { _showMErr('新密码至少需要6位'); return; }
+    if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
+    btn.disabled = true; btn.textContent = '验证中…';
+    try {
+      var r = await fetch(SUPA_URL + '/rest/v1/rpc/reset_password_with_code', {
+        method: 'POST',
+        headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input_phone: ph, input_code: code, new_password: pw })
+      });
+      var res = await r.json();
+      if (res === 'invalid') { _showMErr('手机号与授权码不匹配，请确认后重试'); btn.disabled = false; btn.textContent = '重置密码'; return; }
+      if (res === 'not_found') { _showMErr('该手机号未注册，请先注册账号'); btn.disabled = false; btn.textContent = '重置密码'; return; }
+      if (res !== 'ok') { _showMErr('重置失败，请稍后重试'); btn.disabled = false; btn.textContent = '重置密码'; return; }
+      // 重置成功，自动登录
+      btn.textContent = '登录中…';
+      await XWAuth.signIn(phoneToEmail(ph), pw);
+      closeAuthModal();
+      location.reload();
+    } catch (e) {
+      _showMErr(e.message || '重置失败，请重试'); btn.disabled = false; btn.textContent = '重置密码';
+    }
+  }
+  window._doForgot = _doForgot;
 
   // ---------- 主题切换 ----------
   function applyTheme(t) {
