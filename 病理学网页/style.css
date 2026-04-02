@@ -73,9 +73,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
-}
-.top-nav .logo {
+    height: 44px;
     font-size: 1.2rem;
     font-weight: 700;
     text-decoration: none;

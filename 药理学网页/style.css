@@ -61,8 +61,7 @@ a:hover { color: var(--accent); }
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  height: 56px;
-  gap: 1rem;
+  height: 44px;
 }
 .nav-brand {
   font-size: 1.05rem;

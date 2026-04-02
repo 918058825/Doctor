@@ -86,7 +86,7 @@
         <div class="finish-msg" id="finishMsg"></div>
         <div class="finish-actions">
             <button class="finish-btn" onclick="drawNew()">🔀 再来一批</button>
-            <a href="../index.html" class="finish-btn">📚 去看课程</a>
+            <a href="../index.html" class="finish-btn">📚 去看内容</a>
         </div>
     </div>
 
@@ -94,8 +94,8 @@
 
     <div class="cta-section">
         <h3>📚 想深入理解每道题背后的原理？</h3>
-        <p>题目对应的完整知识点都在四门课程中</p>
-        <a href="../index.html" class="cta-btn">查看全部课程 →</a>
+        <p>题目对应的完整知识点都在四个模块中</p>
+        <a href="../index.html" class="cta-btn">查看全部内容 →</a>
     </div>
 
 </div>
@@ -483,7 +483,7 @@ function checkFinish() {
     var msg = rate === 1 ? '🏆 全部答对！继续保持！'
             : rate >= .8 ? '👍 非常不错，再接再厉！'
             : rate >= .6 ? '💪 还需加强，建议查看解析再练一遍。'
-            : '📖 建议回到课程复习相关章节，再来挑战！';
+            : '📖 建议回到对应模块复习相关章节，再来挑战！';
     document.getElementById('finishMsg').textContent = msg;
     banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }

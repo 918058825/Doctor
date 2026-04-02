@@ -280,7 +280,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       + '<div class="xw-mc">'
       + '<button class="xw-mc-x" onclick="closeAccountModal()">✕</button>'
       + '<div class="xw-mc-ttl">我的账号</div>'
-      + '<div class="xw-mc-sub">已登录，当前账号可访问全部课程</div>'
+      + '<div class="xw-mc-sub">已登录，当前账号可访问全部内容</div>'
       + '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:.9rem 1rem;margin-bottom:1rem">'
       +   '<div style="font-size:.82rem;color:#64748b;margin-bottom:.2rem">手机号</div>'
       +   '<div style="font-size:1rem;font-weight:700;color:#0f172a">' + (phone || '未知') + '</div>'
@@ -309,7 +309,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 
     if (type === 'login') {
       h += '<div class="xw-mc-ttl">登录</div>'
-         + '<div class="xw-mc-sub">登录后可访问全部课程内容</div>'
+         + '<div class="xw-mc-sub">登录后可访问全部内容</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
@@ -490,6 +490,8 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     if (document.getElementById('xw-topnav')) return;
     var curr = window.location.pathname.split('/').pop() || 'index.html';
     if (curr === 'admin.html') return;
+    // 只在根目录总目录页注入，课程子页面有各自的导航
+    if (ROOT !== './') return;
 
     var s = document.createElement('style');
     s.textContent = NAV_CSS;
@@ -510,7 +512,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       +   '<div class="xw-nav-links">'
       +     '<a href="' + ROOT + 'index.html">首页</a>'
       +     '<div class="xw-dropdown">'
-      +       '<button class="xw-dropdown-btn" id="xw-course-btn">课程 ▾</button>'
+      +       '<button class="xw-dropdown-btn" id="xw-course-btn">内容 ▾</button>'
       +       '<div class="xw-dropdown-menu" id="xw-course-menu">'
       +         '<a href="' + ROOT + '身体说明书网页/index.html">📖 速查宝典</a>'
       +         '<a href="' + ROOT + '解剖学网页/index.html">🫀 解剖学</a>'
