@@ -155,7 +155,19 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       body: JSON.stringify(body)
     });
     var d = await r.json();
-    if (!r.ok) throw new Error(d.error_description || d.msg || d.message || ('请求失败 ' + r.status));
+    if (!r.ok) {
+      var raw = d.error_description || d.msg || d.message || '';
+      var zh = raw;
+      if (/database error saving new user/i.test(raw)) zh = '注册失败：服务器内部错误，请联系管理员';
+      else if (/user already registered|already exists|already been registered/i.test(raw)) zh = '该手机号已注册，请直接登录';
+      else if (/invalid login credentials/i.test(raw)) zh = '手机号或密码错误';
+      else if (/email not confirmed/i.test(raw)) zh = '账号待激活，请联系管理员';
+      else if (/password should be at least/i.test(raw)) zh = '密码太短，至少需要6位';
+      else if (/rate limit|too many requests/i.test(raw)) zh = '操作太频繁，请稍后再试';
+      else if (/invalid email/i.test(raw)) zh = '邮箱格式错误';
+      else if (!zh) zh = '请求失败 ' + r.status;
+      throw new Error(zh);
+    }
     return d;
   }
 
@@ -320,7 +332,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
          + '<div class="xw-mf"><label>确认密码</label>'
          + '<input class="xw-mi" type="password" id="xw-pw2" placeholder="再次输入密码" autocomplete="new-password"></div>'
          + '<div class="xw-mf"><label>授权码</label>'
-         + '<input class="xw-mi" type="text" id="xw-code" placeholder="格式：XW-XXXX-XXXX-XXXX" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入授权码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
          + '<button class="xw-mb" id="xw-mb-btn" onclick="_doRegister()">注册</button>'
          + '<div class="xw-ml">已有账号？<span class="xw-mswitch" onclick="_renderModal(\'login\')">返回登录</span></div>';
 
@@ -332,7 +344,7 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
          + '<input class="xw-mi" type="text" id="xw-ph" placeholder="请输入注册时的手机号" maxlength="11" inputmode="numeric" autocomplete="tel-national" oninput="this.value=this.value.replace(/[^0-9]/g,\'\').slice(0,11)"></div></div>'
          + '<div class="xw-mf"><label>授权码</label>'
-         + '<input class="xw-mi" type="text" id="xw-code" placeholder="格式：XW-XXXX-XXXX-XXXX" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
+         + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入授权码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
          + '<div class="xw-mf"><label>新密码</label>'
          + '<input class="xw-mi" type="password" id="xw-pw" placeholder="至少6位" autocomplete="new-password"></div>'
          + '<div class="xw-mf"><label>确认新密码</label>'
