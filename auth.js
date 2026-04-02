@@ -168,16 +168,9 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     return d;
   }
 
-  // ---------- 课程类型名称映射 ----------
-  var COURSE_NAMES = {
-    'medical4': '基础医学全套（解剖+生理+病理+药理）',
-    'all': '全站所有内容'
-  };
-
   // ---------- 公开 API ----------
   var XWAuth = {
     ROOT: ROOT,
-    COURSE_NAMES: COURSE_NAMES,
     isLoggedIn: function () { return !!getSess(); },
     getSess: getSess,
 
@@ -208,70 +201,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       window.location.href = ROOT + 'index.html';
     },
 
-    async getProfile() {
-      var sess = getSess();
-      if (!sess) return null;
-      // token 过期先尝试刷新
-      if (isTokenExpired(sess)) {
-        sess = await refreshSess();
-        if (!sess) return getCachedProfile(); // 刷新失败用缓存
-      }
-      try {
-        var d = await apiGet('/rest/v1/profiles?select=*', sess.access_token);
-        var profile = Array.isArray(d) ? (d[0] || null) : null;
-        if (profile) setCachedProfile(profile); // 成功则更新缓存
-        return profile;
-      } catch (e) {
-        return getCachedProfile(); // 网络失败用缓存兜底
-      }
-    },
-
-    async redeemCode(code) {
-      var sess = getSess();
-      if (!sess) throw new Error('请先登录');
-      var r = await fetch(SUPA_URL + '/rest/v1/rpc/redeem_code', {
-        method: 'POST',
-        headers: makeHeaders(sess.access_token),
-        body: JSON.stringify({ input_code: code })
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.message || d.msg || '兑换请求失败');
-      return d; // { success: true/false, message: "...", type: "..." }
-    },
-
-    canAccessCourse: function (profile, courseId) {
-      if (!profile || !profile.is_vip) return false;
-      var u = profile.unlocked || [];
-      return u.indexOf('medical4') >= 0 || u.indexOf('all') >= 0;
-    },
-
-    // 发送重置密码邮件
-    async sendResetEmail(email) {
-      var r = await fetch(SUPA_URL + '/auth/v1/recover', {
-        method: 'POST',
-        headers: makeHeaders(),
-        body: JSON.stringify({ email: email })
-      });
-      if (!r.ok) {
-        var d = await r.json();
-        throw new Error(d.error_description || d.message || '发送失败');
-      }
-    },
-
-    // 用新密码更新（用户点邮件链接跳回后调用）
-    async updatePassword(newPassword) {
-      var sess = getSess();
-      if (!sess) throw new Error('登录状态已失效，请重新点击邮件中的链接');
-      var r = await fetch(SUPA_URL + '/auth/v1/user', {
-        method: 'PUT',
-        headers: makeHeaders(sess.access_token),
-        body: JSON.stringify({ password: newPassword })
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.error_description || d.message || '更新失败');
-      return d;
-    },
-
     // 使用授权码
     async useActivationCode(code) {
       var sess = getSess();
@@ -294,17 +223,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       return await r.json(); // 返回 'ok' / 'used' / 'invalid'
     },
 
-    // 使用授权码重置密码
-    async resetPasswordWithCode(email, code, newPassword) {
-      var r = await fetch(SUPA_URL + '/rest/v1/rpc/reset_password_with_code', {
-        method: 'POST',
-        headers: makeHeaders(),
-        body: JSON.stringify({ p_email: email, p_auth_code: code, p_new_password: newPassword })
-      });
-      var d = await r.json();
-      if (!r.ok) throw new Error(d.message || d.error_description || '请求失败');
-      return d; // 'ok' / 'invalid' / 'not_found'
-    }
   };
 
   window.XWAuth = XWAuth;
@@ -457,45 +375,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
   }
   window._doLogin = _doLogin;
 
-  async function _doReset() {
-    var ph = (document.getElementById('xw-ph').value || '').replace(/\D/g, '');
-    var name = (document.getElementById('xw-name').value || '').trim();
-    var code = (document.getElementById('xw-code').value || '').trim();
-    var pw = document.getElementById('xw-pw').value;
-    var pw2 = document.getElementById('xw-pw2').value;
-    var btn = document.getElementById('xw-mb-btn');
-    if (!ph || ph.length < 11) { _showMErr('请输入正确的11位手机号'); return; }
-    if (!name) { _showMErr('请输入姓名'); return; }
-    if (!code) { _showMErr('请输入授权码'); return; }
-    if (!pw || pw.length < 6) { _showMErr('新密码至少需要 6 位'); return; }
-    if (pw !== pw2) { _showMErr('两次密码不一致'); return; }
-    btn.disabled = true; btn.textContent = '重置中…';
-    try {
-      var res = await XWAuth.resetPasswordWithCode(phoneToEmail(ph), code, pw);
-      if (res === 'ok') {
-        var mc = document.getElementById('xw-mc');
-        if (mc) mc.innerHTML = '<div style="text-align:center;padding:2rem 1.5rem">'
-          + '<div style="font-size:2.5rem;margin-bottom:.75rem">✅</div>'
-          + '<div style="font-size:1.1rem;font-weight:800;color:#0f172a;margin-bottom:.5rem">密码已重置</div>'
-          + '<div style="font-size:.85rem;color:#64748b;margin-bottom:1.5rem">请使用新密码登录</div>'
-          + '<button class="xw-mb" onclick="_renderModal(\'login\')"返回登录</button></div>';
-      } else if (res === 'invalid') {
-        _showMErr('授权码与手机号不匹配，请检查后重试');
-        btn.disabled = false; btn.textContent = '重置密码';
-      } else if (res === 'not_found') {
-        _showMErr('该手机号未注册，请先注册账号');
-        btn.disabled = false; btn.textContent = '重置密码';
-      } else {
-        _showMErr('重置失败，请重试');
-        btn.disabled = false; btn.textContent = '重置密码';
-      }
-    } catch (e) {
-      _showMErr(e.message || '重置失败，请重试');
-      btn.disabled = false; btn.textContent = '重置密码';
-    }
-  }
-  window._doReset = _doReset;
-
   // ---------- 主题切换 ----------
   function applyTheme(t) {
     if (t === 'dark') document.documentElement.classList.add('xw-dark');
@@ -621,14 +500,19 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
     });
   }
 
-  // ---------- 章节链接拦截（未登录时直接弹窗，不跳转页面） ----------
-  // 所有章节链接都需要登录才能访问
+  // ---------- 全局链接拦截（未登录时拦截所有内部链接） ----------
+  // 唯一免登录页面：根目录 index.html（主页）
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
+    if (getSess()) return;  // 已登录，放行
     var href = a.getAttribute('href') || '';
-    if (!/chapter\d+\.html/.test(href)) return;  // 非章节链接，放行
-    if (getSess()) return;                         // 已登录，放行
+    // 放行：外部链接、锚点、邮件
+    if (/^https?:\/\//.test(href) || /^#/.test(href) || /^mailto:/i.test(href)) return;
+    // 放行：根目录主页（唯一免登录页面）
+    var isHome = /^(\.\.\/)*index\.html$/.test(href) || href === './' || href === '../' || href === '' || href === '/';
+    if (isHome) return;
+    // 所有其他内部链接：拦截并弹出登录框
     e.preventDefault();
     e.stopPropagation();
     openAuthModal('login');
