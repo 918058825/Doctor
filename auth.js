@@ -511,16 +511,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       +   '</a>'
       +   '<div class="xw-nav-links">'
       +     '<a href="' + ROOT + 'index.html">首页</a>'
-      +     '<div class="xw-dropdown">'
-      +       '<button class="xw-dropdown-btn" id="xw-course-btn">内容 ▾</button>'
-      +       '<div class="xw-dropdown-menu" id="xw-course-menu">'
-      +         '<a href="' + ROOT + '身体说明书网页/index.html">📖 速查宝典</a>'
-      +         '<a href="' + ROOT + '解剖学网页/index.html">🫀 解剖学</a>'
-      +         '<a href="' + ROOT + '生理学网页/index.html">⚡ 生理学</a>'
-      +         '<a href="' + ROOT + '病理学网页/index.html">🔬 病理学</a>'
-      +         '<a href="' + ROOT + '药理学网页/index.html">💊 药理学</a>'
-      +       '</div>'
-      +     '</div>'
       +   '</div>'
       + '</div>'
       + '<div class="xw-nav-right">'
@@ -558,17 +548,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       applyTheme(next);
       localStorage.setItem('xw-theme', next);
     });
-
-    // 课程下拉菜单
-    var courseBtn = document.getElementById('xw-course-btn');
-    var courseMenu = document.getElementById('xw-course-menu');
-    if (courseBtn) {
-      courseBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        courseMenu.classList.toggle('open');
-      });
-      document.addEventListener('click', function () { courseMenu.classList.remove('open'); });
-    }
 
     // 移动端汉堡菜单
     var hamburger = document.getElementById('xw-hamburger');
