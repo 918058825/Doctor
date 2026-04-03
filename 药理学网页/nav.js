@@ -55,7 +55,7 @@
     const navHTML = `
         ${lnk('index.html', 'logo', '💊 药理学入门')}
         <ul class="nav-links" id="navLinks">
-            <li>${lnk('index.html', isAct('index.html') ? 'active' : null, '首页')}</li>
+            <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
                 <a href="#" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}">📚 章节 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu chapters-menu">${chapGroup}</div>
@@ -64,7 +64,7 @@
                 <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}">🛠️ 工具 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu tools-menu">${toolGroup}</div>
             </li>
-            <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
+            <li>${lnk('index.html', isAct('index.html') ? 'active' : null, '主页')}</li>
         </ul>
         <button class="nav-hamburger" id="navHamburger" aria-label="打开菜单">
             <span></span><span></span><span></span>
@@ -72,7 +72,7 @@
 
     /* ---- 侧边栏内容 ---- */
     let sidebarContent = '<a href="../index.html" class="sidebar-link sidebar-portal-link">← 返回总目录</a>';
-    sidebarContent += lnk('index.html', 'sidebar-link' + (isAct('index.html') ? ' active' : ''), '🏠 首页');
+    sidebarContent += lnk('index.html', 'sidebar-link' + (isAct('index.html') ? ' active' : ''), '🏠 主页');
     phases.forEach(p => {
         sidebarContent += `<div class="sidebar-section">${p.label}</div>`;
         sidebarContent += p.items.map(c =>

@@ -61,6 +61,7 @@ a:hover { color: var(--accent); }
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 44px;
 }
 .logo {
@@ -76,8 +77,6 @@ a:hover { color: var(--accent); }
   display: flex;
   gap: 4px;
   list-style: none;
-  margin-left: 0.5rem;
-  flex: 1;
 }
 .nav-links > li { display: flex; align-items: center; }
 .nav-links a {
