@@ -3,14 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>药理学入门 — 靶点·机制·临床</title>
+    <title>药理学入门 - 学习笔记</title>
     <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
-<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+<nav class="top-nav">
+    <div class="top-nav-inner"></div>
+</nav>
 
-<div class="hero-index">
+<!-- 英雄区 -->
+<section class="index-hero">
+    <div class="index-hero-inner">
+        <div class="index-hero-badge">💊 病理学之后 · 第四阶段</div>
+        <h1 class="index-hero-title">药理学入门</h1>
+        <p class="index-hero-sub">知道哪里出了问题之后，是时候搞清楚——用什么分子来修复它，以及为什么有效。</p>
+        <div class="index-hero-stats">
+            <div class="ihs-item"><span class="ihs-num">12</span><span class="ihs-label">个章节</span></div>
+            <div class="ihs-divider"></div>
+            <div class="ihs-item"><span class="ihs-num">60+</span><span class="ihs-label">核心药物</span></div>
+            <div class="ihs-divider"></div>
+            <div class="ihs-item"><span class="ihs-num">3</span><span class="ihs-label">工具页</span></div>
+            <div class="ihs-divider"></div>
+            <div class="ihs-item"><span class="ihs-num">4</span><span class="ihs-label">核心理念</span></div>
+        </div>
+        <div class="index-hero-cta">
+            <a href="chapter1.html" class="hero-btn-primary">🚀 从第1章开始</a>
+            <a href="receptor-map.html" class="hero-btn-outline">🎯 受体靶点图谱</a>
+        </div>
+        <div class="index-hero-organs">
+            <span title="药物">💊</span>
+            <span title="靶点">🎯</span>
+            <span title="激素">⚗️</span>
+            <span title="显微镜">🔬</span>
+            <span title="DNA">🧬</span>
+            <span title="听诊器">🩺</span>
+            <span title="心脏">🫀</span>
+            <span title="注射">💉</span>
+        </div>
+    </div>
+</section>
+
+<!-- 主内容 -->
+<div class="main-content full-width">
+
+    <!-- ===== 4个核心理念 ===== -->
+    <section class="home-section">
+        <div class="home-section-header">
+            <h2>💡 4个核心学习理念</h2>
+            <span class="section-sub">理解这4点，读药理学事半功倍</span>
+        </div>
+        <div class="systems-flow-grid">
+            <div class="sf-item">
+                <div class="sf-icon">🎯</div>
+                <div class="sf-name">靶点思维</div>
+                <div class="sf-desc">每种药都有靶点。靶点在哪里，效果就在哪里，副作用也在哪里。同一靶点的不同亚型决定"选择性"。</div>
+            </div>
+            <div class="sf-item">
+                <div class="sf-icon">📐</div>
+                <div class="sf-name">剂量逻辑</div>
+                <div class="sf-desc">剂量决定一切。阿司匹林小剂量抗血小板、大剂量退烧——同一种药攻击不同靶点，全由剂量决定。</div>
+            </div>
+            <div class="sf-item">
+                <div class="sf-icon">⚙️</div>
+                <div class="sf-name">副作用推导</div>
+                <div class="sf-desc">副作用不需要死记。ACEI的干咳、β阻滞剂的哮喘风险——从靶点分布出发全部可以推导出来。</div>
+            </div>
+            <div class="sf-item">
+                <div class="sf-icon">💻</div>
+                <div class="sf-name">CS类比</div>
+                <div class="sf-desc">受体=API接口、半衰期=缓存TTL、治疗窗=运行参数区间、耐药=API版本更新旧密钥失效……</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 章节区 ===== -->
+    <section class="home-section">
+        <div class="home-section-header">
+            <h2>📚 12个章节</h2>
+            <span class="section-sub">从靶点基础到系统药理 · 按逻辑顺序递进</span>
+        </div>
+
+        <!-- 阶段一 -->
+        <div class="phase-label phase-green">🟢 第一阶段 · 基础药理（第 1-4 章）</div>
+        <div class="chapter-grid">
+            <a class="chapter-card" href="chapter1.html">
+                <div class="ch-num">1</div>
+                <h3>药物与受体</h3>
+                <p>靶点理论基础。四大受体超家族，激动剂/拮抗剂/部分激动剂的本质区别，受体上调与下调的临床意义。</p>
+                <span class="tag">GPCR / 离子通道 · β阻滞剂 · 纳洛酮</span>
+            </a>
+            <a class="chapter-card" href="chapter2.html">
+                <div class="ch-num">2</div>
+                <h3>药动学 ADME</h3>
+                <p>药物如何进入、分布、代谢、排出？半衰期公式、首关效应、CYP450酶系与药物相互作用的根源。</p>
+                <span class="tag">CYP3A4 · 前药 · 稳态浓度</span>
+            </a>
+            <a class="chapter-card" href="chapter3.html">
+                <div class="ch-num">3</div>
+                <h3>药效学·治疗窗</h3>
+                <p>量效关系S形曲线，治疗指数TI，联合用药的协同/拮抗逻辑，地高辛为什么稍微多一点就中毒。</p>
+                <span class="tag">EC50 · 治疗指数 · 地高辛</span>
+            </a>
+            <a class="chapter-card" href="chapter4.html">
+                <div class="ch-num">4</div>
+                <h3>不良反应与耐药</h3>
+                <p>副作用五大分类，高危药物对（华法林/NSAIDs），细菌耐药四大机制，抗生素管理的生态学逻辑。</p>
+                <span class="tag">CYP450冲突 · 外排泵 · β-内酰胺酶</span>
+            </a>
+        </div>
+
+        <!-- 阶段二 -->
+        <div class="phase-label phase-yellow">🟡 第二阶段 · 系统药理·循环呼消（第 5-8 章）</div>
+        <div class="chapter-grid">
+            <a class="chapter-card green" href="chapter5.html">
+                <div class="ch-num">5</div>
+                <h3>心血管药物</h3>
+                <p>高血压四大类，心衰"神奇四联"，抗心律失常的Vaughan-Williams分类，华法林vs NOAC的选择逻辑。</p>
+                <span class="tag">RAAS抑制剂 · 他汀 · 华法林/NOAC</span>
+            </a>
+            <a class="chapter-card green" href="chapter6.html">
+                <div class="ch-num">6</div>
+                <h3>呼吸系统药物</h3>
+                <p>哮喘急救vs长期控制的核心差别，COPD的抗胆碱策略，过敏休克的肾上腺素急救机制。</p>
+                <span class="tag">SABA / ICS · LAMA · 肾上腺素</span>
+            </a>
+            <a class="chapter-card orange" href="chapter7.html">
+                <div class="ch-num">7</div>
+                <h3>消化系统药物</h3>
+                <p>PPI不可逆抑制的逻辑，Hp根除三联为什么有效，对乙酰氨基酚中毒如何导致急性肝衰竭。</p>
+                <span class="tag">PPI · Hp三联疗法 · N-乙酰半胱氨酸</span>
+            </a>
+            <a class="chapter-card orange" href="chapter8.html">
+                <div class="ch-num">8</div>
+                <h3>镇痛与麻醉药</h3>
+                <p>WHO三阶梯，阿片类的μ受体机制与依赖形成，纳洛酮急救原理，局麻vs全麻的靶点差异。</p>
+                <span class="tag">阿片类 · 纳洛酮 · 利多卡因</span>
+            </a>
+        </div>
+
+        <!-- 阶段三 -->
+        <div class="phase-label phase-red">🔴 第三阶段 · 系统药理·神内抗菌（第 9-12 章）</div>
+        <div class="chapter-grid">
+            <a class="chapter-card purple" href="chapter9.html">
+                <div class="ch-num">9</div>
+                <h3>中枢神经系统药物</h3>
+                <p>SSRI起效延迟之谜，苯二氮卓的GABA机制与依赖，锂盐的极窄治疗窗，5-HT综合征的识别。</p>
+                <span class="tag">SSRI / SNRI · 苯二氮卓 · 左旋多巴</span>
+            </a>
+            <a class="chapter-card purple" href="chapter10.html">
+                <div class="ch-num">10</div>
+                <h3>内分泌系统药物</h3>
+                <p>降糖药靶点谱系，司美格鲁肽为什么能减肥，地舒单抗停药反弹的危险，糖皮质激素不能突然停的原因。</p>
+                <span class="tag">二甲双胍 · GLP-1激动剂 · 糖皮质激素</span>
+            </a>
+            <a class="chapter-card red" href="chapter11.html">
+                <div class="ch-num">11</div>
+                <h3>抗菌药物</h3>
+                <p>靶点选择的进化逻辑，克服β-内酰胺酶的策略，氟喹诺酮的QT延长，耐药"代码通过开源包传播"。</p>
+                <span class="tag">β-内酰胺 · 万古霉素 · 氟喹诺酮</span>
+            </a>
+            <a class="chapter-card red" href="chapter12.html">
+                <div class="ch-num">12</div>
+                <h3>抗肿瘤药物</h3>
+                <p>细胞毒vs靶向vs免疫三代逻辑，格列卫如何改写慢粒的命运，irAE不是副作用而是疗效的延伸。</p>
+                <span class="tag">格列卫 · PD-1抑制剂 · 紫杉醇</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== 工具区 ===== -->
+    <section class="home-section">
+        <div class="home-section-header">
+            <h2>🛠️ 3个工具页</h2>
+            <span class="section-sub">章节读完后的查阅与速览工具</span>
+        </div>
+        <div class="tools-grid">
+            <a href="drug-index.html" class="tool-card tool-blue">
+                <div class="tool-icon">💊</div>
+                <div class="tool-body">
+                    <div class="tool-name">药物快查索引</div>
+                    <div class="tool-desc">按药名/靶点/系统实时检索，快速定位任意药物的机制摘要与所在章节</div>
+                </div>
+            </a>
+            <a href="receptor-map.html" class="tool-card tool-purple">
+                <div class="tool-icon">🎯</div>
+                <div class="tool-body">
+                    <div class="tool-name">受体靶点图谱</div>
+                    <div class="tool-desc">四大受体超家族可视化，同一靶点的激动剂/拮抗剂一览，理解"同靶点不同药物"的逻辑</div>
+                </div>
+            </a>
+            <a href="interaction-guide.html" class="tool-card tool-amber">
+                <div class="tool-icon">⚠️</div>
+                <div class="tool-body">
+                    <div class="tool-name">药物相互作用速查</div>
+                    <div class="tool-desc">高危药物组合分级表，CYP450抑制剂/诱导剂矩阵，临床常见危险组合详解</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== 使用建议 ===== -->
+    <section class="home-section">
+        <div class="home-section-header">
+            <h2>💡 怎么用这个网站</h2>
+        </div>
+        <div class="info-box blue">
+            <div class="box-title">📘 推荐阅读方式</div>
+            <ul>
+                <li>先读第1-4章（基础药理），建立靶点思维框架，再按系统章节选读</li>
+                <li>碰到 <strong>💻 CS类比</strong> 模块，这是专门为计算机背景设计的理解捷径</li>
+                <li>碰到 <strong>⚠️ 临床警示</strong> 时，这是临床实践中真实发生过的错误</li>
+                <li>每章内容独立完整，也可以从任意章节直接开始</li>
+            </ul>
+        </div>
+        <div class="info-box green">
+            <div class="box-title">🔗 这部分内容和病理学的关系</div>
+            <p>病理学告诉你 <strong>「哪里出了问题」</strong>，药理学告诉你 <strong>「用什么分子来修复这个问题，以及为什么有效」</strong>。每章开头都有与病理学的衔接导读，建议先阅读病理学效果更佳。</p>
+        </div>
+    </section>
+
+</div><!-- end main-content -->
+
+<!-- 页脚 -->
+<footer class="site-footer">
+    <p>💊 药理学入门 · 靶点 · 机制 · 临床</p>
+    <p style="margin-top:6px; font-size:0.8rem;">内容以科学通识为目的，不构成医疗建议。实际用药请遵医嘱。</p>
+</footer>
+
+<script src="nav.js?v=2"></script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>
+
     <div class="chapter-badge">入门笔记 · 通俗系列</div>
     <h1>💊 药理学入门</h1>
     <p class="tagline">

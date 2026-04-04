@@ -1756,3 +1756,56 @@ body {
     .cs-analogy, .mechanism-box { background: #fff1f2 !important; color: #7c2d12 !important; }
     .cognitive-expand { background: #faf5ff !important; color: #4c1d95 !important; }
 }
+
+/* ===================================================
+   首页专属：三站路径卡片
+   =================================================== */
+.path-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 1rem 0;
+}
+.path-step {
+    background: white;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-top: 3px solid #d1d5db;
+}
+.path-step-icon { font-size: 1.4rem; margin-bottom: 6px; }
+.path-step-name { font-weight: 700; font-size: 1rem; margin-bottom: 2px; color: #111827; }
+.path-step-sub  { font-weight: 600; font-size: 0.88rem; margin-bottom: 4px; }
+.path-step-desc { font-size: 0.85rem; color: #6b7280; line-height: 1.5; }
+.path-anatomy   { border-top-color: #1e3a8a; opacity: 0.75; }
+.path-anatomy   .path-step-sub { color: #1e3a8a; }
+.path-physio    { border-top-color: #0c4a6e; opacity: 0.75; }
+.path-physio    .path-step-sub { color: #0c4a6e; }
+.path-current   { border-top-color: var(--primary); box-shadow: 0 2px 8px rgba(185,28,28,0.2); }
+.path-current   .path-step-sub { color: var(--primary); }
+@media (max-width: 640px) { .path-steps { grid-template-columns: 1fr; } }
+
+/* ===================================================
+   首页专属：使用建议提示卡片
+   =================================================== */
+.tip-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+.tip-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.tip-card-title { font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
+.tip-card-body  { font-size: 0.88rem; color: #374151; line-height: 1.7; }
+.tc-red    { border-left: 3px solid #b91c1c; }
+.tc-red    .tip-card-title { color: #b91c1c; }
+.tc-amber  { border-left: 3px solid #d97706; }
+.tc-amber  .tip-card-title { color: #d97706; }
+.tc-purple { border-left: 3px solid #7c3aed; }
+.tc-purple .tip-card-title { color: #7c3aed; }
+.tc-green  { border-left: 3px solid #059669; }
+.tc-green  .tip-card-title { color: #059669; }
