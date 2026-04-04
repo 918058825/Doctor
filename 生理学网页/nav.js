@@ -1,4 +1,4 @@
-/**
+﻿/**
  * nav.js — 生理学网站统一导航脚本
  * 功能：下拉菜单 / 汉堡侧边栏 / FAB返回首页 / 自动高亮当前页
  * 用法：在每个页面 </body> 前添加 <script src="nav.js"></script>
@@ -54,7 +54,7 @@
 
     /* ---- 顶部导航 HTML ---- */
     const navHTML = `
-        ${lnk('index.html', 'logo', '🧬 生理学入门')}
+        ${lnk('index.html', 'logo', '🧬 运行篇')}
         <ul class="nav-links" id="navLinks">
             <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
@@ -89,7 +89,7 @@
     <div class="nav-overlay" id="navOverlay"></div>
     <div class="nav-sidebar" id="navSidebar">
         <div class="sidebar-header">
-            <span>🧬 生理学入门</span>
+            <span>🧬 运行篇</span>
             <button class="sidebar-close" id="sidebarClose">✕</button>
         </div>
         <div class="sidebar-body">${sidebarContent}</div>
