@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复查时间表 — 体检报告篇</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .followup-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+        .followup-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+        }
+        .followup-table th:first-child { border-radius: 0; }
+        .followup-table td {
+            padding: 11px 14px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .followup-table tr:nth-child(even) { background: #f9fafb; }
+        .followup-table tr:hover { background: var(--bg); }
+        .followup-table .item-name { font-weight: 600; color: var(--primary-dark); }
+        .fu-soon { color: #b91c1c; font-weight: 600; }
+        .fu-mid { color: #d97706; font-weight: 600; }
+        .fu-annual { color: #16a34a; font-weight: 600; }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            padding: 8px 0 12px;
+            border-bottom: 2px solid var(--primary-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tip-block {
+            background: linear-gradient(135deg, var(--bg), white);
+            border: 1px solid var(--primary-light);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .tip-block h3 { margin: 0 0 12px; color: var(--primary-dark); }
+        .tip-block li { margin-bottom: 8px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+<div class="breadcrumb"><a href="index.html">🏠 首页</a><span>›</span><span>📅 复查时间表</span></div>
+<div class="page-hero">
+    <div class="chapter-badge">实用工具</div>
+    <h1>📅 复查时间表</h1>
+    <p class="subtitle">体检发现异常后，什么指标多久复查一次？按类别整理成表，一目了然。</p>
+</div>
+
+<div style="max-width:1000px;margin:0 auto;padding:0 2rem 4rem;">
+
+    <div class="tip-block">
+        <h3>📌 使用说明</h3>
+        <ul>
+            <li>表格中的时间是<strong>建议范围</strong>，具体以医生建议为准</li>
+            <li>如果在随访期间出现新症状，应提前就医，不要等到复查时间</li>
+            <li>"生活方式干预后"指：调整饮食、增加运动、戒烟限酒后，观察效果再复查</li>
+            <li>已在药物治疗的患者，复查频率由医生决定，通常更频繁</li>
+        </ul>
+    </div>
+
+    <!-- 血糖类 -->
+    <div class="section-title">🩸 血糖相关</div>
+    <table class="followup-table">
+        <thead><tr><th>异常情况</th><th>首次发现后</th><th>如稳定后</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">空腹血糖 6.1-7.0（糖尿病前期）</td><td><span class="fu-mid">3个月后复查FBG+HbA1c</span></td><td>每6月复查一次</td><td><a href="chapter5.html">第5章</a></td></tr>
+            <tr><td class="item-name">HbA1c 5.7-6.4%</td><td><span class="fu-mid">3个月后复查</span></td><td>每6月一次</td><td><a href="chapter5.html">第5章</a></td></tr>
+            <tr><td class="item-name">空腹血糖 ≥7.0（确诊糖尿病）</td><td><span class="fu-soon">2周内内分泌科就诊</span></td><td>由医生制定方案</td><td><a href="chapter5.html">第5章</a></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 血脂类 -->
+    <div class="section-title">🫀 血脂相关</div>
+    <table class="followup-table">
+        <thead><tr><th>异常情况</th><th>首次发现后</th><th>如稳定后</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">LDL 3.4-4.9（轻中度升高，无高危因素）</td><td><span class="fu-mid">3月生活方式干预后复查</span></td><td>每年复查</td><td><a href="chapter6.html">第6章</a></td></tr>
+            <tr><td class="item-name">LDL ≥ 4.9 或有心脑血管病史</td><td><span class="fu-soon">1-2周内就医评估是否用他汀</span></td><td>用药后4-8周复查</td><td><a href="chapter6.html">第6章</a></td></tr>
+            <tr><td class="item-name">甘油三酯 1.7-5.6</td><td><span class="fu-mid">3月饮食干预后复查</span></td><td>每年复查</td><td><a href="chapter6.html">第6章</a></td></tr>
+            <tr><td class="item-name">甘油三酯 ≥ 5.6（急性胰腺炎风险）</td><td><span class="fu-soon">立刻就医，尽快降TG</span></td><td>治疗中每月监测</td><td><a href="chapter6.html">第6章</a></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 肝功能 -->
+    <div class="section-title">🏥 肝功能相关</div>
+    <table class="followup-table">
+        <thead><tr><th>异常情况</th><th>首次发现后</th><th>如稳定后</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">ALT/AST 1-3倍正常（脂肪肝）</td><td><span class="fu-mid">戒酒/减重3月后复查</span></td><td>每年复查</td><td><a href="chapter3.html">第3章</a></td></tr>
+            <tr><td class="item-name">ALT/AST 3-10倍</td><td><span class="fu-soon">2周内就医查原因</span></td><td>查明原因后按医嘱</td><td><a href="chapter3.html">第3章</a></td></tr>
+            <tr><td class="item-name">ALT/AST &gt;10倍（急性肝炎表现）</td><td><span class="fu-soon">立刻就医</span></td><td>—</td><td><a href="chapter3.html">第3章</a></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 肾功能 -->
+    <div class="section-title">🫘 肾功能相关</div>
+    <table class="followup-table">
+        <thead><tr><th>异常情况</th><th>首次发现后</th><th>如稳定后</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">eGFR 60-89（G2期，轻度下降）</td><td><span class="fu-annual">3月后复查，观察趋势</span></td><td>每年复查</td><td><a href="chapter4.html">第4章</a></td></tr>
+            <tr><td class="item-name">eGFR 30-59（G3期）</td><td><span class="fu-soon">1-2周内肾内科就诊</span></td><td>每3月监测</td><td><a href="chapter4.html">第4章</a></td></tr>
+            <tr><td class="item-name">尿蛋白 +(持续存在)</td><td><span class="fu-mid">1月内就医</span></td><td>每3月复查尿常规</td><td><a href="chapter4.html">第4章</a></td></tr>
+            <tr><td class="item-name">尿酸 420-540（无症状）</td><td><span class="fu-mid">饮食干预3月后复查</span></td><td>每年复查</td><td><a href="chapter4.html">第4章</a></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 甲状腺 -->
+    <div class="section-title">🦋 甲状腺相关</div>
+    <table class="followup-table">
+        <thead><tr><th>异常情况</th><th>首次发现后</th><th>如稳定后</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">TSH偏高，T3/T4正常（亚临床甲减）</td><td><span class="fu-mid">3月后复查TSH</span></td><td>每6月监测一次</td><td><a href="chapter7.html">第7章</a></td></tr>
+            <tr><td class="item-name">TSH极低（甲亢）</td><td><span class="fu-soon">2周内内分泌科就诊</span></td><td>用药后按医嘱</td><td><a href="chapter7.html">第7章</a></td></tr>
+            <tr><td class="item-name">甲状腺结节 TI-RADS 3类 (&lt;1cm)</td><td><span class="fu-annual">6月后超声复查</span></td><td>每年超声</td><td><a href="chapter7.html">第7章</a></td></tr>
+            <tr><td class="item-name">甲状腺结节 TI-RADS 4类</td><td><span class="fu-soon">1月内甲状腺外科/内分泌科就诊</span></td><td>按医嘱（可能需要穿刺）</td><td><a href="chapter7.html">第7章</a></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 肿瘤标志物 -->
+    <div class="section-title">🔬 肿瘤标志物相关</div>
+    <table class="followup-table">
+        <thead><tr><th>异常情况</th><th>首次发现后</th><th>如稳定后</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">单项轻度升高（1-3倍，无症状）</td><td><span class="fu-mid">3月后复查同一指标</span></td><td>若下降则年度观察</td><td><a href="chapter8.html">第8章</a></td></tr>
+            <tr><td class="item-name">AFP &gt;200（有肝病背景）</td><td><span class="fu-soon">2周内做肝脏增强CT</span></td><td>—</td><td><a href="chapter8.html">第8章</a></td></tr>
+            <tr><td class="item-name">多项标志物同时升高</td><td><span class="fu-soon">1-2周内就医综合评估</span></td><td>—</td><td><a href="chapter8.html">第8章</a></td></tr>
+        </tbody>
+    </table>
+
+    <!-- 影像 -->
+    <div class="section-title">🖥️ 影像相关</div>
+    <table class="followup-table">
+        <thead><tr><th>发现</th><th>首次处理</th><th>随访频率</th><th>参考章节</th></tr></thead>
+        <tbody>
+            <tr><td class="item-name">肺结节 &lt;6mm（低危人群）</td><td><span class="fu-annual">无需特殊处理</span></td><td>年度体检CT即可</td><td><a href="chapter9.html">第9章</a></td></tr>
+            <tr><td class="item-name">肺结节 6-8mm（实性）</td><td><span class="fu-mid">6-12月内胸部CT复查</span></td><td>稳定后每年CT</td><td><a href="chapter9.html">第9章</a></td></tr>
+            <tr><td class="item-name">肺结节 &gt;8mm（实性）</td><td><span class="fu-soon">3月内胸外科/呼吸科就诊</span></td><td>由医生决定</td><td><a href="chapter9.html">第9章</a></td></tr>
+            <tr><td class="item-name">单纯肝囊肿/肾囊肿（良性）</td><td><span class="fu-annual">无需特殊处理</span></td><td>每1-2年超声随访</td><td><a href="chapter9.html">第9章</a></td></tr>
+            <tr><td class="item-name">胆囊息肉 &lt;6mm</td><td><span class="fu-annual">无需特殊处理</span></td><td>每年超声观察大小</td><td><a href="chapter9.html">第9章</a></td></tr>
+            <tr><td class="item-name">胆囊息肉 &gt;1cm 或快速增大</td><td><span class="fu-soon">1月内普外科就诊评估切除</span></td><td>—</td><td><a href="chapter9.html">第9章</a></td></tr>
+        </tbody>
+    </table>
+
+</div>
+
+<footer class="site-footer">
+    <p>📋 体检报告篇 · 人体使用说明书系列</p>
+    <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
+</footer>
+<script src="nav.js"></script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>

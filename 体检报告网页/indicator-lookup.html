@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指标速查表 — 体检报告篇</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lookup-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .lookup-search {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+        .lookup-search:focus { border-color: var(--primary); }
+        .lookup-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--primary-light);
+            border-radius: 20px;
+            background: white;
+            color: var(--primary-dark);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .lookup-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .lookup-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 10px;
+            text-align: left;
+        }
+        .lookup-table td {
+            padding: 10px 10px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .lookup-table tr:nth-child(even) { background: #f9fafb; }
+        .lookup-table tr:hover { background: var(--bg); }
+        .lookup-table .indicator-name { font-weight: 600; color: var(--primary-dark); }
+        .lookup-table .normal-range { color: #16a34a; font-size: 0.85rem; }
+        .lookup-table .chapter-link a {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .lookup-table .chapter-link a:hover { text-decoration: underline; }
+        .category-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .cat-blood { background: #fee2e2; color: #b91c1c; }
+        .cat-liver { background: #fef9c3; color: #a16207; }
+        .cat-kidney { background: #dbeafe; color: #1d4ed8; }
+        .cat-sugar { background: #d1fae5; color: #065f46; }
+        .cat-lipid { background: #fce7f3; color: #9d174d; }
+        .cat-thyroid { background: #ede9fe; color: #6d28d9; }
+        .cat-tumor { background: #f3f4f6; color: #374151; }
+        .hidden-row { display: none; }
+    </style>
+</head>
+<body>
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+<div class="breadcrumb"><a href="index.html">🏠 首页</a><span>›</span><span>📊 指标速查表</span></div>
+<div class="page-hero">
+    <div class="chapter-badge">实用工具</div>
+    <h1>📊 指标速查表</h1>
+    <p class="subtitle">体检报告上的50+常见指标，一表查清正常范围、异常含义及对应章节。</p>
+</div>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 2rem 4rem;">
+
+    <div class="lookup-controls">
+        <input type="text" class="lookup-search" id="searchInput" placeholder="🔍 搜索指标名称，如：ALT、血糖…" oninput="filterTable()">
+    </div>
+    <div class="lookup-filter" id="filterBtns">
+        <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">全部</button>
+        <button class="filter-btn" data-cat="blood" onclick="setFilter('blood',this)">血常规</button>
+        <button class="filter-btn" data-cat="liver" onclick="setFilter('liver',this)">肝功能</button>
+        <button class="filter-btn" data-cat="kidney" onclick="setFilter('kidney',this)">肾功能</button>
+        <button class="filter-btn" data-cat="sugar" onclick="setFilter('sugar',this)">血糖</button>
+        <button class="filter-btn" data-cat="lipid" onclick="setFilter('lipid',this)">血脂</button>
+        <button class="filter-btn" data-cat="thyroid" onclick="setFilter('thyroid',this)">甲状腺</button>
+        <button class="filter-btn" data-cat="tumor" onclick="setFilter('tumor',this)">肿瘤标志物</button>
+    </div>
+
+    <table class="lookup-table">
+        <thead>
+            <tr><th>指标名称</th><th>分类</th><th>正常参考范围</th><th>常见异常含义</th><th>详细章节</th></tr>
+        </thead>
+        <tbody id="lookupBody">
+            <!-- 血常规 -->
+            <tr data-cat="blood"><td class="indicator-name">红细胞（RBC）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 4.3-5.8×10¹²/L<br>女 3.8-5.1×10¹²/L</td><td>减少：贫血；增多：脱水或红细胞增多症</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">血红蛋白（Hb）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 130-175 g/L<br>女 115-150 g/L</td><td>&lt;120（女）/&lt;130（男）：贫血；极低（&lt;70）：需要输血</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">平均红细胞体积（MCV）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">80-100 fL</td><td>&lt;80：小细胞（缺铁性贫血）；&gt;100：大细胞（叶酸/B12缺乏）</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">白细胞（WBC）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">4-10×10⁹/L</td><td>升高：细菌感染、应激；降低：病毒感染、骨髓抑制</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">中性粒细胞百分比（NEUT%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">50-70%</td><td>升高：细菌感染；降低：病毒感染</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">淋巴细胞百分比（LYMPH%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">20-40%</td><td>升高：病毒感染；降低：免疫功能低下</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">嗜酸性粒细胞（EOS%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">0.5-5%</td><td>升高：过敏、寄生虫感染</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">血小板（PLT）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">100-300×10⁹/L</td><td>&lt;100：出血风险增加；&gt;400：血栓风险</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <!-- 肝功能 -->
+            <tr data-cat="liver"><td class="indicator-name">丙氨酸氨基转移酶（ALT）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 40 U/L</td><td>升高：肝细胞损伤；极高（&gt;10倍）：急性肝炎</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">天冬氨酸氨基转移酶（AST）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 40 U/L</td><td>AST/ALT&gt;2：酒精性肝病；同时升高：急性肝炎</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">总胆红素（TBIL）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">3.4-17.1 μmol/L</td><td>升高：黄疸；轻度升高（&lt;34）常见于Gilbert综合征（良性）</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">白蛋白（ALB）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">35-55 g/L</td><td>降低：肝脏合成能力下降、营养不良</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">γ-谷氨酰转肽酶（GGT）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 50 U/L</td><td>升高：胆汁淤积、酒精、脂肪肝；对酒精非常敏感</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <!-- 肾功能 -->
+            <tr data-cat="kidney"><td class="indicator-name">肌酐（Cr）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">男 53-106 μmol/L<br>女 44-97 μmol/L</td><td>升高：肾功能下降；需结合eGFR判断严重程度</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">肾小球滤过率（eGFR）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">≥60 mL/min/1.73m²</td><td>60-90：轻度下降；30-60：中度；&lt;30：重度；&lt;15：肾衰竭</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">尿素氮（BUN）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">2.9-7.5 mmol/L</td><td>升高：肾功能下降或高蛋白饮食；受饮食影响大</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">尿酸（UA）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">男 200-420 μmol/L<br>女 140-360 μmol/L</td><td>升高：高嘌呤饮食、痛风风险；不一定有痛风症状</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">尿蛋白（PRO）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">阴性（-）</td><td>+~+++：肾脏过滤功能受损；剧烈运动/发热可短暂阳性</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <!-- 血糖 -->
+            <tr data-cat="sugar"><td class="indicator-name">空腹血糖（FBG）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">3.9-6.1 mmol/L</td><td>6.1-7.0：糖尿病前期；≥7.0（两次）：糖尿病</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <tr data-cat="sugar"><td class="indicator-name">糖化血红蛋白（HbA1c）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">&lt; 5.7%</td><td>5.7-6.4%：糖尿病前期；≥6.5%：糖尿病诊断标准之一</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <!-- 血脂 -->
+            <tr data-cat="lipid"><td class="indicator-name">总胆固醇（TC）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 5.18 mmol/L（理想）</td><td>5.18-6.19：边界升高；≥6.2：升高</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">低密度脂蛋白（LDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">一般人&lt;3.4 mmol/L<br>高危人群&lt;2.6</td><td>LDL是最重要的血脂指标；升高=动脉粥样硬化风险</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">高密度脂蛋白（HDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">男≥1.04 mmol/L<br>女≥1.30 mmol/L</td><td>降低：心血管风险升高（好胆固醇，越高越好）</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">甘油三酯（TG）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 1.7 mmol/L</td><td>1.7-5.6：升高；&gt;5.6：急性胰腺炎风险</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <!-- 甲状腺 -->
+            <tr data-cat="thyroid"><td class="indicator-name">促甲状腺激素（TSH）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">0.4-4.0 mIU/L</td><td>升高：甲减（甲状腺功能不足）；降低：甲亢</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <tr data-cat="thyroid"><td class="indicator-name">游离三碘甲腺原氨酸（FT3）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">2.3-6.3 pmol/L</td><td>升高：甲亢；降低：甲减</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <tr data-cat="thyroid"><td class="indicator-name">游离甲状腺素（FT4）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">10.3-24.5 pmol/L</td><td>升高：甲亢；降低：甲减</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <!-- 肿瘤标志物 -->
+            <tr data-cat="tumor"><td class="indicator-name">甲胎蛋白（AFP）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 20 ng/mL</td><td>升高：肝炎/肝硬化修复、孕期、肝癌（&gt;400强烈提示）</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">癌胚抗原（CEA）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 5 ng/mL（非吸烟）</td><td>吸烟、肠炎均可升高；轻度升高无需恐慌</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">前列腺特异抗原（PSA）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 4 ng/mL</td><td>前列腺炎/增生均可升高；4-10为灰区，需结合f/tPSA</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">CA-125</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 35 U/mL</td><td>女性月经期可升高；子宫内膜异位症可升高</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">CA19-9</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 37 U/mL</td><td>胰腺炎、胆结石均可升高；升高需结合影像检查</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+        </tbody>
+    </table>
+
+    <p style="margin-top:16px;color:#6b7280;font-size:0.85rem;">⚠️ 以上参考范围来自常见临床标准，不同医院试剂盒可能有差异，以报告单上的参考范围为准。</p>
+</div>
+
+<footer class="site-footer">
+    <p>📋 体检报告篇 · 人体使用说明书系列</p>
+    <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
+</footer>
+<script src="nav.js"></script>
+<script>
+let currentFilter = 'all';
+function setFilter(cat, btn) {
+    currentFilter = cat;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterTable();
+}
+function filterTable() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    const rows = document.querySelectorAll('#lookupBody tr');
+    rows.forEach(row => {
+        const catMatch = currentFilter === 'all' || row.dataset.cat === currentFilter;
+        const textMatch = !q || row.textContent.toLowerCase().includes(q);
+        row.style.display = (catMatch && textMatch) ? '' : 'none';
+    });
+}
+</script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>
