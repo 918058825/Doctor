@@ -42,6 +42,61 @@
         .risk-box.red { border-color: #fca5a5; }
         .risk-box.yellow { border-color: #fde68a; }
         .risk-box.green { border-color: #86efac; }
+        .risk-box.blue { border-color: #bae6fd; }
+        .system-filter {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .sys-btn {
+            padding: 7px 14px;
+            border: 2px solid var(--primary-light);
+            border-radius: 20px;
+            background: white;
+            color: var(--primary-dark);
+            cursor: pointer;
+            font-size: 0.82rem;
+            transition: all 0.2s;
+        }
+        .sys-btn:hover, .sys-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .signal-section { margin-bottom: 36px; }
+        .white-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 28px;
+        }
+        .white-section h3 {
+            margin: 0 0 14px;
+            color: var(--primary-dark);
+            font-size: 1.05rem;
+        }
+        .white-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .white-list li {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 7px;
+            padding: 8px 12px;
+            font-size: 0.87rem;
+            color: #374151;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .white-list li::before { content: '✅'; flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -50,78 +105,123 @@
 <div class="page-hero">
     <div class="chapter-badge">实用工具</div>
     <h1>🚨 风险信号清单</h1>
-    <p class="subtitle">按紧急程度分级——哪些异常结果需要立刻就医，哪些可以等，哪些只需定期随访？</p>
+    <p class="subtitle">按紧急程度分级——哪些异常结果需要立刻就医，哪些可以等，哪些只需定期随访？涵盖血液/尿液/影像等全类别。</p>
 </div>
 
 <div style="max-width:960px;margin:0 auto;padding:0 2rem 4rem;">
 
-    <div class="info-box" style="margin-bottom:28px;">
-        💡 <strong>使用说明：</strong>本清单帮助你快速判断体检异常结果的紧急程度。所有情况均应结合症状综合判断，如有不适症状，无论指标值如何，都应及时就医。
+    <div class="info-box" style="margin-bottom:20px;">
+        💡 <strong>使用说明：</strong>本清单帮助你快速判断体检异常结果的紧急程度。所有情况均应结合症状综合判断——如有不适症状，无论指标值如何，都应及时就医。可通过下方按钮按系统筛选。
+    </div>
+
+    <div class="system-filter" id="sysFilter">
+        <button class="sys-btn active" onclick="showAll(this)">全部显示</button>
+        <button class="sys-btn" onclick="scrollTo('sec-red')">🔴 立刻就医</button>
+        <button class="sys-btn" onclick="scrollTo('sec-yellow')">🟡 尽快就医</button>
+        <button class="sys-btn" onclick="scrollTo('sec-green')">🟢 定期随访</button>
+        <button class="sys-btn" onclick="scrollTo('sec-white')">⚪ 无需特殊处理</button>
     </div>
 
     <!-- 红色：立刻就医 -->
-    <div class="risk-section">
-        <div class="risk-level-title level-red">🔴 立刻就医（当天内）</div>
+    <div class="risk-section signal-section" id="sec-red">
+        <div class="risk-level-title level-red">🔴 立刻就医（当天，不要拖延）</div>
         <div class="risk-box red">
             <table class="risk-table">
-                <tr><td>血压</td><td>≥180/110 mmHg</td><td>→ 高血压急症，心脑血管事件风险极高</td></tr>
-                <tr><td>空腹血糖</td><td>≥16 mmol/L 或伴口渴、多尿、消瘦</td><td>→ 糖尿病酮症或高渗昏迷前兆</td></tr>
-                <tr><td>血红蛋白</td><td>&lt; 70 g/L（同时有心慌、气短）</td><td>→ 重度贫血，可能需要输血</td></tr>
-                <tr><td>血小板</td><td>&lt; 50×10⁹/L 且有出血症状</td><td>→ 严重出血风险</td></tr>
-                <tr><td>肌酐</td><td>明显升高 + 少尿/无尿</td><td>→ 急性肾衰竭可能</td></tr>
-                <tr><td>ALT/AST</td><td>&gt; 10 倍正常上限（皮肤黄染）</td><td>→ 急性肝炎或重症肝损害</td></tr>
-                <tr><td>影像报告</td><td>提示"急性"病变或需要紧急手术</td><td>→ 立刻就医，不要延误</td></tr>
+                <tr><td>血压</td><td>≥180/110 mmHg，或伴头痛/视觉模糊</td><td>→ 高血压急症，心脑血管事件风险极高</td></tr>
+                <tr><td>空腹血糖</td><td>≥16 mmol/L，或有口渴/多尿/消瘦症状</td><td>→ 糖尿病酮症或高渗昏迷前兆</td></tr>
+                <tr><td>血红蛋白</td><td>&lt;70 g/L 且伴心慌、气短</td><td>→ 重度贫血，可能需要输血</td></tr>
+                <tr><td>血小板</td><td>&lt;20×10⁹/L 或伴皮下出血点</td><td>→ 严重出血风险，立即就血液科</td></tr>
+                <tr><td>白细胞</td><td>&gt;30×10⁹/L（显著升高）或伴发热</td><td>→ 严重感染或血液病可能，需紧急评估</td></tr>
+                <tr><td>肌酐/尿量</td><td>肌酐骤升 + 少尿/无尿</td><td>→ 急性肾衰竭可能</td></tr>
+                <tr><td>eGFR</td><td>&lt;15 mL/min（G5期，肾衰竭）</td><td>→ 需肾内科紧急评估透析指征</td></tr>
+                <tr><td>ALT/AST</td><td>&gt;10倍正常上限 + 皮肤黄染</td><td>→ 急性肝炎或重症肝损害</td></tr>
+                <tr><td>影像报告</td><td>"需紧急手术"/"急性梗阻"/"大量积液"</td><td>→ 立刻急诊，不要延误</td></tr>
+                <tr><td>肺结节</td><td>实性结节 &gt;3cm，或报告提示"不除外恶性"</td><td>→ 立即胸外科或呼吸科就诊</td></tr>
+                <tr><td>心肌酶</td><td>肌钙蛋白极高（体检发现）且伴胸痛</td><td>→ 急性心肌梗死可能，立即急诊</td></tr>
+                <tr><td>多项肿瘤标志物</td><td>3项以上同时显著升高（&gt;5倍）</td><td>→ 1周内就医，结合影像综合评估</td></tr>
             </table>
         </div>
     </div>
 
     <!-- 黄色：1-2周内 -->
-    <div class="risk-section">
+    <div class="risk-section signal-section" id="sec-yellow">
         <div class="risk-level-title level-yellow">🟡 尽快就医（1-2周内）</div>
         <div class="risk-box yellow">
             <table class="risk-table">
-                <tr><td>血压</td><td>160-179/100-109 mmHg（持续）</td><td>→ 需要评估是否开始药物治疗</td></tr>
-                <tr><td>空腹血糖</td><td>7-16 mmol/L（首次发现）</td><td>→ 新诊断糖尿病，需开始系统管理</td></tr>
-                <tr><td>HbA1c</td><td>≥ 6.5%</td><td>→ 糖尿病诊断，需专科评估</td></tr>
-                <tr><td>eGFR</td><td>30-59 mL/min（首次）</td><td>→ 中度肾功能下降，需肾内科评估</td></tr>
-                <tr><td>LDL-C</td><td>&gt; 4.9 mmol/L（家族性高胆固醇血症可能）</td><td>→ 需评估是否立即启动他汀治疗</td></tr>
-                <tr><td>ALT/AST</td><td>3-10 倍正常上限</td><td>→ 需查明原因（病毒肝/药物/酒精）</td></tr>
-                <tr><td>尿蛋白</td><td>+++（排除运动/发热原因）</td><td>→ 肾脏损害信号，需肾内科就诊</td></tr>
-                <tr><td>AFP</td><td>&gt; 200 ng/mL（有肝病史）</td><td>→ 需做增强CT排查肝癌</td></tr>
-                <tr><td>肺结节</td><td>&gt; 8mm 实性结节 / 混合磨玻璃结节</td><td>→ 需胸外科或呼吸科评估</td></tr>
-                <tr><td>甲状腺</td><td>TSH极低（甲亢）伴心慌、手抖</td><td>→ 需内分泌科评估，可能需要治疗</td></tr>
+                <tr><td>血压</td><td>160-179/100-109 mmHg（持续两次）</td><td>→ 评估是否启动药物治疗</td></tr>
+                <tr><td>空腹血糖</td><td>7-16 mmol/L（首次发现）</td><td>→ 新诊断糖尿病，需系统管理</td></tr>
+                <tr><td>HbA1c</td><td>≥6.5%（首次发现）</td><td>→ 糖尿病诊断，需内分泌专科评估</td></tr>
+                <tr><td>LDL-C</td><td>&gt;4.9 mmol/L（家族性高胆固醇血症可能）</td><td>→ 评估是否立即启动他汀治疗</td></tr>
+                <tr><td>eGFR</td><td>30-59 mL/min（G3期，首次发现）</td><td>→ 肾内科评估原因及进展风险</td></tr>
+                <tr><td>ALT/AST</td><td>3-10倍正常上限</td><td>→ 需查明原因（病毒性肝炎/药物/酒精）</td></tr>
+                <tr><td>尿蛋白</td><td>+++ 持续阳性（排除运动/发热原因）</td><td>→ 肾脏损害信号，需肾内科就诊</td></tr>
+                <tr><td>AFP</td><td>&gt;200 ng/mL（有肝病背景）</td><td>→ 做肝脏增强CT，排查肝癌</td></tr>
+                <tr><td>甲状腺TSH</td><td>极低（&lt;0.1）伴心慌/手抖/体重骤降</td><td>→ 内分泌科评估，可能需要抗甲亢治疗</td></tr>
+                <tr><td>甲状腺结节</td><td>TI-RADS 4类或 5类</td><td>→ 甲状腺外科/内分泌科，考虑细针穿刺</td></tr>
+                <tr><td>肺结节</td><td>实性结节 8-30mm</td><td>→ 3月内胸外科/呼吸科就诊评估</td></tr>
+                <tr><td>血红蛋白</td><td>70-90 g/L（中度贫血）</td><td>→ 血液科评估原因，排除出血/造血障碍</td></tr>
+                <tr><td>尿潜血</td><td>持续++ 且排除月经干扰</td><td>→ 泌尿科就诊，排除肾小球肾炎/泌尿道肿瘤</td></tr>
+                <tr><td>白细胞</td><td>持续&gt;12×10⁹/L（非感染期）</td><td>→ 需排除血液病，做骨髓评估</td></tr>
+                <tr><td>甘油三酯</td><td>&gt;5.6 mmol/L（急性胰腺炎风险）</td><td>→ 尽快就诊降甘油三酯，评估饮食/酒精因素</td></tr>
+                <tr><td>维生素D</td><td>&lt;12 nmol/L（严重缺乏）伴骨痛/乏力</td><td>→ 需补充治疗剂量，评估是否伴骨质疏松</td></tr>
             </table>
         </div>
     </div>
 
     <!-- 绿色：定期随访 -->
-    <div class="risk-section">
-        <div class="risk-level-title level-green">🟢 定期随访（1-3月）</div>
+    <div class="risk-section signal-section" id="sec-green">
+        <div class="risk-level-title level-green">🟢 定期随访（1-3个月复查）</div>
         <div class="risk-box green">
             <table class="risk-table">
-                <tr><td>空腹血糖</td><td>6.1-7.0 mmol/L（糖尿病前期）</td><td>→ 生活方式干预3-6月，复查</td></tr>
-                <tr><td>血脂</td><td>LDL 3.4-4.9 mmol/L（无其他风险）</td><td>→ 饮食控制3月后复查</td></tr>
-                <tr><td>尿酸</td><td>420-540 μmol/L（无症状）</td><td>→ 低嘌呤饮食，3月后复查</td></tr>
-                <tr><td>甘油三酯</td><td>1.7-5.6 mmol/L</td><td>→ 饮食控制（少油腻/少饮酒），3月后复查</td></tr>
-                <tr><td>亚临床甲减</td><td>TSH升高 + T3/T4正常</td><td>→ 3月后复查，观察是否进展</td></tr>
-                <tr><td>肿瘤标志物</td><td>单项轻度升高（1-3倍）</td><td>→ 3月后复查，若下降或稳定则随访</td></tr>
-                <tr><td>肺结节</td><td>6-8mm 实性 / 纯磨玻璃结节（首次）</td><td>→ 6-12月CT随访</td></tr>
-                <tr><td>ALT/AST</td><td>1-3 倍正常上限（有脂肪肝）</td><td>→ 控制体重，3月后复查</td></tr>
-                <tr><td>甲状腺结节</td><td>TI-RADS 3类（&gt;1cm）</td><td>→ 3-6月超声随访</td></tr>
+                <tr><td>空腹血糖</td><td>6.1-7.0 mmol/L（糖尿病前期）</td><td>→ 生活方式干预3-6月，复查FBG+HbA1c</td></tr>
+                <tr><td>血脂LDL</td><td>3.4-4.9 mmol/L（无高危因素）</td><td>→ 饮食控制3月后复查，必要时他汀</td></tr>
+                <tr><td>尿酸</td><td>420-540 μmol/L（无痛风症状）</td><td>→ 低嘌呤饮食、多饮水，3月后复查</td></tr>
+                <tr><td>甘油三酯</td><td>1.7-5.6 mmol/L</td><td>→ 减少饮酒/精制碳水，3月后复查</td></tr>
+                <tr><td>亚临床甲减</td><td>TSH升高 + T3/T4正常</td><td>→ 3月后复查TSH，观察是否进展</td></tr>
+                <tr><td>肿瘤标志物</td><td>单项轻度升高（1-3倍），无症状</td><td>→ 3月后复查同一项目，观察趋势</td></tr>
+                <tr><td>肺结节（实性）</td><td>6-8mm 实性结节（首次发现）</td><td>→ 6-12月CT随访</td></tr>
+                <tr><td>肺结节（磨玻璃）</td><td>纯磨玻璃结节（首次发现，任何大小）</td><td>→ 3-6月CT随访，不急于手术</td></tr>
+                <tr><td>ALT/AST</td><td>1-3倍正常上限（脂肪肝背景）</td><td>→ 减重/戒酒，3月后复查</td></tr>
+                <tr><td>甲状腺结节</td><td>TI-RADS 3类（&gt;1cm）</td><td>→ 6月内超声随访</td></tr>
+                <tr><td>尿蛋白</td><td>+ 或 ++（持续，无症状）</td><td>→ 1月内查24小时尿蛋白定量</td></tr>
+                <tr><td>eGFR</td><td>60-89 mL/min（G2期，首次）</td><td>→ 3月后复查，关注趋势</td></tr>
+                <tr><td>血红蛋白</td><td>100-120 g/L（轻中度贫血）</td><td>→ 评估原因（缺铁/营养/慢病），补充治疗后复查</td></tr>
+                <tr><td>HbA1c</td><td>5.7-6.4%（糖尿病前期）</td><td>→ 强化生活方式干预，6月后复查</td></tr>
+                <tr><td>血压</td><td>130-159/85-99 mmHg（1-2级，无合并症）</td><td>→ 3月生活方式干预（DASH饮食/减重/运动）</td></tr>
+                <tr><td>腰围</td><td>男&gt;90/女&gt;85cm（腹型肥胖）</td><td>→ 同时查血糖/血脂/血压评估代谢综合征</td></tr>
             </table>
         </div>
     </div>
 
+    <!-- 白色：无需特殊处理 -->
+    <div class="signal-section" id="sec-white">
+        <div class="white-section">
+            <h3>⚪ 以下发现无需特殊处理（年度随访即可）</h3>
+            <ul class="white-list">
+                <li>单纯性肝囊肿（Bosniak I类，壁薄，无分隔）</li>
+                <li>单纯性肾囊肿（Bosniak I/II类）</li>
+                <li>甲状腺结节 TI-RADS 1-2类（纯囊性/明显良性）</li>
+                <li>肺结节 &lt;6mm（低危人群，无危险因素）</li>
+                <li>胆囊息肉 &lt;6mm、形态规则、无蒂</li>
+                <li>轻度脂肪肝（正在积极改善生活方式中）</li>
+                <li>CEA/CA19-9 轻度升高（已复查排除器质性病变）</li>
+                <li>Gilbert综合征（总胆红素轻度偏高、其余正常）</li>
+                <li>一过性尿蛋白（运动/发热后，复查正常）</li>
+                <li>嗜酸性粒细胞轻度升高（无症状，无寄生虫接触史）</li>
+                <li>MCV 轻度偏低（&gt;78fL，无贫血症状）</li>
+                <li>TSH 在 2.5-4.0 之间（正常上限，无症状）</li>
+                <li>尿比重偏高（1.025-1.030，饮水不足）</li>
+                <li>维生素D 轻度不足（30-50 nmol/L，补充即可）</li>
+                <li>BMI 25-27.9（超重但无合并症，生活方式干预）</li>
+                <li>轻度骨量减少（T值-1.0~-2.0，增加钙+维D+运动）</li>
+                <li>胆囊壁稍厚（&lt;4mm，无症状）</li>
+                <li>脾脏轻度增大（&lt;12cm，无症状，已排除病因）</li>
+            </ul>
+        </div>
+    </div>
+
     <div class="info-box">
-        <strong>📌 以下情况无需特别处理（年度体检随访即可）：</strong>
-        <ul style="margin-top:8px;">
-            <li>单纯性肝囊肿、肾囊肿（Bosniak I类）</li>
-            <li>甲状腺结节 TI-RADS 2类（良性）</li>
-            <li>肺结节 &lt;6mm（低危人群）</li>
-            <li>胆囊息肉 &lt;6mm、无增大趋势</li>
-            <li>轻度脂肪肝（正在积极改善中）</li>
-            <li>CEA/CA19-9 轻度升高，已排除器质性病变</li>
-        </ul>
+        📌 <strong>重要提示：</strong>以上分级基于孤立指标；如果多项同时异常，或者出现新的症状（乏力加重、疼痛、体重骤降等），应按更高级别处理。任何情况下，医生的个体化建议均优先于本清单。
     </div>
 
 </div>
@@ -131,6 +231,16 @@
     <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
 </footer>
 <script src="nav.js"></script>
+<script>
+function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function showAll(btn) {
+    document.querySelectorAll('.sys-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 <script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
 <script src="../auth.js"></script>
 </body>

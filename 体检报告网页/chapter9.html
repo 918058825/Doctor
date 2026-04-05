@@ -31,137 +31,481 @@
         </ul>
     </div>
 
-    <h2 id="s1">一、B超报告常用词解读</h2>
-    <p>B超（超声）用声波成像，不同组织回声（反射声波的能力）不同，医生据此判断。</p>
+    <p class="subtitle">B超、CT、X线报告上写满看不懂的词——结节、磨玻璃影、钙化、回声不均……这章带你逐词破解，还会告诉你磨玻璃结节和实性结节的真实随访数据。</p>
+</div>
 
-    <table class="indicator-table">
-        <tr><th>B超词汇</th><th>通俗解释</th><th>通常严重吗？</th></tr>
-        <tr><td class="td-name">回声增强/增高</td><td>该区域比周围更亮，通常代表有脂肪沉积（如脂肪肝）</td><td class="td-ok">通常不严重，可改善</td></tr>
-        <tr><td class="td-name">回声不均</td><td>组织回声不一致，常见于慢性肝病或腺体增生</td><td class="td-warn">需结合具体部位判断</td></tr>
-        <tr><td class="td-name">囊肿</td><td>充满液体的"水泡"，壁光滑，绝大多数是良性</td><td class="td-ok">绝大多数不需处理</td></tr>
-        <tr><td class="td-name">结节</td><td>局部异常增生的组织团块，形态规则则可能是良性</td><td class="td-warn">需随访观察大小变化</td></tr>
-        <tr><td class="td-name">钙化</td><td>矿物质沉积，像"小石灰粒"，常是愈合反应</td><td class="td-ok">大多为陈旧性改变</td></tr>
-        <tr><td class="td-name">强回声光点</td><td>超声下亮点，常见于胆囊息肉或肾结晶</td><td class="td-warn">随访观察即可</td></tr>
+<div class="main-content">
+<div class="content-body">
+
+    <div class="chapter-intro">
+        <div class="ci-meta">
+            <span class="ci-badge">🖥️ 影像报告</span>
+            <span class="ci-phase">⭐⭐⭐⭐ 词汇量大，需要逐一拆解</span>
+        </div>
+        <h3>读完这章，你能回答：</h3>
+        <ul class="intro-hooks">
+            <li>B超报告说"回声不均"或"囊肿"，是什么意思，严重吗？</li>
+            <li>肺 CT 发现"磨玻璃结节"，进展风险和实性结节有什么不同？</li>
+            <li>脂肪肝"轻度"是指什么？怎么判断能不能逆转？</li>
+            <li>做 CT 的辐射量有多大？和普通 X 线比，值不值？</li>
+        </ul>
+    </div>
+
+    <!-- ============================================================
+         一、B超工作原理
+         ============================================================ -->
+    <h2 id="s1">一、B超的成像原理——为什么有"回声高低"</h2>
+
+    <p>B超（超声）利用声波在人体组织中的反射来成像。<strong>不同密度的组织反射声波的能力不同</strong>，这就是"回声"强弱差异的来源：</p>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>回声描述</th><th>物理含义</th><th>典型组织</th><th>通俗比喻</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>高回声（强回声）</strong></td>
+                <td>反射大量声波，图像显示为亮白色</td>
+                <td>骨骼、结石、气体界面</td>
+                <td>像白墙反光</td>
+            </tr>
+            <tr>
+                <td><strong>等回声</strong></td>
+                <td>与周围组织回声相似，图像为灰色</td>
+                <td>正常实质脏器（肝、肾）</td>
+                <td>背景色</td>
+            </tr>
+            <tr>
+                <td><strong>低回声</strong></td>
+                <td>反射声波少，图像偏暗</td>
+                <td>淋巴结、部分肿块</td>
+                <td>暗灰色区域</td>
+            </tr>
+            <tr>
+                <td><strong>无回声（液性暗区）</strong></td>
+                <td>声波穿透，无反射，图像为黑色</td>
+                <td>液体、囊肿、血管</td>
+                <td>黑色水窟</td>
+            </tr>
+        </tbody>
     </table>
 
-    <h2 id="s2">二、脂肪肝分级</h2>
-    <p>B超诊断脂肪肝时，会按脂肪浸润程度分为三级：</p>
+    <h3>B超报告常见词汇解读</h3>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>B超词汇</th><th>通俗解释</th><th>严重程度</th><th>建议</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>回声增强/增高</strong></td>
+                <td>该区域比周围更亮，常代表脂肪沉积</td>
+                <td style="color:#16a34a">通常可改善</td>
+                <td>脂肪肝的主要表现，生活方式干预可逆</td>
+            </tr>
+            <tr>
+                <td><strong>回声不均</strong></td>
+                <td>组织回声不一致，质地不均匀</td>
+                <td style="color:#d97706">需结合部位判断</td>
+                <td>肝脏不均多见于慢性肝病，甲状腺不均多见于桥本</td>
+            </tr>
+            <tr>
+                <td><strong>囊肿</strong></td>
+                <td>充满液体的"水泡"，壁光滑、无回声</td>
+                <td style="color:#16a34a">绝大多数良性</td>
+                <td>肝囊肿、肾囊肿、卵巢囊肿——通常无需处理</td>
+            </tr>
+            <tr>
+                <td><strong>结节</strong></td>
+                <td>局部异常增生的组织团块</td>
+                <td style="color:#d97706">需随访观察</td>
+                <td>根据形态、大小、部位决定随访或进一步检查</td>
+            </tr>
+            <tr>
+                <td><strong>钙化</strong></td>
+                <td>矿物质沉积（"小石灰粒"），强回声后伴声影</td>
+                <td style="color:#16a34a">多为陈旧性改变</td>
+                <td>肝钙化、脾钙化多为愈合反应，无需处理</td>
+            </tr>
+            <tr>
+                <td><strong>胆囊息肉样变</strong></td>
+                <td>胆囊壁上的隆起性病变</td>
+                <td style="color:#d97706">依大小而定</td>
+                <td>&lt;1cm 定期复查；&gt;1cm 或快速增大需外科评估</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================================
+         二、脂肪肝分级
+         ============================================================ -->
+    <h2 id="s2">二、脂肪肝——B超分级和逆转可能</h2>
+
+    <p>B超诊断脂肪肝的依据是肝脏回声增强——脂肪越多，肝脏反射声波越强，在超声图像上越白亮。按照脂肪浸润程度分为三级：</p>
+
     <div class="stat-grid">
         <div class="stat-item">
-            <div class="stat-value" style="color:var(--primary)">轻度</div>
-            <div class="stat-label">近场回声稍增强，肝内管道仍可显示</div>
+            <div style="font-size:1.2rem;font-weight:700;color:var(--primary)">轻度脂肪肝</div>
+            <div style="font-size:0.85rem;margin-top:6px">肝脏近场回声轻度增强，肝内管道仍可清晰显示；脂肪含量 5-30%</div>
         </div>
         <div class="stat-item">
-            <div class="stat-value" style="color:#d97706">中度</div>
-            <div class="stat-label">回声增强明显，肝内管道显示不清</div>
+            <div style="font-size:1.2rem;font-weight:700;color:#d97706">中度脂肪肝</div>
+            <div style="font-size:0.85rem;margin-top:6px">回声明显增强，肝内管道显示不清；脂肪含量 30-60%</div>
         </div>
         <div class="stat-item">
-            <div class="stat-value" style="color:#b91c1c">重度</div>
-            <div class="stat-label">深场回声明显减弱，肝内管道无法显示</div>
+            <div style="font-size:1.2rem;font-weight:700;color:#dc2626">重度脂肪肝</div>
+            <div style="font-size:0.85rem;margin-top:6px">深场回声明显减弱，肝内管道及后壁无法显示；脂肪含量 &gt;60%</div>
         </div>
     </div>
+
+    <div class="flow-steps">
+        <div class="flow-step">正常肝脏</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">单纯性脂肪肝<br>（可逆）</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">脂肪性肝炎<br>（ALT升高）</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">肝纤维化<br>（开始不可逆）</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">肝硬化<br>（不可逆）</div>
+    </div>
+
     <div class="key-concept">
-        轻度脂肪肝通过改变饮食、减重是可以逆转的。脂肪肝本身不痛不痒，但长期不处理可能进展为脂肪性肝炎、肝纤维化，少数最终肝硬化。
+        轻度和中度脂肪肝处于<strong>可逆阶段</strong>——通过减重（减少 5-10% 体重），配合低碳水饮食，坚持有氧运动，多数患者可以在 6-12 个月内使脂肪肝逆转，B超显示恢复正常。一旦进展到肝纤维化，逆转就困难了。
     </div>
 
-    <h2 id="s3">三、肺结节的处理</h2>
-    <p>近年来随着CT普及，肺结节检出率大幅上升——但绝大多数是良性的。肺结节的关键是：<strong>大小</strong>+<strong>形态</strong>+<strong>密度</strong>。</p>
+    <!-- ============================================================
+         三、肺结节
+         ============================================================ -->
+    <h2 id="s3">三、肺结节——磨玻璃结节 vs 实性结节的真实风险</h2>
 
-    <h3>密度分类</h3>
-    <div class="comparison-box">
-        <div class="cb-normal">
-            <div class="cb-label">实性结节</div>
-            <div class="cb-content">CT下呈白色的实心团块。&lt;6mm的实性结节恶性率极低，通常不需要特殊处理。</div>
-        </div>
-        <div class="cb-path">
-            <div class="cb-label">磨玻璃结节（GGN）</div>
-            <div class="cb-content">CT下呈半透明的"磨砂玻璃"状。磨玻璃结节若为纯磨玻璃，进展极缓慢，多为原位腺癌，长期随访即可；若出现实性成分（混合磨玻璃），才需要更积极处理。</div>
-        </div>
-    </div>
+    <p>肺结节是 CT 时代最常见的"让人担心"的发现。关键评估维度是：<strong>大小 × 密度（实性 vs 磨玻璃） × 形态</strong>。</p>
 
-    <h3>肺结节随访建议（基于国际Fleischner标准）</h3>
-    <table class="indicator-table">
-        <tr><th>结节大小</th><th>建议</th></tr>
-        <tr><td class="td-name">&lt; 6mm（实性）</td><td class="td-ok">低危人群无需常规随访</td></tr>
-        <tr><td class="td-name">6-8mm（实性）</td><td class="td-warn">6-12个月内CT复查</td></tr>
-        <tr><td class="td-name">&gt; 8mm（实性）</td><td>3个月CT复查或PET-CT评估</td></tr>
-        <tr><td class="td-name">纯磨玻璃结节</td><td class="td-warn">3-6个月CT复查，稳定后每年随访</td></tr>
-        <tr><td class="td-name">混合磨玻璃结节</td><td class="td-alert">3-6个月CT复查，必要时外科会诊</td></tr>
+    <h3>密度分类：实性 vs 磨玻璃，哪个更危险？</h3>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>类型</th><th>CT 表现</th><th>恶性风险</th><th>进展速度</th><th>处理策略</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>实性结节</strong></td>
+                <td>完全不透明的白色团块，边界清晰</td>
+                <td>&lt;6mm 极低；&gt;8mm 较高</td>
+                <td>较快（月-年级别）</td>
+                <td>&lt;6mm 不随访；6-8mm 6-12 月复查；&gt;8mm 积极评估</td>
+            </tr>
+            <tr>
+                <td><strong>纯磨玻璃结节（pGGN）</strong></td>
+                <td>半透明，像"磨砂玻璃"，可以看到血管</td>
+                <td>个体差异大，但大多数进展极慢</td>
+                <td>极慢（年-10年级别）</td>
+                <td>3-6月初查复查，稳定后每年随访 2-3 年</td>
+            </tr>
+            <tr>
+                <td><strong>混合磨玻璃结节（mGGN）</strong></td>
+                <td>中央有实性成分（白色核心）+周围磨玻璃</td>
+                <td>实性成分比例越高越危险</td>
+                <td>中等（实性成分增大需警惕）</td>
+                <td>3-6月复查；实性成分增大→外科会诊</td>
+            </tr>
+        </tbody>
     </table>
 
-    <div class="alert-box">
-        <div class="alert-title">⚠️ 重要提醒</div>
-        <p>发现肺结节不要自行判断，应由专科医生（呼吸科或胸外科）综合评估：结节大小、边缘（毛刺/分叶）、位置、有无吸烟史等综合因素才能给出正确建议。</p>
+    <div class="life-example">
+        <strong>案例：磨玻璃结节，真的不用马上手术吗？</strong><br>
+        小林，38岁，低剂量 CT 发现右肺上叶纯磨玻璃结节 6mm。她非常恐慌，立刻想手术。<br><br>
+        医生的解释：<br>
+        ① 纯磨玻璃结节即使是早期腺癌，生长速度通常以"年"计——平均倍增时间超过 800 天（超过 2 年）<br>
+        ② 6mm 的纯磨玻璃结节，在 Fleischner 学会指南中推荐首选随访，而非手术<br>
+        ③ 日本一项研究对 1235 个直径&lt;1cm 的纯磨玻璃结节随访 4 年，只有 1% 出现需要手术的进展<br><br>
+        处理方案：3个月后复查（排除炎性灶），确认后每年 CT 复查。如果 3-5 年都没有变化，可以延长随访间隔。<br><br>
+        <strong>磨玻璃结节的进展通常非常缓慢，随访观察不是"放任不管"，而是最符合证据的、避免过度治疗的正确策略。</strong>
     </div>
 
-    <h2 id="s4">四、胸部/腹部X线常见词</h2>
-    <table class="indicator-table">
-        <tr><th>词汇</th><th>通俗含义</th><th>常见原因</th></tr>
-        <tr><td class="td-name">肺纹理增多</td><td>肺血管/支气管影增多增粗</td><td class="td-ok">慢性支气管炎、过敏，多为良性</td></tr>
-        <tr><td class="td-name">心影增大</td><td>心脏轮廓超出正常范围</td><td class="td-warn">高血压性心脏病、心力衰竭</td></tr>
-        <tr><td class="td-name">膈肌抬高</td><td>横膈位置偏高</td><td class="td-ok">腹腔胀气、肥胖，常无意义</td></tr>
-        <tr><td class="td-name">主动脉迂曲</td><td>主动脉形态弯曲</td><td class="td-warn">老年动脉硬化常见表现</td></tr>
-        <tr><td class="td-name">骨质增生（骨刺）</td><td>关节处骨骼增生</td><td class="td-ok">常见退行性改变，不一定有症状</td></tr>
+    <h3>肺结节随访建议（Fleischner 学会标准）</h3>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>结节类型与大小</th><th>低危（无危险因素）</th><th>高危（吸烟/家族史）</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>实性 &lt;6mm</td>
+                <td>无需常规随访</td>
+                <td>12 个月 CT 复查</td>
+            </tr>
+            <tr>
+                <td>实性 6-8mm</td>
+                <td>6-12 个月 CT 复查</td>
+                <td>6-12 个月 CT 复查，18-24 月再查一次</td>
+            </tr>
+            <tr>
+                <td>实性 &gt;8mm</td>
+                <td>3个月 CT 复查 或 PET-CT</td>
+                <td>3个月 CT 复查，可考虑穿刺/手术</td>
+            </tr>
+            <tr>
+                <td>纯磨玻璃结节 &lt;6mm</td>
+                <td>无需常规随访</td>
+                <td>5年后 CT 复查</td>
+            </tr>
+            <tr>
+                <td>纯磨玻璃结节 ≥6mm</td>
+                <td>3-6月复查，稳定后每年1次，持续2年</td>
+                <td>同左</td>
+            </tr>
+            <tr>
+                <td>混合磨玻璃结节 &lt;6mm</td>
+                <td>3-6月复查；稳定后每年随访</td>
+                <td>同左</td>
+            </tr>
+        </tbody>
     </table>
 
-    <h2 id="s5">五、常见影像发现对照表</h2>
-    <div class="info-box">
-        <strong>常见良性发现（绝大多数不需处理）：</strong>
-        <ul style="margin-top:8px;">
-            <li>肝囊肿：液体囊泡，良性，无需特殊处理</li>
-            <li>肾囊肿（Bosniak I类）：单纯液性，良性</li>
-            <li>胆囊息肉 &lt;1cm：定期复查即可</li>
-            <li>子宫肌瘤（无症状）：定期随访</li>
-            <li>甲状腺结节（TI-RADS 2类）：常规体检复查</li>
-        </ul>
-        <strong style="display:block;margin-top:12px;">需要进一步就医的发现：</strong>
-        <ul style="margin-top:8px;">
-            <li>肺结节 &gt;8mm 或有毛刺、分叶</li>
-            <li>肝脏占位性病变（实性）</li>
-            <li>胆囊息肉快速增大或 &gt;1cm</li>
-            <li>腹腔/盆腔肿块（位置不明确）</li>
-            <li>颈动脉斑块（需评估脑血管风险）</li>
-        </ul>
+    <!-- ============================================================
+         四、辐射剂量比较
+         ============================================================ -->
+    <h2 id="s4">四、各影像检查的辐射剂量——做 CT 真的危险吗</h2>
+
+    <p>很多人担心 CT 辐射，但对比一下实际数字，就能做出理性判断：</p>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>检查类型</th><th>辐射剂量（毫希弗 mSv）</th><th>相当于自然辐射时间</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>胸部 X 线（正位）</td>
+                <td>0.02 mSv</td>
+                <td>约 2-3 天的自然本底辐射</td>
+            </tr>
+            <tr>
+                <td>腹部 X 线</td>
+                <td>0.1 mSv</td>
+                <td>约 10 天</td>
+            </tr>
+            <tr>
+                <td>低剂量胸部 CT（筛查用）</td>
+                <td>1-2 mSv</td>
+                <td>约 3-6 个月</td>
+            </tr>
+            <tr>
+                <td>常规胸部 CT</td>
+                <td>5-7 mSv</td>
+                <td>约 1.5-2 年</td>
+            </tr>
+            <tr>
+                <td>腹部+盆腔 CT（增强）</td>
+                <td>10-20 mSv</td>
+                <td>约 3-6 年</td>
+            </tr>
+            <tr>
+                <td>B超（超声）</td>
+                <td>0（无电离辐射）</td>
+                <td>—</td>
+            </tr>
+            <tr>
+                <td>MRI（核磁共振）</td>
+                <td>0（无电离辐射）</td>
+                <td>—</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="key-concept">
+        低剂量 CT（LDCT）的辐射量（1-2 mSv）远低于常规 CT，相当于生活在自然环境中几个月的本底辐射量，对于高风险人群（重度吸烟者）做年度肺癌筛查是获益远大于风险的。普通人不必为偶尔的一次 CT 检查担心辐射问题。
     </div>
+
+    <!-- ============================================================
+         五、X线常见词
+         ============================================================ -->
+    <h2 id="s5">五、胸腹 X 线常见描述词</h2>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>词汇</th><th>通俗含义</th><th>常见原因</th><th>是否需要处理</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>肺纹理增多</strong></td>
+                <td>肺血管/支气管影增多增粗</td>
+                <td>慢性支气管炎、过敏、感染后改变</td>
+                <td>无症状多不需处理，有症状就医</td>
+            </tr>
+            <tr>
+                <td><strong>心影增大</strong></td>
+                <td>心脏轮廓超出正常范围（心胸比&gt;0.5）</td>
+                <td>高血压性心脏病、心衰、心包积液</td>
+                <td>需就医心内科评估</td>
+            </tr>
+            <tr>
+                <td><strong>主动脉迂曲/硬化</strong></td>
+                <td>主动脉形态弯曲，钙化影</td>
+                <td>老年人动脉硬化常见表现</td>
+                <td>需结合血压、血脂综合管理</td>
+            </tr>
+            <tr>
+                <td><strong>膈肌抬高</strong></td>
+                <td>横膈位置偏高</td>
+                <td>腹腔胀气、肥胖、膈下积液</td>
+                <td>多为无意义发现，排除积液</td>
+            </tr>
+            <tr>
+                <td><strong>骨质增生</strong></td>
+                <td>关节处骨骼增生（骨刺）</td>
+                <td>退行性改变，老年常见</td>
+                <td>有症状（疼痛）才需处理</td>
+            </tr>
+            <tr>
+                <td><strong>椎体边缘骨质增生</strong></td>
+                <td>脊椎边缘长出"尖角"</td>
+                <td>颈椎病、腰椎退变</td>
+                <td>有症状就医，无症状观察</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================================
+         六、常见良性发现对照表
+         ============================================================ -->
+    <h2 id="s6">六、常见影像发现——良性 vs 需要关注</h2>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>发现</th><th>通常意味着</th><th>建议处理</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>肝囊肿（单纯性）</td>
+                <td>液体水泡，100% 良性</td>
+                <td>无需特殊处理，定期超声观察即可</td>
+            </tr>
+            <tr>
+                <td>肾囊肿（Bosniak I/II 类）</td>
+                <td>单纯液性囊肿，良性</td>
+                <td>随访，无需手术</td>
+            </tr>
+            <tr>
+                <td>胆囊息肉 &lt;1cm</td>
+                <td>多为胆固醇息肉，良性</td>
+                <td>每年 B 超随访</td>
+            </tr>
+            <tr>
+                <td>子宫肌瘤（无症状，&lt;3cm）</td>
+                <td>良性平滑肌瘤</td>
+                <td>每年 B 超随访，有症状就医</td>
+            </tr>
+            <tr>
+                <td>甲状腺结节（TI-RADS 2/3）</td>
+                <td>良性结节</td>
+                <td>1-2 年 B 超随访</td>
+            </tr>
+            <tr>
+                <td style="color:#dc2626"><strong>肝脏实性占位</strong></td>
+                <td>需要鉴别良恶性</td>
+                <td>就医，增强 CT/MRI 进一步评估</td>
+            </tr>
+            <tr>
+                <td style="color:#dc2626"><strong>肺结节 &gt;8mm 或有毛刺</strong></td>
+                <td>恶性风险需评估</td>
+                <td>就医，胸外科或呼吸科评估</td>
+            </tr>
+            <tr>
+                <td style="color:#dc2626"><strong>颈动脉斑块（有狭窄）</strong></td>
+                <td>动脉硬化，脑血管风险</td>
+                <td>就医，神经科/血管科评估</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================================
+         误区
+         ============================================================ -->
+    <h2 id="s7">七、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：磨玻璃结节比实性结节"更危险"，需要马上手术</span>
+        <span class="truth">✅ 真相：纯磨玻璃结节虽然可能是早期肺腺癌，但进展极慢（倍增时间常&gt;2年）。国际指南推荐随访观察而非立即手术，这样可以避免大量良性或惰性结节被过度治疗。手术时机由专科医生综合评估。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：B超发现"结节"就等于肿瘤</span>
+        <span class="truth">✅ 真相："结节"是形态学描述（局限性增生团块），不是诊断词汇。结节可以是良性（纤维腺瘤、增生结节）、炎性（淋巴结）、恶性的任何一种。需要结合超声特征（回声、形态、血流）和部位来判断，单词"结节"本身不传递恶性信息。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：做完 CT 就不需要 B超，一个检查能代替另一个</span>
+        <span class="truth">✅ 真相：B超和 CT 各有优势，互为补充。B超擅长实时动态、辨别囊实性（肾囊肿、胆结石）、无辐射；CT 擅长显示肺部细节、骨骼、需要高分辨率的部位（肺结节评估用CT，不用B超）。通常不会互相替代。</span>
+    </div>
+
+    <!-- ============================================================
+         行动清单
+         ============================================================ -->
+    <h2 id="s8">八、✅ 拿到影像报告行动指南</h2>
 
     <div class="action-list">
-        <h3>✅ 拿到影像报告后应该做的事</h3>
+        <h3>读报告的正确步骤</h3>
         <ul>
-            <li>先看"诊断意见"部分，而不是逐字翻译描述段落</li>
-            <li>发现囊肿、钙化等良性词汇，先不要慌</li>
-            <li>有"结节"字样：查看大小和建议复查时间</li>
-            <li>有"占位""肿块""恶性可能"字样：立即挂专科门诊</li>
-            <li>报告建议"结合临床"或"进一步检查"：按医嘱随访</li>
+            <li>先看"诊断意见"或"结论"部分，而不是逐字翻译描述段落</li>
+            <li>报告上写"建议复查"或"随访"：记录下时间建议并执行</li>
+            <li>报告上写"建议结合临床"：在门诊让医生解读，不要自行判断</li>
+        </ul>
+        <h3>不同关键词的处理建议</h3>
+        <ul>
+            <li>"囊肿"、"钙化"、"脂肪肝（轻度）"：多为良性，观察即可</li>
+            <li>"结节"（有大小描述）：查看 TI-RADS 级别（甲状腺）或大小（肺），按建议随访</li>
+            <li>"占位"、"实性肿块"、"不除外恶性"：立即就医，不要等</li>
+            <li>"斑块"（颈动脉、冠脉）：就医评估心脑血管风险</li>
+        </ul>
+        <h3>脂肪肝</h3>
+        <ul>
+            <li>轻度脂肪肝：减重5-10%（最有效）+ 低碳水饮食 + 戒酒 + 有氧运动</li>
+            <li>中重度脂肪肝：就医，查 ALT/AST，评估肝纤维化程度</li>
         </ul>
     </div>
 
-</div>
+    <div class="chapter-nav">
+        <a href="chapter8.html"><span class="nav-label">上一章</span>← 肿瘤标志物</a>
+        <a href="chapter10.html" class="next"><span class="nav-label">下一章</span>综合解读 →</a>
+    </div>
+
+</div><!-- end content-body -->
 
 <aside class="sidebar">
     <div class="sidebar-card">
         <h3>本章目录</h3>
         <ul class="toc-list">
-            <li><a href="#s1">一、B超词汇解读</a></li>
+            <li><a href="#s1">一、B超原理与词汇</a></li>
             <li><a href="#s2">二、脂肪肝分级</a></li>
-            <li><a href="#s3">三、肺结节处理</a></li>
-            <li><a href="#s4">四、X线常见词</a></li>
-            <li><a href="#s5">五、对照表</a></li>
+            <li><a href="#s3">三、肺结节深度解读</a></li>
+            <li><a href="#s4">四、辐射剂量对比</a></li>
+            <li><a href="#s5">五、X线常见词</a></li>
+            <li><a href="#s6">六、良性 vs 需关注</a></li>
+            <li><a href="#s7">七、⚠️ 常见误区</a></li>
+            <li><a href="#s8">八、✅ 行动指南</a></li>
         </ul>
     </div>
     <div class="sidebar-card">
-        <h3>快速链接</h3>
+        <h3>肺结节速查</h3>
+        <ul class="toc-list" style="font-size:0.82rem;line-height:1.9;">
+            <li>实性&lt;6mm：无需随访</li>
+            <li>实性6-8mm：6-12月复查</li>
+            <li>实性&gt;8mm：3月复查评估</li>
+            <li>纯磨玻璃≥6mm：3-6月复查</li>
+            <li>混合磨玻璃：3-6月复查</li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>快速跳转</h3>
         <ul class="toc-list">
-            <li><a href="chapter8.html">← 上一章：肿瘤标志物</a></li>
-            <li><a href="chapter10.html">→ 下一章：综合解读</a></li>
+            <li><a href="indicator-lookup.html">📊 指标速查表</a></li>
+            <li><a href="chapter8.html">← 第8章：肿瘤标志物</a></li>
+            <li><a href="chapter10.html">→ 第10章：综合解读</a></li>
         </ul>
     </div>
 </aside>
-</div>
-
-<div class="chapter-nav" style="max-width:1200px;margin:0 auto;padding:0 2rem 3rem;">
-    <a href="chapter8.html"><span class="nav-label">上一章</span>← 肿瘤标志物</a>
-    <a href="chapter10.html" class="next"><span class="nav-label">下一章</span>综合解读 →</a>
-</div>
+</div><!-- end main-content -->
 
 <footer class="site-footer">
     <p>📋 体检报告篇 · 人体使用说明书系列</p>

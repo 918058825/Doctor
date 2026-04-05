@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风险因素清单 · 脑血管篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+<style>
+.tool-hero {
+  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 40%, #7c3aed 100%);
+  color: #fff;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+.tool-hero h1 { font-size: clamp(1.4rem,4vw,2rem); margin: .5rem 0; }
+.tool-hero p { opacity: .85; font-size: .95rem; max-width: 520px; margin: .5rem auto 0; }
+
+.checklist-wrap {
+  max-width: 680px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.risk-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+.risk-section-header {
+  background: #f5f3ff;
+  padding: .75rem 1.25rem;
+  font-weight: 700;
+  color: #4c1d95;
+  font-size: .95rem;
+  border-bottom: 1px solid #ede9fe;
+}
+
+.risk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .9rem 1.25rem;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background .15s;
+}
+.risk-item:last-child { border-bottom: none; }
+.risk-item:hover { background: #faf5ff; }
+.risk-item.checked { background: #f5f3ff; }
+
+.risk-checkbox {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid #a78bfa;
+  border-radius: 6px;
+  margin-top: .1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .15s;
+  font-size: .9rem;
+}
+.risk-item.checked .risk-checkbox {
+  background: #7c3aed;
+  border-color: #7c3aed;
+}
+.risk-item.checked .risk-checkbox::after {
+  content: '✓';
+  color: #fff;
+  font-weight: 900;
+}
+
+.risk-label {
+  flex: 1;
+}
+.risk-name {
+  font-weight: 600;
+  font-size: .95rem;
+  color: #1a1a2e;
+}
+.risk-desc {
+  font-size: .82rem;
+  color: #666;
+  margin-top: .15rem;
+  line-height: 1.4;
+}
+.risk-score-badge {
+  background: #ede9fe;
+  color: #6d28d9;
+  font-weight: 700;
+  font-size: .8rem;
+  padding: .2rem .5rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  min-width: 44px;
+  text-align: center;
+  margin-top: .1rem;
+}
+.risk-item.checked .risk-score-badge {
+  background: #7c3aed;
+  color: #fff;
+}
+
+/* 结果面板 */
+.result-panel {
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  border-top: 2px solid #7c3aed;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.1);
+  z-index: 100;
+}
+.result-score-display {
+  text-align: center;
+  min-width: 70px;
+}
+.score-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #7c3aed;
+  line-height: 1;
+}
+.score-label {
+  font-size: .72rem;
+  color: #888;
+}
+.result-info {
+  flex: 1;
+}
+.result-level {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: .2rem;
+}
+.result-advice {
+  font-size: .82rem;
+  color: #555;
+  line-height: 1.5;
+}
+.result-low    { color: #16a34a; }
+.result-medium { color: #ca8a04; }
+.result-high   { color: #ea580c; }
+.result-very-high { color: #dc2626; }
+
+/* 风险等级卡片 */
+.risk-levels {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem;
+  margin: 1.5rem 0;
+}
+.rl-card {
+  border-radius: 12px;
+  padding: 1rem;
+}
+.rl-low    { background: #f0fdf4; border: 1.5px solid #86efac; }
+.rl-med    { background: #fefce8; border: 1.5px solid #fde047; }
+.rl-high   { background: #fff7ed; border: 1.5px solid #fdba74; }
+.rl-vhigh  { background: #fff1f2; border: 1.5px solid #fca5a5; }
+.rl-title  { font-weight: 700; font-size: .95rem; margin-bottom: .3rem; }
+.rl-score  { font-size: .8rem; color: #666; margin-bottom: .5rem; }
+.rl-text   { font-size: .8rem; line-height: 1.5; color: #444; }
+
+.reset-btn {
+  background: #ede9fe;
+  border: none;
+  color: #6d28d9;
+  font-weight: 600;
+  font-size: .85rem;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.reset-btn:hover { background: #ddd6fe; }
+
+@media(max-width:480px) {
+  .risk-levels { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">🏠 总首页</a> › <a href="index.html">脑血管篇</a> › <span>风险因素清单</span>
+</div>
+
+<div class="tool-hero">
+  <div class="chapter-badge">📋 评估工具</div>
+  <h1>卒中风险因素清单</h1>
+  <p>勾选你或家人的情况，实时计算风险等级，获得个性化建议</p>
+</div>
+
+<div class="checklist-wrap">
+
+  <div class="info-box" style="margin:0 0 1.5rem;">
+    <p style="margin:0;font-size:.88rem;">⚠️ 本工具仅供参考，不能替代医院的专业评估。分数偏高者请到神经内科进行正式风险评估。</p>
+  </div>
+
+  <!-- 不可改变的危险因素 -->
+  <div class="risk-section">
+    <div class="risk-section-header">不可改变的危险因素</div>
+
+    <div class="risk-item" data-score="2" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">年龄 ≥ 60岁</div>
+        <div class="risk-desc">年龄是最强的卒中危险因素之一。每增加10岁，卒中风险大约加倍。</div>
+      </div>
+      <div class="risk-score-badge">+2分</div>
+    </div>
+
+    <div class="risk-item" data-score="1" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">直系亲属有卒中史</div>
+        <div class="risk-desc">父母或兄弟姐妹曾经发生过脑卒中（包括脑梗死或脑出血）。</div>
+      </div>
+      <div class="risk-score-badge">+1分</div>
+    </div>
+
+    <div class="risk-item" data-score="1" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">男性</div>
+        <div class="risk-desc">男性在60岁以前卒中风险高于女性（女性绝经后差距缩小）。</div>
+      </div>
+      <div class="risk-score-badge">+1分</div>
+    </div>
+  </div>
+
+  <!-- 可干预的危险因素 -->
+  <div class="risk-section">
+    <div class="risk-section-header">可干预的危险因素（这些可以改变！）</div>
+
+    <div class="risk-item" data-score="3" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">高血压（血压 ≥ 140/90 mmHg）</div>
+        <div class="risk-desc">卒中最重要的可干预危险因素。长期高血压使卒中风险升高4-6倍。</div>
+      </div>
+      <div class="risk-score-badge">+3分</div>
+    </div>
+
+    <div class="risk-item" data-score="4" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">心房颤动（房颤）</div>
+        <div class="risk-desc">房颤使卒中风险升高5-7倍，是心源性脑栓塞最主要原因。有房颤必须评估是否抗凝。</div>
+      </div>
+      <div class="risk-score-badge">+4分</div>
+    </div>
+
+    <div class="risk-item" data-score="2" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">糖尿病</div>
+        <div class="risk-desc">糖尿病使卒中风险升高2-3倍，并加速动脉粥样硬化进程。</div>
+      </div>
+      <div class="risk-score-badge">+2分</div>
+    </div>
+
+    <div class="risk-item" data-score="2" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">高脂血症（LDL偏高或总胆固醇偏高）</div>
+        <div class="risk-desc">促进颈动脉和颅内动脉斑块形成，加速动脉粥样硬化。</div>
+      </div>
+      <div class="risk-score-badge">+2分</div>
+    </div>
+
+    <div class="risk-item" data-score="2" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">吸烟（目前吸烟或近1年内吸烟）</div>
+        <div class="risk-desc">使卒中风险加倍。烟草中的尼古丁和一氧化碳损伤血管内皮，促进血栓形成。</div>
+      </div>
+      <div class="risk-score-badge">+2分</div>
+    </div>
+
+    <div class="risk-item" data-score="1" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">肥胖（BMI ≥ 28）</div>
+        <div class="risk-desc">肥胖通过高血压、糖尿病、血脂异常等多种途径增加卒中风险，约增加1.5倍。</div>
+      </div>
+      <div class="risk-score-badge">+1分</div>
+    </div>
+
+    <div class="risk-item" data-score="1" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">缺乏体力活动</div>
+        <div class="risk-desc">每周中等强度运动不足150分钟。久坐不动是独立危险因素。</div>
+      </div>
+      <div class="risk-score-badge">+1分</div>
+    </div>
+  </div>
+
+  <!-- 高风险疾病史 -->
+  <div class="risk-section">
+    <div class="risk-section-header">高风险病史</div>
+
+    <div class="risk-item" data-score="5" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">曾经发生过卒中或TIA</div>
+        <div class="risk-desc">卒中后第一年复发风险约10-15%，是风险最高的情况。需要强化二级预防。</div>
+      </div>
+      <div class="risk-score-badge">+5分</div>
+    </div>
+
+    <div class="risk-item" data-score="3" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">颈动脉斑块或颈动脉狭窄</div>
+        <div class="risk-desc">颈动脉超声显示有明显斑块或狭窄，尤其症状性狭窄&gt;50%，风险显著升高。</div>
+      </div>
+      <div class="risk-score-badge">+3分</div>
+    </div>
+
+    <div class="risk-item" data-score="2" onclick="toggleItem(this)">
+      <div class="risk-checkbox"></div>
+      <div class="risk-label">
+        <div class="risk-name">其他心脏病（冠心病、心力衰竭、心脏瓣膜病）</div>
+        <div class="risk-desc">心脏病可导致心源性栓子，是心源性脑梗死的重要原因。</div>
+      </div>
+      <div class="risk-score-badge">+2分</div>
+    </div>
+  </div>
+
+  <!-- 风险等级说明 -->
+  <h2 style="color:#4c1d95;font-size:1.05rem;margin:2rem 0 .75rem;">📊 风险等级对照表</h2>
+  <div class="risk-levels">
+    <div class="rl-card rl-low">
+      <div class="rl-title" style="color:#16a34a;">🟢 低风险 (0-2分)</div>
+      <div class="rl-score">总分 0 - 2</div>
+      <div class="rl-text">整体风险较低。继续保持良好生活习惯，定期体检，关注血压血糖血脂。</div>
+    </div>
+    <div class="rl-card rl-med">
+      <div class="rl-title" style="color:#ca8a04;">🟡 中等风险 (3-5分)</div>
+      <div class="rl-score">总分 3 - 5</div>
+      <div class="rl-text">建议到神经内科或全科门诊评估。重点控制可干预因素（血压、血脂、戒烟、运动）。</div>
+    </div>
+    <div class="rl-card rl-high">
+      <div class="rl-title" style="color:#ea580c;">🟠 高风险 (6-9分)</div>
+      <div class="rl-score">总分 6 - 9</div>
+      <div class="rl-text">需要尽快就医进行正式评估，可能需要开始预防性药物治疗。严格控制所有危险因素。</div>
+    </div>
+    <div class="rl-card rl-vhigh">
+      <div class="rl-title" style="color:#dc2626;">🔴 极高风险 (≥10分)</div>
+      <div class="rl-score">总分 ≥ 10</div>
+      <div class="rl-text">需要立即就医。多种高危因素叠加，必须强化药物治疗，同时学习识别卒中症状（FAST）。</div>
+    </div>
+  </div>
+
+  <div style="background:#f5f3ff;border-radius:12px;padding:1rem;text-align:center;font-size:.85rem;color:#4c1d95;line-height:1.8;margin-top:1rem;">
+    <strong>评分只是参考</strong>，卒中风险受很多复杂因素影响。<br>
+    建议将评分结果告知你的医生，进行个体化指导。<br>
+    <a href="chapter9.html" style="color:#6d28d9;text-decoration:underline;">→ 查看预防复发详细方案（第9章）</a>
+  </div>
+
+</div>
+
+<!-- 固定底部结果面板 -->
+<div class="result-panel" id="result-panel">
+  <div class="result-score-display">
+    <div class="score-number" id="score-display">0</div>
+    <div class="score-label">风险得分</div>
+  </div>
+  <div class="result-info">
+    <div class="result-level" id="result-level">🟢 低风险</div>
+    <div class="result-advice" id="result-advice">请勾选适用的选项</div>
+  </div>
+  <button class="reset-btn" onclick="resetAll()">重置</button>
+</div>
+
+<footer class="site-footer">
+  <p>🧠 脑血管篇 · 风险因素清单</p>
+  <p style="margin-top:.5rem;opacity:.6;font-size:.8rem;">内容仅供健康教育，不替代医疗诊断。</p>
+</footer>
+
+<script>
+let totalScore = 0;
+
+function toggleItem(el) {
+  const score = parseInt(el.dataset.score) || 0;
+  const isChecked = el.classList.contains('checked');
+  
+  if (isChecked) {
+    el.classList.remove('checked');
+    totalScore -= score;
+  } else {
+    el.classList.add('checked');
+    totalScore += score;
+  }
+  if (totalScore < 0) totalScore = 0;
+  updateResult();
+}
+
+function updateResult() {
+  const disp = document.getElementById('score-display');
+  const level = document.getElementById('result-level');
+  const advice = document.getElementById('result-advice');
+  
+  disp.textContent = totalScore;
+  
+  if (totalScore <= 2) {
+    level.className = 'result-level result-low';
+    level.textContent = '🟢 低风险';
+    advice.textContent = '整体风险较低。保持良好生活习惯，定期体检即可。';
+  } else if (totalScore <= 5) {
+    level.className = 'result-level result-medium';
+    level.textContent = '🟡 中等风险';
+    advice.textContent = '建议到门诊评估，重点控制血压、血脂、戒烟，加强运动。';
+  } else if (totalScore <= 9) {
+    level.className = 'result-level result-high';
+    level.textContent = '🟠 高风险';
+    advice.textContent = '建议尽快就医，可能需要药物预防，严格控制所有危险因素。';
+  } else {
+    level.className = 'result-level result-very-high';
+    level.textContent = '🔴 极高风险';
+    advice.textContent = '请立即就医！同时务必学会识别卒中症状（FAST），家人也需了解急救方法。';
+  }
+}
+
+function resetAll() {
+  totalScore = 0;
+  document.querySelectorAll('.risk-item.checked').forEach(el => el.classList.remove('checked'));
+  updateResult();
+}
+</script>
+</body>
+</html>

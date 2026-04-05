@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常见消化药物说明 · 消化篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">🏠 总首页</a> › <a href="index.html">消化篇</a> › <span>消化药物说明</span>
+</div>
+
+<div class="page-hero tool-hero">
+  <div class="page-hero-inner">
+    <div class="chapter-badge">💊 工具页</div>
+    <h1>常见消化药物说明</h1>
+    <p class="page-hero-sub">消化科常用药物速查——用途、吃法、注意事项，用通俗语言说清楚。</p>
+  </div>
+</div>
+
+<div class="main-content">
+<article class="article">
+
+<div class="info-box ib-yellow" data-label="⚠️ 用药提示">
+  <p>本页仅供健康教育参考。<strong>具体用药请遵医嘱或在药师指导下使用</strong>，不要自行长期用药而不复诊。</p>
+</div>
+
+<!-- 筛选按钮 -->
+<div class="filter-btns">
+  <button class="fb-btn active" onclick="filterDrugs('all')">全部药物</button>
+  <button class="fb-btn" onclick="filterDrugs('acid')">抑酸/抗酸类</button>
+  <button class="fb-btn" onclick="filterDrugs('hp')">幽门螺杆菌</button>
+  <button class="fb-btn" onclick="filterDrugs('protect')">胃黏膜保护</button>
+  <button class="fb-btn" onclick="filterDrugs('lax')">通便/泻药</button>
+  <button class="fb-btn" onclick="filterDrugs('motility')">促动力/止泻</button>
+  <button class="fb-btn" onclick="filterDrugs('other')">其他消化药</button>
+</div>
+
+<!-- 一、抑酸/抗酸类 -->
+<div class="drug-group" id="group-acid">
+  <h2 style="margin-top:2rem;">💊 一、抑酸 / 抗酸类药物</h2>
+  <p style="color:#6b7280;font-size:0.95rem;">用于胃炎、胃溃疡、胃食管反流等"胃酸过多"相关问题。</p>
+
+  <div class="indicator-table">
+    <table>
+      <thead>
+        <tr>
+          <th>药物名称</th>
+          <th>类型</th>
+          <th>主要用途</th>
+          <th>如何吃</th>
+          <th>注意事项</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>奥美拉唑</strong><br><small>（洛赛克）</small></td>
+          <td>PPI<br><small>质子泵抑制剂</small></td>
+          <td>胃溃疡、胃食管反流、HP 治疗配合用药</td>
+          <td><strong>饭前30分钟</strong>口服，效果最好</td>
+          <td>
+            不宜随意长期（&gt;8周）自行服用；
+            与某些药物有相互作用（如氯吡格雷）
+          </td>
+        </tr>
+        <tr>
+          <td><strong>兰索拉唑</strong><br><small>（达克普隆）</small></td>
+          <td>PPI</td>
+          <td>同奥美拉唑，抑酸作用相当</td>
+          <td>饭前30分钟口服</td>
+          <td>与奥美拉唑药效相近，可替换使用</td>
+        </tr>
+        <tr>
+          <td><strong>雷贝拉唑</strong><br><small>（波利特）</small></td>
+          <td>PPI</td>
+          <td>同奥美拉唑，起效略快</td>
+          <td>饭前30分钟口服</td>
+          <td>对基因型变异者（CYP2C19多态性）效果更稳定</td>
+        </tr>
+        <tr>
+          <td><strong>艾司奥美拉唑</strong><br><small>（耐信）</small></td>
+          <td>PPI（升级版）</td>
+          <td>重度反流、难治性溃疡，效果比奥美拉唑强</td>
+          <td>饭前30-60分钟口服</td>
+          <td>价格较贵；疗程按医嘱</td>
+        </tr>
+        <tr>
+          <td><strong>法莫替丁</strong><br><small>（信法丁）</small></td>
+          <td>H₂受体阻滞剂</td>
+          <td>轻度反流、胃炎、夜间反酸</td>
+          <td>饭后或睡前口服</td>
+          <td>抑酸效果弱于PPI，但副作用少；适合轻症或临时用</td>
+        </tr>
+        <tr>
+          <td><strong>铝碳酸镁片</strong><br><small>（达喜）</small></td>
+          <td>抗酸药</td>
+          <td>快速中和胃酸，胃灼热、反酸即时缓解</td>
+          <td><strong>饭后1-2小时</strong>或不适时嚼碎服用</td>
+          <td>只是临时缓解症状，不能治根；肾功能不全者慎用</td>
+        </tr>
+        <tr>
+          <td><strong>碳酸氢钠片</strong><br><small>（小苏打片）</small></td>
+          <td>抗酸药（弱）</td>
+          <td>临时快速中和胃酸</td>
+          <td>需要时口服</td>
+          <td>产生CO₂气体（打嗝）；高血压/心脏病患者慎用；仅临时用</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="life-example" style="margin-top:1.5rem;">
+    <p><strong>PPI 和抗酸药有什么区别？</strong>打个比方：抗酸药（铝碳酸镁）就像消防员用水桶泼火——快，但只能治表面；PPI（奥美拉唑）就像关掉消防栓——从根源减少胃酸产生，效果持久但起效慢（需要2-3天才达到最大效果）。急性反酸难受时，先嚼一片铝碳酸镁快速缓解，再加奥美拉唑长期控制。</p>
+  </div>
+</div>
+
+<!-- 二、幽门螺杆菌 -->
+<div class="drug-group" id="group-hp">
+  <h2 style="margin-top:2.5rem;">🦠 二、幽门螺杆菌（HP）四联疗法</h2>
+  <p style="color:#6b7280;font-size:0.95rem;">根除HP必须"组合出拳"，单一药物无效。</p>
+
+  <div class="key-concept">
+    <h3>标准四联疗法（14天）= PPI + 铋剂 + 两种抗生素</h3>
+    <div style="margin-top:0.8rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.8rem;">
+      <div style="background:rgba(255,255,255,0.5);padding:0.8rem;border-radius:8px;">
+        <strong>💊 PPI</strong><br>
+        <small>奥美拉唑/艾司奥美拉唑<br>饭前30分钟，每日2次</small>
+      </div>
+      <div style="background:rgba(255,255,255,0.5);padding:0.8rem;border-radius:8px;">
+        <strong>🧪 铋剂</strong><br>
+        <small>枸橼酸铋钾（德诺）<br>饭前30分钟，每日2次</small>
+      </div>
+      <div style="background:rgba(255,255,255,0.5);padding:0.8rem;border-radius:8px;">
+        <strong>🔬 抗生素1</strong><br>
+        <small>阿莫西林 / 克拉霉素<br>饭后口服，每日2次</small>
+      </div>
+      <div style="background:rgba(255,255,255,0.5);padding:0.8rem;border-radius:8px;">
+        <strong>🔬 抗生素2</strong><br>
+        <small>甲硝唑 / 替硝唑 / 呋喃唑酮<br>饭后口服，每日2次</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box ib-red" data-label="🔴 HP 治疗注意事项">
+    <ul style="margin-left:1.2rem;margin-top:0.5rem;">
+      <li><strong>必须完成14天疗程</strong>，不能"感觉好了就停"，否则细菌耐药，更难杀灭</li>
+      <li>治疗期间<strong>停止饮酒</strong>（甲硝唑类药物与酒精反应，引起恶心呕吐）</li>
+      <li>治疗结束后<strong>4周</strong>再做HP检测，确认根除成功</li>
+      <li>根除期间大便可能变黑（铋剂正常副作用，不要恐慌）</li>
+      <li>对青霉素过敏者，提前告知医生换用其他方案</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 三、胃黏膜保护剂 -->
+<div class="drug-group" id="group-protect">
+  <h2 style="margin-top:2.5rem;">🛡️ 三、胃黏膜保护剂</h2>
+  <p style="color:#6b7280;font-size:0.95rem;">在胃壁上形成保护层，帮助溃疡愈合。</p>
+
+  <div class="indicator-table">
+    <table>
+      <thead>
+        <tr>
+          <th>药物名称</th>
+          <th>主要用途</th>
+          <th>如何吃</th>
+          <th>注意事项</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>铝碳酸镁片</strong><br><small>（达喜）</small></td>
+          <td>既抗酸又有黏膜保护作用，是"双功能"药</td>
+          <td>饭后1-2小时或睡前嚼碎服</td>
+          <td>肾功能不全患者慎用大量长期服用</td>
+        </tr>
+        <tr>
+          <td><strong>枸橼酸铋钾</strong><br><small>（德诺）</small></td>
+          <td>溃疡修复，也是HP四联疗法组分之一</td>
+          <td>饭前30分钟口服</td>
+          <td>大便会变黑（正常），不超过8周连续用，肾功能不全禁用</td>
+        </tr>
+        <tr>
+          <td><strong>硫糖铝</strong></td>
+          <td>在溃疡面形成保护膜，适合胃溃疡</td>
+          <td>饭前1小时或睡前口服</td>
+          <td>与其他药物间隔2小时以上，便秘是常见副作用</td>
+        </tr>
+        <tr>
+          <td><strong>替普瑞酮</strong><br><small>（施维舒）</small></td>
+          <td>促进胃黏膜分泌，修复胃黏膜</td>
+          <td>饭后口服，每日3次</td>
+          <td>不良反应少，但价格较贵</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 四、通便/泻药 -->
+<div class="drug-group" id="group-lax">
+  <h2 style="margin-top:2.5rem;">💩 四、通便 / 泻药类</h2>
+  <p style="color:#6b7280;font-size:0.95rem;">不是所有泻药都一样——有的可以长期用，有的只能偶尔用。</p>
+
+  <div class="comparison-box">
+    <div class="cb-normal">
+      <div class="cb-label">✅ 渗透性泻药（可长期用）</div>
+      <div class="cb-content">
+        <p style="font-size:0.85rem;color:#6b7280;margin-bottom:0.5rem;">通过增加肠道水分软化大便，不刺激肠道。</p>
+        <ul>
+          <li><strong>聚乙二醇（福松/舒泰清）：</strong>安全温和，老人、孕妇都可用，每日1包溶水口服</li>
+          <li><strong>乳果糖（杜密克）：</strong>益生菌的"食物"，同时改善肠道菌群，每次15-30ml，每日1-2次</li>
+          <li><strong>乳糖醇：</strong>与乳果糖类似，副作用更少</li>
+        </ul>
+      </div>
+    </div>
+    <div class="cb-path">
+      <div class="cb-label">⚠️ 刺激性泻药（只能短期偶尔用）</div>
+      <div class="cb-content">
+        <p style="font-size:0.85rem;color:#e57373;margin-bottom:0.5rem;">刺激肠壁收缩来促进排便，长期用会造成"懒肠"依赖。</p>
+        <ul>
+          <li><strong>番泻叶（含大黄类）：</strong>常见于"减肥茶"中，长期用会导致结肠黑变病和依赖性</li>
+          <li><strong>比沙可啶（便塞停）：</strong>急性便秘临时用，不超过1周</li>
+          <li><strong>蓖麻油：</strong>偶尔用，不能常规使用</li>
+        </ul>
+        <p style="font-size:0.85rem;color:#e57373;margin-top:0.5rem;"><strong>⚠️ 不要把刺激性泻药当日常通便药！</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="life-example" style="margin-top:1rem;">
+    <p>小王便秘，网上买了"清肠茶"（含番泻叶），喝了效果很好，但一停就便秘更严重。这就是刺激性泻药的依赖问题。正确做法：改用聚乙二醇，同时增加膳食纤维（每天蔬菜500g、水果200g），养成定时上厕所的习惯。</p>
+  </div>
+</div>
+
+<!-- 五、促动力/止泻/其他 -->
+<div class="drug-group" id="group-motility">
+  <h2 style="margin-top:2.5rem;">⚡ 五、促动力药 / 止泻药</h2>
+
+  <div class="indicator-table">
+    <table>
+      <thead>
+        <tr>
+          <th>药物名称</th>
+          <th>类型</th>
+          <th>主要用途</th>
+          <th>如何吃</th>
+          <th>注意事项</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>莫沙必利</strong><br><small>（新络纳）</small></td>
+          <td>促胃动力药</td>
+          <td>功能性消化不良、胃食管反流、饭后腹胀、恶心</td>
+          <td>饭前15-30分钟口服，每日3次</td>
+          <td>不要与某些心律药物同时使用，孕妇慎用</td>
+        </tr>
+        <tr>
+          <td><strong>多潘立酮</strong><br><small>（吗丁啉）</small></td>
+          <td>促胃动力药</td>
+          <td>恶心呕吐、饭后腹胀、胃排空延迟</td>
+          <td>饭前15-30分钟口服</td>
+          <td>心脏病患者慎用；不建议长期大量使用</td>
+        </tr>
+        <tr>
+          <td><strong>洛哌丁胺</strong><br><small>（易蒙停）</small></td>
+          <td>止泻药</td>
+          <td>急性腹泻（非细菌感染性）临时缓解症状</td>
+          <td>首次2mg，此后每次稀便后1mg，最多每日8mg</td>
+          <td>细菌感染性腹泻（发烧、血便）禁用；6岁以下儿童禁用</td>
+        </tr>
+        <tr>
+          <td><strong>蒙脱石散</strong><br><small>（思密达）</small></td>
+          <td>吸附止泻药</td>
+          <td>腹泻（感染性或非感染性都可用），覆盖并保护肠黏膜</td>
+          <td>每包溶于50ml水中，空腹或两餐间服用</td>
+          <td>需与其他药物间隔2小时，便秘者慎用</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 六、其他 -->
+<div class="drug-group" id="group-other">
+  <h2 style="margin-top:2.5rem;">🌿 六、益生菌 / 解痉药</h2>
+
+  <div class="indicator-table">
+    <table>
+      <thead>
+        <tr>
+          <th>药物名称</th>
+          <th>类型</th>
+          <th>主要用途</th>
+          <th>如何吃</th>
+          <th>注意事项</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>双歧杆菌三联活菌</strong><br><small>（培菲康）</small></td>
+          <td>益生菌</td>
+          <td>抗生素相关腹泻、IBS（肠易激综合征）、功能性便秘调理</td>
+          <td>饭后用温水（≤37°C）送服，每次2-4粒</td>
+          <td>注意保存条件（2-8°C冷藏）；与抗生素间隔2小时</td>
+        </tr>
+        <tr>
+          <td><strong>地衣芽孢杆菌</strong><br><small>（整肠生）</small></td>
+          <td>益生菌</td>
+          <td>急慢性腹泻、抗生素相关腹泻</td>
+          <td>口服，每日3次</td>
+          <td>耐酸耐热，不需要冷藏，更方便携带</td>
+        </tr>
+        <tr>
+          <td><strong>匹维溴铵</strong><br><small>（得舒特）</small></td>
+          <td>解痉药</td>
+          <td>IBS 肠痉挛性腹痛、结肠痉挛</td>
+          <td>饭时用水送服，不能嚼碎；每次50mg，每日3次</td>
+          <td>必须整片吞服，站立或坐位服用（减少食管刺激）</td>
+        </tr>
+        <tr>
+          <td><strong>东莨菪碱</strong><br><small>（解痉灵）</small></td>
+          <td>解痉药（抗胆碱）</td>
+          <td>急性肠痉挛、胆绞痛、肾绞痛急性止痛</td>
+          <td>口服或肌肉注射（医院用）</td>
+          <td>青光眼、前列腺增生禁用；口干心跳加快是正常副作用</td>
+        </tr>
+        <tr>
+          <td><strong>熊去氧胆酸</strong><br><small>（UDCA）</small></td>
+          <td>利胆药</td>
+          <td>胆固醇结石溶石（有限效果）、原发性胆汁性胆管炎、脂肪性肝病辅助</td>
+          <td>睡前口服效果最好</td>
+          <td>仅适用于特定类型小结石；停药后结石易复发；需长期服用6-24个月</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="action-list" style="margin-top:2rem;">
+  <h3>✅ 用药安全须知</h3>
+  <ul>
+    <li><strong>PPI（奥美拉唑等）不是"保胃药"，不需要无病预防吃</strong>，长期服用会影响钙吸收和B12代谢</li>
+    <li><strong>不要自己搭配HP四联疗法</strong>，抗生素选择和剂量需要医生根据当地耐药情况决定</li>
+    <li><strong>刺激性泻药（番泻叶等）= 不能当日常通便药</strong>，用一周以上请就医</li>
+    <li><strong>腹泻时：</strong>补水第一位，不要急于止泻（细菌排出体外很重要）；发烧+血便时就医</li>
+    <li><strong>任何药物超过8周还没好转</strong>，请复诊而不是继续自行用药</li>
+  </ul>
+</div>
+
+</article>
+
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <h3>💊 药物速查</h3>
+    <ul>
+      <li><strong>反酸/烧心：</strong>PPI饭前吃</li>
+      <li><strong>快速缓解反酸：</strong>铝碳酸镁嚼碎</li>
+      <li><strong>HP治疗：</strong>四联疗法14天</li>
+      <li><strong>便秘：</strong>聚乙二醇最安全</li>
+      <li><strong>腹泻止泻：</strong>蒙脱石散温和</li>
+    </ul>
+  </div>
+  <div class="sidebar-card sc-alert">
+    <h3>⚠️ 不要这样做</h3>
+    <ul>
+      <li>长期喝清肠茶（番泻叶）</li>
+      <li>HP治疗自行停药</li>
+      <li>无病乱吃"保胃药"</li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>🔗 相关章节</h3>
+    <ul>
+      <li><a href="chapter2.html">第2章 幽门螺杆菌</a></li>
+      <li><a href="chapter3.html">第3章 胃溃疡</a></li>
+      <li><a href="chapter7.html">第7章 便秘</a></li>
+      <li><a href="symptom-checker.html">🔍 症状自查</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+
+<footer class="site-footer">
+  <p>🍽️ 消化篇 · 消化药物说明</p>
+  <p style="margin-top:0.5rem;opacity:.6;font-size:.8rem;">内容仅供健康教育，不替代医疗诊断和处方建议。</p>
+</footer>
+
+<script>
+function filterDrugs(type) {
+  const groups = document.querySelectorAll('.drug-group');
+  const btns = document.querySelectorAll('.fb-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+
+  if (type === 'all') {
+    groups.forEach(g => g.style.display = '');
+    return;
+  }
+  const map = {
+    'acid': 'group-acid',
+    'hp': 'group-hp',
+    'protect': 'group-protect',
+    'lax': 'group-lax',
+    'motility': 'group-motility',
+    'other': 'group-other'
+  };
+  groups.forEach(g => g.style.display = 'none');
+  const target = document.getElementById(map[type]);
+  if (target) target.style.display = '';
+}
+</script>
+</body>
+</html>

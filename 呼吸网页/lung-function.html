@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>肺功能报告解读 | 呼吸篇工具</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">呼吸篇</a><span>›</span>
+  📈 肺功能报告解读
+</div>
+
+<div class="page-hero tool-hero">
+  <div class="tool-badge">📈 工具页</div>
+  <h1>肺功能报告解读</h1>
+  <p class="subtitle">看懂FEV1、FVC、DLCO和GOLD分级——肺功能报告不再是天书</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="chapter-intro">
+      <div class="ci-meta">
+        <span class="ci-badge">实用工具</span>
+        <span class="ci-phase">📈 报告解读</span>
+      </div>
+      <h3>本工具帮你读懂：</h3>
+      <ul class="intro-hooks">
+        <li>FEV1、FVC、FEV1/FVC比值各代表什么</li>
+        <li>阻塞性通气功能障碍 vs 限制性通气功能障碍的区别</li>
+        <li>GOLD分级如何对应慢阻肺严重程度</li>
+        <li>DLCO（弥散功能）下降意味着什么</li>
+        <li>报告中各个%预计值的含义</li>
+      </ul>
+    </div>
+
+    <h2 id="key-indicators">核心指标一览</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th>中文名称</th>
+          <th>测量方法</th>
+          <th>正常范围</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FVC</strong></td>
+          <td>用力肺活量</td>
+          <td>尽力吸气到最大，再用最大力气呼气到最后，呼出的总量</td>
+          <td>≥ 80% 预计值</td>
+        </tr>
+        <tr>
+          <td><strong>FEV1</strong></td>
+          <td>第1秒用力呼气量</td>
+          <td>用力呼气动作的第1秒内呼出的气体量</td>
+          <td>≥ 80% 预计值</td>
+        </tr>
+        <tr>
+          <td><strong>FEV1/FVC</strong></td>
+          <td>第1秒率</td>
+          <td>FEV1占FVC的比值，反映气道通畅程度</td>
+          <td>≥ 70%（慢阻肺判断标准）</td>
+        </tr>
+        <tr>
+          <td><strong>TLC</strong></td>
+          <td>肺总量</td>
+          <td>最大吸气后肺内气体总量（需体描箱检查）</td>
+          <td>80–120% 预计值</td>
+        </tr>
+        <tr>
+          <td><strong>RV</strong></td>
+          <td>残气量</td>
+          <td>最大呼气后肺内剩余气体量</td>
+          <td>75–120% 预计值</td>
+        </tr>
+        <tr>
+          <td><strong>DLCO</strong></td>
+          <td>肺弥散量（CO转移因子）</td>
+          <td>肺泡膜传递气体的能力，反映气体交换效率</td>
+          <td>≥ 80% 预计值</td>
+        </tr>
+        <tr>
+          <td><strong>MVV</strong></td>
+          <td>最大通气量</td>
+          <td>12秒内尽力反复呼吸的最大通气量×5</td>
+          <td>≥ 80% 预计值</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box blue">
+      <div class="box-title">📊 什么是"预计值"（%pred）</div>
+      <p>肺功能报告中的百分比（如"FEV1 65%预计值"），是将你的实测值与
+      <strong>同年龄/同性别/同身高的正常健康人的平均值</strong>相比较得出的百分比。
+      例如：你的FEV1是2.0L，同参数正常人预计值是3.0L，则 FEV1% = 67%。
+      各指标的正常下限（LLN）因年龄等因素不同，通常以80%预计值为参考，
+      但严格来说应使用实际正常下限（LLN = 预计值 - 1.645×标准差）。</p>
+    </div>
+
+    <h2 id="obstruction">阻塞性 vs 限制性：两种完全不同的肺功能障碍</h2>
+
+    <div class="comparison-box">
+      <div class="cb-normal">
+        <div class="cb-label">🌀 阻塞性通气功能障碍</div>
+        <div class="cb-content">
+          <ul>
+            <li><strong>定义</strong>：FEV1/FVC &lt; 70%（或LLN）</li>
+            <li><strong>机制</strong>：气道狭窄/阻塞，呼气速度减慢，但肺容量可正常</li>
+            <li><strong>典型疾病</strong>：慢阻肺（COPD）、哮喘（发作期）、细支气管炎</li>
+            <li><strong>FVC</strong>：可正常或轻度降低</li>
+            <li><strong>FEV1</strong>：明显降低</li>
+            <li><strong>TLC</strong>：正常或增高（肺气肿时气体潴留）</li>
+            <li><strong>RV</strong>：增高（气体陷闭）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cb-path">
+        <div class="cb-label">📉 限制性通气功能障碍</div>
+        <div class="cb-content">
+          <ul>
+            <li><strong>定义</strong>：TLC &lt; 80%预计值（FEV1/FVC正常或升高，FVC降低）</li>
+            <li><strong>机制</strong>：肺总容量减少，气道不阻塞但肺"装不了那么多气"</li>
+            <li><strong>典型疾病</strong>：肺纤维化、胸廓畸形、神经肌肉疾病、肥胖（重度）</li>
+            <li><strong>FVC</strong>：降低</li>
+            <li><strong>FEV1</strong>：降低（与FVC同步）</li>
+            <li><strong>FEV1/FVC</strong>：正常或升高</li>
+            <li><strong>TLC</strong>：降低</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="mixed">混合性通气功能障碍</h2>
+    <div class="info-box blue">
+      <div class="box-title">🔀 同时存在阻塞和限制</div>
+      <p>部分患者同时有FEV1/FVC&lt;70%（阻塞）和TLC&lt;80%（限制），称为<strong>混合性通气功能障碍</strong>。
+      常见于：严重COPD合并肺气肿+肺纤维化（"蜂窝肺"），或COPD合并胸廓病变。
+      这类患者预后通常更差，治疗更复杂，需要专科医生制定综合方案。</p>
+    </div>
+
+    <h2 id="fev1-interpretation">FEV1%预计值：阻塞严重程度分级</h2>
+    <p>当确认存在阻塞性通气功能障碍（FEV1/FVC &lt; 70%）后，用FEV1%预计值进一步分级：</p>
+
+    <div class="range-cards">
+      <div class="range-card rc-normal">
+        <span class="range-val">≥ 80%</span>
+        <div class="range-label">轻度阻塞</div>
+        <div class="range-note">GOLD 1，症状轻微或无</div>
+      </div>
+      <div class="range-card rc-warn">
+        <span class="range-val">50–79%</span>
+        <div class="range-label">中度阻塞</div>
+        <div class="range-note">GOLD 2，活动后气短</div>
+      </div>
+      <div class="range-card rc-danger">
+        <span class="range-val">30–49%</span>
+        <div class="range-label">重度阻塞</div>
+        <div class="range-note">GOLD 3，日常活动气短</div>
+      </div>
+      <div class="range-card rc-danger">
+        <span class="range-val">&lt; 30%</span>
+        <div class="range-label">极重度阻塞</div>
+        <div class="range-note">GOLD 4，安静时气短</div>
+      </div>
+    </div>
+
+    <h2 id="gold-full">GOLD分级完整参考表</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>GOLD级别</th>
+          <th>FEV1/FVC</th>
+          <th>FEV1%预计值</th>
+          <th>典型症状</th>
+          <th>治疗原则</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag-green">GOLD 1（轻度）</span></td>
+          <td>&lt; 70%</td>
+          <td>≥ 80%</td>
+          <td>多数无症状，或轻微运动后咳嗽</td>
+          <td>戒烟、疫苗、必要时SABA按需</td>
+        </tr>
+        <tr>
+          <td><span class="tag-amber">GOLD 2（中度）</span></td>
+          <td>&lt; 70%</td>
+          <td>50–79%</td>
+          <td>快走/爬楼时气短，慢性咳嗽</td>
+          <td>LAMA/LABA长效扩张剂，肺康复</td>
+        </tr>
+        <tr>
+          <td><span class="tag-red">GOLD 3（重度）</span></td>
+          <td>&lt; 70%</td>
+          <td>30–49%</td>
+          <td>日常轻体力活动即气短，急性加重频繁</td>
+          <td>ICS/LABA+LAMA三联，康复，氧疗评估</td>
+        </tr>
+        <tr>
+          <td><span class="tag-red">GOLD 4（极重度）</span></td>
+          <td>&lt; 70%</td>
+          <td>&lt; 30%</td>
+          <td>安静时也气短，生活质量严重受损</td>
+          <td>长期家庭氧疗，考虑肺减容术/移植评估</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="dlco">DLCO：气体交换能力</h2>
+    <p>
+      DLCO（一氧化碳弥散量）反映气体从肺泡穿过肺泡-毛细血管膜进入血液的能力，
+      评估实际气体交换效率。
+    </p>
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>DLCO%预计值</th>
+          <th>分级</th>
+          <th>可能原因</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>≥ 80%</td>
+          <td>正常</td>
+          <td>气体交换功能正常</td>
+        </tr>
+        <tr>
+          <td>60–79%</td>
+          <td>轻度降低</td>
+          <td>早期肺气肿、间质性肺病、肺血管病变</td>
+        </tr>
+        <tr>
+          <td>40–59%</td>
+          <td>中度降低</td>
+          <td>中度肺气肿、中度肺纤维化、肺动脉高压</td>
+        </tr>
+        <tr>
+          <td>&lt; 40%</td>
+          <td>重度降低</td>
+          <td>重度肺气肿、重度肺纤维化、严重肺动脉高压，活动时低氧血症明显</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box green">
+      <div class="box-title">💡 DLCO的诊断线索</div>
+      <ul>
+        <li><strong>阻塞+DLCO降低</strong>：提示肺气肿（气体交换面积减少），慢阻肺中肺气肿成分明显</li>
+        <li><strong>限制+DLCO降低</strong>：提示肺纤维化（肺泡膜增厚，弥散受阻）</li>
+        <li><strong>阻塞正常/限制正常+DLCO降低</strong>：考虑肺动脉高压（血流减少）、贫血（血红蛋白降低）</li>
+        <li><strong>DLCO升高</strong>：多血症（红细胞增多症）、哮喘（血流量增加）</li>
+      </ul>
+    </div>
+
+    <h2 id="bronchodilator">支气管扩张试验：哮喘 vs 慢阻肺的关键鉴别</h2>
+    <div class="info-box blue">
+      <div class="box-title">🔍 支气管扩张试验（BDT）解读</div>
+      <p>测量基础肺功能后，吸入短效支气管扩张剂（沙丁胺醇400µg），15–20分钟后再次测量。</p>
+      <table class="compare-table" style="margin-top:12px">
+        <thead>
+          <tr>
+            <th>结果</th>
+            <th>含义</th>
+            <th>临床意义</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>FEV1改善 ≥12% 且 ≥200mL</td>
+            <td>支气管扩张试验<strong>阳性</strong>（显著可逆）</td>
+            <td>支持哮喘诊断，气道可逆性好</td>
+          </tr>
+          <tr>
+            <td>FEV1改善但不达标准，且FEV1/FVC仍&lt;70%</td>
+            <td>部分可逆（不完全可逆）</td>
+            <td>慢阻肺（可有部分可逆成分，但不完全）</td>
+          </tr>
+          <tr>
+            <td>FEV1/FVC无变化，仍&lt;70%</td>
+            <td>不可逆阻塞</td>
+            <td>典型慢阻肺表现</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="how-to-read">如何读一份肺功能报告</h2>
+    <div class="flow-steps">
+      <span class="flow-step">① 看FEV1/FVC：&lt;70%？→阻塞性；≥70%→继续看FVC</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">② 看FVC：&lt;80%？→可能限制性（需TLC确认）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">③ 如阻塞性：看FEV1%→确定GOLD分级</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">④ 看DLCO：有无气体交换障碍（肺气肿/纤维化）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">⑤ 看BDT：可逆性→哮喘vs慢阻肺鉴别</span>
+    </div>
+
+    <h2 id="common-patterns">常见肺功能模式：快速识别</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>疾病</th>
+          <th>FEV1/FVC</th>
+          <th>FVC</th>
+          <th>FEV1%</th>
+          <th>DLCO</th>
+          <th>BDT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>正常</strong></td>
+          <td>≥70%</td>
+          <td>≥80%</td>
+          <td>≥80%</td>
+          <td>≥80%</td>
+          <td>阴性</td>
+        </tr>
+        <tr>
+          <td><strong>哮喘（缓解期）</strong></td>
+          <td>正常/轻度降低</td>
+          <td>正常</td>
+          <td>正常</td>
+          <td>正常</td>
+          <td>激发试验阳性</td>
+        </tr>
+        <tr>
+          <td><strong>哮喘（发作期）</strong></td>
+          <td>&lt;70%</td>
+          <td>正常/降低</td>
+          <td>降低</td>
+          <td>正常/升高</td>
+          <td>阳性（BDT后FEV1↑≥12%）</td>
+        </tr>
+        <tr>
+          <td><strong>慢阻肺</strong></td>
+          <td>&lt;70%</td>
+          <td>正常/降低</td>
+          <td>降低（按GOLD）</td>
+          <td>降低（肺气肿）</td>
+          <td>阴性或部分阳性</td>
+        </tr>
+        <tr>
+          <td><strong>肺纤维化</strong></td>
+          <td>正常/升高</td>
+          <td>降低</td>
+          <td>降低（与FVC同步）</td>
+          <td>明显降低</td>
+          <td>阴性</td>
+        </tr>
+        <tr>
+          <td><strong>肥胖</strong></td>
+          <td>正常</td>
+          <td>轻度降低</td>
+          <td>轻度降低</td>
+          <td>正常</td>
+          <td>阴性</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区："肺功能报告数值在正常范围内就代表肺完全健康"</span>
+      <span class="truth">✅ 真相：早期慢阻肺（GOLD 1–2级）肺功能虽低于正常但可能没有症状，部分人认为这是"正常"</span>
+      <p>肺功能有较大储备量，在损失30%之前往往感觉不到任何症状。
+      GOLD 1–2级的患者FEV1%已经低于正常（低于80%或70–80%临界），但日常生活没有影响。
+      这正是慢阻肺需要通过肺功能筛查而非症状筛查才能早期发现的原因。</p>
+    </div>
+
+    <div class="action-list">
+      <h3>✅ 收到肺功能报告后的行动建议</h3>
+      <ul>
+        <li>先看结论（报告最后一行通常会写"阻塞性/限制性/混合性/正常"）</li>
+        <li>确认FEV1/FVC比值：是否&lt;70%</li>
+        <li>如提示阻塞：确认FEV1%和GOLD分级，评估慢阻肺/哮喘可能</li>
+        <li>如提示限制：进一步检查TLC（需体描箱），考虑肺纤维化/胸廓疾病</li>
+        <li>如DLCO明显降低：排查肺气肿/肺纤维化/肺血管病</li>
+        <li>携带报告与专科医生（呼吸科）讨论，不要只看检查值</li>
+      </ul>
+    </div>
+
+    <div class="clinical-link">
+      📖 深入了解：<a href="chapter6.html">第6章 · 慢阻肺</a> — FEV1/FVC、GOLD分级和慢阻肺的完整知识体系
+    </div>
+
+    <div class="chapter-nav">
+      <a href="cough-checker.html">← 咳嗽原因自查</a>
+      <a href="index.html" class="next">返回目录 →<span class="nav-label">呼吸篇总览</span></a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>本页导航</h3>
+      <ul class="toc-list">
+        <li><a href="#key-indicators">核心指标一览</a></li>
+        <li><a href="#obstruction">阻塞 vs 限制</a></li>
+        <li><a href="#fev1-interpretation">FEV1%分级</a></li>
+        <li><a href="#gold-full">GOLD分级表</a></li>
+        <li><a href="#dlco">DLCO解读</a></li>
+        <li><a href="#bronchodilator">支气管扩张试验</a></li>
+        <li><a href="#common-patterns">常见模式对照</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>FEV1/FVC速查</h3>
+      <div class="range-cards">
+        <div class="range-card rc-normal">
+          <span class="range-val">≥70%</span>
+          <div class="range-label">正常通气</div>
+        </div>
+        <div class="range-card rc-danger">
+          <span class="range-val">&lt;70%</span>
+          <div class="range-label">阻塞性</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <h3>GOLD速查</h3>
+      <ul class="toc-list">
+        <li>G1：FEV1 ≥80%</li>
+        <li>G2：FEV1 50–79%</li>
+        <li>G3：FEV1 30–49%</li>
+        <li>G4：FEV1 &lt;30%</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🫁 呼吸篇 · 人体使用说明书系列 | 工具页 · 肺功能报告解读</p>
+</footer>
+</body>
+</html>

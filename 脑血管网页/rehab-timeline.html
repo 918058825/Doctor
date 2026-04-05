@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>康复时间表 · 脑血管篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+<style>
+.tool-hero {
+  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 40%, #7c3aed 100%);
+  color: #fff;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+.tool-hero h1 { font-size: clamp(1.4rem,4vw,2rem); margin: .5rem 0; }
+.tool-hero p { opacity: .85; font-size: .95rem; max-width: 520px; margin: .5rem auto 0; }
+
+.rehab-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+/* 阶段选择器 */
+.phase-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+  margin-bottom: 2rem;
+}
+.phase-tab {
+  background: #f5f3ff;
+  border: 2px solid #e9d5ff;
+  border-radius: 10px;
+  padding: .75rem .5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+.phase-tab:hover { border-color: #a78bfa; }
+.phase-tab.active {
+  background: #7c3aed;
+  border-color: #7c3aed;
+  color: #fff;
+}
+.pt-icon { font-size: 1.5rem; display: block; line-height: 1; margin-bottom: .3rem; }
+.pt-name { font-weight: 700; font-size: .85rem; }
+.pt-time { font-size: .7rem; opacity: .8; margin-top: .1rem; }
+.phase-tab.active .pt-time { opacity: .85; }
+
+/* 阶段内容面板 */
+.phase-panel { display: none; }
+.phase-panel.active { display: block; }
+
+.phase-header {
+  background: linear-gradient(135deg, #4c1d95, #7c3aed);
+  color: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.phase-header .phase-title { font-size: 1.3rem; font-weight: 800; margin: 0 0 .4rem; }
+.phase-header .phase-subtitle { opacity: .85; font-size: .9rem; }
+.phase-header .phase-time-badge {
+  display: inline-block;
+  background: rgba(255,255,255,.2);
+  border-radius: 20px;
+  padding: .25rem .75rem;
+  font-size: .8rem;
+  margin-top: .5rem;
+}
+
+.goal-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .75rem;
+  margin: 1.25rem 0;
+}
+.goal-card {
+  background: #fff;
+  border: 1.5px solid #e9d5ff;
+  border-radius: 12px;
+  padding: 1rem;
+}
+.goal-card-icon { font-size: 1.5rem; margin-bottom: .4rem; }
+.goal-card-title { font-weight: 700; font-size: .88rem; margin-bottom: .3rem; color: #4c1d95; }
+.goal-card-desc { font-size: .8rem; color: #555; line-height: 1.5; }
+
+.therapy-list {
+  background: #fff;
+  border-radius: 12px;
+  border: 1.5px solid #e9d5ff;
+  overflow: hidden;
+  margin: 1.25rem 0;
+}
+.therapy-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .9rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+.therapy-item:last-child { border-bottom: none; }
+.therapy-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: #ede9fe;
+}
+.therapy-body {}
+.therapy-name { font-weight: 600; font-size: .9rem; margin-bottom: .2rem; }
+.therapy-desc { font-size: .82rem; color: #666; line-height: 1.4; }
+
+.carer-box {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+}
+.carer-box h3 { color: #166534; margin-top: 0; font-size: .95rem; }
+.carer-box ul { margin: 0; padding-left: 1.2rem; }
+.carer-box li { font-size: .85rem; color: #444; padding: .2rem 0; line-height: 1.5; }
+
+.warning-note {
+  background: #fff7ed;
+  border: 1.5px solid #fdba74;
+  border-radius: 12px;
+  padding: .9rem 1.25rem;
+  margin: 1.25rem 0;
+  font-size: .85rem;
+  color: #9a3412;
+  line-height: 1.6;
+}
+
+/* FAQ */
+.faq-section { margin-top: 2.5rem; }
+.faq-item {
+  border: 1.5px solid #e9d5ff;
+  border-radius: 12px;
+  margin-bottom: .75rem;
+  overflow: hidden;
+}
+.faq-q {
+  padding: .9rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .9rem;
+  background: #faf5ff;
+  transition: background .15s;
+}
+.faq-q:hover { background: #f5f3ff; }
+.faq-q.open { background: #7c3aed; color: #fff; }
+.faq-arrow { font-size: .8rem; transition: transform .2s; }
+.faq-q.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: .9rem 1.1rem;
+  font-size: .85rem;
+  color: #444;
+  line-height: 1.7;
+  border-top: 1px solid #ede9fe;
+}
+.faq-a.open { display: block; }
+
+/* 进度可视化 */
+.rehab-progress {
+  background: #fff;
+  border-radius: 14px;
+  border: 1.5px solid #e9d5ff;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.rp-title { font-weight: 700; color: #4c1d95; margin-bottom: 1rem; font-size: .95rem; }
+.rp-bar-row {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .65rem;
+}
+.rp-label { font-size: .82rem; min-width: 80px; color: #555; }
+.rp-bar-bg { flex: 1; height: 10px; background: #f3f0ff; border-radius: 5px; overflow: hidden; }
+.rp-bar { height: 100%; border-radius: 5px; background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.rp-pct { font-size: .75rem; color: #6d28d9; font-weight: 700; min-width: 36px; text-align: right; }
+
+@media(max-width:520px) {
+  .phase-tabs { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">🏠 总首页</a> › <a href="index.html">脑血管篇</a> › <span>康复时间表</span>
+</div>
+
+<div class="tool-hero">
+  <div class="chapter-badge">🏥 康复工具</div>
+  <h1>卒中康复时间表</h1>
+  <p>按阶段了解康复目标、训练内容和护理要点——给患者和家属的实用指南</p>
+</div>
+
+<div class="rehab-wrap">
+
+  <!-- 阶段选择 -->
+  <div class="phase-tabs">
+    <div class="phase-tab active" onclick="showPhase('acute', this)">
+      <span class="pt-icon">🏨</span>
+      <div class="pt-name">急性期</div>
+      <div class="pt-time">发病后 1-2周</div>
+    </div>
+    <div class="phase-tab" onclick="showPhase('subacute', this)">
+      <span class="pt-icon">🏃</span>
+      <div class="pt-name">亚急性期</div>
+      <div class="pt-time">2周 ～ 3个月</div>
+    </div>
+    <div class="phase-tab" onclick="showPhase('chronic', this)">
+      <span class="pt-icon">🏠</span>
+      <div class="pt-name">慢性期</div>
+      <div class="pt-time">3个月 ～ 1年</div>
+    </div>
+    <div class="phase-tab" onclick="showPhase('community', this)">
+      <span class="pt-icon">🌳</span>
+      <div class="pt-name">社区期</div>
+      <div class="pt-time">1年以后</div>
+    </div>
+  </div>
+
+  <!-- 急性期 -->
+  <div class="phase-panel active" id="phase-acute">
+    <div class="phase-header">
+      <div class="phase-title">🏨 急性期——以防并发症为主</div>
+      <div class="phase-subtitle">生命体征稳定后即可开始，别等"完全好了"再动</div>
+      <div class="phase-time-badge">📅 发病后 24-48小时 → 约1-2周</div>
+    </div>
+
+    <div class="rehab-progress">
+      <div class="rp-title">🎯 这个阶段的康复重点</div>
+      <div class="rp-bar-row">
+        <div class="rp-label">预防并发症</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:90%"></div></div>
+        <div class="rp-pct">最重要</div>
+      </div>
+      <div class="rp-bar-row">
+        <div class="rp-label">被动运动</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:70%"></div></div>
+        <div class="rp-pct">重要</div>
+      </div>
+      <div class="rp-bar-row">
+        <div class="rp-label">主动康复训练</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:30%"></div></div>
+        <div class="rp-pct">初步</div>
+      </div>
+    </div>
+
+    <h3 style="color:#4c1d95;">这个阶段的主要目标</h3>
+    <div class="goal-cards">
+      <div class="goal-card">
+        <div class="goal-card-icon">🔄</div>
+        <div class="goal-card-title">翻身体位管理</div>
+        <div class="goal-card-desc">每2小时翻身一次，防止压疮（褥疮）。患侧肢体要保持功能位，防止关节挛缩变形。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">🫁</div>
+        <div class="goal-card-title">防吸入性肺炎</div>
+        <div class="goal-card-desc">床头抬高30-45°，进食前评估吞咽功能。吞咽困难者先使用鼻饲管，避免呛咳导致肺炎。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">🦵</div>
+        <div class="goal-card-title">防深静脉血栓</div>
+        <div class="goal-card-desc">被动活动下肢，穿弹力袜，必要时使用抗凝药。深静脉血栓脱落可导致肺栓塞，危及生命。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">🖐️</div>
+        <div class="goal-card-title">关节被动活动</div>
+        <div class="goal-card-desc">对瘫痪肢体进行全范围被动关节活动，每天2-3次，防止关节僵硬和肌肉萎缩。</div>
+      </div>
+    </div>
+
+    <div class="therapy-list">
+      <div class="therapy-item">
+        <div class="therapy-icon">👁️</div>
+        <div class="therapy-body">
+          <div class="therapy-name">吞咽评估（所有患者）</div>
+          <div class="therapy-desc">发病后24-48小时内应完成吞咽功能评估（洼田饮水试验）。40-50%的卒中患者有吞咽障碍，需要在进食前确认。</div>
+        </div>
+      </div>
+      <div class="therapy-item">
+        <div class="therapy-icon">💬</div>
+        <div class="therapy-body">
+          <div class="therapy-name">早期语言刺激</div>
+          <div class="therapy-desc">即使患者不能回应，家属和医护人员也要和他/她说话，给予语言刺激。意识清醒的失语患者都能理解被人对待的方式。</div>
+        </div>
+      </div>
+      <div class="therapy-item">
+        <div class="therapy-icon">🧠</div>
+        <div class="therapy-body">
+          <div class="therapy-name">认知和情绪筛查</div>
+          <div class="therapy-desc">评估有无认知障碍和抑郁情绪。卒中后抑郁发生率30-40%，越早发现越早干预，对整体康复有重要影响。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-note">
+      ⚠️ <strong>急性期护理常见错误</strong>：认为患者需要"绝对静养"，不让动。实际上：生命体征稳定后越早开始活动越好！长期卧床是卒中患者最重要的并发症来源之一。
+    </div>
+
+    <div class="carer-box">
+      <h3>👨‍👩‍👧 家属在急性期能做什么？</h3>
+      <ul>
+        <li>配合护士按时翻身，不要怕麻烦医护人员</li>
+        <li>帮患者做被动肢体活动（护士会教你）</li>
+        <li>和患者说话，哪怕他/她没有反应</li>
+        <li>准备好患者的用药清单，告知医生所有正在服用的药物</li>
+        <li>注意情绪：家属的焦虑会传递给患者，尽量保持平稳</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 亚急性期 -->
+  <div class="phase-panel" id="phase-subacute">
+    <div class="phase-header">
+      <div class="phase-title">🏃 亚急性期——黄金康复期</div>
+      <div class="phase-subtitle">大脑可塑性最强的窗口，功能恢复最快的阶段，一天都不能浪费</div>
+      <div class="phase-time-badge">📅 发病后 2周 ～ 3个月</div>
+    </div>
+
+    <div class="rehab-progress">
+      <div class="rp-title">🎯 这个阶段的康复重点</div>
+      <div class="rp-bar-row">
+        <div class="rp-label">强化功能训练</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:95%"></div></div>
+        <div class="rp-pct">核心</div>
+      </div>
+      <div class="rp-bar-row">
+        <div class="rp-label">生活自理训练</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:85%"></div></div>
+        <div class="rp-pct">重要</div>
+      </div>
+      <div class="rp-bar-row">
+        <div class="rp-label">心理康复</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:70%"></div></div>
+        <div class="rp-pct">重要</div>
+      </div>
+    </div>
+
+    <h3 style="color:#4c1d95;">三大核心治疗</h3>
+    <div class="therapy-list">
+      <div class="therapy-item">
+        <div class="therapy-icon">🦿</div>
+        <div class="therapy-body">
+          <div class="therapy-name">物理治疗（PT — Physical Therapy）</div>
+          <div class="therapy-desc">改善行走、站立平衡和移动能力。内容：步态训练、平衡训练、站立训练、上下台阶练习。目标：能够独立安全行走，或最大化移动能力。</div>
+        </div>
+      </div>
+      <div class="therapy-item">
+        <div class="therapy-icon">🤲</div>
+        <div class="therapy-body">
+          <div class="therapy-name">职业治疗（OT — Occupational Therapy）</div>
+          <div class="therapy-desc">改善手部功能和日常生活自理能力。内容：手指精细操作训练、穿衣、进食、如厕、洗澡等ADL训练，以及辅具使用指导。</div>
+        </div>
+      </div>
+      <div class="therapy-item">
+        <div class="therapy-icon">💬</div>
+        <div class="therapy-body">
+          <div class="therapy-name">言语治疗（ST — Speech Therapy）</div>
+          <div class="therapy-desc">改善语言表达、理解、阅读和吞咽功能。失语患者：词汇练习→句子→对话；吞咽障碍：口腔肌肉训练→食物质地逐步升级。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="goal-cards">
+      <div class="goal-card">
+        <div class="goal-card-icon">🎯</div>
+        <div class="goal-card-title">制定目标</div>
+        <div class="goal-card-desc">康复团队（医生+PT+OT+ST）和患者/家属一起制定具体的、可测量的康复目标，每月回顾。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">⏰</div>
+        <div class="goal-card-title">训练强度</div>
+        <div class="goal-card-desc">每天总训练时间建议3小时以上（专业治疗+自主练习）。强度越高，恢复越好——只要患者能耐受。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">😊</div>
+        <div class="goal-card-title">心理支持</div>
+        <div class="goal-card-desc">抑郁情绪会显著阻碍训练效果。必要时请心理科会诊，部分患者需要抗抑郁药配合治疗。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">🔄</div>
+        <div class="goal-card-title">预防并发症</div>
+        <div class="goal-card-desc">继续关注肩关节半脱位（偏瘫常见）、痉挛、深静脉血栓等问题，配合医护团队处理。</div>
+      </div>
+    </div>
+
+    <div class="carer-box">
+      <h3>👨‍👩‍👧 家属最重要的原则</h3>
+      <ul>
+        <li><strong>不要"帮太多"</strong>：让患者自己完成能做的动作，哪怕很慢，这是在刺激大脑重建连接</li>
+        <li>鼓励而不是催促——大声指责和催促会让患者产生焦虑，反而影响训练效果</li>
+        <li>如果可能，安排家庭成员轮流陪伴，避免单人24小时照料导致的照料者疲惫</li>
+        <li>了解训练内容，和治疗师沟通，在病房/家里延续治疗师的训练</li>
+        <li>关注患者情绪变化，及时报告医生</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 慢性期 -->
+  <div class="phase-panel" id="phase-chronic">
+    <div class="phase-header">
+      <div class="phase-title">🏠 慢性期——坚持即进步</div>
+      <div class="phase-subtitle">恢复速度减慢，但改善不会停止。这个阶段的关键词是"坚持"</div>
+      <div class="phase-time-badge">📅 发病后 3个月 ～ 1年</div>
+    </div>
+
+    <div class="rehab-progress">
+      <div class="rp-title">📊 恢复速度对比</div>
+      <div class="rp-bar-row">
+        <div class="rp-label">亚急性期速度</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:90%"></div></div>
+        <div class="rp-pct">快</div>
+      </div>
+      <div class="rp-bar-row">
+        <div class="rp-label">慢性期速度</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:40%"></div></div>
+        <div class="rp-pct">减慢</div>
+      </div>
+      <div class="rp-bar-row">
+        <div class="rp-label">但仍在进步</div>
+        <div class="rp-bar-bg"><div class="rp-bar" style="width:100%"></div></div>
+        <div class="rp-pct">✅</div>
+      </div>
+    </div>
+
+    <div class="therapy-list">
+      <div class="therapy-item">
+        <div class="therapy-icon">🏠</div>
+        <div class="therapy-body">
+          <div class="therapy-name">社区康复机构</div>
+          <div class="therapy-desc">社区卫生服务中心通常提供康复门诊，每周2-3次专业治疗，配合每天家庭练习，是慢性期最可持续的模式。</div>
+        </div>
+      </div>
+      <div class="therapy-item">
+        <div class="therapy-icon">📱</div>
+        <div class="therapy-body">
+          <div class="therapy-name">居家康复训练</div>
+          <div class="therapy-desc">治疗师会制定个人化的居家训练计划（步行、上肢功能练习等）。每天坚持，就算20-30分钟也有效。</div>
+        </div>
+      </div>
+      <div class="therapy-item">
+        <div class="therapy-icon">🤝</div>
+        <div class="therapy-body">
+          <div class="therapy-name">卒中友谊会/互助团体</div>
+          <div class="therapy-desc">同病相怜的患者互相鼓励，有研究显示参与支持团体能改善患者情绪和康复动力，在国内部分医院有组织。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="warning-note">
+      ⚠️ <strong>慢性期常见错误</strong>："三个月了，好不了多少了"——这种想法会让患者放弃训练。研究发现，即使1年以后，通过强化训练仍然可以改善功能。不要放弃！
+    </div>
+
+    <div class="carer-box">
+      <h3>👨‍👩‍👧 家属在慢性期</h3>
+      <ul>
+        <li>家属自身的疲惫和burnout是真实问题——要为自己寻求支持，包括使用喘息服务</li>
+        <li>帮助患者重建社会联系：鼓励和老朋友见面，参与家庭活动</li>
+        <li>注意家居安全改造：防滑垫、扶手、轮椅通道、床边护栏等</li>
+        <li>持续关注是否出现新的卒中症状，卒中复发的最初表现可能很轻微</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 社区期 -->
+  <div class="phase-panel" id="phase-community">
+    <div class="phase-header">
+      <div class="phase-title">🌳 社区期——融入生活，长期维持</div>
+      <div class="phase-subtitle">功能最大化已经实现，重点转向维持、防复发和提高生活质量</div>
+      <div class="phase-time-badge">📅 发病后 1年以上，长期</div>
+    </div>
+
+    <div class="goal-cards">
+      <div class="goal-card">
+        <div class="goal-card-icon">🎯</div>
+        <div class="goal-card-title">维持功能</div>
+        <div class="goal-card-desc">每天适量活动，防止"因废用而退步"。停止训练后功能会慢慢退化，维持是终身工作。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">🏥</div>
+        <div class="goal-card-title">定期复诊</div>
+        <div class="goal-card-desc">每3-6个月神经内科随诊，检查血压、血糖、血脂，调整用药，及时发现复发迹象。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">👥</div>
+        <div class="goal-card-title">社会参与</div>
+        <div class="goal-card-desc">鼓励患者参与力所能及的社会活动。社会隔离与认知退化和抑郁高度相关。</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-card-icon">🧬</div>
+        <div class="goal-card-title">终身预防</div>
+        <div class="goal-card-desc">按时服药（抗血小板/抗凝/他汀/降压药），不能因为"没有不适"就停药。</div>
+      </div>
+    </div>
+
+    <div class="carer-box">
+      <h3>👨‍👩‍👧 长期照料者须知</h3>
+      <ul>
+        <li><strong>照料者疲惫是真实存在的健康问题</strong>——照料长期失能患者的家属，抑郁发生率比普通人高2-3倍</li>
+        <li>学会寻求帮助：请其他家庭成员轮换，利用社区老年服务，不必"一人扛"</li>
+        <li>照料者自己的定期体检同样重要</li>
+        <li>如果患者出现认知功能明显下降，应去认知专科评估（血管性痴呆需要特别管理）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2 style="color:#4c1d95;font-size:1.1rem;">❓ 家属常见问题</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>患者不配合训练，总是拒绝，怎么办？</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>拒绝训练常常背后是<strong>卒中后抑郁</strong>或<strong>对恢复失去信心</strong>，而不仅仅是"不听话"。首先应告知医生，排除抑郁——药物治疗有效。其次，把大目标分解成小的可实现步骤，让患者感受到进步。设置小奖励，让训练与日常活动结合（比如走去厨房拿一杯水），而不是"为训练而训练"。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>三个月了还不能说话，还有恢复希望吗？</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>有！语言恢复的时间窗口比运动功能更长。许多失语患者在卒中后6个月甚至1年以上仍有明显进步，尤其是在持续的言语治疗支持下。大脑右半球对语言功能有一定补偿能力。不要在3个月时判定"不可能好了"——继续坚持言语治疗是最重要的。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>患者老是哭，是正常的吗？</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>部分哭泣是情境性的（对自己处境的正常反应），但也可能是两种特殊情况：<br>1. <strong>卒中后情感失禁（PBA）</strong>：大脑对情绪控制区域受损，导致不能控制的哭泣或笑，与内心感受不一定一致，有药物可以改善。<br>2. <strong>卒中后抑郁</strong>：持续低落、对什么都不感兴趣，影响康复，需要抗抑郁治疗。<br>两种情况都应告知医生，不要认为"哭是正常的，不管"。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>患者胳膊和腿一直很僵，总是弯着，怎么处理？</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>这是卒中后的<strong>痉挛</strong>（肌张力增高），是上运动神经元损伤的常见后遗症。处理方式包括：<br>1. 体位摆放：保持抗痉挛体位，防止关节挛缩<br>2. 物理疗法：牵伸训练、功能性电刺激<br>3. 药物：口服抗痉挛药（如巴氯芬）<br>4. 肉毒素注射：对局部严重痉挛效果好，可改善功能，减轻护理难度<br>痉挛处理需要专业团队评估，不要强行拉直肢体，可能造成骨折和疼痛。</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span>出院后在哪里做康复？</span>
+        <span class="faq-arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        <p>根据患者情况有几个选择：<br>1. <strong>康复医院/康复科住院</strong>：功能障碍较重，需要高强度多学科康复（最推荐的亚急性期方案）<br>2. <strong>社区康复门诊</strong>：功能相对较好，能回家但需要继续治疗，每周2-3次<br>3. <strong>居家康复 + 定期随访</strong>：功能基本稳定，治疗师制定居家方案<br>建议在出院前与主治医生和康复治疗师明确下一步去哪里，不要"出院就结束"。</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>🧠 脑血管篇 · 康复时间表</p>
+  <p style="margin-top:.5rem;opacity:.6;font-size:.8rem;">内容仅供健康教育，不替代医疗诊断。</p>
+</footer>
+
+<script>
+function showPhase(id, tab) {
+  document.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.phase-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('phase-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const isOpen = el.classList.contains('open');
+  // 关闭所有
+  document.querySelectorAll('.faq-q.open').forEach(q => {
+    q.classList.remove('open');
+    q.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) {
+    el.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+</script>
+</body>
+</html>

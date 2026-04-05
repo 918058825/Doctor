@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>症状自查速查 — 心血管篇</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .usage-note {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            border-radius: 0 8px 8px 0;
+            padding: 14px 18px;
+            margin: 0 0 28px;
+            font-size: 0.92rem;
+            color: var(--gray-700);
+        }
+        .sos-box {
+            background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+            color: white;
+            border-radius: 14px;
+            padding: 22px 28px;
+            margin: 0 0 36px;
+        }
+        .sos-box h3 { font-size: 1.1rem; margin-bottom: 12px; }
+        .sos-box ul { margin: 0; padding-left: 20px; }
+        .sos-box li { margin-bottom: 7px; line-height: 1.6; }
+        .symptom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin: 24px 0;
+        }
+        .symptom-card {
+            background: white;
+            border-radius: 14px;
+            border: 1.5px solid var(--gray-200);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .symptom-header {
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .symptom-header.urgent   { background: linear-gradient(135deg,#fee2e2,#fecaca); border-bottom:2px solid #b91c1c; }
+        .symptom-header.warning  { background: linear-gradient(135deg,#fef3c7,#fde68a); border-bottom:2px solid #d97706; }
+        .symptom-header.mild     { background: linear-gradient(135deg,#d1fae5,#a7f3d0); border-bottom:2px solid #059669; }
+        .symptom-icon { font-size: 2rem; line-height:1; }
+        .symptom-title { font-size: 1.05rem; font-weight: 800; color: var(--gray-900); }
+        .symptom-subtitle { font-size: 0.8rem; color: var(--gray-600); margin-top: 2px; }
+        .urgency-tag {
+            margin-left: auto;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .urgency-tag.red    { background: #b91c1c; color: white; }
+        .urgency-tag.orange { background: #d97706; color: white; }
+        .urgency-tag.green  { background: #059669; color: white; }
+        .symptom-body { padding: 16px 20px; }
+        .symptom-body h4 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--gray-600);
+            margin: 14px 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .symptom-body h4:first-child { margin-top: 0; }
+        .symptom-body ul { margin: 0; padding-left: 18px; }
+        .symptom-body li { font-size: 0.88rem; color: var(--gray-700); margin-bottom: 4px; line-height: 1.6; }
+        .symptom-body .danger-signs li { color: #b91c1c; font-weight: 500; }
+        .read-more-row {
+            padding: 12px 20px;
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-100);
+            font-size: 0.82rem;
+        }
+        .read-more-row a { color: var(--primary); text-decoration: none; }
+        .read-more-row a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            .symptom-grid { grid-template-columns: 1fr; }
+            .sos-box { padding: 16px 18px; }
+        }
+    </style>
+</head>
+<body>
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+<div class="breadcrumb"><a href="index.html">🏠 首页</a><span>›</span><span>🫀 症状自查速查</span></div>
+<div class="page-hero">
+    <div class="chapter-badge">实用工具</div>
+    <h1>🫀 症状自查速查</h1>
+    <p class="subtitle">胸痛、心悸、气短、水肿——这些症状什么时候需要立刻打120？什么时候可以先观察？</p>
+</div>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 2rem 4rem;">
+
+    <div class="usage-note">
+        ⚠️ <strong>使用说明：</strong>本工具帮助你初步判断症状的紧急程度，<strong>不能替代医生诊断</strong>。如果你对自己的症状有任何疑虑，请就医确认。宁可"跑一趟白跑"，也不要错过早期发现的机会。
+    </div>
+
+    <div class="sos-box">
+        <h3>🚨 出现以下任何一种情况——立刻拨打 120，不要等待，不要自己开车</h3>
+        <ul>
+            <li>剧烈胸痛或胸闷，压榨感 / 濒死感，持续超过 15 分钟</li>
+            <li>含服硝酸甘油后胸痛仍不缓解</li>
+            <li>胸痛伴大汗、呼吸困难、面色苍白</li>
+            <li>突然晕厥或意识丧失</li>
+            <li>突发严重心悸，自己摸脉搏极快（&gt;180次/分）或极慢（&lt;30次/分）</li>
+        </ul>
+    </div>
+
+    <h2 style="font-size:1.4rem;font-weight:800;margin:0 0 20px;color:var(--gray-900)">按症状查看</h2>
+
+    <div class="symptom-grid">
+
+        <!-- ① 胸痛 -->
+        <div class="symptom-card">
+            <div class="symptom-header urgent">
+                <div class="symptom-icon">💢</div>
+                <div>
+                    <div class="symptom-title">胸痛 / 胸闷</div>
+                    <div class="symptom-subtitle">最需要警惕的心血管症状</div>
+                </div>
+                <span class="urgency-tag red">高度警觉</span>
+            </div>
+            <div class="symptom-body">
+                <h4>🚨 立刻打 120</h4>
+                <ul class="danger-signs">
+                    <li>持续 &gt;15 分钟的压榨感 / 濒死感</li>
+                    <li>疼痛放射到左臂、下颌、后背</li>
+                    <li>伴大汗淋漓、呼吸困难</li>
+                    <li>含硝酸甘油无效</li>
+                </ul>
+                <h4>⚠️ 尽快就医</h4>
+                <ul>
+                    <li>活动后出现、休息后缓解的胸闷（稳定型心绞痛）</li>
+                    <li>近期首次出现原因不明的胸闷</li>
+                    <li>糖尿病 / 老年人出现上腹不适（心梗不典型表现）</li>
+                </ul>
+                <h4>✅ 可能不是心脏问题</h4>
+                <ul>
+                    <li>随呼吸明显加重（可能是胸膜炎）</li>
+                    <li>能用一个手指准确点到痛点（可能是肋软骨炎）</li>
+                    <li>与情绪紧张关联，焦虑缓解后随之好转</li>
+                </ul>
+            </div>
+            <div class="read-more-row">
+                📖 延伸阅读：<a href="chapter3.html">第3章 冠心病</a> · <a href="chapter4.html">第4章 心肌梗死急救</a>
+            </div>
+        </div>
+
+        <!-- ② 心悸 -->
+        <div class="symptom-card">
+            <div class="symptom-header warning">
+                <div class="symptom-icon">💓</div>
+                <div>
+                    <div class="symptom-title">心悸 / 心跳异常</div>
+                    <div class="symptom-subtitle">心跳"咯噔"一下，或突然跳很快</div>
+                </div>
+                <span class="urgency-tag orange">需要判断</span>
+            </div>
+            <div class="symptom-body">
+                <h4>🚨 需要立刻就医</h4>
+                <ul class="danger-signs">
+                    <li>突然心跳极快（&gt;180次/分），持续不停</li>
+                    <li>心悸伴晕厥或短暂黑朦</li>
+                    <li>心悸同时伴胸痛或呼吸困难</li>
+                    <li>脉搏完全不规则（可能是房颤）</li>
+                </ul>
+                <h4>⚠️ 近期就医</h4>
+                <ul>
+                    <li>频繁的"早搏"感（每天数十次以上）</li>
+                    <li>既往有心脏病史，新出现的心悸</li>
+                    <li>心悸发作时尽量记录心电图</li>
+                </ul>
+                <h4>✅ 多数是良性早搏</h4>
+                <ul>
+                    <li>偶尔一次"漏跳"感，平时心跳正常</li>
+                    <li>喝咖啡、熬夜、情绪紧张后出现</li>
+                    <li>休息后自行好转</li>
+                </ul>
+            </div>
+            <div class="read-more-row">
+                📖 延伸阅读：<a href="chapter6.html">第6章 心律失常与房颤</a>
+            </div>
+        </div>
+
+        <!-- ③ 气短 -->
+        <div class="symptom-card">
+            <div class="symptom-header warning">
+                <div class="symptom-icon">😮‍💨</div>
+                <div>
+                    <div class="symptom-title">气短 / 呼吸困难</div>
+                    <div class="symptom-subtitle">爬楼梯喘不上气，或夜间突然憋醒</div>
+                </div>
+                <span class="urgency-tag orange">需要判断</span>
+            </div>
+            <div class="symptom-body">
+                <h4>🚨 立刻就医</h4>
+                <ul class="danger-signs">
+                    <li>夜间突然憋醒，需要坐起来才能缓解</li>
+                    <li>静息状态下也明显气短</li>
+                    <li>气短伴胸痛 / 大汗（疑似心梗）</li>
+                    <li>咳出粉红色泡沫痰（急性肺水肿）</li>
+                </ul>
+                <h4>⚠️ 近期就医</h4>
+                <ul>
+                    <li>近期活动耐量明显下降（以前上三楼没事，现在一楼就喘）</li>
+                    <li>平卧时比坐着更难受</li>
+                    <li>气短伴下肢水肿</li>
+                </ul>
+                <h4>✅ 先观察或排查常见原因</h4>
+                <ul>
+                    <li>剧烈运动后气短（正常生理反应）</li>
+                    <li>焦虑 / 过度通气引起的气短</li>
+                    <li>感冒后短暂的气道不畅</li>
+                </ul>
+            </div>
+            <div class="read-more-row">
+                📖 延伸阅读：<a href="chapter5.html">第5章 心力衰竭</a>
+            </div>
+        </div>
+
+        <!-- ④ 下肢水肿 -->
+        <div class="symptom-card">
+            <div class="symptom-header warning">
+                <div class="symptom-icon">🦵</div>
+                <div>
+                    <div class="symptom-title">下肢水肿</div>
+                    <div class="symptom-subtitle">脚踝肿胀，按下去有坑</div>
+                </div>
+                <span class="urgency-tag orange">需要判断</span>
+            </div>
+            <div class="symptom-body">
+                <h4>⚠️ 需要就医评估</h4>
+                <ul>
+                    <li>双腿对称性水肿，按压留坑（凹陷性水肿）</li>
+                    <li>水肿同时伴有气短、乏力</li>
+                    <li>2–3 天内体重增加 &gt;2 kg</li>
+                    <li>水肿逐渐向上蔓延（小腿→大腿）</li>
+                </ul>
+                <h4>✅ 可能是良性原因</h4>
+                <ul>
+                    <li>久坐久站后的轻微踝部肿胀（晚上消退）</li>
+                    <li>天气热或盐分摄入多引起的轻微水潴留</li>
+                    <li>女性经期前后的轻度水肿</li>
+                    <li>某些降压药（钙拮抗剂）的副作用——踝部水肿但心功能正常</li>
+                </ul>
+            </div>
+            <div class="read-more-row">
+                📖 延伸阅读：<a href="chapter5.html">第5章 心力衰竭</a>
+            </div>
+        </div>
+
+        <!-- ⑤ 头晕/晕厥 -->
+        <div class="symptom-card">
+            <div class="symptom-header urgent">
+                <div class="symptom-icon">🌀</div>
+                <div>
+                    <div class="symptom-title">头晕 / 黑朦 / 晕厥</div>
+                    <div class="symptom-subtitle">突然眼前发黑，或意识短暂丧失</div>
+                </div>
+                <span class="urgency-tag red">高度警觉</span>
+            </div>
+            <div class="symptom-body">
+                <h4>🚨 立刻就医</h4>
+                <ul class="danger-signs">
+                    <li>突然晕厥，意识完全丧失</li>
+                    <li>晕厥前无任何预兆（尤其是运动中突然晕倒）</li>
+                    <li>晕厥伴胸痛或心悸</li>
+                    <li>老年人反复晕厥（可能是恶性心律失常）</li>
+                </ul>
+                <h4>⚠️ 需要评估</h4>
+                <ul>
+                    <li>反复发作的短暂头晕，尤其是站起来时</li>
+                    <li>黑朦（眼前发黑）持续超过几秒</li>
+                    <li>正在服用多种心血管药物，最近头晕加重</li>
+                </ul>
+                <h4>✅ 常见的良性原因</h4>
+                <ul>
+                    <li>体位性低血压（猛地站起来头晕，坐回去很快恢复）</li>
+                    <li>低血糖（餐前头晕，吃东西后好转）</li>
+                    <li>血管迷走性晕厥（情绪紧张、长时间站立引起）</li>
+                </ul>
+            </div>
+            <div class="read-more-row">
+                📖 延伸阅读：<a href="chapter2.html">第2章 高血压</a> · <a href="chapter6.html">第6章 心律失常</a>
+            </div>
+        </div>
+
+        <!-- ⑥ 极度疲劳 -->
+        <div class="symptom-card">
+            <div class="symptom-header mild">
+                <div class="symptom-icon">😴</div>
+                <div>
+                    <div class="symptom-title">极度疲劳 / 乏力</div>
+                    <div class="symptom-subtitle">最容易被忽视的心血管预警信号</div>
+                </div>
+                <span class="urgency-tag green">注意观察</span>
+            </div>
+            <div class="symptom-body">
+                <h4>⚠️ 需要关注的情况</h4>
+                <ul>
+                    <li>活动耐量突然或逐渐明显下降（变化比较快）</li>
+                    <li>疲劳伴气短 / 水肿（心衰的早期表现）</li>
+                    <li>女性心梗常以"极度疲劳"为主要症状，而非胸痛</li>
+                    <li>老年人心梗可能只表现为乏力和精神变差</li>
+                </ul>
+                <h4>✅ 先排查常见原因</h4>
+                <ul>
+                    <li>贫血——查血常规中血红蛋白（Hb）</li>
+                    <li>甲状腺功能减退——查 TSH</li>
+                    <li>睡眠呼吸暂停综合征</li>
+                    <li>长期睡眠不足、心理压力过大</li>
+                </ul>
+            </div>
+            <div class="read-more-row">
+                📖 延伸阅读：<a href="chapter5.html">第5章 心力衰竭</a> · <a href="chapter4.html">第4章 心肌梗死</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="info-box" style="margin-top:32px">
+        <strong>🔗 相关工具：</strong>
+        <ul style="margin-top:8px;">
+            <li><a href="risk-score.html" style="color:var(--primary)">📊 心血管风险评分计算</a> — 输入你的危险因素，估算风险等级</li>
+            <li><a href="chapter10.html" style="color:var(--primary)">🛡️ 第10章：心血管风险自评与预防</a></li>
+            <li><a href="drug-guide.html" style="color:var(--primary)">💊 常用心血管药速查</a></li>
+        </ul>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>❤️ 心血管篇 · 人体使用说明书系列</p>
+    <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
+</footer>
+<script src="nav.js"></script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>

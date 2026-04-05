@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>血糖自测指南 | 代谢篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">代谢篇</a><span>›</span>
+  血糖自测指南
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">🩸 工具页</div>
+  <h1>血糖自测指南</h1>
+  <p class="subtitle">什么时候测、怎么测、数字代表什么、如何行动</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="info-box blue">
+      <div class="box-title">📌 本页适用于</div>
+      <p>正在使用血糖仪进行家庭自测的糖尿病患者，或需要了解自己血糖状态的糖尿病前期/高风险人群。
+      家用血糖仪（毛细血管血糖）与静脉抽血检测结果存在约10–15%的偏差，不能用于首次诊断，
+      但是监测血糖控制趋势的有效工具。</p>
+    </div>
+
+    <h2 id="when-to-test">什么时候测：7个关键时间点</h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th>测量时间点</th><th>测量方法</th><th>主要意义</th><th>适用情况</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>空腹血糖（FPG）</td>
+          <td>过夜空腹≥8小时（晨起、未进食、未喝含热量饮料）后测定</td>
+          <td>反映夜间基础状态下的血糖调控；肝糖输出水平</td>
+          <td>每天的基础监测；评估基础胰岛素用量是否合适</td>
+        </tr>
+        <tr>
+          <td>餐前血糖</td>
+          <td>每次正餐前（午餐前、晚餐前）测定</td>
+          <td>反映上一餐的餐后血糖是否已恢复正常；评估两餐间的血糖基线</td>
+          <td>胰岛素强化治疗者；血糖控制不稳定者</td>
+        </tr>
+        <tr>
+          <td>餐后2小时血糖</td>
+          <td>从吃第一口饭开始计时，2小时后测定</td>
+          <td>反映这一餐对血糖的影响；评估短效胰岛素/餐时药物剂量</td>
+          <td>最常用的自测时间点；评估不同食物对血糖的影响</td>
+        </tr>
+        <tr>
+          <td>睡前血糖</td>
+          <td>睡前（约22:00）测定</td>
+          <td>评估夜间是否有低血糖风险；是否需要加餐</td>
+          <td>使用长效胰岛素者；有夜间低血糖史者</td>
+        </tr>
+        <tr>
+          <td>夜间血糖（2–3am）</td>
+          <td>凌晨2–3点测定</td>
+          <td>发现夜间低血糖（Somogyi现象）或黎明现象</td>
+          <td>空腹血糖异常升高但原因不明确时；医生建议时</td>
+        </tr>
+        <tr>
+          <td>运动前后</td>
+          <td>运动开始前、运动结束后立即测</td>
+          <td>评估运动对血糖的影响；判断是否需要补充碳水预防低血糖</td>
+          <td>胰岛素治疗者；运动中出现低血糖症状者</td>
+        </tr>
+        <tr>
+          <td>症状出现时</td>
+          <td>出现心慌/出汗/头晕/意识模糊时立即测</td>
+          <td>明确是否为低血糖，指导立即处理</td>
+          <td>任何可疑低血糖/高血糖症状时</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="target-values">血糖控制目标值</h2>
+    <p>不同人群的血糖控制目标不同，应与医生讨论个人化目标：</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>人群</th><th>空腹/餐前目标</th><th>餐后2h目标</th><th>HbA1c目标</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2型糖尿病（一般）</td>
+          <td class="val-normal">4.4–7.0 mmol/L</td>
+          <td class="val-normal">&lt;10.0 mmol/L</td>
+          <td class="val-normal">&lt;7.0%</td>
+        </tr>
+        <tr>
+          <td>2型糖尿病（严格控制，年轻/无并发症）</td>
+          <td class="val-normal">4.4–6.1 mmol/L</td>
+          <td class="val-normal">&lt;8.0 mmol/L</td>
+          <td class="val-normal">&lt;6.5%</td>
+        </tr>
+        <tr>
+          <td>2型糖尿病（宽松目标，高龄/多并发症）</td>
+          <td class="val-warn">5.0–8.5 mmol/L</td>
+          <td class="val-warn">&lt;12.0 mmol/L</td>
+          <td class="val-warn">&lt;8.0%（有时&lt;8.5%）</td>
+        </tr>
+        <tr>
+          <td>1型糖尿病</td>
+          <td class="val-normal">3.9–7.2 mmol/L</td>
+          <td class="val-normal">&lt;10.0 mmol/L</td>
+          <td class="val-normal">&lt;7.0%</td>
+        </tr>
+        <tr>
+          <td>妊娠糖尿病</td>
+          <td class="val-normal">&lt;5.3 mmol/L（空腹）</td>
+          <td class="val-normal">&lt;6.7 mmol/L（餐后1h）或&lt;5.9（餐后2h）</td>
+          <td class="val-normal">&lt;6.0%</td>
+        </tr>
+        <tr>
+          <td>糖尿病前期</td>
+          <td class="val-normal">空腹3.9–6.1 mmol/L</td>
+          <td class="val-normal">&lt;7.8 mmol/L</td>
+          <td class="val-normal">&lt;5.7%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box red">
+      <div class="box-title">🚨 低血糖警戒线</div>
+      <p>血糖&lt;3.9 mmol/L为低血糖。症状包括：心慌、出汗、颤抖、饥饿感、头晕、注意力难以集中。
+      严重低血糖（&lt;2.8 mmol/L）可致意识障碍、昏迷，有生命危险。
+      <strong>低血糖的立即处理：</strong>意识清醒者，立即进食15–20g快速吸收糖分（如葡萄糖片4片/含糖饮料150mL/4颗方糖），15分钟后复测血糖。</p>
+    </div>
+
+    <h2 id="how-to-test">正确测量步骤</h2>
+
+    <div class="flow-steps">
+      <span class="flow-step">① 洗手（肥皂水，用温水，擦干）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">② 准备采血笔和试纸（检查有效期）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">③ 用酒精棉消毒指尖（待干后采血）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">④ 采血（侧面更不痛，勿挤压）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">⑤ 将血滴引入试纸（不要涂抹）</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">⑥ 5–10秒读数，记录</span>
+    </div>
+
+    <div class="info-box yellow">
+      <div class="box-title">⚠️ 影响血糖仪准确性的因素</div>
+      <ul>
+        <li><strong>试纸问题</strong>：过期试纸、开封后超过3个月、受潮受热的试纸结果不可靠</li>
+        <li><strong>手指清洁</strong>：手指残留糖分（刚吃水果后未洗手）会使结果偏高</li>
+        <li><strong>血量不足</strong>：血量太少会导致读数偏低或错误</li>
+        <li><strong>采血后挤压</strong>：组织液稀释血液，导致结果偏低</li>
+        <li><strong>仪器温度</strong>：极冷（&lt;10°C）或极热（&gt;40°C）环境影响测量准确性</li>
+        <li><strong>贫血/红细胞压积异常</strong>：某些血糖仪受红细胞压积影响较大</li>
+      </ul>
+    </div>
+
+    <h2 id="record-template">血糖日记记录模板</h2>
+    <p>规律记录血糖数据，复诊时提供给医生，有助于医生调整治疗方案。推荐记录格式：</p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>日期</th><th>空腹</th><th>早餐后2h</th><th>午餐前</th><th>午餐后2h</th><th>晚餐前</th><th>晚餐后2h</th><th>睡前</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>例：1/1</td>
+          <td>6.2</td>
+          <td>8.8</td>
+          <td>6.0</td>
+          <td>—</td>
+          <td>5.8</td>
+          <td>9.1</td>
+          <td>7.2</td>
+          <td>昨晚外食，运动30分钟</td>
+        </tr>
+        <tr>
+          <td>（你的记录）</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="patterns">读懂血糖模式：常见情况解读</h2>
+    <div class="four-questions">
+      <div class="fq-item fq-what">
+        <div class="fq-header"><div class="fq-num">高</div><div class="fq-label">空腹血糖持续偏高</div></div>
+        <p class="fq-content">可能原因：夜间基础胰岛素剂量不足；黎明现象（凌晨生长激素导致血糖升高）；晚餐吃太多；Somogyi现象（低血糖反跳）。建议：测凌晨2–3点血糖来区分原因；与医生讨论调整基础胰岛素或晚餐方案。</p>
+      </div>
+      <div class="fq-item fq-why">
+        <div class="fq-header"><div class="fq-num">高</div><div class="fq-label">餐后血糖超标</div></div>
+        <p class="fq-content">可能原因：这一餐碳水化合物太多/过快；餐时胰岛素/药物剂量不足；进餐时间不规律。对策：分析哪一餐餐后血糖最高，减少该餐碳水、增加膳食纤维、用餐后散步15–20分钟可降低餐后血糖。</p>
+      </div>
+      <div class="fq-item fq-matter">
+        <div class="fq-header"><div class="fq-num">低</div><div class="fq-label">低血糖反复发生</div></div>
+        <p class="fq-content">警惕！低血糖比高血糖更危险（可致心律失常、昏迷）。记录发生时间和前因（运动/少餐/药物调整），及时就医调整方案。胰岛素使用者要评估剂量，口服药者要排查磺脲类药过量。</p>
+      </div>
+      <div class="fq-item fq-action">
+        <div class="fq-header"><div class="fq-num">波</div><div class="fq-label">血糖波动大</div></div>
+        <p class="fq-content">血糖波动（高峰与低谷差值大）与并发症风险独立相关，不只是平均值重要。原因：进餐不规律、运动量变化大、情绪应激等。规律饮食时间和运动，是减少血糖波动最有效的方法。</p>
+      </div>
+    </div>
+
+    <div class="action-list">
+      <h3>✅ 血糖自测要点速记</h3>
+      <ul>
+        <li><strong>测前洗手</strong>，不要在刚接触糖分后的手指取血</li>
+        <li><strong>测定时间标准化</strong>：空腹须空腹≥8小时；餐后2h从第一口饭计时</li>
+        <li><strong>记录结合备注</strong>：记下当天饮食/运动/用药情况，数据才有解读价值</li>
+        <li><strong>试纸管理</strong>：检查有效期，干燥避光保存，开封3个月后更换</li>
+        <li><strong>低血糖&lt;3.9即需处理</strong>，不要等症状明显才处理</li>
+        <li><strong>定期与医生分享记录</strong>，勿擅自根据自测结果调整药物剂量</li>
+      </ul>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="metabolism-indicators.html">← 代谢指标一览表</a>
+      <a href="medication-guide.html" class="next">常用药物说明 →</a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>本页导航</h3>
+      <ul class="toc-list">
+        <li><a href="#when-to-test">何时测量（7时间点）</a></li>
+        <li><a href="#target-values">控制目标值</a></li>
+        <li><a href="#how-to-test">正确测量步骤</a></li>
+        <li><a href="#record-template">血糖日记模板</a></li>
+        <li><a href="#patterns">血糖模式解读</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>低血糖急救</h3>
+      <div class="warning-list">
+        <ul>
+          <li>血糖&lt;3.9 mmol/L立即处理</li>
+          <li>补充15–20g快速糖分</li>
+          <li>15分钟后复测血糖</li>
+          <li>若仍&lt;3.9，再次处理</li>
+          <li>严重者立即就医/急救</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <h3>🔧 其他工具</h3>
+      <ul class="toc-list">
+        <li><a href="metabolism-indicators.html">📊 代谢指标一览表</a></li>
+        <li><a href="medication-guide.html">💊 常用药物说明</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🧬 代谢篇 · 人体使用说明书系列 | 血糖自测指南</p>
+</footer>
+</body>
+</html>

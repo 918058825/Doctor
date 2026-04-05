@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>常用心血管药速查 — 心血管篇</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .drug-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .drug-search {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .drug-search:focus { border-color: var(--primary); }
+        .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+        .filter-btn {
+            padding: 7px 15px;
+            border: 2px solid var(--primary-light);
+            border-radius: 20px;
+            background: white;
+            color: var(--primary-dark);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .drug-cards { display: grid; gap: 16px; }
+        .drug-card {
+            background: white;
+            border-radius: 12px;
+            border: 1.5px solid var(--gray-200);
+            padding: 22px;
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.2s;
+        }
+        .drug-card:hover { box-shadow: var(--shadow-md); }
+        .drug-card.hidden { display: none; }
+        .drug-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+        .drug-name  { font-size: 1.1rem; font-weight: 800; color: var(--gray-900); }
+        .drug-class { font-size: 0.82rem; color: var(--gray-500); margin-top: 2px; }
+        .badge-row  { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+        .drug-badge {
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .badge-statin   { background: #dbeafe; color: #1d4ed8; }
+        .badge-antihyper{ background: #d1fae5; color: #065f46; }
+        .badge-anticoag { background: #fce7f3; color: #9d174d; }
+        .badge-antiplat { background: #fee2e2; color: #b91c1c; }
+        .badge-diuretic { background: #fef3c7; color: #a16207; }
+        .badge-hf       { background: #f0fdf4; color: #166534; }
+        .badge-acute    { background: #fff7ed; color: #9a3412; }
+        .drug-examples  { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .drug-example-tag {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+        }
+        .drug-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+        .drug-section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+        }
+        .drug-section-text { color: var(--gray-700); line-height: 1.65; }
+        .drug-warning {
+            background: #fef9c3;
+            border-left: 3px solid #d97706;
+            padding: 9px 13px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 12px;
+            font-size: 0.86rem;
+            color: #92400e;
+            line-height: 1.6;
+        }
+        .drug-warning strong { color: #78350f; }
+        .no-results {
+            text-align: center;
+            padding: 48px 0;
+            color: var(--gray-500);
+            font-size: 1rem;
+            display: none;
+        }
+        @media (max-width: 600px) {
+            .drug-section { grid-template-columns: 1fr; }
+            .drug-card { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+<div class="breadcrumb"><a href="index.html">🏠 首页</a><span>›</span><span>💊 常用心血管药速查</span></div>
+<div class="page-hero">
+    <div class="chapter-badge">实用工具</div>
+    <h1>💊 常用心血管药速查</h1>
+    <p class="subtitle">医生开了这些药，你知道它们是干什么的吗？搜索名称或分类，快速了解用途和注意事项。</p>
+</div>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 2rem 4rem;">
+
+    <div class="drug-controls">
+        <input type="text" class="drug-search" id="drugSearch"
+               placeholder="🔍 搜索药物名称，如：阿司匹林、美托洛尔、他汀…"
+               oninput="filterDrugs()">
+    </div>
+    <div class="filter-row">
+        <button class="filter-btn active" data-cat="all"       onclick="setFilter('all',this)">全部</button>
+        <button class="filter-btn"        data-cat="statin"    onclick="setFilter('statin',this)">他汀类（降脂）</button>
+        <button class="filter-btn"        data-cat="antihyper" onclick="setFilter('antihyper',this)">降压药</button>
+        <button class="filter-btn"        data-cat="antiplat"  onclick="setFilter('antiplat',this)">抗血小板</button>
+        <button class="filter-btn"        data-cat="anticoag"  onclick="setFilter('anticoag',this)">抗凝药</button>
+        <button class="filter-btn"        data-cat="diuretic"  onclick="setFilter('diuretic',this)">利尿剂</button>
+        <button class="filter-btn"        data-cat="hf"        onclick="setFilter('hf',this)">心衰用药</button>
+        <button class="filter-btn"        data-cat="acute"     onclick="setFilter('acute',this)">急救用药</button>
+    </div>
+
+    <div class="drug-cards" id="drugCards">
+
+        <!-- ① 他汀类 -->
+        <div class="drug-card" data-cat="statin"
+             data-kw="他汀 阿托伐他汀 瑞舒伐他汀 普伐他汀 辛伐他汀 降脂 胆固醇 ldl">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">他汀类药物</div>
+                    <div class="drug-class">HMG-CoA 还原酶抑制剂 · 降脂药</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-statin">降脂药</span></div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">阿托伐他汀</span>
+                <span class="drug-example-tag">瑞舒伐他汀</span>
+                <span class="drug-example-tag">普伐他汀</span>
+                <span class="drug-example-tag">辛伐他汀</span>
+                <span class="drug-example-tag">匹伐他汀</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        降低 LDL（坏胆固醇），预防心梗和中风；同时能稳定动脉斑块、减少炎症——这两项效果比单纯降脂更重要。
+                        心血管高危人群的基石药物，通常需要长期甚至终身服用。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        肌肉疼痛或无力（少见，&lt;5%）；轻度肝酶升高（通常无需停药）；
+                        严重肝损害极为罕见。血糖可能轻微升高（对高危人群获益仍大于风险）。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 不能擅自停药：</strong>他汀的效果依赖于持续服用。感觉好了、血脂正常了，不代表可以停——停药后 LDL 会反弹，斑块也可能重新不稳定。
+                心梗 / 冠心病患者通常需要<strong>终身服用</strong>。最好<strong>晚间服用</strong>（肝脏夜间合成胆固醇更活跃）。
+            </div>
+        </div>
+
+        <!-- ② 阿司匹林 -->
+        <div class="drug-card" data-cat="antiplat"
+             data-kw="阿司匹林 乙酰水杨酸 抗血小板 血栓 心梗 中风 二级预防">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">阿司匹林</div>
+                    <div class="drug-class">乙酰水杨酸 · 抗血小板药</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-antiplat">抗血小板</span></div>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        抑制血小板聚集，防止血栓形成。心梗 / 中风 / 冠心病后的<strong>二级预防</strong>首选药物之一。
+                        放置支架后常与氯吡格雷联合使用（双联抗血小板）。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        消化道出血（最主要风险）；胃溃疡；过敏反应（极少见）。
+                        出现黑便（大便发黑）要立刻就医——这是消化道出血的信号。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 没有心血管病史的普通人，不建议自行服用：</strong>
+                2018年后多项大型研究显示，健康人预防性服用阿司匹林，出血风险可能超过获益。是否需要服用，需要医生根据你的整体情况判断。<br>
+                服用中：<strong>餐后服用</strong>可减少胃肠道刺激；不能与布洛芬同时使用（相互拮抗）。
+            </div>
+        </div>
+
+        <!-- ③ 氯吡格雷/替格瑞洛 -->
+        <div class="drug-card" data-cat="antiplat"
+             data-kw="氯吡格雷 波立维 替格瑞洛 p2y12 抗血小板 支架 心梗 双联">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">氯吡格雷（波立维）/ 替格瑞洛</div>
+                    <div class="drug-class">P2Y12 受体拮抗剂 · 抗血小板药</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-antiplat">抗血小板</span></div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">氯吡格雷（波立维）</span>
+                <span class="drug-example-tag">替格瑞洛（倍林达）</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        与阿司匹林联合使用，组成"双联抗血小板治疗"（DAPT）。
+                        支架手术后防止支架内血栓，通常需要服用<strong>12个月</strong>。
+                        急性冠脉综合征的标准治疗方案之一。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        出血风险增加（联合阿司匹林时更明显）；
+                        替格瑞洛可引起呼吸困难（约15%患者，通常无需停药，会自行好转）。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 支架后绝对不能擅自停药：</strong>突然停用双联抗血小板，支架内可能急性血栓，危及生命。
+                如果需要做其他手术，<strong>提前告知医生</strong>你在服用此药，共同评估是否可暂停及如何过渡。
+            </div>
+        </div>
+
+        <!-- ④ ACEI -->
+        <div class="drug-card" data-cat="antihyper hf"
+             data-kw="acei 普利 依那普利 贝那普利 赖诺普利 卡托普利 降压 心衰 肾病">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">ACEI（普利类）</div>
+                    <div class="drug-class">血管紧张素转化酶抑制剂</div>
+                </div>
+                <div class="badge-row">
+                    <span class="drug-badge badge-antihyper">降压药</span>
+                    <span class="drug-badge badge-hf">心衰</span>
+                </div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">依那普利</span>
+                <span class="drug-example-tag">贝那普利</span>
+                <span class="drug-example-tag">赖诺普利</span>
+                <span class="drug-example-tag">卡托普利</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        降低血压；保护心脏和肾脏；
+                        心衰患者降低死亡率（与 β 受体阻滞剂并列为心衰核心用药）；
+                        糖尿病肾病的首选保护药物。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        干咳（约 10–20% 患者，机制清楚，可换 ARB 替代）；
+                        血钾升高；偶发血管性水肿（罕见但需注意）。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 孕妇禁用；</strong>不能与 ARB（沙坦类）联合使用；
+                用药初期复查血钾和肾功能；出现喉头水肿（声音嘶哑、呼吸困难）立刻停药就医。
+            </div>
+        </div>
+
+        <!-- ⑤ ARB -->
+        <div class="drug-card" data-cat="antihyper hf"
+             data-kw="arb 沙坦 缬沙坦 氯沙坦 厄贝沙坦 替米沙坦 降压 心衰">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">ARB（沙坦类）</div>
+                    <div class="drug-class">血管紧张素 II 受体拮抗剂</div>
+                </div>
+                <div class="badge-row">
+                    <span class="drug-badge badge-antihyper">降压药</span>
+                    <span class="drug-badge badge-hf">心衰</span>
+                </div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">缬沙坦</span>
+                <span class="drug-example-tag">氯沙坦</span>
+                <span class="drug-example-tag">厄贝沙坦</span>
+                <span class="drug-example-tag">替米沙坦</span>
+                <span class="drug-example-tag">奥美沙坦</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        效果与 ACEI 相似，但<strong>不引起干咳</strong>，是 ACEI 干咳患者的最佳替代选择。
+                        同样保护心脏和肾脏，心衰和糖尿病肾病均适用。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        通常耐受良好；偶有头晕（血压下降过快时）；血钾轻微升高；
+                        严重肾动脉狭窄患者慎用。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⑥ 钙拮抗剂 -->
+        <div class="drug-card" data-cat="antihyper"
+             data-kw="钙拮抗剂 地平 氨氯地平 硝苯地平 非洛地平 ccb 降压 心绞痛">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">钙拮抗剂（地平类）</div>
+                    <div class="drug-class">CCB · 钙通道阻滞剂</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-antihyper">降压药</span></div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">氨氯地平</span>
+                <span class="drug-example-tag">硝苯地平控释片</span>
+                <span class="drug-example-tag">非洛地平</span>
+                <span class="drug-example-tag">苯磺酸左氨氯地平</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        适用范围广泛的一线降压药；
+                        对老年单纯收缩期高血压效果好；
+                        也用于稳定型心绞痛（扩张冠脉）。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        踝部水肿（约 10%，与心衰无关，是血管扩张的结果）；
+                        面部潮红；心跳略加快（短效制剂更明显）。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ⑦ β受体阻滞剂 -->
+        <div class="drug-card" data-cat="antihyper hf"
+             data-kw="β受体阻滞剂 洛尔 美托洛尔 比索洛尔 卡维地洛 心衰 心绞痛 心率 心律失常">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">β 受体阻滞剂（洛尔类）</div>
+                    <div class="drug-class">Beta Blocker · 降压 / 护心 / 控心率</div>
+                </div>
+                <div class="badge-row">
+                    <span class="drug-badge badge-antihyper">降压药</span>
+                    <span class="drug-badge badge-hf">心衰</span>
+                </div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">美托洛尔</span>
+                <span class="drug-example-tag">比索洛尔</span>
+                <span class="drug-example-tag">卡维地洛</span>
+                <span class="drug-example-tag">阿替洛尔</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        减慢心率、降低血压、减少心肌耗氧；
+                        冠心病、心梗后、心衰的核心保护药物；
+                        控制房颤的心室率；减少心绞痛发作。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        心跳过慢（心率 &lt;50 次/分时要注意）；疲乏感；
+                        哮喘 / COPD 患者慎用（可能诱发支气管痉挛）；
+                        糖尿病患者可能掩盖低血糖症状。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 绝对不能骤然停药：</strong>突然停用 β 受体阻滞剂会出现"反跳效应"——心跳加速、血压飙升，甚至诱发心绞痛。如需停药，必须在医生指导下<strong>逐步减量</strong>，通常需要 1–2 周。
+            </div>
+        </div>
+
+        <!-- ⑧ 利尿剂 -->
+        <div class="drug-card" data-cat="antihyper diuretic hf"
+             data-kw="利尿剂 氢氯噻嗪 呋塞米 速尿 吲达帕胺 螺内酯 水肿 心衰 降压 低钾">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">利尿剂</div>
+                    <div class="drug-class">噻嗪类 / 袢利尿剂 / 保钾利尿剂</div>
+                </div>
+                <div class="badge-row">
+                    <span class="drug-badge badge-antihyper">降压药</span>
+                    <span class="drug-badge badge-diuretic">利尿剂</span>
+                    <span class="drug-badge badge-hf">心衰</span>
+                </div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">氢氯噻嗪</span>
+                <span class="drug-example-tag">吲达帕胺</span>
+                <span class="drug-example-tag">呋塞米（速尿）</span>
+                <span class="drug-example-tag">螺内酯</span>
+                <span class="drug-example-tag">托拉塞米</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        促进排尿，减少血容量，从而降低血压；
+                        心衰患者排出多余体液，快速缓解气短和水肿；
+                        螺内酯在心衰中还有额外的心肌保护作用。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        低钾血症（噻嗪类和袢利尿剂）；尿酸升高；频繁排尿；
+                        脱水和电解质紊乱（大剂量时）；螺内酯可能引起男性乳房增大。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 注意低钾：</strong>长期服用噻嗪类或袢利尿剂应定期检查血钾。低钾时补钾或联用螺内酯。
+                服用时间建议安排在上午，避免夜间起床频繁。
+            </div>
+        </div>
+
+        <!-- ⑨ 硝酸甘油 -->
+        <div class="drug-card" data-cat="acute"
+             data-kw="硝酸甘油 心绞痛 急救 舌下含服 胸痛 硝酸酯 扩冠">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">硝酸甘油</div>
+                    <div class="drug-class">硝酸酯类 · 急性心绞痛急救药</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-acute">急救用药</span></div>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        扩张冠状动脉和外周血管，迅速缓解急性心绞痛发作；
+                        冠心病患者必备的急救药，发作时舌下含服，3–5 分钟内起效。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">正确使用方法</div>
+                    <div class="drug-section-text">
+                        心绞痛发作→立刻<strong>坐下</strong>→舌下含服 0.5 mg；
+                        5 分钟后无效可再含一片；
+                        含服 3 片（15 分钟）仍无效→疑似心梗，立刻打 120。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 必须坐位含服</strong>（防止因血压骤降而跌倒）；
+                有效期短，开封后 3–6 个月需更换，不要等"感觉差不多"；
+                服用西地那非（伟哥）后 <strong>24 小时内禁用</strong>，合用可致严重低血压。
+            </div>
+        </div>
+
+        <!-- ⑩ 华法林/NOAC -->
+        <div class="drug-card" data-cat="anticoag"
+             data-kw="华法林 抗凝 利伐沙班 达比加群 阿哌沙班 noac 房颤 血栓 肺栓塞 inr">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">抗凝药：华法林 / 新型口服抗凝药（NOAC）</div>
+                    <div class="drug-class">维生素 K 拮抗剂 / Xa 因子抑制剂 / 直接凝血酶抑制剂</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-anticoag">抗凝药</span></div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">华法林</span>
+                <span class="drug-example-tag">利伐沙班</span>
+                <span class="drug-example-tag">达比加群</span>
+                <span class="drug-example-tag">阿哌沙班</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        房颤患者预防脑卒中（减少心房内血栓形成）；
+                        深静脉血栓 / 肺栓塞的治疗和预防；
+                        人工瓣膜置换术后（机械瓣必须用华法林）。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">华法林 vs NOAC</div>
+                    <div class="drug-section-text">
+                        华法林：需定期监测 INR（目标 2–3），受食物和药物影响大，便宜；
+                        NOAC（利伐沙班等）：剂量固定，无需常规监测，更方便，但价格较高。
+                    </div>
+                </div>
+            </div>
+            <div class="drug-warning">
+                <strong>⚠️ 出血是最主要风险：</strong>出现牙龈出血增加、皮肤淤青明显增多、尿血、黑便，要及时告知医生。
+                华法林注意：饮食保持稳定，避免大量突然增加菠菜、西兰花（富含维生素 K）；
+                加任何新药前告知医生（很多药与华法林有相互作用）。
+            </div>
+        </div>
+
+        <!-- ⑪ SGLT2抑制剂 -->
+        <div class="drug-card" data-cat="hf"
+             data-kw="sglt2 达格列净 恩格列净 卡格列净 心衰 糖尿病 列净 新型">
+            <div class="drug-header">
+                <div>
+                    <div class="drug-name">SGLT2 抑制剂（列净类）</div>
+                    <div class="drug-class">新型心衰 / 糖尿病用药</div>
+                </div>
+                <div class="badge-row"><span class="drug-badge badge-hf">心衰用药</span></div>
+            </div>
+            <div class="drug-examples">
+                <span class="drug-example-tag">达格列净</span>
+                <span class="drug-example-tag">恩格列净</span>
+                <span class="drug-example-tag">卡格列净</span>
+            </div>
+            <div class="drug-section">
+                <div>
+                    <div class="drug-section-label">主要用途</div>
+                    <div class="drug-section-text">
+                        原本是降糖药，近年大型研究证实<strong>对非糖尿病心衰患者同样有保护作用</strong>；
+                        能显著降低心衰住院率和心血管死亡率；
+                        已成为心衰治疗的四大核心药物之一。
+                    </div>
+                </div>
+                <div>
+                    <div class="drug-section-label">常见副作用</div>
+                    <div class="drug-section-text">
+                        生殖泌尿系感染风险略增加（尤其女性）；
+                        轻度利尿作用（口渴、排尿稍多）；
+                        罕见酮症酸中毒（糖尿病患者禁食或手术前应暂停）。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="noResults" class="no-results">🔍 未找到匹配的药物，换个关键词试试</div>
+
+    <div class="info-box" style="margin-top:32px">
+        <strong>📖 延伸阅读：</strong>想了解每种药物的完整背景和使用逻辑？→
+        <a href="chapter9.html" style="color:var(--primary)">第9章：心血管药物使用指南</a>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>❤️ 心血管篇 · 人体使用说明书系列</p>
+    <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
+</footer>
+
+<script>
+    var currentCat = 'all';
+    function filterDrugs() {
+        var q = (document.getElementById('drugSearch').value || '').toLowerCase().trim();
+        var cards = document.querySelectorAll('.drug-card');
+        var anyVisible = false;
+        cards.forEach(function (card) {
+            var kw   = (card.dataset.kw  || '').toLowerCase();
+            var name = card.querySelector('.drug-name').textContent.toLowerCase();
+            var cat  = (card.dataset.cat || '');
+            var matchText = !q || kw.includes(q) || name.includes(q);
+            var matchCat  = currentCat === 'all' || cat.split(' ').indexOf(currentCat) !== -1;
+            var show = matchText && matchCat;
+            card.classList.toggle('hidden', !show);
+            if (show) anyVisible = true;
+        });
+        document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
+    }
+    function setFilter(cat, btn) {
+        currentCat = cat;
+        document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        filterDrugs();
+    }
+</script>
+<script src="nav.js"></script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>

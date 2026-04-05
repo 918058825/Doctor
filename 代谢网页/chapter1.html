@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第1章 · 代谢是什么 | 代谢篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">代谢篇</a><span>›</span>
+  第1章 · 代谢是什么
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">第1章 · 代谢基础</div>
+  <h1>代谢是什么</h1>
+  <p class="subtitle">身体的能量管理系统——理解葡萄糖、胰岛素与代谢稳态的底层逻辑</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="chapter-intro">
+      <div class="ci-meta">
+        <span class="ci-badge">代谢基础</span>
+        <span class="ci-phase">🟡 第一阶段</span>
+      </div>
+      <h3>读这一章，你能解答：</h3>
+      <ul class="intro-hooks">
+        <li>吃进去的饭，究竟是怎么变成能量的？</li>
+        <li>为什么有人"喝水都长胖"，有人"怎么吃都不胖"？</li>
+        <li>胰岛素只是"控血糖的"吗？它还在做什么？</li>
+        <li>代谢慢和代谢快，到底有没有科学依据？</li>
+        <li>为什么糖尿病、肥胖、甲状腺、痛风会"一起来"？</li>
+      </ul>
+    </div>
+
+    <h2 id="what-is-metabolism">代谢到底是什么</h2>
+    <p>
+      "代谢不好"是日常生活中最常听到的说法之一——但大多数人说不清楚这到底是什么意思。
+      代谢（metabolism）从字面上来自希腊语"metabole"，意为"变化"。
+      在生物学上，代谢是指生物体内所有化学反应的总和，包括<strong>合成代谢</strong>（把小分子合成大分子，消耗能量）
+      和<strong>分解代谢</strong>（把大分子分解成小分子，释放能量）两大类。
+    </p>
+    <p>
+      更通俗地说：代谢就是你的身体把吃进去的食物<strong>转化为能量和身体成分</strong>，
+      并把废物排出体外的整个过程。每一秒钟，你体内都有数十亿个细胞在同时进行这些化学反应。
+    </p>
+
+    <div class="four-questions">
+      <div class="fq-item fq-what">
+        <div class="fq-header"><div class="fq-num">是</div><div class="fq-label">代谢是什么</div></div>
+        <p class="fq-content">所有细胞的化学反应总和——分解食物、产生能量、合成组织、处理废物，是生命的核心运转机制</p>
+      </div>
+      <div class="fq-item fq-why">
+        <div class="fq-header"><div class="fq-num">量</div><div class="fq-label">有多大规模</div></div>
+        <p class="fq-content">每天约产生并消耗等量ATP（细胞能量货币）约40kg；一个70kg的人每天基础代谢消耗约1500–1800大卡</p>
+      </div>
+      <div class="fq-item fq-matter">
+        <div class="fq-header"><div class="fq-num">病</div><div class="fq-label">出问题是什么</div></div>
+        <p class="fq-content">代谢异常 = 能量转化链条某个环节出故障，导致某种物质积聚或缺乏：血糖过高、尿酸堆积、骨量丢失等</p>
+      </div>
+      <div class="fq-item fq-action">
+        <div class="fq-header"><div class="fq-num">管</div><div class="fq-label">如何干预</div></div>
+        <p class="fq-content">代谢病的核心干预：饮食（改变底物输入）、运动（改变消耗方式）、药物（修正特定酶或受体），而非单纯意志力</p>
+      </div>
+    </div>
+
+    <h2 id="energy-currency">ATP：身体的通用能量货币</h2>
+    <p>
+      所有生命活动——心跳、思考、肌肉收缩、细胞分裂——都需要一种统一的能量货币：<strong>ATP（三磷酸腺苷）</strong>。
+      你吃下去的碳水化合物、脂肪、蛋白质，最终都会被转化为ATP，才能被细胞直接使用。
+    </p>
+
+    <div class="flow-chain">
+      <div class="flow-node">
+        <div class="flow-node-num">1</div>
+        <div class="flow-node-body"><strong>食物摄入</strong><small>碳水化合物→葡萄糖，脂肪→甘油+脂肪酸，蛋白质→氨基酸</small></div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-num">2</div>
+        <div class="flow-node-body"><strong>消化吸收</strong><small>经消化道分解，通过小肠上皮细胞吸收入血液</small></div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-num">3</div>
+        <div class="flow-node-body"><strong>血液运输</strong><small>葡萄糖经门静脉→肝脏（部分储存为糖原），部分进入全身循环</small></div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-num">4</div>
+        <div class="flow-node-body"><strong>细胞摄取</strong><small>胰岛素信号打开葡萄糖转运蛋白（GLUT4），葡萄糖进入细胞</small></div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-num">5</div>
+        <div class="flow-node-body"><strong>ATP合成</strong><small>糖酵解→丙酮酸→三羧酸循环→氧化磷酸化，1分子葡萄糖→约30个ATP</small></div>
+      </div>
+      <div class="flow-node">
+        <div class="flow-node-num">6</div>
+        <div class="flow-node-body"><strong>废物排出</strong><small>CO₂经肺呼出，尿素经肾排出，热量散失</small></div>
+      </div>
+    </div>
+
+    <div class="key-concept">
+      你每天通过食物摄入约2000大卡的能量（1大卡=4.18千焦），同时消耗几乎等量的能量。
+      当摄入持续超过消耗，多余的能量以<strong>脂肪</strong>形式储存；当消耗持续超过摄入，
+      身体动用储备——先糖原（约12小时的储量），再脂肪，必要时分解肌肉蛋白质。
+    </div>
+
+    <h2 id="insulin-system">胰岛素：代谢的总调度官</h2>
+    <p>
+      理解代谢，就必须理解胰岛素。大多数人只知道胰岛素"管血糖"，但它实际上是一个
+      <strong>代谢的全局调度激素</strong>，同时管控糖、脂肪和蛋白质三大营养物质的去向。
+    </p>
+
+    <h3>胰岛素的分泌机制</h3>
+    <p>
+      胰岛素由胰腺中的<strong>β细胞</strong>分泌。进食后血糖上升，β细胞感知到葡萄糖浓度增加，
+      就分泌胰岛素释放入血。胰岛素与靶细胞（肝细胞、肌肉细胞、脂肪细胞）表面的<strong>胰岛素受体</strong>结合，
+      激活细胞内信号通路，产生一系列效应。
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>效应器官</th><th>胰岛素的作用</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🟡 肝脏</td><td>促进糖原合成，抑制糖异生（从非糖来源制造葡萄糖），促进脂肪合成</td><td>控制餐后血糖的主力；胰岛素抵抗时肝脏持续输出葡萄糖→空腹血糖升高</td></tr>
+        <tr><td>💪 肌肉</td><td>促进葡萄糖摄取（通过GLUT4），促进糖原合成，促进蛋白质合成</td><td>肌肉是最大的葡萄糖"仓库"；肌肉量多→胰岛素敏感性更好</td></tr>
+        <tr><td>🍖 脂肪组织</td><td>促进葡萄糖摄取，促进甘油三酯合成，强力抑制脂肪分解</td><td>胰岛素高时脂肪无法被动员——这是为何高胰岛素状态很难减脂</td></tr>
+        <tr><td>🧠 大脑</td><td>影响食欲调节（通过下丘脑）；但大脑获取葡萄糖不依赖胰岛素</td><td>胰岛素信号影响饱腹感；胰岛素抵抗可能与认知功能下降相关</td></tr>
+      </tbody>
+    </table>
+
+    <div class="life-example">
+      <strong>想象胰岛素是个仓库调度员：</strong>
+      当你吃完一顿饭，血糖上升，调度员立刻出来，指挥把葡萄糖送进"仓库"（肝、肌肉的糖原），多余的转化为脂肪存起来。
+      同时，调度员还命令脂肪仓库"锁门"——不准在这时动用脂肪。
+      两餐之间血糖下降，调度员下班（胰岛素降低），另一个激素<strong>胰高血糖素</strong>上班，开始从糖原和脂肪里"提货"来维持血糖。
+    </div>
+
+    <h2 id="insulin-resistance">胰岛素抵抗：代谢病的共同根源</h2>
+    <p>
+      <strong>胰岛素抵抗</strong>是指细胞对胰岛素的响应能力下降——同样浓度的胰岛素，效果变差了。
+      这是2型糖尿病、代谢综合征、非酒精性脂肪肝、多囊卵巢综合征等一系列代谢病的共同病理基础。
+    </p>
+
+    <div class="comparison-box">
+      <div class="cb-normal">
+        <div class="cb-label">✅ 正常胰岛素信号</div>
+        <div class="cb-content">
+          <ul>
+            <li>细胞表面受体充足，亲和力正常</li>
+            <li>少量胰岛素就能开启GLUT4</li>
+            <li>血糖在进食后1–2小时内恢复正常</li>
+            <li>胰腺β细胞负担轻</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cb-path">
+        <div class="cb-label">⚠️ 胰岛素抵抗状态</div>
+        <div class="cb-content">
+          <ul>
+            <li>受体数量减少或信号通路障碍</li>
+            <li>需要更多胰岛素才能起同等效果</li>
+            <li>血糖居高不下，β细胞超负荷工作</li>
+            <li>血胰岛素水平持续升高→促进脂肪合成</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>胰岛素抵抗是怎么形成的</h3>
+    <p>
+      胰岛素抵抗不是一夜之间出现的，而是多种因素长期积累的结果：
+    </p>
+
+    <div class="flow-chain">
+      <div class="flow-node fn-alert">
+        <div class="flow-node-num">A</div>
+        <div class="flow-node-body"><strong>高热量饮食长期摄入</strong><small>持续高血糖→β细胞持续分泌大量胰岛素→靶细胞"脱敏"（受体下调）</small></div>
+      </div>
+      <div class="flow-node fn-alert">
+        <div class="flow-node-num">B</div>
+        <div class="flow-node-body"><strong>内脏脂肪积累</strong><small>腹部脂肪释放大量游离脂肪酸和炎症因子（TNF-α、IL-6），直接干扰胰岛素信号通路</small></div>
+      </div>
+      <div class="flow-node fn-alert">
+        <div class="flow-node-num">C</div>
+        <div class="flow-node-body"><strong>肌肉量减少+久坐</strong><small>肌肉是最大葡萄糖消耗器；肌肉量少、不活动→葡萄糖无处可去→血糖持续偏高</small></div>
+      </div>
+      <div class="flow-node fn-danger">
+        <div class="flow-node-num">结</div>
+        <div class="flow-node-body"><strong>代谢病的起点</strong><small>胰岛素抵抗→代偿性高胰岛素血症→β细胞衰竭→2型糖尿病</small></div>
+      </div>
+    </div>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区：胰岛素抵抗是天生的，没办法改变</span>
+      <span class="truth">✅ 真相：胰岛素抵抗大部分是可逆的</span>
+      <p>通过减少腹部脂肪、增加肌肉量、有规律运动，可以显著改善胰岛素敏感性。研究表明，5–10%的体重减轻就能明显改善胰岛素抵抗指标。</p>
+    </div>
+
+    <h2 id="three-macros">三大营养素的代谢逻辑</h2>
+
+    <h3>碳水化合物</h3>
+    <p>
+      碳水化合物是血糖的主要来源。消化后主要以<strong>葡萄糖</strong>形式吸收入血。
+      摄入后的去向取决于当前血糖和胰岛素水平：
+    </p>
+    <ul>
+      <li><strong>立即需要</strong>→ 直接氧化供能（糖酵解→有氧氧化）</li>
+      <li><strong>暂时多余</strong>→ 合成糖原储存（肝糖原约100g，肌糖原约300–400g）</li>
+      <li><strong>严重过量</strong>→ 转化为脂肪（脂质新生，de novo lipogenesis）</li>
+    </ul>
+    <div class="info-box yellow">
+      <div class="box-title">📌 升糖指数（GI）的意义</div>
+      <p>GI衡量食物升高血糖的速度。高GI食物（精米、白面包）→血糖快速飙升→大量胰岛素分泌→血糖快速下降→更快感到饥饿。
+      低GI食物（全谷物、豆类、蔬菜）→血糖平缓上升→胰岛素需求少→饱腹感更持久。</p>
+      <p>但GI不是全部：还要考虑<strong>升糖负荷（GL）= GI × 每次摄入量</strong>。西瓜GI高但吃100g GL不大；白饭GI中等但吃一大碗GL很高。</p>
+    </div>
+
+    <h3>脂肪</h3>
+    <p>
+      脂肪是能量密度最高的营养素（9大卡/克 vs 碳水/蛋白质的4大卡/克），也是长期能量储备的主要形式。
+      体内脂肪分解产生<strong>甘油</strong>（可用于糖异生）和<strong>脂肪酸</strong>（可直接氧化供能，
+      或在极端饥饿时转化为<strong>酮体</strong>供脑使用）。
+    </p>
+    <p>
+      关键机制：当胰岛素水平低时（空腹、运动），<strong>激素敏感性脂肪酶（HSL）</strong>被激活，
+      脂肪分解开始。当胰岛素水平高时，HSL被抑制，脂肪分解停止。这是低碳/生酮饮食的理论基础——
+      通过降低碳水摄入减少胰岛素分泌，促进脂肪动员。
+    </p>
+
+    <h3>蛋白质</h3>
+    <p>
+      蛋白质的主要功能是<strong>构建和修复组织</strong>，不是能量来源（尽管在饥饿时也会被动用）。
+      氨基酸代谢产生<strong>氨</strong>，经肝脏转化为<strong>尿素</strong>后经肾脏排出——这是肾病患者需要
+      限制蛋白质摄入的原因。蛋白质还能刺激胰岛素分泌（但幅度远小于碳水），同时是
+      <strong>促饱腹感最强</strong>的营养素。
+    </p>
+
+    <h2 id="hormone-orchestra">激素的协同交响</h2>
+    <p>
+      代谢不只由胰岛素一种激素调控，而是一个<strong>多激素协调系统</strong>：
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>激素</th><th>来源</th><th>代谢效应</th><th>常见异常</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>胰岛素</td><td>胰腺β细胞</td><td>降血糖，促合成，抑脂解</td><td>分泌不足→1型糖尿病；抵抗→2型糖尿病</td></tr>
+        <tr><td>胰高血糖素</td><td>胰腺α细胞</td><td>升血糖（分解糖原，促糖异生）</td><td>胰高血糖素过高→糖尿病血糖更难控</td></tr>
+        <tr><td>甲状腺激素</td><td>甲状腺</td><td>提高基础代谢率，促进全身代谢</td><td>甲亢→代谢亢进；甲减→代谢减慢/体重增加</td></tr>
+        <tr><td>皮质醇</td><td>肾上腺皮质</td><td>应激时升血糖，促进脂肪重分布（腹部）</td><td>长期高皮质醇（压力/库欣综合征）→腹型肥胖、血糖升高</td></tr>
+        <tr><td>瘦素</td><td>脂肪细胞</td><td>抑制食欲，提高代谢率（通过下丘脑）</td><td>肥胖者往往瘦素抵抗——高瘦素但仍饥饿</td></tr>
+        <tr><td>胃饥饿素</td><td>胃壁细胞</td><td>促进食欲，降低代谢率</td><td>节食后胃饥饿素升高——这是减肥反弹的重要原因</td></tr>
+        <tr><td>生长激素</td><td>垂体前叶</td><td>促进脂肪分解，促进蛋白质合成</td><td>成人缺乏→腹型肥胖、肌肉减少</td></tr>
+        <tr><td>雌激素/雄激素</td><td>性腺</td><td>影响脂肪分布、骨密度、胰岛素敏感性</td><td>女性绝经后雌激素下降→腹型肥胖、骨质疏松</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="metabolic-rate">基础代谢率：代谢快慢的真相</h2>
+    <p>
+      <strong>基础代谢率（BMR）</strong>是指在完全安静、禁食12小时后，维持基本生命活动所消耗的最低能量。
+      对于大多数成年人，BMR约占每日总热量消耗的<strong>60–75%</strong>，远超运动消耗（约15–30%）。
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-item">
+        <span class="stat-value">60–75%</span>
+        <div class="stat-label">基础代谢占每日总消耗</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">10%</span>
+        <div class="stat-label">食物热效应（消化食物需要的能量）</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">15–30%</span>
+        <div class="stat-label">活动消耗（含运动+日常活动）</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">30%</span>
+        <div class="stat-label">个体间BMR差异幅度</div>
+      </div>
+    </div>
+
+    <h3>什么决定基础代谢率</h3>
+    <ul>
+      <li><strong>体重和体型</strong>：体重越大，BMR越高（更多细胞需要维持）</li>
+      <li><strong>肌肉量</strong>：肌肉组织静息代谢率远高于脂肪组织，肌肉每公斤约13大卡/天 vs 脂肪4.5大卡/天</li>
+      <li><strong>年龄</strong>：肌肉量随年龄下降（尤其40岁后），BMR通常每10年下降2–3%</li>
+      <li><strong>甲状腺功能</strong>：甲状腺激素是BMR的主要调节者，甲减可使BMR下降15–40%</li>
+      <li><strong>性别</strong>：男性通常肌肉量更多，BMR高于同体重女性约5–10%</li>
+      <li><strong>遗传因素</strong>：不可忽视，但比人们想象的影响要小（约5–10%的变异）</li>
+    </ul>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区："我天生代谢慢，所以怎么都减不了"</span>
+      <span class="truth">✅ 真相：遗传只解释约10%的BMR差异，生活方式是主要因素</span>
+      <p>长期节食会导致BMR主动下调（"代谢适应"），这是真实的。但增加肌肉量、规律有氧+力量训练、
+      不过度节食，都能维持甚至提高BMR。"代谢慢"更多是肌肉量少和活动量不足的结果。</p>
+    </div>
+
+    <h2 id="metabolic-homeostasis">代谢稳态：身体的自我纠错</h2>
+    <p>
+      正常情况下，身体对血糖的调节极为精准：空腹血糖维持在<strong>3.9–6.1 mmol/L</strong>，
+      餐后即使摄入大量碳水，血糖峰值通常也不超过8 mmol/L，且会在2小时内恢复。
+      这种精确控制依赖多重反馈机制：
+    </p>
+
+    <div class="flow-steps">
+      <span class="flow-step">进食→血糖↑</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">β细胞感知→胰岛素↑</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">组织摄取葡萄糖↑</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">血糖↓</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">胰岛素分泌↓</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">稳态恢复</span>
+    </div>
+
+    <p>
+      这套系统还有安全阀：当血糖过低时（低血糖），胰高血糖素分泌增加，
+      同时肾上腺素、生长激素、皮质醇协同升血糖——身体宁愿高血糖，也不能让大脑缺糖。
+    </p>
+
+    <div class="info-box blue">
+      <div class="box-title">📌 代谢稳态的"成本"</div>
+      <p>维持代谢稳态不是免费的。长期血糖过高会让调节系统"过劳"——胰腺β细胞持续高强度工作，最终可能衰竭；
+      血管内皮持续受到高糖损伤，最终发生动脉硬化。代谢病的本质，是稳态系统<strong>长期超负荷</strong>后的崩溃。</p>
+    </div>
+
+    <h2 id="metabolism-disease-connection">代谢病的相互联系</h2>
+    <p>
+      理解了代谢的底层逻辑，就能明白为什么代谢病往往"一起来"——它们共享同样的病理根源：
+      <strong>胰岛素抵抗 + 慢性低度炎症 + 能量代谢紊乱</strong>。
+    </p>
+
+    <div class="info-box purple">
+      <div class="box-title">🔗 代谢病的关联网络</div>
+      <ul>
+        <li><strong>肥胖（尤其腹型）</strong>→ 释放炎症因子 → 加重胰岛素抵抗 → 推动糖尿病进展</li>
+        <li><strong>高血糖</strong>→ 促进尿酸排泄减少 → 加重高尿酸血症/痛风风险</li>
+        <li><strong>高胰岛素血症</strong>→ 促进肾小管重吸收尿酸 → 进一步升尿酸</li>
+        <li><strong>甲减</strong>→ 代谢减慢 → 体重增加 → 加重胰岛素抵抗</li>
+        <li><strong>骨质疏松</strong>→ 肌肉减少（肌少症与骨质疏松并存）→ BMR下降 → 肥胖加重</li>
+        <li><strong>压力/睡眠不足</strong>→ 皮质醇升高 → 血糖升高 + 腹部脂肪积累</li>
+      </ul>
+    </div>
+
+    <p>
+      这就是为什么后面各章要分别讲糖尿病、甲状腺、痛风、肥胖——它们表面是不同的病，
+      底层却有很多共同的机制。理解了这个网络，你就能理解为什么医生在治一种代谢病时
+      往往会同时关注其他指标。
+    </p>
+
+    <div class="action-list">
+      <h3>✅ 第1章小结：你需要知道的</h3>
+      <ul>
+        <li><strong>代谢 = 身体全部化学反应</strong>，包括产能、合成、分解、排废</li>
+        <li><strong>胰岛素是代谢总调度</strong>，不只管血糖，还管脂肪合成与分解</li>
+        <li><strong>胰岛素抵抗是大多数代谢病的共同根源</strong>，且在一定程度上可逆</li>
+        <li><strong>基础代谢率主要由肌肉量和甲状腺决定</strong>，遗传因素影响有限</li>
+        <li><strong>代谢病不是孤立的</strong>，糖尿病/肥胖/痛风/甲减等相互促进</li>
+        <li><strong>干预代谢的核心是习惯，不是意志力</strong>——后面章节会讲具体怎么做</li>
+      </ul>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="index.html">← 返回目录</a>
+      <a href="chapter2.html" class="next">第2章 · 糖尿病 →<span class="nav-label">胰岛素到底出了什么问题</span></a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>本章目录</h3>
+      <ul class="toc-list">
+        <li><a href="#what-is-metabolism">代谢到底是什么</a></li>
+        <li><a href="#energy-currency">ATP：通用能量货币</a></li>
+        <li><a href="#insulin-system">胰岛素：代谢总调度</a></li>
+        <li><a href="#insulin-resistance">胰岛素抵抗：共同根源</a></li>
+        <li><a href="#three-macros">三大营养素代谢逻辑</a></li>
+        <li><a href="#hormone-orchestra">激素的协同交响</a></li>
+        <li><a href="#metabolic-rate">基础代谢率的真相</a></li>
+        <li><a href="#metabolic-homeostasis">代谢稳态</a></li>
+        <li><a href="#metabolism-disease-connection">代谢病的相互联系</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>关键数字</h3>
+      <div class="range-cards">
+        <div class="range-card rc-normal">
+          <span class="range-val">3.9–6.1</span>
+          <div class="range-label">空腹血糖 (mmol/L)</div>
+        </div>
+        <div class="range-card rc-warn">
+          <span class="range-val">&lt;7%</span>
+          <div class="range-label">HbA1c目标（糖尿病）</div>
+        </div>
+        <div class="range-card rc-normal">
+          <span class="range-val">60–75%</span>
+          <div class="range-label">基础代谢占总消耗</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🧬 代谢篇 · 人体使用说明书系列 | 第1章 · 代谢是什么</p>
+</footer>
+</body>
+</html>

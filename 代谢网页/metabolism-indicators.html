@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>代谢指标一览表 | 代谢篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">代谢篇</a><span>›</span>
+  代谢指标一览表
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">📊 工具页</div>
+  <h1>代谢指标一览表</h1>
+  <p class="subtitle">体检报告里的代谢指标——正常值、临床意义、如何解读</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="info-box blue">
+      <div class="box-title">📌 使用说明</div>
+      <p>本表汇总了代谢相关体检指标的参考范围和临床意义。
+      参考范围可能因不同实验室、检测方法、人群而略有差异，请以<strong>本人化验单上标注的参考范围</strong>为准。
+      本表中的范围基于主流教材和指南，供快速参考使用。</p>
+    </div>
+
+    <h2 id="blood-sugar">🩸 血糖相关指标</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>指标名称</th>
+          <th>正常范围</th>
+          <th>临界/警戒</th>
+          <th>异常</th>
+          <th>临床意义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-sugar">空腹血糖（FPG）</span></td>
+          <td class="val-normal">3.9–6.1 mmol/L</td>
+          <td class="val-warn">6.1–7.0（糖尿病前期）</td>
+          <td class="val-danger">≥7.0 诊断糖尿病</td>
+          <td>反映基础状态下的血糖调节能力；须空腹8小时后测定</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-sugar">餐后2小时血糖（2h PG）</span></td>
+          <td class="val-normal">&lt;7.8 mmol/L</td>
+          <td class="val-warn">7.8–11.1（糖耐量异常）</td>
+          <td class="val-danger">≥11.1 诊断糖尿病</td>
+          <td>需OGTT（口服75g葡萄糖后2小时）；评估餐后血糖调节</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-sugar">糖化血红蛋白（HbA1c）</span></td>
+          <td class="val-normal">&lt;5.7%</td>
+          <td class="val-warn">5.7–6.4%（糖尿病前期）</td>
+          <td class="val-danger">≥6.5% 诊断糖尿病</td>
+          <td>反映过去2–3个月平均血糖水平；糖尿病控制目标通常&lt;7.0%</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-sugar">空腹胰岛素</span></td>
+          <td class="val-normal">5–25 μIU/mL</td>
+          <td class="val-warn">25–35（高胰岛素血症）</td>
+          <td class="val-danger">&gt;35（严重胰岛素抵抗）</td>
+          <td>评估胰岛素抵抗；高胰岛素+正常血糖提示代偿阶段</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-sugar">C肽</span></td>
+          <td class="val-normal">0.9–7.1 ng/mL（空腹）</td>
+          <td>—</td>
+          <td>极低提示β细胞功能衰竭</td>
+          <td>评估自身胰岛素分泌功能；使用外源胰岛素时仍可测量</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="thyroid">🦋 甲状腺相关指标</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr><th>指标名称</th><th>正常范围</th><th>偏低提示</th><th>偏高提示</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-thyroid">TSH（促甲状腺激素）</span></td>
+          <td class="val-normal">0.4–4.0 mIU/L</td>
+          <td>TSH↓：甲亢或甲状腺受抑</td>
+          <td>TSH↑：甲减或垂体TSH瘤</td>
+          <td>最敏感的甲状腺功能筛查指标；首选检测</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-thyroid">FT4（游离甲状腺素）</span></td>
+          <td class="val-normal">12–22 pmol/L</td>
+          <td>FT4↓：甲减</td>
+          <td>FT4↑：甲亢</td>
+          <td>与TSH联合判断甲状腺功能状态</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-thyroid">FT3（游离三碘甲腺原氨酸）</span></td>
+          <td class="val-normal">3.5–6.5 pmol/L</td>
+          <td>FT3↓：甲减/危重症</td>
+          <td>FT3↑：甲亢（T3型甲亢）</td>
+          <td>生物活性更高的甲状腺激素；T3型甲亢时FT3升高更明显</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-thyroid">TPOAb（甲状腺过氧化物酶抗体）</span></td>
+          <td class="val-normal">&lt;34 IU/mL</td>
+          <td>—</td>
+          <td>升高：桥本甲状腺炎/Graves病</td>
+          <td>自身免疫性甲状腺病的标志；持续升高提示桥本炎风险</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-thyroid">TGAb（甲状腺球蛋白抗体）</span></td>
+          <td class="val-normal">&lt;115 IU/mL</td>
+          <td>—</td>
+          <td>升高：桥本/甲状腺癌</td>
+          <td>甲状腺癌术后随访用TG+TGAb判断复发</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="lipids">🫀 血脂相关指标</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr><th>指标名称</th><th>理想值</th><th>临界值</th><th>偏高风险</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-lipid">总胆固醇（TC）</span></td>
+          <td class="val-normal">&lt;5.2 mmol/L</td>
+          <td class="val-warn">5.2–6.2（边缘升高）</td>
+          <td class="val-danger">≥6.2（升高）</td>
+          <td>LDL和HDL的总和；需结合其他指标解读</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-lipid">LDL-C（低密度脂蛋白胆固醇）</span></td>
+          <td class="val-normal">&lt;3.4 mmol/L（一般人群）</td>
+          <td class="val-warn">3.4–4.1（边缘升高）</td>
+          <td class="val-danger">≥4.1（升高）；高危患者需&lt;1.8–2.6</td>
+          <td>"坏胆固醇"；动脉硬化的核心风险因素；降LDL是首要目标</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-lipid">HDL-C（高密度脂蛋白胆固醇）</span></td>
+          <td class="val-normal">男≥1.0；女≥1.3 mmol/L</td>
+          <td class="val-warn">男1.0–1.3（偏低）</td>
+          <td>—（HDL越高越好）</td>
+          <td>"好胆固醇"；将胆固醇从血管运回肝脏；低HDL是代谢综合征指标</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-lipid">甘油三酯（TG）</span></td>
+          <td class="val-normal">&lt;1.7 mmol/L</td>
+          <td class="val-warn">1.7–5.6（升高）</td>
+          <td class="val-danger">≥5.6（严重，胰腺炎风险）</td>
+          <td>与饮食/饮酒关系最密切；极高时需防急性胰腺炎</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="uric-acid">⚠️ 尿酸相关指标</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr><th>指标名称</th><th>正常范围</th><th>高尿酸血症</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-uric">血尿酸（UA）</span></td>
+          <td class="val-normal">男：149–416 μmol/L<br>女：89–357 μmol/L</td>
+          <td class="val-danger">男/绝经后女 &gt;420 μmol/L；绝经前女 &gt;360 μmol/L</td>
+          <td>高尿酸血症≠痛风；尿酸超饱和才会析出结晶引发痛风发作</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-uric">24小时尿尿酸</span></td>
+          <td class="val-normal">250–750 mg/24h</td>
+          <td>—</td>
+          <td>判断高尿酸原因：&gt;800mg提示尿酸产生过多；&lt;600mg提示肾排泄不足</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="bone">🦴 骨代谢相关指标</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr><th>指标名称</th><th>正常范围</th><th>异常提示</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-bone">25(OH)维生素D</span></td>
+          <td class="val-normal">20–50 ng/mL（50–125 nmol/L）</td>
+          <td class="val-danger">&lt;20 缺乏；&lt;12 严重缺乏</td>
+          <td>维D状态评估；缺乏者需补充；中国人群普遍偏低</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-bone">血钙（Ca²⁺）</span></td>
+          <td class="val-normal">2.1–2.6 mmol/L</td>
+          <td class="val-warn">偏低：甲状旁腺功能减退/维D缺乏</td>
+          <td>血钙受甲状旁腺激素和维D精密调控；严重偏低可致手足搐搦</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-bone">PTH（甲状旁腺激素）</span></td>
+          <td class="val-normal">12–88 pg/mL</td>
+          <td class="val-danger">升高：原发/继发性甲旁亢；降低：甲旁减</td>
+          <td>调节钙磷代谢；继发性甲旁亢见于慢性肾病/维D缺乏</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-bone">β-CrossLaps（骨吸收标志物）</span></td>
+          <td class="val-normal">绝经前女性&lt;0.573 ng/mL</td>
+          <td class="val-warn">升高：骨吸收加速（如绝经后、甲亢）</td>
+          <td>监测骨吸收速率；治疗双膦酸盐后应明显下降</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-bone">骨密度T值（DXA）</span></td>
+          <td class="val-normal">≥ -1.0</td>
+          <td class="val-warn">-1.0 ~ -2.5 骨量减少；≤-2.5 骨质疏松</td>
+          <td>腰椎和股骨颈测量；≤-2.5诊断骨质疏松；需定期复查</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="body-composition">📏 体格及体成分指标</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr><th>指标名称</th><th>正常/理想</th><th>超标/异常</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-body">BMI（体重指数）</span></td>
+          <td class="val-normal">18.5–23.9 kg/m²（中国标准）</td>
+          <td class="val-warn">≥24 超重；≥28 肥胖；&lt;18.5 偏瘦</td>
+          <td>不反映体脂分布；肌肉发达者BMI可偏高但不等于肥胖</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-body">腰围</span></td>
+          <td class="val-normal">男&lt;85cm；女&lt;80cm（理想）</td>
+          <td class="val-danger">男≥90cm；女≥85cm（代谢综合征诊断标准）</td>
+          <td>最佳内脏脂肪代理指标；比BMI更能预测代谢综合征风险</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-body">腰臀比（WHR）</span></td>
+          <td class="val-normal">男&lt;0.90；女&lt;0.85</td>
+          <td class="val-warn">超标提示苹果型肥胖，内脏脂肪风险高</td>
+          <td>区分苹果型（内脏脂肪为主）和梨型（皮下脂肪为主）肥胖</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-body">体脂率（BF%）</span></td>
+          <td class="val-normal">男15–25%；女20–35%</td>
+          <td class="val-warn">男&gt;25%；女&gt;35%（肥胖）</td>
+          <td>需专业设备（DEXA/生物电阻抗）测定；家用体脂秤误差较大</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="insulin-resistance">🔬 胰岛素抵抗评估</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr><th>指标/方法</th><th>计算/测量方式</th><th>正常参考</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="cat-badge cat-ir">HOMA-IR</span></td>
+          <td>空腹血糖（mmol/L）× 空腹胰岛素（μIU/mL）÷ 22.5</td>
+          <td class="val-normal">&lt;2.5（一般认为正常）</td>
+          <td>最常用的胰岛素抵抗评估工具；&gt;3.0提示有临床意义的抵抗</td>
+        </tr>
+        <tr>
+          <td><span class="cat-badge cat-ir">TG/HDL-C比值</span></td>
+          <td>甘油三酯（mmol/L）÷ HDL-C（mmol/L）</td>
+          <td class="val-normal">&lt;1.5（低风险）</td>
+          <td>&gt;3.0提示胰岛素抵抗；简单易算；与HOMA-IR相关性好</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="info-box yellow">
+      <div class="box-title">⚠️ 免责提示</div>
+      <p>本页所有参考值仅供参考，不构成医疗诊断意见。单次指标异常不能确诊疾病，需结合临床症状、病史及医生综合判断。如发现指标异常，请及时就医咨询专科医生。</p>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="index.html">← 返回代谢篇目录</a>
+      <a href="glucose-monitor.html" class="next">血糖自测指南 →</a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>指标分类</h3>
+      <ul class="toc-list">
+        <li><a href="#blood-sugar">🩸 血糖类</a></li>
+        <li><a href="#thyroid">🦋 甲状腺类</a></li>
+        <li><a href="#lipids">🫀 血脂类</a></li>
+        <li><a href="#uric-acid">⚠️ 尿酸类</a></li>
+        <li><a href="#bone">🦴 骨代谢类</a></li>
+        <li><a href="#body-composition">📏 体格指标</a></li>
+        <li><a href="#insulin-resistance">🔬 胰岛素抵抗</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>🔧 其他工具</h3>
+      <ul class="toc-list">
+        <li><a href="glucose-monitor.html">🩸 血糖自测指南</a></li>
+        <li><a href="medication-guide.html">💊 常用药物说明</a></li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🧬 代谢篇 · 人体使用说明书系列 | 代谢指标一览表</p>
+</footer>
+</body>
+</html>

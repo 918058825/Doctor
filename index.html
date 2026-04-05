@@ -13,6 +13,12 @@
   --c2: #0284c7;
   --c3: #be123c;
   --c4: #7c3aed;
+  --c5: #dc2626;
+  --c6: #6d28d9;
+  --c7: #0f766e;
+  --c8: #0369a1;
+  --c9: #c2410c;
+  --c10: #b45309;
   --bg:      #0f172a;
   --surface: #1e293b;
   --border:  #334155;
@@ -84,7 +90,13 @@ main {
 .c1 .card-accent { background: var(--c1); }
 .c2 .card-accent { background: var(--c2); }
 .c3 .card-accent { background: var(--c3); }
-.c4 .card-accent { background: var(--c4); }
+.c4 .card-accent  { background: var(--c4); }
+.c5 .card-accent  { background: var(--c5); }
+.c6 .card-accent  { background: var(--c6); }
+.c7 .card-accent  { background: var(--c7); }
+.c8 .card-accent  { background: var(--c8); }
+.c9 .card-accent  { background: var(--c9); }
+.c10 .card-accent { background: var(--c10); }
 
 .card-body {
   padding: 1rem 1.1rem;
@@ -108,7 +120,13 @@ main {
 .c1 .card-stage { color: var(--c1); }
 .c2 .card-stage { color: var(--c2); }
 .c3 .card-stage { color: var(--c3); }
-.c4 .card-stage { color: var(--c4); }
+.c4 .card-stage  { color: var(--c4); }
+.c5 .card-stage  { color: var(--c5); }
+.c6 .card-stage  { color: var(--c6); }
+.c7 .card-stage  { color: var(--c7); }
+.c8 .card-stage  { color: var(--c8); }
+.c9 .card-stage  { color: var(--c9); }
+.c10 .card-stage { color: var(--c10); }
 
 .card-name {
   font-size: 1.12rem;
@@ -142,7 +160,27 @@ main {
 .c1 .card-btn { background: var(--c1); }
 .c2 .card-btn { background: var(--c2); }
 .c3 .card-btn { background: var(--c3); }
-.c4 .card-btn { background: var(--c4); }
+.c4 .card-btn  { background: var(--c4); }
+.c5 .card-btn  { background: var(--c5); }
+.c6 .card-btn  { background: var(--c6); }
+.c7 .card-btn  { background: var(--c7); }
+.c8 .card-btn  { background: var(--c8); }
+.c9 .card-btn  { background: var(--c9); }
+.c10 .card-btn { background: var(--c10); }
+
+/* section label */
+.section-label {
+  grid-column: 1 / -1;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #64748b;
+  padding: .8rem 0 .1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: .05rem;
+}
+.section-label:first-child { padding-top: 0; }
 
 /* footer */
 .tag-free {
@@ -181,6 +219,8 @@ footer a:hover { color: var(--text); }
 <main>
   <div class="grid">
 
+    <div class="section-label">🛠️ 工具手册</div>
+
     <a class="card c0" href="身体说明书网页/index.html">
       <div class="card-accent"></div>
       <div class="card-body">
@@ -195,13 +235,29 @@ footer a:hover { color: var(--text); }
       <span class="card-btn">进入 →</span>
     </a>
 
+    <a class="card c7" href="体检报告网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🧾</div>
+        <div class="card-info">
+          <div class="card-stage">工具手册</div>
+          <div class="card-name">解读篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">体检报告</span></div>
+          <div class="card-desc">血常规、肝功能、心电图——看懂每项指标背后的真实意义</div>
+          <div class="card-meta">10章 · 3工具页 · 指标速查</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <div class="section-label">📚 基础医学</div>
+
     <a class="card c1" href="解剖学网页/index.html">
       <div class="card-accent"></div>
       <div class="card-body">
         <div class="card-icon">🫀</div>
         <div class="card-info">
           <div class="card-stage">基础医学</div>
-          <div class="card-name">结构篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">解剖学 Anatomy</span></div>
+          <div class="card-name">结构篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">解剖学</span></div>
           <div class="card-desc">身体里有什么、在哪里——了解自己身体的第一步</div>
           <div class="card-meta">14章 · 7工具页 · 动手实验</div>
         </div>
@@ -215,7 +271,7 @@ footer a:hover { color: var(--text); }
         <div class="card-icon">⚡</div>
         <div class="card-info">
           <div class="card-stage">基础医学</div>
-          <div class="card-name">运行篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">生理学 Physiology</span></div>
+          <div class="card-name">运行篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">生理学</span></div>
           <div class="card-desc">身体为什么会这样运转——搞懂正常是什么样的</div>
           <div class="card-meta">12章 · 3工具页 · 经典机制</div>
         </div>
@@ -229,7 +285,7 @@ footer a:hover { color: var(--text); }
         <div class="card-icon">🔬</div>
         <div class="card-info">
           <div class="card-stage">基础医学</div>
-          <div class="card-name">故障篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">病理学 Pathology</span></div>
+          <div class="card-name">故障篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">病理学</span></div>
           <div class="card-desc">身体出问题时发生了什么——看懂疾病的底层逻辑</div>
           <div class="card-meta">12章 · 3工具页 · 疾病地图</div>
         </div>
@@ -243,9 +299,81 @@ footer a:hover { color: var(--text); }
         <div class="card-icon">💊</div>
         <div class="card-info">
           <div class="card-stage">基础医学</div>
-          <div class="card-name">修复篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">药理学 Pharmacology</span></div>
+          <div class="card-name">修复篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">药理学</span></div>
           <div class="card-desc">药物怎么帮我们对抗疾病——明白治病的底层原理</div>
           <div class="card-meta">12章 · 3工具页 · 受体图谱</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <div class="section-label">🏥 临床医学</div>
+
+    <a class="card c5" href="心血管网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">❤️</div>
+        <div class="card-info">
+          <div class="card-stage">临床医学</div>
+          <div class="card-name">心血管篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">心脏 · 血管</span></div>
+          <div class="card-desc">高血压、冠心病到心衰——中国死亡原因第一的完全解析</div>
+          <div class="card-meta">9章 · 急救指南 · 用药解读</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c6" href="脑血管网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🧠</div>
+        <div class="card-info">
+          <div class="card-stage">临床医学</div>
+          <div class="card-name">脑血管篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">脑卒中</span></div>
+          <div class="card-desc">脑卒中来袭只有4.5小时——识别、急救、康复与预防复发</div>
+          <div class="card-meta">9章 · 3工具页 · FAST识别</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c8" href="呼吸网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🫁</div>
+        <div class="card-info">
+          <div class="card-stage">临床医学</div>
+          <div class="card-name">呼吸篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">肺结节 · 慢阻肺</span></div>
+          <div class="card-desc">肺结节要不要手术、哮喘、慢阻肺——你最该看懂的肺部问题</div>
+          <div class="card-meta">9章 · 3工具页 · 结节解读</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c9" href="消化网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🍜</div>
+        <div class="card-info">
+          <div class="card-stage">临床医学</div>
+          <div class="card-name">消化篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">胃肠 · 肝胆</span></div>
+          <div class="card-desc">胃炎、幽门螺杆菌、肠镜筛查——消化科最高频问题完整解答</div>
+          <div class="card-meta">10章 · 3工具页 · 肠镜指南</div>
+        </div>
+      </div>
+      <span class="card-btn">进入 →</span>
+    </a>
+
+    <a class="card c10" href="代谢网页/index.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-icon">🩺</div>
+        <div class="card-info">
+          <div class="card-stage">临床医学</div>
+          <div class="card-name">代谢篇 <span style="font-size:.72rem;font-weight:400;color:#94a3b8">血糖 · 甲状腺</span></div>
+          <div class="card-desc">糖尿病、甲状腺结节、高尿酸——代谢病的普通人管理指南</div>
+          <div class="card-meta">9章 · 3工具页 · 血糖监测</div>
         </div>
       </div>
       <span class="card-btn">进入 →</span>

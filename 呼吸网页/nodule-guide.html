@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>肺结节随访指南 | 呼吸篇工具</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">呼吸篇</a><span>›</span>
+  🔵 肺结节随访指南
+</div>
+
+<div class="page-hero tool-hero">
+  <div class="tool-badge">🔵 工具页</div>
+  <h1>肺结节随访指南</h1>
+  <p class="subtitle">根据结节大小、类型和Lung-RADS分级，查看推荐随访方案</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="chapter-intro">
+      <div class="ci-meta">
+        <span class="ci-badge">实用工具</span>
+        <span class="ci-phase">🔵 参考指南</span>
+      </div>
+      <h3>本工具基于以下指南：</h3>
+      <ul class="intro-hooks">
+        <li>美国放射学会 Lung-RADS 2022版</li>
+        <li>中国肺癌诊疗指南（2023版）</li>
+        <li>Fleischner学会肺结节处理建议（2017版）</li>
+        <li>NCCN 肺癌筛查指南（2023版）</li>
+      </ul>
+    </div>
+
+    <div class="info-box green">
+      <div class="box-title">📌 使用说明</div>
+      <p>请根据你的CT报告，找到对应的结节类型和大小，查看建议随访方案。
+      <strong>本工具仅供参考，具体随访方案应由专科医生综合评估后决定。</strong>
+      如有恶性相关症状（咳血/体重下降/胸痛），请立即就医而非等待随访。</p>
+    </div>
+
+    <h2 id="solid-nodules">实性结节随访方案</h2>
+    <p>实性结节在CT上密度均匀、完全遮挡背后的肺纹理。</p>
+
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>结节大小</th>
+          <th>低危人群</th>
+          <th>高危人群<br><small>（吸烟/家族史/职业暴露）</small></th>
+          <th>Lung-RADS参考级别</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>&lt; 6 mm</strong></td>
+          <td>无需常规随访（或12个月CT）</td>
+          <td>12个月CT</td>
+          <td><span class="tag-green">1–2级</span></td>
+        </tr>
+        <tr>
+          <td><strong>6–8 mm</strong></td>
+          <td>6–12个月CT，再12–18个月CT</td>
+          <td>6–12个月CT，再18–24个月CT</td>
+          <td><span class="tag-amber">3级</span></td>
+        </tr>
+        <tr>
+          <td><strong>8–15 mm</strong></td>
+          <td>3个月CT或PET-CT评估</td>
+          <td>3个月CT或PET-CT评估</td>
+          <td><span class="tag-red">4A级</span></td>
+        </tr>
+        <tr>
+          <td><strong>&gt; 15 mm</strong></td>
+          <td>PET-CT + 多学科会诊，考虑活检/手术</td>
+          <td>PET-CT + 多学科会诊，考虑活检/手术</td>
+          <td><span class="tag-red">4B级</span></td>
+        </tr>
+        <tr>
+          <td><strong>钙化实性结节</strong></td>
+          <td colspan="2">几乎100%良性，通常无需特殊随访（年度CT即可）</td>
+          <td><span class="tag-green">1级</span></td>
+        </tr>
+        <tr>
+          <td><strong>多发性小结节（&lt;5mm）</strong></td>
+          <td colspan="2">2年后CT随访一次，如无变化可恢复年度筛查</td>
+          <td><span class="tag-green">2级</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="ggo-nodules">磨玻璃结节随访方案</h2>
+    <p>磨玻璃结节（GGN）呈半透明"磨砂"状，可见背后的肺纹理。</p>
+
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>结节大小</th>
+          <th>随访建议</th>
+          <th>备注</th>
+          <th>Lung-RADS参考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>&lt; 6 mm</strong></td>
+          <td>2年后CT随访（可不急于6个月）</td>
+          <td>极小磨玻璃结节恶性率极低</td>
+          <td><span class="tag-green">2级</span></td>
+        </tr>
+        <tr>
+          <td><strong>6–14 mm（稳定）</strong></td>
+          <td>6个月CT确认，之后12个月、24个月各复查一次</td>
+          <td>如3–5年稳定不变，可恢复年度筛查</td>
+          <td><span class="tag-amber">3级</span></td>
+        </tr>
+        <tr>
+          <td><strong>&gt; 15 mm</strong></td>
+          <td>多学科会诊，考虑PET-CT</td>
+          <td>大的纯磨玻璃结节需更积极评估</td>
+          <td><span class="tag-red">4A级</span></td>
+        </tr>
+        <tr>
+          <td><strong>磨玻璃结节出现实性成分</strong></td>
+          <td>3个月CT复查，如实性成分持续存在，升级评估</td>
+          <td>出现实性成分是需要关注的变化</td>
+          <td><span class="tag-red">4A/4B级</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="part-solid-nodules">混合结节（部分实性结节）随访方案</h2>
+    <p>同时包含磨玻璃和实性成分，实性成分大小是关键指标。</p>
+
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>总大小</th>
+          <th>实性成分</th>
+          <th>随访建议</th>
+          <th>Lung-RADS参考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>&lt; 6 mm</td>
+          <td>任意</td>
+          <td>3–6个月CT，确认后年度随访</td>
+          <td><span class="tag-amber">3级</span></td>
+        </tr>
+        <tr>
+          <td>≥ 6 mm</td>
+          <td>实性成分 &lt; 6 mm</td>
+          <td>3–6个月CT；随访过程中关注实性成分变化</td>
+          <td><span class="tag-amber">3级</span></td>
+        </tr>
+        <tr>
+          <td>≥ 6 mm</td>
+          <td>实性成分 6–8 mm</td>
+          <td>3个月CT或PET-CT</td>
+          <td><span class="tag-red">4A级</span></td>
+        </tr>
+        <tr>
+          <td>任意</td>
+          <td>实性成分 &gt; 8 mm</td>
+          <td>PET-CT + 多学科会诊，活检/手术评估</td>
+          <td><span class="tag-red">4B级</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="lung-rads-full">Lung-RADS 完整分级参考</h2>
+    <table class="indicator-table">
+      <thead>
+        <tr>
+          <th>级别</th>
+          <th>含义</th>
+          <th>恶性概率估计</th>
+          <th>建议行动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag-green">0级</span></td>
+          <td>不完整评估，需补充检查</td>
+          <td>—</td>
+          <td>重新扫描/与既往CT比较</td>
+        </tr>
+        <tr>
+          <td><span class="tag-green">1级</span></td>
+          <td>阴性，无肺结节</td>
+          <td>&lt; 1%</td>
+          <td>12个月年度筛查CT</td>
+        </tr>
+        <tr>
+          <td><span class="tag-green">2级</span></td>
+          <td>良性可能，结节不太可能成为临床意义肺癌</td>
+          <td>&lt; 1%</td>
+          <td>12个月年度筛查CT</td>
+        </tr>
+        <tr>
+          <td><span class="tag-amber">3级</span></td>
+          <td>可能良性，短期随访</td>
+          <td>1–2%</td>
+          <td>6个月CT（优先）</td>
+        </tr>
+        <tr>
+          <td><span class="tag-red">4A级</span></td>
+          <td>可疑恶性</td>
+          <td>5–15%</td>
+          <td>3个月CT + PET-CT考虑</td>
+        </tr>
+        <tr>
+          <td><span class="tag-red">4B级</span></td>
+          <td>高度可疑恶性</td>
+          <td>&gt; 15%</td>
+          <td>胸外科/肿瘤科会诊，活检或手术</td>
+        </tr>
+        <tr>
+          <td><span class="tag-red">4X级</span></td>
+          <td>有额外恶性影像特征（毛刺/胸膜牵拉/纵隔淋巴结增大）</td>
+          <td>&gt; 15%</td>
+          <td>尽快多学科会诊</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="benign-patterns">良性结节的影像学特征（一般不需要积极处理）</h2>
+    <div class="four-questions-grid">
+      <div class="fq-card">
+        <div class="fq-number">🪨</div>
+        <div class="fq-title">钙化结节</div>
+        <div class="fq-content">
+          弥漫性钙化、同心圆（层状）钙化、爆米花样钙化、中心钙化——
+          几乎100%良性，通常是陈旧性肉芽肿或错构瘤。
+          无需积极处理，年度随访即可。
+        </div>
+      </div>
+      <div class="fq-card">
+        <div class="fq-number">🫧</div>
+        <div class="fq-title">含脂肪的结节</div>
+        <div class="fq-content">
+          CT值为负值（-40到-120 HU）提示含脂肪，几乎100%为错构瘤。
+          错构瘤是肺内最常见的良性肿瘤，无需手术，随访确认稳定即可。
+        </div>
+      </div>
+      <div class="fq-card">
+        <div class="fq-number">📏</div>
+        <div class="fq-title">稳定2年以上的结节</div>
+        <div class="fq-content">
+          与既往CT比较，2年内体积和密度均无变化的结节，
+          基本可认定为良性，可恢复年度常规筛查CT频率。
+        </div>
+      </div>
+      <div class="fq-card">
+        <div class="fq-number">💧</div>
+        <div class="fq-title">感染后出现/消退</div>
+        <div class="fq-content">
+          发热/肺炎后CT发现的结节，3个月后复查如明显缩小或消失，
+          属于感染性肉芽肿愈合，良性确认，无需进一步处理。
+        </div>
+      </div>
+    </div>
+
+    <h2 id="high-risk-factors">哪些因素让结节的风险更高</h2>
+    <table class="compare-table">
+      <thead>
+        <tr><th>高风险影像特征</th><th>高风险临床因素</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <ul>
+              <li>毛刺征（边缘有刺状突起）</li>
+              <li>分叶征（边缘凹凸不平）</li>
+              <li>胸膜牵拉（向胸膜方向拉伸）</li>
+              <li>血管穿行征</li>
+              <li>空泡征/充气支气管征</li>
+              <li>实性成分快速增大（倍增时间&lt;400天）</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>重度吸烟史（&gt;20包年）</li>
+              <li>一级亲属肺癌家族史</li>
+              <li>有职业性粉尘/石棉暴露史</li>
+              <li>既往其他恶性肿瘤病史</li>
+              <li>年龄 &gt;50岁（结节恶性率随年龄升高）</li>
+              <li>COPD/肺纤维化背景</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="warning-list">
+      <h3>🚨 以下情况不要等待随访，立即就医</h3>
+      <ul>
+        <li>出现咳血（任何量）</li>
+        <li>结节同时伴有纵隔淋巴结肿大（CT报告中注明）</li>
+        <li>PET-CT结果显示结节高代谢（SUVmax &gt; 2.5）</li>
+        <li>CT复查显示结节明显快速增大（30天内增大超过25%）</li>
+        <li>出现不明原因体重下降、骨痛等全身症状</li>
+        <li>医生已建议活检或手术而迟迟未处理</li>
+      </ul>
+    </div>
+
+    <div class="action-list">
+      <h3>✅ 使用本工具后的行动建议</h3>
+      <ul>
+        <li>找到你的结节类型（磨玻璃/实性/混合）和大小，对照上方表格</li>
+        <li>确认医生的随访建议与指南是否相符</li>
+        <li>在手机日历设置随访提醒（最重要的是<strong>按时复查，不要拖延</strong>）</li>
+        <li>保存所有历次CT报告（用于比较前后变化）</li>
+        <li>如有高危因素，与医生讨论是否需要缩短随访间隔</li>
+      </ul>
+    </div>
+
+    <div class="clinical-link">
+      📖 深入了解：<a href="chapter3.html">第3章 · 肺结节</a> — 磨玻璃结节的详细解读、误区澄清和情景导入
+    </div>
+
+    <div class="chapter-nav">
+      <a href="index.html">← 返回呼吸篇目录</a>
+      <a href="cough-checker.html" class="next">咳嗽原因自查 →<span class="nav-label">根据症状特征排查</span></a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>快速查表</h3>
+      <div class="range-cards">
+        <div class="range-card rc-normal">
+          <span class="range-val">&lt;6mm</span>
+          <div class="range-label">实性：年度CT</div>
+        </div>
+        <div class="range-card rc-warn">
+          <span class="range-val">6–8mm</span>
+          <div class="range-label">实性：6个月CT</div>
+        </div>
+        <div class="range-card rc-danger">
+          <span class="range-val">&gt;8mm</span>
+          <div class="range-label">实性：3个月/PET</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <h3>Lung-RADS快查</h3>
+      <ul class="toc-list">
+        <li><a href="#lung-rads-full">1–2级：年度CT</a></li>
+        <li><a href="#lung-rads-full">3级：6个月CT</a></li>
+        <li><a href="#lung-rads-full">4A级：3个月CT</a></li>
+        <li><a href="#lung-rads-full">4B/4X：会诊</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card sc-alert">
+      <h3>🚨 立即就医</h3>
+      <ul class="toc-list">
+        <li>咳血</li>
+        <li>快速增大</li>
+        <li>淋巴结肿大</li>
+        <li>PET高代谢</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🫁 呼吸篇 · 人体使用说明书系列 | 工具页 · 肺结节随访指南</p>
+</footer>
+</body>
+</html>

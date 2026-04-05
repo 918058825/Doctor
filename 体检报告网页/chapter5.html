@@ -12,7 +12,7 @@
 <div class="page-hero">
     <div class="chapter-badge">血液检查 · 第 5 章</div>
     <h1>血糖与糖化血红蛋白</h1>
-    <p class="subtitle">空腹血糖偏高不一定是糖尿病。但如果忽视它，10年后可能真的变成糖尿病。这章讲清楚其中的区别。</p>
+    <p class="subtitle">空腹血糖6.2，是正常人还是糖尿病前期？为什么医生更信任HbA1c？胰岛素抵抗是怎么一步步把你推向糖尿病的？这章全部讲清楚。</p>
 </div>
 
 <div class="main-content">
@@ -21,15 +21,478 @@
     <div class="chapter-intro">
         <div class="ci-meta">
             <span class="ci-badge">🍬 血糖</span>
-            <span class="ci-phase">⭐⭐⭐⭐⭐ 高发异常，最需要理解</span>
+            <span class="ci-phase">⭐⭐⭐⭐⭐ 体检最常见异常，最值得理解</span>
         </div>
         <h3>读完这章，你能回答：</h3>
         <ul class="intro-hooks">
-            <li>空腹血糖6.2 mmol/L，是正常、糖尿病前期还是糖尿病？</li>
-            <li>为什么医生说糖化血红蛋白（HbA1c）比空腹血糖更重要？</li>
-            <li>"血糖偏高"如果不管，会发展成什么？</li>
+            <li>空腹血糖 6.2 mmol/L，到底是正常、糖尿病前期还是糖尿病？</li>
+            <li>为什么糖化血红蛋白（HbA1c）比空腹血糖更能反映真实情况？</li>
+            <li>胰岛素抵抗是什么？它和"血糖偏高"有什么关系？</li>
+            <li>糖尿病前期如果不管，后面会发生什么？怎么逆转？</li>
         </ul>
     </div>
+
+    <!-- ============================================================
+         一、血糖是什么，身体怎么调节它
+         ============================================================ -->
+    <h2 id="s1">一、血糖是什么？身体为什么要精确控制它</h2>
+
+    <p>血糖，就是血液里溶解的葡萄糖浓度。葡萄糖是人体最主要的即用能源——大脑几乎只能靠葡萄糖工作，心肌、肾脏、红细胞也优先用葡萄糖供能。</p>
+
+    <p>但血糖不是越高越好，也不是越低越好，而是必须维持在一个精确范围内——就像汽车油箱不能空也不能满到溢出来。</p>
+
+    <div class="stat-grid">
+        <div class="stat-item">
+            <span class="num" style="color:#16a34a">偏低</span>
+            <span class="label">低于 3.9 mmol/L：大脑开始缺糖，出现头晕、颤抖、意识模糊</span>
+        </div>
+        <div class="stat-item">
+            <span class="num" style="color:#0f766e">正常</span>
+            <span class="label">3.9 - 6.1 mmol/L：空腹血糖正常范围，身体调节良好</span>
+        </div>
+        <div class="stat-item">
+            <span class="num" style="color:#d97706">偏高</span>
+            <span class="label">长期高于 7 mmol/L：开始损伤血管壁，累积导致并发症</span>
+        </div>
+    </div>
+
+    <h3>身体是怎么调节血糖的？</h3>
+    <p>调节血糖的核心机制只有两个激素，方向相反，相互拮抗：</p>
+
+    <div class="flow-steps">
+        <div class="flow-step">🍚 饭后血糖升高</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">胰岛B细胞感知</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">分泌胰岛素</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">细胞开门摄取葡萄糖</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" style="background:#dcfce7;color:#166534">血糖降回正常</div>
+    </div>
+
+    <div class="flow-steps">
+        <div class="flow-step">🏃 运动/空腹血糖降低</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">胰岛A细胞感知</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">分泌胰高血糖素</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">肝脏释放储存的糖原</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" style="background:#dcfce7;color:#166534">血糖升回正常</div>
+    </div>
+
+    <div class="key-concept">
+        胰岛素是人体唯一能<strong>降低</strong>血糖的激素；胰高血糖素、肾上腺素、皮质醇、生长激素都是<strong>升高</strong>血糖的激素。进化上，"升血糖"有很多备用手段（对抗饥荒），但"降血糖"只有胰岛素这一条路——这就是为什么胰岛素功能出问题后果那么严重。
+    </div>
+
+    <div class="life-example">
+        <strong>喝完一杯奶茶后，你的身体经历了什么？</strong><br>
+        一杯全糖奶茶约含 50-60g 糖。喝完后 15-30 分钟，血糖从 5 mmol/L 左右迅速飙升到 8-10 mmol/L（远超正常上限 7.8）。胰岛素大量分泌应急，约 1-2 小时把血糖压回正常——但这时胰岛素往往分泌过多，会把血糖压得有点偏低（约 3.5-4.2），所以你喝完奶茶两三小时后反而会感到有点饿、轻微头昏。这不是你饿了，是血糖被过度压低的反应。如果你每天这样来几次，胰岛素系统就开始磨损了。
+    </div>
+
+    <!-- ============================================================
+         二、读懂体检报告上的数字
+         ============================================================ -->
+    <h2 id="s2">二、读懂体检报告上的血糖数字</h2>
+
+    <h3>为什么要空腹？</h3>
+    <p>体检要求禁食 8-10 小时，是因为空腹血糖是"基准线"——排除了最近一次饮食的干扰，反映的是你身体在没有外来糖分输入时，自己维持血糖平衡的能力。如果空腹血糖都偏高，说明调节系统本身出了问题，而不只是"刚吃了东西"。</p>
+
+    <div class="data-card">
+        <div class="dc-label">空腹血糖（FPG）— 禁食 8-10 小时后采血</div>
+        <div>
+            <span class="dc-normal">正常：&lt; 6.1 mmol/L</span>
+            <span class="dc-warning">空腹血糖受损：6.1 - 7.0</span>
+            <span class="dc-abnormal">达到糖尿病诊断线：≥ 7.0</span>
+        </div>
+        <div class="dc-note">注意：国内旧标准正常上限是 6.1，部分医院沿用美国 ADA 标准（5.6 mmol/L 以上即为前期），看报告时确认参考范围。</div>
+    </div>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>空腹血糖值</th><th>分类</th><th>意味着什么</th><th>建议</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="color:#16a34a;font-weight:600">&lt; 6.1 mmol/L</td>
+                <td>正常</td>
+                <td>胰岛素调节功能良好</td>
+                <td>每 1-3 年复查一次</td>
+            </tr>
+            <tr>
+                <td style="color:#d97706;font-weight:600">6.1 - 7.0 mmol/L</td>
+                <td>空腹血糖受损<br><small>（糖尿病前期之一）</small></td>
+                <td>胰岛素调节开始力不从心，尤其是餐后调节</td>
+                <td>生活方式干预，3个月后复查+查HbA1c</td>
+            </tr>
+            <tr>
+                <td style="color:#dc2626;font-weight:600">≥ 7.0 mmol/L</td>
+                <td>达到糖尿病诊断标准</td>
+                <td>需要至少两次确认</td>
+                <td>复查+查HbA1c，就医评估治疗方案</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="info-box yellow">
+        <div class="box-title">⚠️ 一次血糖 ≥ 7.0 不等于糖尿病诊断</div>
+        <p>糖尿病确诊需要满足以下任意一条：① 两次空腹血糖 ≥ 7.0 mmol/L；② 随机血糖 ≥ 11.1 mmol/L + 典型症状（多饮、多尿、消瘦）；③ OGTT 2小时血糖 ≥ 11.1 mmol/L；④ HbA1c ≥ 6.5%（此条需在有资质的实验室检测）。单次体检异常，先别慌，复查确认。</p>
+    </div>
+
+    <!-- ============================================================
+         三、糖化血红蛋白（HbA1c）
+         ============================================================ -->
+    <h2 id="s3">三、糖化血红蛋白（HbA1c）——3个月的证词</h2>
+
+    <h3>HbA1c 是怎么形成的？</h3>
+    <p>血液里的红细胞含有大量血红蛋白（Hb），而血液里溶解的葡萄糖会和血红蛋白发生一种叫做"糖基化"的化学反应——葡萄糖分子牢牢附着在血红蛋白上，这就是糖化血红蛋白（HbA1c）。</p>
+    <p>关键在于：<strong>这个反应是不可逆的</strong>，一旦结合就不会分开，直到这个红细胞衰老死亡（红细胞寿命约 120 天）。血糖越高，葡萄糖浓度越大，发生糖基化反应的概率越高，HbA1c 比例就越高。</p>
+
+    <div class="key-concept">
+        HbA1c 反映的是过去 2-3 个月的<strong>平均血糖水平</strong>。它不受你昨天吃什么、今天起来有没有吃饭的影响——它记录的是这 90 天里，你血液里的葡萄糖到底有多少时间处于高位。
+    </div>
+
+    <div class="life-example">
+        <strong>体检前一晚喝了奶茶，会影响HbA1c结果吗？</strong><br>
+        <strong>不会。</strong>昨晚一杯奶茶让血糖高了几个小时，占过去90天的比例不到0.3%，对HbA1c几乎没有影响。但如果你过去3个月一直这样喝，HbA1c就会老老实实地升高。这就是HbA1c的价值——它没办法被"临时应付"。（相反，空腹血糖可以通过体检前几天少吃来暂时压低，有人就这么蒙混过关了。）
+    </div>
+
+    <div class="data-card">
+        <div class="dc-label">糖化血红蛋白（HbA1c）— 不需要空腹，任何时间采血</div>
+        <div>
+            <span class="dc-normal">正常：&lt; 5.7%</span>
+            <span class="dc-warning">糖尿病前期：5.7% - 6.4%</span>
+            <span class="dc-abnormal">糖尿病诊断线：≥ 6.5%</span>
+        </div>
+        <div class="dc-note">已确诊糖尿病患者的控制目标：一般 &lt; 7.0%；老年/低血糖高风险者可放宽至 &lt; 8.0%</div>
+    </div>
+
+    <h3>空腹血糖 vs HbA1c——两个数字怎么结合看？</h3>
+    <table class="compare-table">
+        <thead>
+            <tr><th>组合情况</th><th>可能原因</th><th>建议</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>空腹血糖偏高 + HbA1c正常</td>
+                <td>昨晚没睡好、体检前紧张（应激性升高）；或偶发性波动；也可能是餐后调节有问题但基础还好</td>
+                <td>复查空腹血糖 + 考虑做OGTT</td>
+            </tr>
+            <tr>
+                <td>空腹血糖正常 + HbA1c偏高</td>
+                <td>空腹调节还好，但餐后血糖长期偏高（常见于早期胰岛素抵抗，空腹还能维持，餐后压不下来）</td>
+                <td>做OGTT检测餐后血糖；调整饮食结构</td>
+            </tr>
+            <tr>
+                <td>两者都偏高</td>
+                <td>血糖调节系统全程超载，前期或已确诊糖尿病</td>
+                <td>就医评估，制定干预方案</td>
+            </tr>
+            <tr>
+                <td>两者都正常</td>
+                <td>血糖调节良好</td>
+                <td>保持生活方式，定期复查</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ============================================================
+         四、胰岛素抵抗——糖尿病的真正源头
+         ============================================================ -->
+    <h2 id="s4">四、胰岛素抵抗——你需要理解的关键机制</h2>
+
+    <p>很多人以为"血糖高"就是"胰岛素不够"，但绝大多数2型糖尿病患者（占糖尿病的90%以上）早期的问题恰恰相反——他们的胰岛素<strong>分泌量是足够甚至偏多的</strong>，但细胞对胰岛素的响应越来越迟钝，这就是<strong>胰岛素抵抗（Insulin Resistance）</strong>。</p>
+
+    <h3>用一个比喻理解胰岛素抵抗</h3>
+    <div class="info-box blue">
+        <div class="box-title">🔑 胰岛素 = 钥匙，细胞受体 = 锁</div>
+        <p>胰岛素的作用是像钥匙一样插入细胞表面的"受体（锁）"，打开细胞大门，让葡萄糖进入细胞被利用。</p>
+        <p><strong>正常状态</strong>：一把钥匙开一把锁，门开了，葡萄糖顺利进入。</p>
+        <p><strong>胰岛素抵抗</strong>：锁的质量变差了，一把钥匙开不了门，要用两把、三把才行。于是胰岛B细胞拼命多分泌胰岛素来补偿——短期还能维持血糖正常，但胰岛B细胞长期超负荷工作，最终精疲力竭，产量开始下降。这时血糖就真的控制不住了。</p>
+    </div>
+
+    <h3>胰岛素抵抗是怎么形成的？</h3>
+
+    <div class="flow-steps">
+        <div class="flow-step">长期高糖高脂饮食</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">胰岛素长期高水平</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">受体数量下调（细胞自我保护）</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">需要更多胰岛素才能开门</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step" style="background:#fee2e2;color:#991b1b">胰岛素抵抗</div>
+    </div>
+
+    <p>内脏脂肪（尤其是堆积在腹部、肝脏周围的脂肪）是胰岛素抵抗最重要的推手。脂肪细胞会分泌炎症因子，直接干扰胰岛素信号传导；同时过多的游离脂肪酸会在肝脏和肌肉中积累，进一步降低这些组织对胰岛素的敏感性。</p>
+
+    <div class="life-example">
+        <strong>案例：腹部肥胖但"血糖正常"——真的正常吗？</strong><br>
+        一个35岁男性，腰围 95cm（内脏脂肪偏多），体检空腹血糖 5.8 mmol/L（正常范围内），HbA1c 5.5%（正常），他认为自己血糖没问题。但实际上，他的血糖之所以"还正常"，是因为他的胰岛素分泌量已经是普通人的 2-3 倍——正在用超额工作量维持表面正常。如果做胰岛素释放试验，会发现他的胰岛素峰值明显偏高。这种状态的医学名称叫"代偿期胰岛素抵抗"，空腹血糖还没破线，但代谢系统的压力已经很大了。
+    </div>
+
+    <div class="info-box red">
+        <div class="box-title">🚨 这些信号提示你可能已有胰岛素抵抗</div>
+        <ul>
+            <li>腰围超标（男 &gt; 90cm，女 &gt; 85cm），尤其是"苹果形身材"</li>
+            <li>空腹血糖在 5.6-7.0 之间，HbA1c 在 5.6%-6.4% 之间</li>
+            <li>血脂异常（甘油三酯偏高 + HDL胆固醇偏低）</li>
+            <li>血压偏高（130/85 mmHg 以上）</li>
+            <li>皮肤颈部、腋下出现黑棘皮（色素沉着增厚）</li>
+            <li>以上4-5条同时存在，叫做"代谢综合征"，是心血管病和糖尿病的高风险组合</li>
+        </ul>
+    </div>
+
+    <!-- ============================================================
+         五、糖尿病前期
+         ============================================================ -->
+    <h2 id="s5">五、糖尿病前期——可逆窗口期，最值得干预的阶段</h2>
+
+    <p>满足以下任意一条，即诊断为糖尿病前期：</p>
+    <ul>
+        <li>空腹血糖 6.1 - 7.0 mmol/L（空腹血糖受损，IFG）</li>
+        <li>OGTT 2小时血糖 7.8 - 11.1 mmol/L（糖耐量受损，IGT）</li>
+        <li>HbA1c 5.7% - 6.4%（部分地区采用此标准）</li>
+    </ul>
+
+    <div class="stat-grid">
+        <div class="stat-item">
+            <span class="num">3.5亿</span>
+            <span class="label">中国糖尿病前期患者估计数量，约占成年人的 35%</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">10%</span>
+            <span class="label">不干预每年转变为糖尿病的概率（10年内约50%进展）</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">58%</span>
+            <span class="label">积极生活方式干预可以降低的进展风险（大庆研究、DPP研究）</span>
+        </div>
+        <div class="stat-item">
+            <span class="num">5-7%</span>
+            <span class="label">减掉这么多体重，胰岛素敏感性就会显著改善</span>
+        </div>
+    </div>
+
+    <h3>糖尿病前期为什么是"最好的时机"？</h3>
+    <p>糖尿病一旦确诊，胰岛B细胞已经受损，只能控制，很难完全逆转。但糖尿病前期阶段，胰岛功能还在，只是"超负荷运作"——给它减轻压力（改善胰岛素敏感性），很多人可以让血糖完全恢复正常。</p>
+
+    <div class="info-box green">
+        <div class="box-title">✅ 糖尿病前期的有效干预措施（有临床证据的）</div>
+        <ul>
+            <li><strong>减重</strong>：体重减少 5-7%，是干预效果最显著的单一措施。70kg 的人减掉 3.5-5kg，胰岛素抵抗就能明显改善。</li>
+            <li><strong>运动</strong>：每周 150 分钟中等强度有氧（快走、游泳、骑行）+ 每周 2-3 次抗阻训练。抗阻训练增加肌肉量——肌肉是消耗葡萄糖最多的组织，肌肉越多血糖调节越好。</li>
+            <li><strong>饮食调整</strong>：减少精制碳水（白米饭、白面包、糖饮料），增加高纤维食物（全谷物、豆类、蔬菜）。注意：不是不吃碳水，而是吃"升糖慢"的碳水。</li>
+            <li><strong>睡眠</strong>：睡眠不足（&lt;6小时）会升高皮质醇，皮质醇会直接升高血糖并加剧胰岛素抵抗。睡够 7-8 小时本身就是血糖管理的一部分。</li>
+        </ul>
+    </div>
+
+    <div class="life-example">
+        <strong>案例：一个真实可能发生在你周围的故事</strong><br>
+        28岁的小李，软件工程师，体检发现空腹血糖 6.5、HbA1c 6.1%，医生说"糖尿病前期，注意饮食"。他没太当回事。第2年体检血糖 6.8，第3年 7.2，正式确诊糖尿病，开始吃药。<br><br>
+        反例：同龄的小张，同样的数字，体检后当即行动：戒掉奶茶和白面包，每周跑步3次，3个月减了5kg。6个月后复查，空腹血糖 5.4，HbA1c 5.3%，全部回到正常。后来维持生活方式，3年内血糖再没超标过。<br><br>
+        <strong>糖尿病前期是一个岔路口，走哪条路，3年后的结果完全不同。</strong>
+    </div>
+
+    <!-- ============================================================
+         六、餐后血糖与OGTT
+         ============================================================ -->
+    <h2 id="s6">六、餐后血糖与葡萄糖耐量试验（OGTT）</h2>
+
+    <p>普通体检只测空腹血糖，但这只是考卷的一半。有相当一部分人空腹血糖完全正常，但餐后血糖调节已经出问题了——他们的胰岛素反应变慢，吃完饭后血糖冲得很高，两三小时后才慢慢降回来。</p>
+
+    <p>这种情况叫做<strong>糖耐量受损（IGT）</strong>，空腹血糖查不出来，必须通过 OGTT（口服葡萄糖耐量试验）才能发现。</p>
+
+    <h3>OGTT 怎么做？</h3>
+
+    <div class="flow-steps">
+        <div class="flow-step">空腹采血（基线）</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">喝 75g 葡萄糖水</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">等待，不要走动</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">2小时后采血</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">对照标准判断</div>
+    </div>
+
+    <div class="data-card">
+        <div class="dc-label">OGTT 2小时血糖</div>
+        <div>
+            <span class="dc-normal">正常：&lt; 7.8 mmol/L</span>
+            <span class="dc-warning">糖耐量受损（糖尿病前期）：7.8 - 11.1</span>
+            <span class="dc-abnormal">糖尿病诊断线：≥ 11.1</span>
+        </div>
+        <div class="dc-note">OGTT 不是常规体检项目，但如有以下情况建议主动申请：空腹血糖在5.6-7.0之间 / 有糖尿病家族史 / 肥胖（BMI&gt;25）/ 高血压 / 曾有妊娠期糖尿病 / 多囊卵巢综合征</div>
+    </div>
+
+    <div class="life-example">
+        <strong>为什么说"不甜的东西"可能更危险？</strong><br>
+        很多人以为白米饭、馒头、面条不甜所以不升血糖——这是一个非常危险的误解。白米饭的升糖指数（GI 值）约 83，比同等量的白砂糖（GI≈65）还高。一碗白米饭（约 200g）消化后释放的葡萄糖相当于 10 颗方糖。精制淀粉在消化道里几乎像糖一样快速分解，对血糖的冲击甚至比很多甜食更猛。这就是为什么饮食干预的核心是"换碳水来源（吃糙米、杂粮饭替代白米饭）"，而不是"完全不吃碳水"。
+    </div>
+
+    <!-- ============================================================
+         七、并发症预告
+         ============================================================ -->
+    <h2 id="s7">七、🔮 高血糖如果不管，会发生什么</h2>
+    <p>长期高血糖的危害来自两个方向：<strong>大血管病变</strong>（损伤全身大血管）和<strong>微血管病变</strong>（损伤细小血管和神经）。这也是糖尿病患者心脏病、失明、肾衰竭、截肢发生率大幅升高的根本原因。</p>
+
+    <table class="compare-table">
+        <thead>
+            <tr><th>并发症类型</th><th>受影响部位</th><th>最终表现</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>大血管病变</strong></td>
+                <td>心脏、脑、下肢动脉</td>
+                <td>心肌梗死风险升高 2-4 倍；脑卒中；下肢动脉硬化（严重时截肢）</td>
+            </tr>
+            <tr>
+                <td><strong>视网膜微血管病变</strong></td>
+                <td>眼底毛细血管</td>
+                <td>糖尿病视网膜病变 → 失明（全球最常见的致盲原因之一）</td>
+            </tr>
+            <tr>
+                <td><strong>肾脏微血管病变</strong></td>
+                <td>肾小球毛细血管</td>
+                <td>糖尿病肾病 → 蛋白尿 → 肾衰竭（尿毒症透析的首因）</td>
+            </tr>
+            <tr>
+                <td><strong>神经病变</strong></td>
+                <td>周围神经</td>
+                <td>手脚麻木、疼痛、感觉丧失（糖尿病足溃疡）</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="info-box yellow">
+        <div class="box-title">⚠️ 血糖损伤是"慢刀子割肉"</div>
+        <p>高血糖损伤血管的机制是：葡萄糖和血管壁蛋白发生糖基化反应（和 HbA1c 的形成原理一样），血管壁变硬变脆，同时高糖环境促进炎症，加速动脉粥样硬化。这个过程非常缓慢——通常 5-10 年才出现明显并发症，所以人们往往不以为然。但等到并发症显现时，往往已经很难逆转。<strong>预防并发症的最佳时机，是在血糖轻度偏高的阶段就开始干预。</strong></p>
+    </div>
+
+    <!-- ============================================================
+         八、常见误区
+         ============================================================ -->
+    <h2 id="s8">八、⚠️ 常见误区</h2>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区1：血糖偏高就要马上吃降糖药</span>
+        <span class="truth">✅ 真相：糖尿病前期阶段，指南首先推荐生活方式干预，不是立即用药。只有确诊糖尿病（HbA1c ≥ 6.5% 或空腹血糖 ≥ 7.0 两次确认），或者生活方式干预 3-6 个月无效，才考虑药物。过早用药会让你失去一个"靠自身调整逆转"的机会，且部分药物有副作用。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区2：不甜的食物不升血糖，多吃没关系</span>
+        <span class="truth">✅ 真相：白米饭、馒头、面条、土豆等精制淀粉类食物的升糖速度和幅度不亚于很多甜食。"升不升血糖"取决于食物的升糖指数（GI）和升糖负荷（GL），不是味道甜不甜。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区3：血糖吃药控住了就没事了，不用管饮食运动</span>
+        <span class="truth">✅ 真相：药物只是帮助控制血糖数字，但胰岛素抵抗本身如果不通过运动和减重改善，药物剂量只会越来越大，最终进入"药物依赖加重"的循环。生活方式干预是从根本上改善代谢；药物是辅助工具。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区4：瘦子不会有血糖问题</span>
+        <span class="truth">✅ 真相：体重正常甚至偏瘦的人也可能有胰岛素抵抗，这种情况叫"正常体重代谢性肥胖（TOFI：Thin Outside Fat Inside）"——外表不胖，但内脏脂肪偏高，肌肉量不足。多见于缺乏运动、长期久坐的人群。腰围比 BMI 更能反映代谢风险。</span>
+    </div>
+
+    <div class="misconception">
+        <span class="myth">❌ 误区5：糖尿病是老年病，年轻人不用担心</span>
+        <span class="truth">✅ 真相：中国2型糖尿病的发病年龄越来越低。数据显示 20-30 岁群体的糖尿病前期比例已相当高，主要与高糖饮食、久坐、睡眠不足、压力大有关。体检出现血糖偏高，无论年龄都应认真对待。</span>
+    </div>
+
+    <!-- ============================================================
+         九、行动清单
+         ============================================================ -->
+    <h2 id="s9">九、✅ 拿到体检报告，你需要做的事</h2>
+
+    <div class="action-list">
+        <h3>按结果分情况处理</h3>
+        <ul>
+            <li>
+                <strong>空腹血糖 &lt; 6.1 mmol/L + HbA1c &lt; 5.7%</strong>：正常，每 1-2 年复查一次即可。
+            </li>
+            <li>
+                <strong>空腹血糖 6.1-7.0 mmol/L</strong>：同时查 HbA1c；开始生活方式干预（减少精制碳水、每周运动 150 分钟）；3 个月后复查。
+            </li>
+            <li>
+                <strong>HbA1c 5.7%-6.4%（无论空腹血糖是否偏高）</strong>：糖尿病前期，积极干预；考虑做 OGTT 了解餐后血糖状况；3-6 个月后复查。
+            </li>
+            <li>
+                <strong>空腹血糖 ≥ 7.0 mmol/L 或 HbA1c ≥ 6.5%</strong>：需要就医，做进一步检查（复查确认+评估胰岛功能），在医生指导下制定治疗方案，不要自行决定是否用药。
+            </li>
+            <li>
+                <strong>有高危因素（肥胖、家族史、高血压、高血脂）但血糖目前正常</strong>：每年至少查一次空腹血糖 + HbA1c；主动申请 OGTT 以发现隐匿的餐后高血糖。
+            </li>
+        </ul>
+    </div>
+
+    <div class="info-box green">
+        <div class="box-title">✅ 最有效的三件事（有证据，按优先级排序）</div>
+        <ol>
+            <li><strong>减重</strong>：如果体重超标，优先减重——这是改善胰岛素抵抗效果最强的单一干预。减重 5-7% 可以降低约 58% 的糖尿病进展风险。</li>
+            <li><strong>抗阻训练</strong>：增加肌肉量，肌肉是消耗葡萄糖最大的"仓库"，肌肉越多，血糖控制越好。每周 2-3 次哑铃、深蹲等抗阻运动。</li>
+            <li><strong>换碳水来源</strong>：不是少吃饭，是把白米饭换成杂粮饭（糙米、燕麦、豆类混合），白面包换全麦。同样的热量，升糖速度和幅度差别巨大。</li>
+        </ol>
+    </div>
+
+    <div class="chapter-nav">
+        <a href="chapter4.html"><span class="nav-label">上一章</span>← 肾功能</a>
+        <a href="chapter6.html" class="next"><span class="nav-label">下一章</span>血脂四项 →</a>
+    </div>
+
+</div><!-- end content-body -->
+
+<aside class="sidebar">
+    <div class="sidebar-card">
+        <h3>本章目录</h3>
+        <ul class="toc-list">
+            <li><a href="#s1">一、血糖调节机制</a></li>
+            <li><a href="#s2">二、读懂体检数字</a></li>
+            <li><a href="#s3">三、糖化血红蛋白</a></li>
+            <li><a href="#s4">四、胰岛素抵抗</a></li>
+            <li><a href="#s5">五、糖尿病前期</a></li>
+            <li><a href="#s6">六、餐后血糖与OGTT</a></li>
+            <li><a href="#s7">七、🔮 并发症预告</a></li>
+            <li><a href="#s8">八、⚠️ 常见误区</a></li>
+            <li><a href="#s9">九、✅ 行动清单</a></li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>关键指标速查</h3>
+        <ul class="toc-list" style="font-size:0.82rem;line-height:1.8;">
+            <li>空腹血糖正常：&lt; 6.1</li>
+            <li>糖尿病前期：6.1 - 7.0</li>
+            <li>糖尿病诊断线：≥ 7.0</li>
+            <li>HbA1c 正常：&lt; 5.7%</li>
+            <li>HbA1c 前期：5.7% - 6.4%</li>
+            <li>HbA1c 诊断线：≥ 6.5%</li>
+            <li>OGTT 2h正常：&lt; 7.8</li>
+        </ul>
+    </div>
+    <div class="sidebar-card">
+        <h3>快速跳转</h3>
+        <ul class="toc-list">
+            <li><a href="chapter4.html">← 第4章：肾功能</a></li>
+            <li><a href="chapter6.html">→ 第6章：血脂四项</a></li>
+            <li><a href="indicator-lookup.html">📊 指标速查表</a></li>
+        </ul>
+    </div>
+</aside>
+</div><!-- end main-content -->
+
+<footer class="site-footer">
+    <p>📋 体检报告篇 · 人体使用说明书系列</p>
+    <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
+</footer>
+<script src="nav.js"></script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>
 
     <h2 id="s1">一、血糖的正常范围和诊断标准</h2>
     <p>国内使用的血糖诊断标准（空腹，即禁食8-10小时后采血）：</p>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>卒中识别卡 · 脑血管篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+<style>
+/* 识别卡专用样式 */
+.stroke-card-hero {
+  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 40%, #7c3aed 100%);
+  color: #fff;
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+}
+.stroke-card-hero h1 { font-size: clamp(1.4rem,4vw,2rem); margin: .5rem 0; }
+.stroke-card-hero p { opacity: .85; font-size: .95rem; }
+
+.befas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+  margin: 1.5rem 0;
+}
+.befas-grid.row2 { grid-template-columns: repeat(3, 1fr); }
+
+.befas-card {
+  border-radius: 12px;
+  padding: 1.25rem .75rem;
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+}
+.befas-letter {
+  font-size: 2.8rem;
+  line-height: 1;
+  display: block;
+}
+.befas-word {
+  font-size: .7rem;
+  letter-spacing: .05em;
+  opacity: .85;
+  display: block;
+  margin: .2rem 0 .5rem;
+}
+.befas-desc {
+  font-size: .78rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.befas-b { background: linear-gradient(135deg, #0f766e, #0d9488); }
+.befas-e { background: linear-gradient(135deg, #0369a1, #0284c7); }
+.befas-f { background: linear-gradient(135deg, #b91c1c, #dc2626); }
+.befas-a { background: linear-gradient(135deg, #b45309, #d97706); }
+.befas-s { background: linear-gradient(135deg, #1d4ed8, #2563eb); }
+.befas-t { background: linear-gradient(135deg, #4c1d95, #7c3aed); }
+
+.emergency-banner {
+  background: #dc2626;
+  color: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+.emergency-banner .phone-num {
+  font-size: clamp(3rem, 10vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .05em;
+}
+.emergency-banner p {
+  font-size: 1rem;
+  margin-top: .5rem;
+  opacity: .9;
+}
+
+.action-steps-card {
+  background: #f5f3ff;
+  border: 2px solid #7c3aed;
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.action-steps-card h3 {
+  color: #4c1d95;
+  margin-top: 0;
+}
+.action-step-row {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  padding: .5rem 0;
+  border-bottom: 1px dashed #ddd6fe;
+}
+.action-step-row:last-child { border-bottom: none; }
+.step-num {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: #7c3aed;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .85rem;
+  margin-top: .1rem;
+}
+.step-text { font-size: .9rem; line-height: 1.5; }
+.step-text strong { color: #4c1d95; }
+
+.time-bar {
+  background: linear-gradient(90deg, #16a34a 0%, #ca8a04 50%, #dc2626 100%);
+  border-radius: 8px;
+  height: 14px;
+  margin: .75rem 0 .25rem;
+  position: relative;
+}
+.time-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .75rem;
+  color: #555;
+}
+.time-marker {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 22px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.dont-list {
+  background: #fff1f2;
+  border: 2px solid #fca5a5;
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+}
+.dont-list h3 { color: #dc2626; margin-top: 0; }
+.dont-list li { font-size: .9rem; padding: .25rem 0; }
+
+.save-hint {
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  font-size: .88rem;
+  color: #166534;
+  margin: 1rem 0;
+}
+
+@media print {
+  .breadcrumb, nav, footer, .save-hint { display: none; }
+  body { background: #fff; }
+  .stroke-card-hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .befas-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">🏠 总首页</a> › <a href="index.html">脑血管篇</a> › <span>卒中识别卡</span>
+</div>
+
+<div class="stroke-card-hero">
+  <div class="chapter-badge">🆘 应急工具</div>
+  <h1>卒中识别卡</h1>
+  <p>截图保存 · 关键时刻可以救命</p>
+</div>
+
+<div class="main-content" style="max-width:680px;margin:0 auto;padding:1rem 1rem 3rem;">
+
+  <div class="save-hint">
+    📱 建议截图保存到手机相册，发给家人——意外时可能救命
+  </div>
+
+  <h2 style="text-align:center;color:#4c1d95;font-size:1.1rem;margin:1.5rem 0 .75rem;">BE-FAST 识别口诀</h2>
+
+  <div class="befas-grid">
+    <div class="befas-card befas-b">
+      <span class="befas-letter">B</span>
+      <span class="befas-word">Balance · 平衡</span>
+      <span class="befas-desc">突然走路不稳、头晕、站立困难</span>
+    </div>
+    <div class="befas-card befas-e">
+      <span class="befas-letter">E</span>
+      <span class="befas-word">Eyes · 眼睛</span>
+      <span class="befas-desc">突然视力模糊、眼前发黑、看东西变形</span>
+    </div>
+    <div class="befas-card befas-f">
+      <span class="befas-letter">F</span>
+      <span class="befas-word">Face · 面部</span>
+      <span class="befas-desc">让他笑一笑——嘴角一边高一边低？</span>
+    </div>
+    <div class="befas-card befas-a">
+      <span class="befas-letter">A</span>
+      <span class="befas-word">Arms · 手臂</span>
+      <span class="befas-desc">举起双手平放——一侧无力往下掉？</span>
+    </div>
+    <div class="befas-card befas-s">
+      <span class="befas-letter">S</span>
+      <span class="befas-word">Speech · 说话</span>
+      <span class="befas-desc">说一句话——口齿不清？说不出话？</span>
+    </div>
+    <div class="befas-card befas-t">
+      <span class="befas-letter">T</span>
+      <span class="befas-word">Time · 时间</span>
+      <span class="befas-desc">任何一条 → 立刻打 120！记下发病时间！</span>
+    </div>
+  </div>
+
+  <div class="emergency-banner">
+    <div class="phone-num">120</div>
+    <p>发现症状 → 立刻拨打 120<br>不要等"看看能不能自己好"</p>
+  </div>
+
+  <div class="action-steps-card">
+    <h3>⚡ 等待120期间，做这5件事</h3>
+    <div class="action-step-row">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>记下发病时间</strong>——几点几分出现症状，溶栓能否使用取决于这个时间</div>
+    </div>
+    <div class="action-step-row">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>让患者躺平休息</strong>，头偏向一侧（防止呕吐物呛入气道）</div>
+    </div>
+    <div class="action-step-row">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>不要给任何食物和水</strong>——吞咽功能可能已受损，小心吸入性肺炎</div>
+    </div>
+    <div class="action-step-row">
+      <div class="step-num">4</div>
+      <div class="step-text"><strong>不要喂任何药</strong>——脑出血与脑梗治疗方向相反，在CT确诊前给错药可能致命</div>
+    </div>
+    <div class="action-step-row">
+      <div class="step-num">5</div>
+      <div class="step-text"><strong>准备好告诉医生</strong>：几点几分发病、目前用什么药（带上药盒）、有什么基础病</div>
+    </div>
+  </div>
+
+  <h2 style="color:#4c1d95;font-size:1rem;margin:1.5rem 0 .5rem;">⏰ 时间就是大脑</h2>
+  <p style="font-size:.88rem;color:#555;margin:0 0 .5rem;">每延误1分钟，约190万个神经元死亡</p>
+  <div class="time-bar">
+    <div class="time-marker" style="left:33%"></div>
+    <div class="time-marker" style="left:67%"></div>
+  </div>
+  <div class="time-bar-labels">
+    <span>0h<br>发病</span>
+    <span>1.5h<br>最佳溶栓</span>
+    <span>3h<br>溶栓黄金</span>
+    <span>4.5h<br>溶栓截止</span>
+  </div>
+
+  <div class="dont-list" style="margin-top:1.5rem;">
+    <h3>🚫 绝对不能做</h3>
+    <ul>
+      <li>❌ 不要掐人中（没用，耽误时间）</li>
+      <li>❌ 不要自己开车送——路上病情可能急剧恶化，120有急救设备</li>
+      <li>❌ 不要让患者喝水吃东西</li>
+      <li>❌ 不要给阿司匹林——脑出血患者给了会更严重</li>
+      <li>❌ 不要"再等等看"——TIA症状自行消失也要立刻就医</li>
+    </ul>
+  </div>
+
+  <div style="background:#ede9fe;border-radius:12px;padding:1rem;text-align:center;font-size:.85rem;color:#4c1d95;line-height:1.7;">
+    <strong>🧠 脑血管篇</strong> · 更多详情请查阅各章节<br>
+    <a href="chapter3.html" style="color:#6d28d9;">第3章 FAST详解</a> · 
+    <a href="chapter4.html" style="color:#6d28d9;">第4章 急救流程</a> · 
+    <a href="risk-checklist.html" style="color:#6d28d9;">📋 我的风险评估</a>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <p>🧠 脑血管篇 · 卒中识别卡</p>
+  <p style="margin-top:.5rem;opacity:.6;font-size:.8rem;">内容仅供健康教育，不替代医疗诊断。</p>
+</footer>
+</body>
+</html>

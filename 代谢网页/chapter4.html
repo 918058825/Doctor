@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4章 · 甲状腺 | 代谢篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">代谢篇</a><span>›</span>
+  第4章 · 甲状腺
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">第4章 · 内分泌代谢</div>
+  <h1>甲状腺</h1>
+  <p class="subtitle">结节/甲亢/甲减怎么区分——淡定看待结节，不要过度治疗</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="chapter-intro">
+      <div class="ci-meta">
+        <span class="ci-badge">甲状腺</span>
+        <span class="ci-phase">🟠 第二阶段</span>
+      </div>
+      <h3>读这一章，你能解答：</h3>
+      <ul class="intro-hooks">
+        <li>体检发现甲状腺结节，是不是快变成甲状腺癌了？</li>
+        <li>TI-RADS分级是什么意思，几级需要手术？</li>
+        <li>甲亢会让人变瘦变快，甲减则相反——为什么？</li>
+        <li>桥本甲状腺炎是什么，严重吗？</li>
+        <li>TSH、T3、T4这些指标怎么看？</li>
+      </ul>
+    </div>
+
+    <h2 id="thyroid-function">甲状腺：代谢的"油门和刹车"</h2>
+    <p>
+      甲状腺是位于颈部气管前方的蝴蝶形腺体，重约25克，是人体最大的内分泌腺之一。
+      它分泌的<strong>甲状腺激素</strong>（主要是T4和T3）是全身代谢的总调节激素——
+      就像汽车的油门，决定身体所有细胞"燃烧"燃料的速率。
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>甲状腺激素的作用系统</th><th>具体效应</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>⚡ 代谢率</td><td>提高基础代谢率（BMR）、产热；甲减时BMR可降低15–40%</td></tr>
+        <tr><td>💓 心血管</td><td>增加心率、心肌收缩力；甲亢时心跳加快/房颤风险增高</td></tr>
+        <tr><td>🧠 神经系统</td><td>影响神经发育（婴儿期极关键）和成人思维、情绪、记忆</td></tr>
+        <tr><td>🦴 骨骼</td><td>促进骨骼发育；甲亢时骨转换加速→骨质疏松风险</td></tr>
+        <tr><td>⚖️ 体重</td><td>甲亢→体重下降；甲减→体重增加（但甲减引起的体重增加通常有限，约2–5kg）</td></tr>
+        <tr><td>🩸 血脂</td><td>甲减时LDL胆固醇升高，心血管风险增加</td></tr>
+      </tbody>
+    </table>
+
+    <h3>甲状腺激素的分泌调节（HPT轴）</h3>
+    <div class="flow-steps">
+      <span class="flow-step">下丘脑→TRH↑</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">垂体→TSH↑</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">甲状腺→T4/T3↑</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">负反馈抑制TRH/TSH</span>
+    </div>
+    <p>
+      理解这个轴非常重要：<strong>TSH（促甲状腺激素）升高</strong>意味着甲状腺功能不足（身体在催甲状腺多分泌），
+      通常提示<strong>甲减</strong>；<strong>TSH降低</strong>意味着甲状腺激素过多（负反馈抑制了TSH），
+      通常提示<strong>甲亢</strong>。
+    </p>
+
+    <h2 id="lab-tests">甲状腺功能化验怎么看</h2>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>指标</th><th>正常参考范围</th><th>升高时</th><th>降低时</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>TSH（促甲状腺激素）</td><td>0.27–4.2 mIU/L</td><td>甲减（或治疗甲亢过度）</td><td>甲亢（或治疗甲减过度）</td></tr>
+        <tr><td>FT4（游离甲状腺素）</td><td>12–22 pmol/L</td><td>甲亢</td><td>甲减</td></tr>
+        <tr><td>FT3（游离三碘甲腺原氨酸）</td><td>3.1–6.8 pmol/L</td><td>甲亢（尤其T3型甲亢）</td><td>重度甲减</td></tr>
+        <tr><td>TPO抗体</td><td>&lt;34 IU/mL</td><td>自身免疫性甲状腺病（桥本/Graves）</td><td>——</td></tr>
+        <tr><td>TGAb（甲状腺球蛋白抗体）</td><td>&lt;115 IU/mL</td><td>桥本甲状腺炎、Graves病</td><td>——</td></tr>
+        <tr><td>TSI/TRAb（TSH受体抗体）</td><td>阴性</td><td>Graves病特异性标志</td><td>——</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box yellow">
+      <div class="box-title">📌 TSH是最敏感的初筛指标</div>
+      <p>筛查甲状腺功能，TSH一个指标就够了（对于大多数情况）。TSH正常，甲状腺功能通常正常；
+      TSH异常，再查FT4、FT3和抗体来进一步明确。不建议不明原因地同时查所有指标——TSH是信号灯，
+      其他是进一步的判断工具。</p>
+    </div>
+
+    <h2 id="hypothyroidism">甲减：身体"踩了刹车"</h2>
+    <p>
+      <strong>甲状腺功能减退（甲减）</strong>是最常见的甲状腺功能异常，女性发病率约为男性的5–10倍。
+      全球患病率约4–10%，且随年龄增长显著增加。
+    </p>
+
+    <div class="comparison-box">
+      <div class="cb-normal">
+        <div class="cb-label">📊 甲减的常见症状</div>
+        <div class="cb-content">
+          <ul>
+            <li>疲倦、乏力、反应迟缓</li>
+            <li>怕冷（总是比别人冷）</li>
+            <li>体重增加、水肿（尤其是面部/眼周）</li>
+            <li>皮肤干燥、头发稀疏</li>
+            <li>便秘</li>
+            <li>月经紊乱/月经过多</li>
+            <li>声音嘶哑、舌头肿大</li>
+            <li>情绪低落、记忆力下降</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cb-path">
+        <div class="cb-label">🔍 甲减的常见原因</div>
+        <div class="cb-content">
+          <ul>
+            <li><strong>桥本甲状腺炎</strong>（最常见）：自身免疫攻击甲状腺</li>
+            <li>放射性碘治疗后</li>
+            <li>甲状腺手术后</li>
+            <li>碘缺乏（发展中国家）或碘过量</li>
+            <li>垂体疾病（中枢性甲减，TSH不升高）</li>
+            <li>先天性甲减（新生儿筛查即可发现）</li>
+            <li>某些药物（胺碘酮、锂盐等）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>桥本甲状腺炎：最常见的甲减原因</h3>
+    <p>
+      桥本甲状腺炎（慢性淋巴细胞性甲状腺炎）是一种自身免疫病，免疫系统产生针对甲状腺的抗体，
+      导致甲状腺组织被慢性炎症破坏，最终甲状腺功能逐渐减退。
+    </p>
+    <div class="info-box teal">
+      <div class="box-title">📌 桥本甲状腺炎的关键事实</div>
+      <ul>
+        <li>TPO抗体或TGAb阳性是其标志，但抗体高不等于甲功一定异常</li>
+        <li>早期甲功可完全正常，仅抗体阳性（"桥本状态"）</li>
+        <li>部分患者甲功终身正常；约20–30%最终进展为甲减</li>
+        <li>目前尚无针对自身免疫的特异性治疗；出现甲减后用左甲状腺素补充</li>
+        <li>不影响正常生活；孕期需更密切监测</li>
+      </ul>
+    </div>
+
+    <h3>甲减的治疗</h3>
+    <p>
+      确诊甲减后，治疗非常简单：每天口服一片<strong>左甲状腺素（L-T4，商品名优甲乐）</strong>，
+      替代不足的甲状腺激素。通常需要终生服药，治疗目标是维持TSH在正常范围（0.4–4.0 mIU/L）。
+    </p>
+    <div class="info-box blue">
+      <div class="box-title">📌 优甲乐的服药注意事项</div>
+      <ul>
+        <li>早晨空腹服用，与其他药物/食物间隔至少30–60分钟</li>
+        <li>钙片、铁剂、抗酸药会影响吸收，需间隔4小时</li>
+        <li>剂量调整后4–6周复查TSH</li>
+        <li>剂量稳定后每6–12个月复查一次TSH即可</li>
+        <li>孕期需增加剂量（约增加25–50%），需更频繁监测</li>
+      </ul>
+    </div>
+
+    <h2 id="hyperthyroidism">甲亢：身体"踩了油门"</h2>
+    <p>
+      <strong>甲状腺功能亢进（甲亢）</strong>是甲状腺激素分泌过多，使全身代谢率异常升高。
+      最常见原因是<strong>Graves病</strong>（约占甲亢的70–80%），其次是毒性多结节性甲状腺肿和甲状腺腺瘤。
+    </p>
+
+    <div class="four-questions">
+      <div class="fq-item fq-what">
+        <div class="fq-header"><div class="fq-num">症</div><div class="fq-label">典型症状</div></div>
+        <p class="fq-content">心跳加快/心悸、多汗怕热、体重下降（尽管食欲好）、烦躁焦虑、手抖、大便频繁、失眠、月经减少</p>
+      </div>
+      <div class="fq-item fq-why">
+        <div class="fq-header"><div class="fq-num">查</div><div class="fq-label">检查特征</div></div>
+        <p class="fq-content">TSH降低（通常&lt;0.1）；FT4/FT3升高；TRAb阳性（Graves病特异）；甲状腺弥漫性肿大；摄碘率升高</p>
+      </div>
+      <div class="fq-item fq-matter">
+        <div class="fq-header"><div class="fq-num">危</div><div class="fq-label">并发症风险</div></div>
+        <p class="fq-content">房颤（老年人更常见）；Graves眼病（眼球突出、复视）；甲亢危象（罕见但危及生命）；长期：骨质疏松、心功能受损</p>
+      </div>
+      <div class="fq-item fq-action">
+        <div class="fq-header"><div class="fq-num">治</div><div class="fq-label">治疗选择</div></div>
+        <p class="fq-content">①口服抗甲状腺药（甲巯咪唑/丙硫氧嘧啶）；②放射性碘-131治疗；③手术切除（较少用）；β受体阻滞剂控制症状</p>
+      </div>
+    </div>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区："甲亢让人变瘦，是减肥好机会"</span>
+      <span class="truth">✅ 真相：甲亢的"变瘦"是肌肉和骨骼的损耗，对身体有害</span>
+      <p>未控制的甲亢导致的体重下降以肌肉蛋白分解和骨质流失为主，同时心脏承受持续高负荷，
+      房颤风险显著增加。甲亢患者必须积极治疗，而不是享受"副作用"。</p>
+    </div>
+
+    <h2 id="nodules">甲状腺结节：95%是良性的</h2>
+    <p>
+      甲状腺结节是最常见的甲状腺问题，成人中超声检出率高达<strong>20–76%</strong>——
+      也就是说，做超声检查的成年人中有将近一半可能发现结节。
+      但这并不可怕，因为绝大多数结节是良性的，甲状腺癌在所有结节中占比仅约<strong>5–15%</strong>。
+    </p>
+
+    <div class="key-concept">
+      甲状腺结节的核心问题只有一个：<strong>这个结节是良性还是恶性（癌）？</strong>
+      超声和细针穿刺活检（FNA）是判断的主要工具。
+      结节的大小本身并不决定恶性风险——小结节也可能是癌，大结节也可能完全良性。
+    </div>
+
+    <h3>TI-RADS分级系统：超声评估结节风险</h3>
+    <p>
+      TI-RADS（甲状腺影像报告和数据系统）是评估甲状腺结节恶性风险的超声分级系统，
+      目前常用的有美国放射学会ACR TI-RADS和中国超声医学工程学会C-TI-RADS。
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>TI-RADS分级</th><th>超声特征</th><th>恶性风险</th><th>建议</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🟢 1级</td><td>正常甲状腺，无结节</td><td>—</td><td>无需特殊处理</td></tr>
+        <tr><td>🟢 2级</td><td>良性特征（囊肿、海绵状）</td><td>0%（基本确定良性）</td><td>无需随访（或1–2年一次）</td></tr>
+        <tr><td>🟡 3级</td><td>可能良性，轻度可疑</td><td>&lt;5%</td><td>≥1.5cm考虑随访；≥2.5cm考虑FNA</td></tr>
+        <tr><td>🟠 4级</td><td>中度可疑（低回声、纵横比&gt;1、形态不规则等）</td><td>5–20%</td><td>≥1.0cm建议FNA</td></tr>
+        <tr><td>🔴 5级</td><td>高度可疑恶性（多个恶性特征并存）</td><td>&gt;20%（可高达70%）</td><td>≥0.5cm建议FNA；考虑手术评估</td></tr>
+      </tbody>
+    </table>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区："发现结节就必须手术切除，以防万一"</span>
+      <span class="truth">✅ 真相：大多数结节只需定期随访，过度切除可能造成永久性甲状腺功能不足</span>
+      <p>甲状腺一旦全切，患者需要终生服药替代。对于低风险（TI-RADS 2–3级）或小的甲状腺癌（微小乳头状癌&lt;1cm，无高危特征），
+      国际指南支持"主动监测"策略——即定期复查而非立即手术，5年以上研究显示这类癌进展极慢，
+      延迟手术并不影响预后。遇到建议手术的情况，建议<strong>第二医学意见</strong>。</p>
+    </div>
+
+    <h3>细针穿刺活检（FNA）：结节良恶性鉴别的金标准</h3>
+    <p>
+      当结节超声高度可疑时，会建议行FNA。这是一种在超声引导下，用细针刺入结节
+      抽取少量细胞进行病理分析的微创操作，通常无需麻醉，门诊即可完成，疼痛轻微。
+      FNA结果按Bethesda系统分六类，指导下一步处理：
+    </p>
+    <ul>
+      <li><strong>Bethesda I（无法诊断）</strong>：样本不足，建议重做</li>
+      <li><strong>Bethesda II（良性）</strong>：恶性风险0–3%，随访即可</li>
+      <li><strong>Bethesda III/IV（不确定）</strong>：恶性风险10–40%，重复FNA或分子检测</li>
+      <li><strong>Bethesda V（可疑恶性）</strong>：恶性风险60–75%，建议手术</li>
+      <li><strong>Bethesda VI（恶性）</strong>：恶性风险97–99%，手术治疗</li>
+    </ul>
+
+    <h2 id="thyroid-cancer">甲状腺癌：被过度恐惧的"最好的癌"</h2>
+    <p>
+      甲状腺癌是最常见的内分泌系统恶性肿瘤，近年发病率快速上升（主要是超声检测增多发现更多微小癌）。
+      其中约85–90%是<strong>乳头状甲状腺癌（PTC）</strong>，被称为"最良性的癌"——
+      10年生存率超过99%，绝大多数患者手术后可以完全恢复正常生活。
+    </p>
+    <div class="info-box green">
+      <div class="box-title">📌 甲状腺癌的预后差异极大</div>
+      <ul>
+        <li><strong>乳头状癌（PTC）</strong>：占85–90%，预后极好，>99%的10年生存率</li>
+        <li><strong>滤泡状癌（FTC）</strong>：占5–10%，多通过血行转移，预后良好</li>
+        <li><strong>髓样癌（MTC）</strong>：占3–5%，可能有遗传背景（MEN2），预后中等</li>
+        <li><strong>未分化癌（ATC）</strong>：极少见（&lt;2%），高度恶性，中位生存期仅3–6个月——这才是真正危险的甲状腺癌，但非常罕见</li>
+      </ul>
+    </div>
+
+    <h2 id="subacute-thyroiditis">亚急性甲状腺炎：让人误以为是感冒的甲状腺炎</h2>
+    <p>
+      亚急性甲状腺炎（De Quervain甲状腺炎）通常由病毒感染触发，表现为<strong>颈部疼痛</strong>（特别是吞咽时）、
+      发热、甲状腺区压痛，伴有短暂的甲亢症状（因甲状腺炎症释放储存的激素）。
+    </p>
+    <p>
+      病程分三期：甲亢期（数周）→正常期→甲减期（数月）→大多数最终恢复正常。
+      治疗以非甾体抗炎药（NSAIDs）为主，严重者用糖皮质激素，通常无需抗甲状腺药（因为是炎症释放而非过度合成）。
+    </p>
+
+    <div class="action-list">
+      <h3>✅ 第4章小结：你需要知道的</h3>
+      <ul>
+        <li><strong>甲状腺激素是全身代谢的调节器</strong>，TSH是最佳初筛指标</li>
+        <li><strong>TSH升高=甲减；TSH降低=甲亢</strong>——记住这个反向关系</li>
+        <li><strong>甲状腺结节极为常见，95%良性</strong>，不要一发现就恐慌</li>
+        <li><strong>TI-RADS 2–3级结节</strong>通常只需定期超声随访，无需手术</li>
+        <li><strong>桥本甲状腺炎</strong>：抗体高不等于一定需要治疗，等出现甲减才补充激素</li>
+        <li><strong>甲状腺乳头状癌</strong>：预后极好，不要因"癌"字过度恐慌</li>
+        <li><strong>发现结节务必看甲状腺专科</strong>，不要轻信"一定要切"</li>
+      </ul>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="chapter3.html">← 第3章 · 糖尿病并发症</a>
+      <a href="chapter5.html" class="next">第5章 · 痛风 →<span class="nav-label">尿酸高一定会发作吗</span></a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>本章目录</h3>
+      <ul class="toc-list">
+        <li><a href="#thyroid-function">甲状腺的代谢调节</a></li>
+        <li><a href="#lab-tests">甲状腺化验怎么看</a></li>
+        <li><a href="#hypothyroidism">甲减：刹车踩死</a></li>
+        <li><a href="#hyperthyroidism">甲亢：油门踩死</a></li>
+        <li><a href="#nodules">甲状腺结节：95%良性</a></li>
+        <li><a href="#thyroid-cancer">甲状腺癌</a></li>
+        <li><a href="#subacute-thyroiditis">亚急性甲状腺炎</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>TSH速查</h3>
+      <div class="range-cards">
+        <div class="range-card rc-normal">
+          <span class="range-val">0.27–4.2</span>
+          <div class="range-label">TSH正常 (mIU/L)</div>
+        </div>
+        <div class="range-card rc-danger">
+          <span class="range-val">&gt;4.2</span>
+          <div class="range-label">TSH↑→甲减</div>
+        </div>
+        <div class="range-card rc-warn">
+          <span class="range-val">&lt;0.27</span>
+          <div class="range-label">TSH↓→甲亢</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🧬 代谢篇 · 人体使用说明书系列 | 第4章 · 甲状腺</p>
+</footer>
+</body>
+</html>

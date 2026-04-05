@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第2章 · 糖尿病 | 代谢篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">首页</a><span>›</span>
+  <a href="index.html">代谢篇</a><span>›</span>
+  第2章 · 糖尿病
+</div>
+
+<div class="page-hero">
+  <div class="chapter-badge">第2章 · 代谢基础</div>
+  <h1>糖尿病</h1>
+  <p class="subtitle">胰岛素到底出了什么问题——从分子机制到临床分型，真正理解这个慢性病</p>
+</div>
+
+<div class="main-content">
+  <article class="content-body">
+
+    <div class="chapter-intro">
+      <div class="ci-meta">
+        <span class="ci-badge">糖尿病</span>
+        <span class="ci-phase">🟡 第一阶段</span>
+      </div>
+      <h3>读这一章，你能解答：</h3>
+      <ul class="intro-hooks">
+        <li>1型糖尿病和2型糖尿病，根本区别在哪里？</li>
+        <li>血糖高到什么程度才叫糖尿病？前期能逆转吗？</li>
+        <li>为什么糖尿病患者"多吃多喝多尿"？</li>
+        <li>HbA1c是什么，比血糖更重要吗？</li>
+        <li>年轻人也会得2型糖尿病吗？哪些人高风险？</li>
+      </ul>
+    </div>
+
+    <h2 id="diabetes-scale">糖尿病的规模</h2>
+    <p>
+      糖尿病是全球最常见的慢性代谢病之一。2023年全球约有5.37亿糖尿病患者，
+      预计到2045年将增至7.83亿。中国是糖尿病患者数量最多的国家，约有1.4亿患者，
+      且约一半尚未被诊断——即"不知道自己有糖尿病"。
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat-item">
+        <span class="stat-value">5.37亿</span>
+        <div class="stat-label">全球糖尿病患者</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">1.4亿</span>
+        <div class="stat-label">中国患者估计数</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">50%</span>
+        <div class="stat-label">未被诊断的比例</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">90–95%</span>
+        <div class="stat-label">2型糖尿病占比</div>
+      </div>
+    </div>
+
+    <h2 id="blood-sugar-diagnosis">血糖的诊断标准</h2>
+    <p>
+      在理解1型和2型糖尿病之前，先明确：血糖多高才算有问题？
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>状态</th><th>空腹血糖 (mmol/L)</th><th>餐后2h血糖 (mmol/L)</th><th>HbA1c (%)</th><th>临床意义</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>✅ 正常</td><td>&lt; 6.1</td><td>&lt; 7.8</td><td>&lt; 5.7%</td><td>无需干预</td></tr>
+        <tr><td>⚠️ 空腹血糖受损（IFG）</td><td>6.1–7.0</td><td>—</td><td>5.7–6.4%</td><td>糖尿病前期，可逆</td></tr>
+        <tr><td>⚠️ 糖耐量减低（IGT）</td><td>—</td><td>7.8–11.0</td><td>5.7–6.4%</td><td>糖尿病前期，可逆</td></tr>
+        <tr><td>🔴 糖尿病</td><td>≥ 7.0</td><td>≥ 11.1</td><td>≥ 6.5%</td><td>诊断糖尿病（需至少2次确认）</td></tr>
+        <tr><td>🔴 高血糖危象</td><td>随机≥ 11.1 + 症状</td><td>—</td><td>—</td><td>一次即可确诊</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box green">
+      <div class="box-title">📌 糖尿病前期：最重要的窗口期</div>
+      <p>全球约有5.4亿人处于糖尿病前期。研究证明，通过<strong>生活方式干预</strong>（减重5–7%体重 + 每周150分钟中等强度运动），
+      可使糖尿病发生率降低<strong>58%</strong>，效果优于二甲双胍（31%）。这个阶段是可逆的，也是最值得干预的时机。</p>
+    </div>
+
+    <h2 id="type1-vs-type2">1型 vs 2型：根本区别在哪里</h2>
+    <p>
+      同样叫"糖尿病"，1型和2型在病因、机制、治疗上完全不同，混淆两者是非常常见的误区。
+    </p>
+
+    <div class="comparison-box">
+      <div class="cb-normal">
+        <div class="cb-label">🔵 1型糖尿病（胰岛素依赖型）</div>
+        <div class="cb-content">
+          <ul>
+            <li>自身免疫病：免疫系统攻击并摧毁胰腺β细胞</li>
+            <li>β细胞几乎完全破坏，几乎不分泌胰岛素</li>
+            <li>发病较急，多见于儿童/青少年（但可任何年龄）</li>
+            <li>体型通常正常或偏瘦</li>
+            <li>必须终生注射胰岛素维持生命</li>
+            <li>占所有糖尿病约5–10%</li>
+            <li>目前无法预防，发病机制仍在研究</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cb-path">
+        <div class="cb-label">🟡 2型糖尿病（胰岛素抵抗型）</div>
+        <div class="cb-content">
+          <ul>
+            <li>代谢综合征：胰岛素抵抗 + β细胞代偿性超负荷 → 最终衰竭</li>
+            <li>早期β细胞功能正常或亢进，晚期才减退</li>
+            <li>多发于中老年，但近年年轻化趋势明显</li>
+            <li>多数有超重/腹型肥胖</li>
+            <li>可用口服药控制，严重时也需胰岛素</li>
+            <li>占所有糖尿病约90–95%</li>
+            <li>可通过生活方式预防，部分可逆</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区："吃糖太多会直接导致糖尿病"</span>
+      <span class="truth">✅ 真相：是长期能量过剩→肥胖→胰岛素抵抗的链条，糖是因素之一但非直接原因</span>
+      <p>大量摄入含糖饮料等高GI食物确实增加2型糖尿病风险，但机制是通过导致肥胖和胰岛素抵抗，
+      而非"糖直接损坏胰岛"。瘦人也可能因遗传因素得糖尿病；胖人如果保持运动和健康饮食，患病风险也可显著降低。</p>
+    </div>
+
+    <h2 id="t2d-mechanism">2型糖尿病的病理进展</h2>
+    <p>
+      2型糖尿病不是一夜之间"突然"发生的，它是一个持续多年的进展过程。
+      了解这个过程，有助于理解"为什么我昨天还好好的"以及"为什么要尽早干预"。
+    </p>
+
+    <div class="flow-chain">
+      <div class="flow-node">
+        <div class="flow-node-num">1</div>
+        <div class="flow-node-body"><strong>胰岛素抵抗起步</strong><small>内脏脂肪积累、久坐、高GI饮食→细胞对胰岛素响应下降（可持续多年，无症状）</small></div>
+      </div>
+      <div class="flow-node fn-alert">
+        <div class="flow-node-num">2</div>
+        <div class="flow-node-body"><strong>β细胞代偿性亢进</strong><small>为维持血糖正常，β细胞分泌更多胰岛素（高胰岛素血症）——此时血糖仍"正常"，但风险已在积累</small></div>
+      </div>
+      <div class="flow-node fn-alert">
+        <div class="flow-node-num">3</div>
+        <div class="flow-node-body"><strong>代偿失调——糖尿病前期</strong><small>β细胞代偿能力到达极限，餐后血糖开始超标（糖耐量减低）；空腹血糖仍可正常</small></div>
+      </div>
+      <div class="flow-node fn-danger">
+        <div class="flow-node-num">4</div>
+        <div class="flow-node-body"><strong>β细胞功能衰退——2型糖尿病确诊</strong><small>β细胞因长期超负荷出现"功能耗竭"，胰岛素分泌不足以控制血糖，空腹和餐后血糖均超标</small></div>
+      </div>
+      <div class="flow-node fn-danger">
+        <div class="flow-node-num">5</div>
+        <div class="flow-node-body"><strong>并发症积累</strong><small>持续高血糖损伤血管和神经——这是后续第3章的主题</small></div>
+      </div>
+    </div>
+
+    <div class="info-box yellow">
+      <div class="box-title">📌 为什么确诊时往往β细胞已损失50%以上？</div>
+      <p>在代偿阶段，血糖指标看起来"还好"，但胰腺实际上已经在加速磨损。
+      研究表明，确诊2型糖尿病时，β细胞功能通常已下降50%左右。这就是"早发现早干预"如此重要的原因——
+      在代偿阶段通过生活方式改变，是有机会保住剩余β细胞功能的。</p>
+    </div>
+
+    <h2 id="symptoms">糖尿病的症状：为什么"多吃多喝多尿"</h2>
+    <p>
+      经典的糖尿病三多（多尿、多饮、多食）加一少（体重减轻）有清晰的生理解释，
+      理解这些症状，也就理解了高血糖在身体里做了什么。
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>症状</th><th>发生机制</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🚿 多尿（多尿症）</td><td>血糖超过"肾糖阈"（约10 mmol/L），肾小管无法全部重吸收葡萄糖→葡萄糖进入尿液→带走大量水分（渗透性利尿）→尿量增加（每日可达3–5升甚至更多）</td></tr>
+        <tr><td>💧 多饮（烦渴）</td><td>因多尿导致脱水→血液渗透压升高→下丘脑渴觉中枢持续被激活→感到极度口渴</td></tr>
+        <tr><td>🍽 多食（多食症）</td><td>胰岛素信号障碍，葡萄糖无法有效进入细胞→细胞"认为"能量不足→大脑持续发出饥饿信号；同时，部分葡萄糖从尿中流失→真实能量损失也增加了饥饿感</td></tr>
+        <tr><td>⚖️ 体重下降</td><td>尤其在1型或未控制的2型：葡萄糖不能利用→分解脂肪和肌肉蛋白质供能→体重迅速下降；1型患者发病时可在数周内消瘦明显</td></tr>
+        <tr><td>😴 疲劳乏力</td><td>细胞不能有效利用葡萄糖→能量供给不足→持续疲倦感；同时脱水和电解质紊乱也加重乏力</td></tr>
+        <tr><td>👁 视力模糊</td><td>高血糖改变眼内液体渗透压→晶状体形状改变→屈光改变→视物模糊；血糖控制好后可能自行改善</td></tr>
+        <tr><td>🦶 伤口愈合慢</td><td>高血糖抑制白细胞功能和胶原蛋白合成；同时微血管损伤导致局部血供减少</td></tr>
+      </tbody>
+    </table>
+
+    <div class="misconception">
+      <span class="myth">❌ 误区："没有三多症状，就不可能有糖尿病"</span>
+      <span class="truth">✅ 真相：大多数2型糖尿病患者早期几乎没有典型症状</span>
+      <p>三多一少症状通常在血糖非常高（空腹>13.9或随机>20 mmol/L）时才明显，
+      大部分2型糖尿病患者在确诊前可以多年无明显症状。这正是定期体检检测血糖的重要性所在。</p>
+    </div>
+
+    <h2 id="hba1c">HbA1c：评估长期血糖的金标准</h2>
+    <p>
+      <strong>糖化血红蛋白（HbA1c）</strong>是医生评估糖尿病控制质量最重要的指标。它的原理是：
+      血液中的葡萄糖会与红细胞内的血红蛋白发生"糖化"反应，结合越多说明血糖越高。
+      由于红细胞寿命约120天，HbA1c反映的是<strong>过去2–3个月的平均血糖水平</strong>。
+    </p>
+
+    <div class="comparison-box">
+      <div class="cb-normal">
+        <div class="cb-label">📊 HbA1c优点</div>
+        <div class="cb-content">
+          <ul>
+            <li>不需要空腹（任何时间可测）</li>
+            <li>反映长期血糖，不受单日波动影响</li>
+            <li>评估治疗效果的金标准</li>
+            <li>能识别有症状但未诊断的糖尿病患者</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cb-path">
+        <div class="cb-label">⚠️ HbA1c局限性</div>
+        <div class="cb-content">
+          <ul>
+            <li>贫血/溶血/血红蛋白变异时结果不准</li>
+            <li>不反映血糖波动（低血糖+高血糖平均可能正常）</li>
+            <li>肾脏病患者因红细胞寿命缩短，结果可能偏低</li>
+            <li>妊娠期准确性降低</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>HbA1c值</th><th>对应平均血糖 (mmol/L)</th><th>临床分类</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>&lt; 5.7%</td><td>&lt; 6.7</td><td>✅ 正常</td></tr>
+        <tr><td>5.7–6.4%</td><td>6.7–8.5</td><td>⚠️ 糖尿病前期</td></tr>
+        <tr><td>6.5–7.0%</td><td>8.5–9.4</td><td>🔴 糖尿病（控制良好目标）</td></tr>
+        <tr><td>7.0–8.0%</td><td>9.4–11.0</td><td>🔴 糖尿病（尚可接受/需加强）</td></tr>
+        <tr><td>&gt; 8.0%</td><td>&gt; 11.0</td><td>🔴 控制不佳，并发症风险显著升高</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box yellow">
+      <div class="box-title">📌 HbA1c目标值因人而异</div>
+      <p>标准目标通常是&lt;7%。但对于<strong>年轻、病程短、无并发症、低血糖风险低</strong>的患者，
+      可以尝试&lt;6.5%；对于<strong>老年、病程长、有严重并发症、低血糖风险高</strong>的患者，
+      &lt;8%也是合理目标。不要一味追求数字最低——避免严重低血糖比降HbA1c更重要。</p>
+    </div>
+
+    <h2 id="risk-factors">高风险人群</h2>
+    <p>
+      2型糖尿病的发生是多因素的，但以下因素会显著增加风险：
+    </p>
+
+    <div class="four-questions">
+      <div class="fq-item fq-what">
+        <div class="fq-header"><div class="fq-num">体</div><div class="fq-label">体型相关</div></div>
+        <p class="fq-content">超重/肥胖（BMI≥24）；腹型肥胖（男性腰围>90cm，女性>85cm）；内脏脂肪多是比BMI更重要的指标</p>
+      </div>
+      <div class="fq-item fq-why">
+        <div class="fq-header"><div class="fq-num">族</div><div class="fq-label">家族与遗传</div></div>
+        <p class="fq-content">一级亲属（父母/兄弟姐妹）有糖尿病，风险增加2–3倍；双胞胎研究显示遗传可解释约50%的2型糖尿病风险</p>
+      </div>
+      <div class="fq-item fq-matter">
+        <div class="fq-header"><div class="fq-num">史</div><div class="fq-label">既往病史</div></div>
+        <p class="fq-content">曾患妊娠糖尿病；多囊卵巢综合征（PCOS）；曾诊断为糖尿病前期；血压≥140/90；高甘油三酯/低HDL</p>
+      </div>
+      <div class="fq-item fq-action">
+        <div class="fq-header"><div class="fq-num">活</div><div class="fq-label">生活方式</div></div>
+        <p class="fq-content">久坐缺乏运动；高GI/高糖饮食；长期睡眠不足（&lt;6小时/夜）；慢性压力/皮质醇水平高；吸烟</p>
+      </div>
+    </div>
+
+    <div class="info-box blue">
+      <div class="box-title">📌 "瘦子糖尿病"：亚裔需要特别注意</div>
+      <p>东亚人群（包括中国人）的糖尿病风险在较低BMI时就会出现，原因是：相同BMI下，亚裔体脂率更高、
+      内脏脂肪比例更大。换言之，BMI仅22–23的亚裔可能已有相当的内脏脂肪，胰岛素抵抗风险已经升高。
+      此外，亚裔β细胞先天功能可能弱于欧裔，代偿能力更有限。</p>
+    </div>
+
+    <h2 id="type-other">其他类型糖尿病</h2>
+    <p>
+      除1型和2型外，还有几种需要了解的糖尿病类型：
+    </p>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>类型</th><th>特点</th><th>处理要点</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>妊娠期糖尿病（GDM）</td>
+          <td>妊娠24–28周筛查，孕期首次发现。产后大多数恢复正常，但10年内约50%进展为2型</td>
+          <td>饮食+运动控制为主，必要时胰岛素；产后随访关键</td>
+        </tr>
+        <tr>
+          <td>LADA（成人隐匿性自身免疫糖尿病）</td>
+          <td>成年后发病的1型，早期像2型，但抗体检测阳性；β细胞缓慢破坏，最终需胰岛素</td>
+          <td>诊断需抗体筛查（GAD抗体等），不能单纯按2型治疗</td>
+        </tr>
+        <tr>
+          <td>MODY（青少年成人型糖尿病）</td>
+          <td>单基因突变导致，25岁前起病，家族多发，无肥胖，无自身抗体</td>
+          <td>基因检测确诊；某些类型对磺脲类药物极敏感</td>
+        </tr>
+        <tr>
+          <td>药物/疾病继发</td>
+          <td>长期使用糖皮质激素、胰腺炎/手术后、库欣综合征等继发高血糖</td>
+          <td>治疗原发病；激素性糖尿病需特别监测餐后血糖</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="diagnosis-process">如何诊断：不是一次血糖高就是糖尿病</h2>
+    <p>
+      诊断糖尿病需要满足以下条件之一（无症状者需<strong>不同日重复确认一次</strong>）：
+    </p>
+    <ul>
+      <li>空腹血糖（≥8小时未进食）≥ 7.0 mmol/L</li>
+      <li>OGTT（75g葡萄糖耐量试验）2小时血糖 ≥ 11.1 mmol/L</li>
+      <li>HbA1c ≥ 6.5%</li>
+      <li>有典型高血糖症状，随机血糖 ≥ 11.1 mmol/L（此时一次即可确诊）</li>
+    </ul>
+
+    <div class="clinical-link">
+      <strong>关于OGTT（葡萄糖耐量试验）：</strong>
+      让患者喝下75g葡萄糖溶液，分别测定空腹、服糖后1小时和2小时的血糖。这是诊断糖尿病和糖耐量减低最敏感的方法，
+      能发现仅凭空腹血糖漏诊的病例。建议高风险人群定期做OGTT而非仅测空腹血糖。
+    </div>
+
+    <h2 id="treatment-overview">治疗概览：不只是"吃药"</h2>
+    <p>
+      糖尿病治疗的核心不是把血糖数字压下去，而是<strong>保护血管和器官、预防并发症</strong>。
+      药物管血糖只是手段，终点是减少心梗、肾衰、失明、截肢。
+    </p>
+
+    <div class="flow-steps">
+      <span class="flow-step">生活方式干预（基础）</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-step">口服降糖药</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-step">血糖监测</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-step">并发症筛查</span>
+      <span class="flow-arrow">+</span>
+      <span class="flow-step">心血管保护</span>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr><th>药物类别</th><th>代表药</th><th>机制简述</th><th>特点</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>双胍类</td><td>二甲双胍</td><td>减少肝糖输出，改善胰岛素敏感性</td><td>一线首选，心血管安全性好，价格低廉，无低血糖风险</td></tr>
+        <tr><td>GLP-1受体激动剂</td><td>司美格鲁肽、利拉鲁肽</td><td>促进葡萄糖依赖性胰岛素分泌，抑制食欲，延缓胃排空</td><td>减重效果显著，有心血管保护证据，注射剂型为主</td></tr>
+        <tr><td>SGLT-2抑制剂</td><td>恩格列净、达格列净</td><td>抑制肾脏对葡萄糖重吸收，增加尿糖排出</td><td>降低心衰住院风险和肾病进展，有心肾保护证据</td></tr>
+        <tr><td>磺脲类</td><td>格列美脲、格列苯脲</td><td>直接刺激β细胞分泌更多胰岛素</td><td>效果明确，价格低，但有低血糖风险和体重增加</td></tr>
+        <tr><td>胰岛素</td><td>基础胰岛素/餐时胰岛素等</td><td>直接补充胰岛素</td><td>1型必用，2型晚期或血糖极高时使用；需监测低血糖</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box purple">
+      <div class="box-title">📌 关于司美格鲁肽（Ozempic/Wegovy）</div>
+      <p>近年来"减肥神药"司美格鲁肽备受关注。它是GLP-1受体激动剂，最初用于2型糖尿病，
+      后发现对减重效果显著（临床试验中平均减重12–15%）。它的机制是模拟肠道分泌的GLP-1激素，
+      既促进胰岛素分泌（仅在血糖高时），又作用于大脑食欲中枢抑制饥饿感，减慢胃排空。
+      停药后体重通常会反弹，且价格昂贵——不是普通人随意使用的"减肥药"。</p>
+    </div>
+
+    <div class="warning-list">
+      <h3>🚨 这些情况需要立即就医</h3>
+      <ul>
+        <li>血糖>16.7 mmol/L 且出现恶心/呕吐/腹痛（可能是糖尿病酮症酸中毒，DKA）</li>
+        <li>血糖>33.3 mmol/L 伴意识模糊（高渗高血糖状态，HHS，多见于老年2型患者）</li>
+        <li>血糖&lt;3.9 mmol/L 并有心悸、手抖、出汗、意识改变（低血糖）</li>
+        <li>糖尿病患者出现胸痛、呼吸困难（心梗风险更高）</li>
+        <li>脚部出现无痛性溃疡或发黑（糖尿病足早期信号）</li>
+      </ul>
+    </div>
+
+    <div class="action-list">
+      <h3>✅ 第2章小结：你需要知道的</h3>
+      <ul>
+        <li><strong>1型是自身免疫</strong>（必须打胰岛素），<strong>2型是代谢病</strong>（可防可改善）</li>
+        <li><strong>糖尿病前期是黄金窗口</strong>——生活方式干预可将发病率降低58%</li>
+        <li><strong>大多数2型患者早期无症状</strong>，定期检查血糖和HbA1c是关键</li>
+        <li><strong>HbA1c&lt;7%是标准目标</strong>，但具体值应根据个体情况调整</li>
+        <li><strong>诊断需要重复确认</strong>，单次血糖高不等于糖尿病</li>
+        <li><strong>现代降糖药已有心血管/肾保护作用</strong>，不只是"降血糖数字"</li>
+        <li><strong>治疗目标是预防并发症</strong>，不是单纯追求血糖数字</li>
+      </ul>
+    </div>
+
+    <div class="chapter-nav">
+      <a href="chapter1.html">← 第1章 · 代谢是什么</a>
+      <a href="chapter3.html" class="next">第3章 · 糖尿病并发症 →<span class="nav-label">真正可怕的不是高血糖本身</span></a>
+    </div>
+  </article>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>本章目录</h3>
+      <ul class="toc-list">
+        <li><a href="#diabetes-scale">糖尿病的规模</a></li>
+        <li><a href="#blood-sugar-diagnosis">血糖诊断标准</a></li>
+        <li><a href="#type1-vs-type2">1型 vs 2型</a></li>
+        <li><a href="#t2d-mechanism">2型的病理进展</a></li>
+        <li><a href="#symptoms">典型症状的机制</a></li>
+        <li><a href="#hba1c">HbA1c：长期血糖标准</a></li>
+        <li><a href="#risk-factors">高风险人群</a></li>
+        <li><a href="#type-other">其他糖尿病类型</a></li>
+        <li><a href="#diagnosis-process">如何诊断</a></li>
+        <li><a href="#treatment-overview">治疗概览</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-card">
+      <h3>诊断数值速查</h3>
+      <div class="range-cards">
+        <div class="range-card rc-normal">
+          <span class="range-val">&lt;6.1</span>
+          <div class="range-label">正常空腹血糖(mmol/L)</div>
+        </div>
+        <div class="range-card rc-warn">
+          <span class="range-val">≥7.0</span>
+          <div class="range-label">糖尿病诊断线(mmol/L)</div>
+        </div>
+        <div class="range-card rc-danger">
+          <span class="range-val">&lt;7%</span>
+          <div class="range-label">HbA1c控制目标</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  <p>🧬 代谢篇 · 人体使用说明书系列 | 第2章 · 糖尿病</p>
+</footer>
+</body>
+</html>

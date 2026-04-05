@@ -936,6 +936,10 @@ a:hover { color: var(--accent); }
   padding: 64px 24px 52px;
   position: relative;
   overflow: hidden;
+  min-height: calc(100vh - 44px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .index-hero::before {
   content: '';

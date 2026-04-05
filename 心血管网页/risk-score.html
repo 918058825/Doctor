@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心血管风险自测 — 心血管篇</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .score-form {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+        .form-section { margin-bottom: 28px; }
+        .form-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-size: 0.9rem; font-weight: 600; color: var(--gray-700); }
+        .form-group .hint { font-size: 0.78rem; color: var(--gray-500); line-height: 1.4; }
+        .form-group select {
+            padding: 10px 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+            color: var(--gray-800);
+            background: white;
+        }
+        .form-group select:focus { border-color: var(--primary); }
+        .radio-group { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .radio-option:hover { border-color: var(--primary-light); }
+        .radio-option input[type="radio"] { accent-color: var(--primary); cursor: pointer; }
+        .radio-option.selected { border-color: var(--primary); background: var(--primary-light); font-weight: 600; color: var(--primary-dark); }
+        .calc-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 8px;
+        }
+        .calc-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .result-box {
+            display: none;
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 24px;
+        }
+        .result-box.visible { display: block; }
+        .risk-result-main {
+            text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        .risk-result-main.low       { background: #d1fae5; border: 2px solid #059669; }
+        .risk-result-main.medium    { background: #fef3c7; border: 2px solid #d97706; }
+        .risk-result-main.high      { background: #fee2e2; border: 2px solid #b91c1c; }
+        .risk-result-main.very-high { background: #ede9fe; border: 2px solid #7c3aed; }
+        .risk-level { font-size: 1.8rem; font-weight: 900; margin-bottom: 8px; }
+        .risk-level.low       { color: #065f46; }
+        .risk-level.medium    { color: #92400e; }
+        .risk-level.high      { color: #7f1d1d; }
+        .risk-level.very-high { color: #4c1d95; }
+        .risk-desc { font-size: 0.95rem; color: var(--gray-700); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+        .risk-meter {
+            width: 100%;
+            height: 14px;
+            background: linear-gradient(to right, #16a34a 0%, #d97706 40%, #b91c1c 70%, #7c3aed 100%);
+            border-radius: 7px;
+            position: relative;
+            margin: 20px 0 6px;
+        }
+        .risk-pointer {
+            position: absolute;
+            top: -7px;
+            width: 4px;
+            height: 28px;
+            background: var(--gray-900);
+            border-radius: 3px;
+            transform: translateX(-50%);
+            transition: left 0.6s cubic-bezier(0.4,0,0.2,1);
+        }
+        .risk-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 24px;
+        }
+        .result-factors { margin-top: 24px; }
+        .result-factors h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--gray-900); }
+        .factor-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 0.9rem;
+        }
+        .factor-icon { width: 24px; text-align: center; font-size: 1rem; flex-shrink: 0; }
+        .factor-text { flex: 1; color: var(--gray-700); }
+        .factor-score { font-weight: 700; color: var(--primary); white-space: nowrap; }
+        .factor-score.neutral { color: var(--gray-500); font-weight: 400; }
+        .recommendations { margin-top: 24px; }
+        .recommendations h3 { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--gray-900); }
+        .rec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .rec-item.important { background: #fee2e2; color: #7f1d1d; }
+        .rec-item.normal    { background: var(--gray-100); color: var(--gray-700); }
+        .rec-item-icon { flex-shrink: 0; }
+        .disclaimer {
+            background: var(--gray-100);
+            border-radius: 10px;
+            padding: 14px 16px;
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        @media (max-width: 640px) {
+            .form-row { grid-template-columns: 1fr; }
+            .score-form, .result-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+<nav class="top-nav"><div class="top-nav-inner"></div></nav>
+<div class="breadcrumb"><a href="index.html">🏠 首页</a><span>›</span><span>📊 心血管风险自测</span></div>
+<div class="page-hero">
+    <div class="chapter-badge">实用工具</div>
+    <h1>📊 心血管风险自测</h1>
+    <p class="subtitle">根据你的主要危险因素，估算综合风险等级，并给出个性化行动建议。</p>
+</div>
+
+<div style="max-width:780px;margin:0 auto;padding:0 2rem 4rem;">
+
+    <div class="info-box" style="margin-bottom:24px">
+        <strong>ℹ️ 关于这个评估：</strong>本工具基于主要心血管危险因素的加权评分，<strong>不是临床诊断工具</strong>。
+        结果仅供参考，不能替代专业医生的评估。如需精确的10年风险计算，请前往心内科就诊。
+    </div>
+
+    <div class="score-form">
+
+        <div class="form-section">
+            <h3>👤 基本信息</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>年龄段</label>
+                    <select id="age">
+                        <option value="-1">请选择</option>
+                        <option value="0">18–35 岁</option>
+                        <option value="1">36–45 岁</option>
+                        <option value="2">46–55 岁</option>
+                        <option value="3">56–65 岁</option>
+                        <option value="4">66 岁及以上</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>性别</label>
+                    <div class="radio-group">
+                        <label class="radio-option" id="r-sex-male">
+                            <input type="radio" name="sex" value="male" onchange="onRadio('sex')"> <span>男性</span>
+                        </label>
+                        <label class="radio-option" id="r-sex-female">
+                            <input type="radio" name="sex" value="female" onchange="onRadio('sex')"> <span>女性</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>🩸 血压情况</h3>
+            <div class="form-group">
+                <label>收缩压（高压）大约是多少？</label>
+                <span class="hint">填最近一次的测量值；如正在服降压药，填服药后的血压</span>
+                <select id="sbp">
+                    <option value="-1">请选择</option>
+                    <option value="0">低于 120 mmHg（理想）</option>
+                    <option value="1">120–129 mmHg（正常高值）</option>
+                    <option value="2">130–139 mmHg</option>
+                    <option value="3">140–159 mmHg（1–2 级高血压）</option>
+                    <option value="4">160 mmHg 及以上（重度高血压）</option>
+                </select>
+            </div>
+            <div class="form-group" style="margin-top:14px">
+                <label>目前是否在服用降压药？</label>
+                <div class="radio-group">
+                    <label class="radio-option" id="r-bpMed-no">
+                        <input type="radio" name="bpMed" value="no" onchange="onRadio('bpMed')"> <span>否</span>
+                    </label>
+                    <label class="radio-option" id="r-bpMed-yes">
+                        <input type="radio" name="bpMed" value="yes" onchange="onRadio('bpMed')"> <span>是</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>🧪 血脂</h3>
+            <div class="form-group">
+                <label>LDL 胆固醇（低密度脂蛋白，mmol/L）</label>
+                <span class="hint">体检报告"LDL-C"或"低密度脂蛋白"一栏的数值</span>
+                <select id="ldl">
+                    <option value="0">不知道 / 未检查过</option>
+                    <option value="0">低于 2.6（理想）</option>
+                    <option value="1">2.6–3.3（轻度偏高）</option>
+                    <option value="2">3.4–4.0（中度偏高）</option>
+                    <option value="3">4.1 及以上（明显偏高）</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>🚬 吸烟</h3>
+            <div class="form-group">
+                <div class="radio-group">
+                    <label class="radio-option" id="r-smoke-never">
+                        <input type="radio" name="smoke" value="never" onchange="onRadio('smoke')"> <span>从不吸烟</span>
+                    </label>
+                    <label class="radio-option" id="r-smoke-former">
+                        <input type="radio" name="smoke" value="former" onchange="onRadio('smoke')"> <span>已戒烟</span>
+                    </label>
+                    <label class="radio-option" id="r-smoke-current">
+                        <input type="radio" name="smoke" value="current" onchange="onRadio('smoke')"> <span>目前吸烟</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>🩺 健康史</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>糖尿病</label>
+                    <div class="radio-group">
+                        <label class="radio-option" id="r-dm-no">
+                            <input type="radio" name="dm" value="no" onchange="onRadio('dm')"> <span>无</span>
+                        </label>
+                        <label class="radio-option" id="r-dm-pre">
+                            <input type="radio" name="dm" value="pre" onchange="onRadio('dm')"> <span>糖尿病前期</span>
+                        </label>
+                        <label class="radio-option" id="r-dm-yes">
+                            <input type="radio" name="dm" value="yes" onchange="onRadio('dm')"> <span>有糖尿病</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>心血管病家族史</label>
+                    <span class="hint">父母 / 兄弟姐妹：男 &lt;55 岁或女 &lt;65 岁发生心梗 / 中风</span>
+                    <div class="radio-group" style="margin-top:6px">
+                        <label class="radio-option" id="r-family-no">
+                            <input type="radio" name="family" value="no" onchange="onRadio('family')"> <span>无 / 不知道</span>
+                        </label>
+                        <label class="radio-option" id="r-family-yes">
+                            <input type="radio" name="family" value="yes" onchange="onRadio('family')"> <span>有</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top:12px">
+                <label>是否已被诊断心血管疾病？（冠心病、心梗、中风、外周血管病等）</label>
+                <div class="radio-group">
+                    <label class="radio-option" id="r-cvd-no">
+                        <input type="radio" name="cvd" value="no" onchange="onRadio('cvd')"> <span>否</span>
+                    </label>
+                    <label class="radio-option" id="r-cvd-yes">
+                        <input type="radio" name="cvd" value="yes" onchange="onRadio('cvd')"> <span>是</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>🏃 生活方式</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>运动情况</label>
+                    <select id="exercise">
+                        <option value="-1">每周 &gt;150 分钟中等强度运动（快走/游泳/骑车）</option>
+                        <option value="0">偶尔运动，每周 30–150 分钟</option>
+                        <option value="1">基本不运动（久坐为主）</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>体重 / 腰围</label>
+                    <select id="weight">
+                        <option value="0">体重正常，腰围达标</option>
+                        <option value="1">超重（BMI 25–27.9）或腹型肥胖（男腰 &gt;90cm / 女 &gt;85cm）</option>
+                        <option value="2">肥胖（BMI ≥ 28）</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <button class="calc-btn" onclick="calculate()">📊 查看我的风险评估</button>
+    </div>
+
+    <!-- 结果区域 -->
+    <div class="result-box" id="resultBox">
+        <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:4px;color:var(--gray-900)">📊 你的心血管风险评估结果</h2>
+        <div class="risk-result-main" id="riskMain">
+            <div class="risk-level" id="riskLevel">——</div>
+            <div class="risk-desc"  id="riskDesc">——</div>
+        </div>
+        <div class="risk-meter"><div class="risk-pointer" id="riskPointer" style="left:8%"></div></div>
+        <div class="risk-label-row">
+            <span>低风险</span><span>中风险</span><span>高风险</span><span>极高风险</span>
+        </div>
+        <div class="result-factors" id="resultFactors"></div>
+        <div class="recommendations"  id="recommendations"></div>
+        <div class="disclaimer">
+            ⚠️ 本评估仅供参考，基于填写信息的综合估算，不代表精确的临床风险计算值。
+            实际风险受更多因素影响（如肾功能、炎症指标、影像学表现等）。
+            中风险及以上结果建议就诊心内科进行完整的专业评估。
+        </div>
+    </div>
+
+    <div class="info-box">
+        <strong>📖 延伸阅读：</strong>
+        <a href="chapter10.html" style="color:var(--primary)">第10章：心血管风险自评与预防</a> ·
+        <a href="symptom-check.html" style="color:var(--primary)">🫀 症状自查</a> ·
+        <a href="drug-guide.html" style="color:var(--primary)">💊 药物速查</a>
+    </div>
+
+</div>
+
+<footer class="site-footer">
+    <p>❤️ 心血管篇 · 人体使用说明书系列</p>
+    <p style="margin-top:6px;font-size:0.8rem;">内容以健康科普为目的，不构成医疗诊断建议。如有健康问题请咨询专业医师。</p>
+</footer>
+
+<script>
+/* ── 单选框样式同步 ── */
+function onRadio(name) {
+    document.querySelectorAll('input[name="' + name + '"]').forEach(function(r) {
+        r.closest('.radio-option').classList.toggle('selected', r.checked);
+    });
+}
+
+/* ── 工具函数 ── */
+function radioVal(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : null;
+}
+function selVal(id) {
+    return parseInt(document.getElementById(id).value, 10);
+}
+
+/* ── 主计算函数 ── */
+function calculate() {
+    var score   = 0;
+    var factors = [];
+    var recs    = [];
+
+    // 已确诊心血管疾病 → 直接极高风险
+    if (radioVal('cvd') === 'yes') {
+        render('very-high', '极高风险（已患心血管疾病）',
+            '您已有心血管疾病诊断，属于需要严格二级预防的对象。' +
+            '请坚持遵医嘱用药，定期随访心内科。', 90,
+            [{ icon:'🚨', text:'已诊断冠心病 / 心梗 / 中风 / 外周血管病', score:'+极高风险', hi:true }],
+            [
+                { text:'严格遵医嘱服药（他汀 + 抗血小板 + 降压药），不擅自停药', imp:true },
+                { text:'每3–6个月随访心内科，复查血脂、心功能等指标', imp:true },
+                { text:'LDL 控制目标：&lt;1.8 mmol/L（二级预防标准）', imp:true },
+                { text:'如果仍在吸烟，戒烟是降低再发风险最重要的单一措施', imp:false },
+                { text:'在医生指导下制定心脏康复运动计划', imp:false }
+            ]
+        );
+        return;
+    }
+
+    // 年龄
+    var age = selVal('age');
+    if (age < 0) age = 0;
+    if (age >= 4)      { score += 3; factors.push({ icon:'👴', text:'年龄 66 岁以上（风险随年龄显著增加）',  score:'+3分', hi:true }); }
+    else if (age === 3){ score += 2; factors.push({ icon:'🧑', text:'年龄 56–65 岁',                          score:'+2分', hi:false }); }
+    else if (age === 2){ score += 1; factors.push({ icon:'🧑', text:'年龄 46–55 岁',                          score:'+1分', hi:false }); }
+    else               {             factors.push({ icon:'🟢', text:'年龄 45 岁及以下（相对年轻）',            score:'0分',  hi:false }); }
+
+    // 性别
+    if (radioVal('sex') === 'male') {
+        score += 1;
+        factors.push({ icon:'♂️', text:'男性（心血管病发病早于女性约10年）', score:'+1分', hi:false });
+    } else if (radioVal('sex') === 'female') {
+        factors.push({ icon:'♀️', text:'女性（绝经前有雌激素保护）', score:'0分', hi:false });
+    }
+
+    // 血压
+    var sbp = selVal('sbp');
+    if (sbp < 0) sbp = 0;
+    if      (sbp >= 4) { score += 4; factors.push({ icon:'📈', text:'收缩压 160 mmHg 以上（重度高血压）', score:'+4分', hi:true }); }
+    else if (sbp === 3) { score += 2; factors.push({ icon:'📈', text:'收缩压 140–159 mmHg（高血压）',      score:'+2分', hi:true }); }
+    else if (sbp >= 1)  { score += 1; factors.push({ icon:'📊', text:'血压偏高（120–139 mmHg）',            score:'+1分', hi:false }); }
+    else                {             factors.push({ icon:'🟢', text:'血压理想（低于 120 mmHg）',            score:'0分',  hi:false }); }
+    if (radioVal('bpMed') === 'yes') {
+        score += 1;
+        factors.push({ icon:'💊', text:'正在服用降压药（血压需要药物维持）', score:'+1分', hi:false });
+    }
+
+    // 血脂
+    var ldl = selVal('ldl');
+    if      (ldl >= 3) { score += 3; factors.push({ icon:'🔴', text:'LDL 明显偏高（≥4.1 mmol/L）',   score:'+3分', hi:true }); }
+    else if (ldl === 2) { score += 2; factors.push({ icon:'🟠', text:'LDL 中度偏高（3.4–4.0 mmol/L）', score:'+2分', hi:false }); }
+    else if (ldl === 1) { score += 1; factors.push({ icon:'🟡', text:'LDL 轻度偏高（2.6–3.3 mmol/L）', score:'+1分', hi:false }); }
+    else                {             factors.push({ icon:'🟢', text:'LDL 理想（低于 2.6 mmol/L）',     score:'0分',  hi:false }); }
+
+    // 吸烟
+    var smoke = radioVal('smoke');
+    if      (smoke === 'current') { score += 3; factors.push({ icon:'🚬', text:'目前吸烟（最强可预防危险因素）', score:'+3分', hi:true  }); }
+    else if (smoke === 'former')  { score += 1; factors.push({ icon:'🚭', text:'已戒烟（风险在逐渐下降）',       score:'+1分', hi:false }); }
+    else if (smoke === 'never')   {             factors.push({ icon:'🟢', text:'从不吸烟',                        score:'0分',  hi:false }); }
+
+    // 糖尿病
+    var dm = radioVal('dm');
+    if      (dm === 'yes') { score += 3; factors.push({ icon:'🩸', text:'糖尿病（心血管风险增加 2–4 倍）', score:'+3分', hi:true  }); }
+    else if (dm === 'pre') { score += 1; factors.push({ icon:'⚠️', text:'糖尿病前期',                      score:'+1分', hi:false }); }
+    else                   {             factors.push({ icon:'🟢', text:'无糖尿病',                          score:'0分',  hi:false }); }
+
+    // 家族史
+    if (radioVal('family') === 'yes') {
+        score += 2;
+        factors.push({ icon:'🧬', text:'有早发心血管病家族史', score:'+2分', hi:false });
+    } else {
+        factors.push({ icon:'🟢', text:'无已知早发家族史', score:'0分', hi:false });
+    }
+
+    // 运动
+    var ex = selVal('exercise');
+    if      (ex === 1)  { score += 1; factors.push({ icon:'🛋️', text:'基本不运动（久坐）',  score:'+1分', hi:false }); }
+    else if (ex === -1) { score -= 1; factors.push({ icon:'🏃', text:'规律运动 &gt;150分钟/周', score:'−1分', hi:false }); }
+    else                {             factors.push({ icon:'🚶', text:'偶尔运动',               score:'0分',  hi:false }); }
+    if (score < 0) score = 0;
+
+    // 体重
+    var wt = selVal('weight');
+    if      (wt === 2) { score += 2; factors.push({ icon:'⚖️', text:'肥胖（BMI ≥28）',                   score:'+2分', hi:false }); }
+    else if (wt === 1) { score += 1; factors.push({ icon:'⚖️', text:'超重 / 腹型肥胖',                    score:'+1分', hi:false }); }
+    else               {             factors.push({ icon:'🟢', text:'体重和腰围在正常范围',                score:'0分',  hi:false }); }
+
+    // 评级
+    var level, desc, ptr, rClass;
+    if (score <= 3) {
+        level = '低风险'; ptr = 10; rClass = 'low';
+        desc = '你目前的主要危险因素较少，心血管风险总体处于较低水平。继续保持健康的生活方式，定期做年度体检。';
+        recs = [
+            { text:'每年检查一次血压、血脂、血糖', imp:false },
+            { text:'保持每周 150 分钟以上中等强度有氧运动', imp:false },
+            { text:'维持健康饮食（少盐少油，多蔬菜和全谷物）', imp:false },
+            { text:'不吸烟、不长期大量饮酒', imp:false }
+        ];
+    } else if (score <= 7) {
+        level = '中风险'; ptr = 38; rClass = 'medium';
+        desc = '你有一定数量的心血管危险因素，需要认真对待。建议就医进行更精确的风险评估，并开始积极的生活方式干预。';
+        recs = [
+            { text:'建议就诊内科或心内科，做完整的心血管风险评估', imp:true },
+            { text:'如果血压或血脂超标，与医生讨论是否需要药物干预', imp:true },
+            { text:'如果吸烟——制定戒烟计划，这是最重要的一件事', imp:false },
+            { text:'每半年检查血压、血脂、血糖', imp:false },
+            { text:'开始规律有氧运动，目标每天快走30分钟', imp:false }
+        ];
+    } else if (score <= 12) {
+        level = '高风险'; ptr = 63; rClass = 'high';
+        desc = '你有多个明确的心血管危险因素，10年内发生心血管事件的风险较高。强烈建议主动就医评估，积极采取干预措施。';
+        recs = [
+            { text:'尽快就诊心内科，进行完整的心血管风险评估和靶器官损害筛查', imp:true },
+            { text:'讨论是否需要他汀类药物（降脂）和 / 或降压药', imp:true },
+            { text:'如果吸烟，戒烟是最紧急的优先任务', imp:true },
+            { text:'血压目标：&lt;130/80 mmHg', imp:false },
+            { text:'LDL 目标：&lt;2.6 mmol/L（高危人群标准）', imp:false },
+            { text:'严格低盐饮食（每日 &lt;5g 盐）', imp:false }
+        ];
+    } else {
+        level = '极高风险'; ptr = 88; rClass = 'very-high';
+        desc = '你有多个严重的心血管危险因素，属于高危人群。请尽快就医，不要拖延，积极治疗和管理每一个可控因素。';
+        recs = [
+            { text:'请尽快就诊心内科，进行心电图、超声心动图、颈动脉超声等检查', imp:true },
+            { text:'高度可能需要药物治疗（他汀 + 降压药）', imp:true },
+            { text:'戒烟——立刻、完全戒烟，没有商量余地', imp:true },
+            { text:'LDL 目标：&lt;1.8 mmol/L（极高危标准）', imp:true },
+            { text:'血压目标：&lt;130/80 mmHg，可能需要联合用药', imp:false },
+            { text:'如有糖尿病，HbA1c 控制目标 &lt;7%', imp:false }
+        ];
+    }
+
+    render(rClass, level, desc, ptr, factors, recs);
+}
+
+function render(rClass, level, desc, ptr, factors, recs) {
+    var box = document.getElementById('resultBox');
+    box.className = 'result-box visible';
+
+    var main = document.getElementById('riskMain');
+    main.className = 'risk-result-main ' + rClass;
+
+    var lvEl = document.getElementById('riskLevel');
+    lvEl.className = 'risk-level ' + rClass;
+    lvEl.textContent = level;
+    document.getElementById('riskDesc').textContent = desc;
+    document.getElementById('riskPointer').style.left = ptr + '%';
+
+    var fHtml = '<h3>📋 各因素评分明细</h3>';
+    factors.forEach(function(f) {
+        var scoreClass = (f.score === '0分' || f.score === '−1分') ? ' neutral' : '';
+        fHtml += '<div class="factor-item">' +
+            '<span class="factor-icon">' + f.icon + '</span>' +
+            '<span class="factor-text">'  + f.text  + '</span>' +
+            '<span class="factor-score' + scoreClass + '">' + f.score + '</span>' +
+            '</div>';
+    });
+    document.getElementById('resultFactors').innerHTML = fHtml;
+
+    var rHtml = '<h3>✅ 给你的建议</h3>';
+    recs.forEach(function(r) {
+        rHtml += '<div class="rec-item ' + (r.imp ? 'important' : 'normal') + '">' +
+            '<span class="rec-item-icon">' + (r.imp ? '🔴' : '🟢') + '</span>' +
+            '<span>' + r.text + '</span></div>';
+    });
+    document.getElementById('recommendations').innerHTML = rHtml;
+
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+<script src="nav.js"></script>
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</body>
+</html>

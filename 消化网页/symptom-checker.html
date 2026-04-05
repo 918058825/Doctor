@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>消化道症状自查 · 消化篇</title>
+<link rel="stylesheet" href="style.css">
+<script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
+<script src="../auth.js"></script>
+</head>
+<body>
+<script src="nav.js"></script>
+
+<div class="breadcrumb">
+  <a href="../index.html">🏠 总首页</a> › <a href="index.html">消化篇</a> › <span>症状自查</span>
+</div>
+
+<div class="page-hero tool-hero">
+  <div class="page-hero-inner">
+    <div class="chapter-badge">🔍 工具页</div>
+    <h1>消化道症状自查</h1>
+    <p class="page-hero-sub">根据你的不适部位和症状特征，找到可能的原因和对应章节——不是诊断，是给你提供一个参考方向。</p>
+  </div>
+</div>
+
+<div class="main-content">
+<article class="article">
+
+<div class="info-box ib-yellow" data-label="⚠️ 使用说明">
+  <p>本工具仅供健康教育参考，<strong>不能替代医生诊断</strong>。如症状持续、严重，或出现文末的"红旗症状"，请及时就医。</p>
+</div>
+
+<!-- 区块一：按部位 -->
+<h2>第一步：你的不适在哪个区域？</h2>
+
+<div class="filter-btns">
+  <button class="fb-btn active" onclick="showSection('all')">全部</button>
+  <button class="fb-btn" onclick="showSection('upper')">上腹部（胃区）</button>
+  <button class="fb-btn" onclick="showSection('chest')">胸骨后（食管区）</button>
+  <button class="fb-btn" onclick="showSection('lower')">下腹部（肠区）</button>
+  <button class="fb-btn" onclick="showSection('right-upper')">右上腹（肝胆区）</button>
+  <button class="fb-btn" onclick="showSection('diffuse')">弥漫性全腹</button>
+</div>
+
+<!-- 上腹部 -->
+<div class="symptom-section" id="sec-upper">
+  <h3 style="margin-top:2rem;">🟡 上腹部症状（胃区）</h3>
+
+  <div class="decision-tree">
+    <div class="dt-node dt-question">
+      <div class="dt-content">上腹痛/不适，什么时候最明显？</div>
+    </div>
+    <div class="dt-branches">
+
+      <div class="dt-branch">
+        <div class="dt-condition">饭后加重，饱胀感明显</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          可能是 <strong>功能性消化不良</strong> 或 <strong>慢性胃炎</strong>。
+          如有 HP 阳性，先治疗 HP。
+          → <a href="chapter3.html">第3章 胃炎</a>、<a href="chapter2.html">第2章 幽门螺杆菌</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">空腹或夜间痛，进食后缓解</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          十二指肠溃疡的典型规律。
+          → <a href="chapter3.html">第3章 胃炎与胃溃疡</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">持续性隐痛，与进食关系不明显，伴体重下降</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-urgent">需就医</span>
+          年龄 &gt;40岁 + 体重下降，需要排除 <strong>胃癌</strong>，尽早做胃镜。
+          → <a href="chapter5.html">第5章 胃癌</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">服用止痛药（布洛芬/阿司匹林等）后出现</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          NSAIDs 药物损伤胃黏膜。需要在医生指导下加用胃黏膜保护剂或换药。
+          → <a href="chapter3.html">第3章 胃溃疡</a>、<a href="digestive-drugs.html">药物说明</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 胸骨后 -->
+<div class="symptom-section" id="sec-chest">
+  <h3 style="margin-top:2rem;">🟠 胸骨后症状（食管区）</h3>
+
+  <div class="decision-tree">
+    <div class="dt-node dt-question">
+      <div class="dt-content">胸骨后不适，如何描述？</div>
+    </div>
+    <div class="dt-branches">
+
+      <div class="dt-branch">
+        <div class="dt-condition">烧心感（胸骨后灼热）、反酸，饭后或平躺时加重</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          <strong>胃食管反流病（GERD）</strong>的典型症状。
+          → <a href="chapter4.html">第4章 胃食管反流</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">慢性咳嗽、声音嘶哑、清晨恶心，但没有明显烧心</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          GERD 的<strong>非典型表现</strong>，容易被误诊为咽喉炎或哮喘。
+          → <a href="chapter4.html">第4章 胃食管反流</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">吞咽困难，固体或液体都难以下咽</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-urgent">需就医</span>
+          需要排除食管狭窄或食管病变，应做胃镜检查。
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">胸痛剧烈，与体位/呼吸有关，伴有出汗</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-emergency">急诊</span>
+          先排除心脏问题！胸痛+出汗+放射到左臂，立即急诊心内科。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 下腹部 -->
+<div class="symptom-section" id="sec-lower">
+  <h3 style="margin-top:2rem;">🟢 下腹部症状（肠区）</h3>
+
+  <div class="decision-tree">
+    <div class="dt-node dt-question">
+      <div class="dt-content">下腹部不适，主要是哪类症状？</div>
+    </div>
+    <div class="dt-branches">
+
+      <div class="dt-branch">
+        <div class="dt-condition">腹泻+腹痛，与压力/情绪相关，排便后好转，无血便</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          <strong>肠易激综合征（IBS-D 腹泻型）</strong>的典型模式。
+          → <a href="chapter6.html">第6章 肠易激综合征</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">便秘，3天以上不排便，排便费力</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          功能性便秘。先调整膳食纤维和饮水，无效再考虑用药。
+          → <a href="chapter7.html">第7章 便秘</a>、<a href="digestive-drugs.html">泻药说明</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">便血（大便带血），鲜红色，排便时滴血</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          多数是<strong>痔疮</strong>（最常见原因）。但如年龄 &gt;45岁或有家族史，需排除结肠病变，建议肠镜。
+          → <a href="chapter8.html">第8章 结直肠癌</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">便血（暗红色或柏油样黑便），伴腹痛或消瘦</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-urgent">需就医</span>
+          暗红便/黑便提示消化道出血位置较高，需要尽快就医和检查。
+          → <a href="chapter5.html">第5章 胃癌</a>、<a href="chapter8.html">第8章 结直肠癌</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">腹泻，发烧，有不洁饮食史</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          可能是<strong>急性肠胃炎</strong>（感染性）。多喝水，通常3-5天自愈。高热不退或便血需就医。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 右上腹 -->
+<div class="symptom-section" id="sec-right-upper">
+  <h3 style="margin-top:2rem;">🟣 右上腹症状（肝胆区）</h3>
+
+  <div class="decision-tree">
+    <div class="dt-node dt-question">
+      <div class="dt-content">右上腹不适，如何描述？</div>
+    </div>
+    <div class="dt-branches">
+
+      <div class="dt-branch">
+        <div class="dt-condition">饭后（尤其是油腻食物后）右上腹剧痛，可放射到右肩/背</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-urgent">需就医</span>
+          <strong>胆绞痛</strong>的典型表现。尽快就医，超声检查确认。
+          → <a href="chapter10.html">第10章 胆结石</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">右上腹持续疼痛+发热</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-emergency">急诊</span>
+          可能是<strong>急性胆囊炎</strong>，需要急诊处理和住院评估。
+          → <a href="chapter10.html">第10章 胆囊炎</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">体检发现转氨酶（ALT/AST）升高，有超重/饮酒史</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          可能是<strong>脂肪肝</strong>。做腹部超声和肝功能评估。
+          → <a href="chapter9.html">第9章 脂肪肝</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">右上腹+皮肤/眼白发黄（黄疸）</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-emergency">急诊</span>
+          黄疸提示胆管问题或肝脏病变，需要紧急评估。立即就医。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 弥漫性 -->
+<div class="symptom-section" id="sec-diffuse">
+  <h3 style="margin-top:2rem;">🔵 弥漫性/全腹症状</h3>
+
+  <div class="decision-tree">
+    <div class="dt-node dt-question">
+      <div class="dt-content">全腹不适，最主要的特征？</div>
+    </div>
+    <div class="dt-branches">
+
+      <div class="dt-branch">
+        <div class="dt-condition">腹胀，喜欢放屁，与豆类/乳制品有关</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-common">常见</span>
+          可能是产气食物不耐受或乳糖不耐受（乳制品后腹泻/腹胀）。
+          → <a href="chapter6.html">第6章 IBS 及 FODMAP 食物</a>
+        </div>
+      </div>
+
+      <div class="dt-branch">
+        <div class="dt-condition">腹痛急性发作+全腹板硬（腹肌紧张）</div>
+        <div class="dt-result">
+          <span class="dt-tag dt-tag-emergency">急诊</span>
+          可能是腹膜炎，立即急诊！
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 红旗症状 -->
+<h2 style="margin-top:3rem;">🚨 红旗症状——这些情况立即就医</h2>
+
+<div class="warning-list">
+  <h3>⚠️ 不要等待，立即就诊或急诊</h3>
+  <ul>
+    <li><strong>吐血或柏油样黑便：</strong>上消化道出血，急诊</li>
+    <li><strong>大量鲜血便：</strong>下消化道出血，急诊</li>
+    <li><strong>腹痛+高热+黄疸：</strong>胆管炎，急诊</li>
+    <li><strong>腹痛+腹肌板硬：</strong>腹膜炎，急诊</li>
+    <li><strong>不明原因体重下降超过5kg：</strong>需排除恶性肿瘤，尽快就医</li>
+    <li><strong>持续吞咽困难：</strong>需要胃镜排除食管病变</li>
+    <li><strong>45岁以上首次出现消化道症状：</strong>建议做胃镜/肠镜</li>
+    <li><strong>家族中有胃癌/结直肠癌：</strong>提前10年筛查</li>
+  </ul>
+</div>
+
+<div class="action-list">
+  <h3>✅ 就医时，告诉医生这些信息</h3>
+  <ul>
+    <li>症状持续了多长时间</li>
+    <li>与饮食的关系（饭前/饭后/油腻后）</li>
+    <li>有没有发热、体重下降、便血</li>
+    <li>目前在服用什么药物（特别是止痛药）</li>
+    <li>家族中有没有消化道肿瘤病史</li>
+    <li>有没有幽门螺杆菌感染史</li>
+  </ul>
+</div>
+
+</article>
+
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <h3>📋 工具说明</h3>
+    <ul>
+      <li>按部位找可能原因</li>
+      <li>标注就医紧迫程度</li>
+      <li>链接到对应章节</li>
+    </ul>
+  </div>
+  <div class="sidebar-card sc-alert">
+    <h3>🚨 这些要急诊</h3>
+    <ul>
+      <li>吐血或大量便血</li>
+      <li>腹痛+发热+黄疸</li>
+      <li>腹肌板硬</li>
+      <li>剧烈腹痛不缓解</li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <h3>🔗 相关工具</h3>
+    <ul>
+      <li><a href="colonoscopy-guide.html">🔭 肠镜指南</a></li>
+      <li><a href="digestive-drugs.html">💊 药物说明</a></li>
+    </ul>
+  </div>
+</aside>
+</div>
+
+<footer class="site-footer">
+  <p>🍽️ 消化篇 · 症状自查工具</p>
+  <p style="margin-top:0.5rem;opacity:.6;font-size:.8rem;">内容仅供健康教育，不替代医疗诊断。</p>
+</footer>
+
+<script>
+function showSection(type) {
+  const secs = document.querySelectorAll('.symptom-section');
+  const btns = document.querySelectorAll('.fb-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  if (type === 'all') {
+    secs.forEach(s => s.style.display = '');
+    return;
+  }
+  const map = {
+    'upper': 'sec-upper',
+    'chest': 'sec-chest',
+    'lower': 'sec-lower',
+    'right-upper': 'sec-right-upper',
+    'diffuse': 'sec-diffuse'
+  };
+  secs.forEach(s => s.style.display = 'none');
+  const target = document.getElementById(map[type]);
+  if (target) target.style.display = '';
+}
+</script>
+</body>
+</html>

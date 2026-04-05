@@ -82,7 +82,30 @@
         .cat-lipid { background: #fce7f3; color: #9d174d; }
         .cat-thyroid { background: #ede9fe; color: #6d28d9; }
         .cat-tumor { background: #f3f4f6; color: #374151; }
+        .cat-urine { background: #e0f2fe; color: #075985; }
+        .cat-cardiac { background: #fff1f2; color: #9f1239; }
+        .cat-bone { background: #faf5ff; color: #6b21a8; }
+        .cat-coag { background: #ecfdf5; color: #064e3b; }
+        .cat-electro { background: #fffbeb; color: #92400e; }
+        .cat-bp { background: #fef2f2; color: #991b1b; }
         .hidden-row { display: none; }
+        .lookup-intro {
+            background: linear-gradient(135deg, var(--bg), #fff);
+            border: 1px solid var(--primary-light);
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 22px;
+            font-size: 0.9rem;
+            color: #374151;
+            line-height: 1.7;
+        }
+        .lookup-intro strong { color: var(--primary-dark); }
+        .lookup-count {
+            text-align: right;
+            font-size: 0.82rem;
+            color: #9ca3af;
+            margin-bottom: 6px;
+        }
     </style>
 </head>
 <body>
@@ -91,73 +114,150 @@
 <div class="page-hero">
     <div class="chapter-badge">实用工具</div>
     <h1>📊 指标速查表</h1>
-    <p class="subtitle">体检报告上的50+常见指标，一表查清正常范围、异常含义及对应章节。</p>
+    <p class="subtitle">体检报告上的 60+ 常见指标，一表查清正常范围、异常含义及对应章节。</p>
 </div>
 
 <div style="max-width:1200px;margin:0 auto;padding:0 2rem 4rem;">
 
+    <div class="lookup-intro">
+        💡 <strong>使用说明：</strong>在搜索框输入指标缩写（如 ALT、TSH、LDL）或中文名称，点击分类按钮快速筛选。表中"正常参考范围"为常用参考值，<strong>以您报告单上的参考范围为准</strong>——不同医院试剂和仪器可能略有差异。
+    </div>
+
     <div class="lookup-controls">
-        <input type="text" class="lookup-search" id="searchInput" placeholder="🔍 搜索指标名称，如：ALT、血糖…" oninput="filterTable()">
+        <input type="text" class="lookup-search" id="searchInput" placeholder="🔍 搜索指标名称，如：ALT、血糖、TSH…" oninput="filterTable()">
     </div>
     <div class="lookup-filter" id="filterBtns">
         <button class="filter-btn active" data-cat="all" onclick="setFilter('all',this)">全部</button>
         <button class="filter-btn" data-cat="blood" onclick="setFilter('blood',this)">血常规</button>
         <button class="filter-btn" data-cat="liver" onclick="setFilter('liver',this)">肝功能</button>
         <button class="filter-btn" data-cat="kidney" onclick="setFilter('kidney',this)">肾功能</button>
+        <button class="filter-btn" data-cat="urine" onclick="setFilter('urine',this)">尿常规</button>
         <button class="filter-btn" data-cat="sugar" onclick="setFilter('sugar',this)">血糖</button>
         <button class="filter-btn" data-cat="lipid" onclick="setFilter('lipid',this)">血脂</button>
         <button class="filter-btn" data-cat="thyroid" onclick="setFilter('thyroid',this)">甲状腺</button>
         <button class="filter-btn" data-cat="tumor" onclick="setFilter('tumor',this)">肿瘤标志物</button>
+        <button class="filter-btn" data-cat="cardiac" onclick="setFilter('cardiac',this)">心脏</button>
+        <button class="filter-btn" data-cat="coag" onclick="setFilter('coag',this)">凝血</button>
+        <button class="filter-btn" data-cat="electro" onclick="setFilter('electro',this)">电解质</button>
+        <button class="filter-btn" data-cat="bone" onclick="setFilter('bone',this)">骨代谢</button>
     </div>
+
+    <div class="lookup-count" id="lookupCount"></div>
 
     <table class="lookup-table">
         <thead>
-            <tr><th>指标名称</th><th>分类</th><th>正常参考范围</th><th>常见异常含义</th><th>详细章节</th></tr>
+            <tr><th>指标名称（缩写）</th><th>分类</th><th>正常参考范围</th><th>常见异常含义</th><th>详细章节</th></tr>
         </thead>
         <tbody id="lookupBody">
-            <!-- 血常规 -->
-            <tr data-cat="blood"><td class="indicator-name">红细胞（RBC）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 4.3-5.8×10¹²/L<br>女 3.8-5.1×10¹²/L</td><td>减少：贫血；增多：脱水或红细胞增多症</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">血红蛋白（Hb）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 130-175 g/L<br>女 115-150 g/L</td><td>&lt;120（女）/&lt;130（男）：贫血；极低（&lt;70）：需要输血</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">平均红细胞体积（MCV）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">80-100 fL</td><td>&lt;80：小细胞（缺铁性贫血）；&gt;100：大细胞（叶酸/B12缺乏）</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">白细胞（WBC）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">4-10×10⁹/L</td><td>升高：细菌感染、应激；降低：病毒感染、骨髓抑制</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">中性粒细胞百分比（NEUT%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">50-70%</td><td>升高：细菌感染；降低：病毒感染</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">淋巴细胞百分比（LYMPH%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">20-40%</td><td>升高：病毒感染；降低：免疫功能低下</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">嗜酸性粒细胞（EOS%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">0.5-5%</td><td>升高：过敏、寄生虫感染</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <tr data-cat="blood"><td class="indicator-name">血小板（PLT）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">100-300×10⁹/L</td><td>&lt;100：出血风险增加；&gt;400：血栓风险</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
-            <!-- 肝功能 -->
-            <tr data-cat="liver"><td class="indicator-name">丙氨酸氨基转移酶（ALT）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 40 U/L</td><td>升高：肝细胞损伤；极高（&gt;10倍）：急性肝炎</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
-            <tr data-cat="liver"><td class="indicator-name">天冬氨酸氨基转移酶（AST）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 40 U/L</td><td>AST/ALT&gt;2：酒精性肝病；同时升高：急性肝炎</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
-            <tr data-cat="liver"><td class="indicator-name">总胆红素（TBIL）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">3.4-17.1 μmol/L</td><td>升高：黄疸；轻度升高（&lt;34）常见于Gilbert综合征（良性）</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
-            <tr data-cat="liver"><td class="indicator-name">白蛋白（ALB）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">35-55 g/L</td><td>降低：肝脏合成能力下降、营养不良</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
-            <tr data-cat="liver"><td class="indicator-name">γ-谷氨酰转肽酶（GGT）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 50 U/L</td><td>升高：胆汁淤积、酒精、脂肪肝；对酒精非常敏感</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
-            <!-- 肾功能 -->
-            <tr data-cat="kidney"><td class="indicator-name">肌酐（Cr）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">男 53-106 μmol/L<br>女 44-97 μmol/L</td><td>升高：肾功能下降；需结合eGFR判断严重程度</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
-            <tr data-cat="kidney"><td class="indicator-name">肾小球滤过率（eGFR）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">≥60 mL/min/1.73m²</td><td>60-90：轻度下降；30-60：中度；&lt;30：重度；&lt;15：肾衰竭</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
-            <tr data-cat="kidney"><td class="indicator-name">尿素氮（BUN）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">2.9-7.5 mmol/L</td><td>升高：肾功能下降或高蛋白饮食；受饮食影响大</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
-            <tr data-cat="kidney"><td class="indicator-name">尿酸（UA）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">男 200-420 μmol/L<br>女 140-360 μmol/L</td><td>升高：高嘌呤饮食、痛风风险；不一定有痛风症状</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
-            <tr data-cat="kidney"><td class="indicator-name">尿蛋白（PRO）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">阴性（-）</td><td>+~+++：肾脏过滤功能受损；剧烈运动/发热可短暂阳性</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
-            <!-- 血糖 -->
-            <tr data-cat="sugar"><td class="indicator-name">空腹血糖（FBG）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">3.9-6.1 mmol/L</td><td>6.1-7.0：糖尿病前期；≥7.0（两次）：糖尿病</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
-            <tr data-cat="sugar"><td class="indicator-name">糖化血红蛋白（HbA1c）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">&lt; 5.7%</td><td>5.7-6.4%：糖尿病前期；≥6.5%：糖尿病诊断标准之一</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
-            <!-- 血脂 -->
-            <tr data-cat="lipid"><td class="indicator-name">总胆固醇（TC）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 5.18 mmol/L（理想）</td><td>5.18-6.19：边界升高；≥6.2：升高</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
-            <tr data-cat="lipid"><td class="indicator-name">低密度脂蛋白（LDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">一般人&lt;3.4 mmol/L<br>高危人群&lt;2.6</td><td>LDL是最重要的血脂指标；升高=动脉粥样硬化风险</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
-            <tr data-cat="lipid"><td class="indicator-name">高密度脂蛋白（HDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">男≥1.04 mmol/L<br>女≥1.30 mmol/L</td><td>降低：心血管风险升高（好胆固醇，越高越好）</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
-            <tr data-cat="lipid"><td class="indicator-name">甘油三酯（TG）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 1.7 mmol/L</td><td>1.7-5.6：升高；&gt;5.6：急性胰腺炎风险</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
-            <!-- 甲状腺 -->
-            <tr data-cat="thyroid"><td class="indicator-name">促甲状腺激素（TSH）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">0.4-4.0 mIU/L</td><td>升高：甲减（甲状腺功能不足）；降低：甲亢</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
-            <tr data-cat="thyroid"><td class="indicator-name">游离三碘甲腺原氨酸（FT3）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">2.3-6.3 pmol/L</td><td>升高：甲亢；降低：甲减</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
-            <tr data-cat="thyroid"><td class="indicator-name">游离甲状腺素（FT4）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">10.3-24.5 pmol/L</td><td>升高：甲亢；降低：甲减</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
-            <!-- 肿瘤标志物 -->
-            <tr data-cat="tumor"><td class="indicator-name">甲胎蛋白（AFP）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 20 ng/mL</td><td>升高：肝炎/肝硬化修复、孕期、肝癌（&gt;400强烈提示）</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
-            <tr data-cat="tumor"><td class="indicator-name">癌胚抗原（CEA）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 5 ng/mL（非吸烟）</td><td>吸烟、肠炎均可升高；轻度升高无需恐慌</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
-            <tr data-cat="tumor"><td class="indicator-name">前列腺特异抗原（PSA）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 4 ng/mL</td><td>前列腺炎/增生均可升高；4-10为灰区，需结合f/tPSA</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
-            <tr data-cat="tumor"><td class="indicator-name">CA-125</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 35 U/mL</td><td>女性月经期可升高；子宫内膜异位症可升高</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
-            <tr data-cat="tumor"><td class="indicator-name">CA19-9</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 37 U/mL</td><td>胰腺炎、胆结石均可升高；升高需结合影像检查</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+
+            <!-- ========== 血常规 ========== -->
+            <tr data-cat="blood"><td class="indicator-name">红细胞（RBC）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 4.3-5.8×10¹²/L<br>女 3.8-5.1×10¹²/L</td><td>↓ 贫血；↑ 脱水、红细胞增多症、高原居住</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">血红蛋白（Hb / HGB）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 130-175 g/L<br>女 115-150 g/L</td><td>&lt;110（女）/&lt;120（男）为贫血；&lt;70 为重度贫血需输血</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">平均红细胞体积（MCV）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">80-100 fL</td><td>&lt;80 小细胞（缺铁性贫血首选）；&gt;100 大细胞（叶酸/B12缺乏）</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">红细胞分布宽度（RDW）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">11.5-14.5%</td><td>升高提示红细胞大小不均，多见于缺铁性贫血或营养不良</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">白细胞（WBC）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">4-10×10⁹/L</td><td>↑ 细菌感染、应激、类固醇药物；↓ 病毒感染、骨髓抑制</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">中性粒细胞百分比（NEUT%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">50-70%</td><td>↑ 细菌感染、炎症；↓ 病毒感染、某些药物</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">中性粒细胞绝对值（NEUT#）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">1.8-6.3×10⁹/L</td><td>&lt;0.5 为粒细胞缺乏症，感染风险极高</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">淋巴细胞百分比（LYMPH%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">20-40%</td><td>↑ 病毒感染；↓ 免疫功能低下</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">单核细胞百分比（MONO%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">3-8%</td><td>升高常见于单核细胞增多症、结核、病毒感染后</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">嗜酸性粒细胞（EOS%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">0.5-5%</td><td>↑ 过敏性疾病、寄生虫感染、哮喘</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">嗜碱性粒细胞（BASO%）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">0-1%</td><td>升高罕见但可见于某些血液病</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">血小板（PLT）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">100-300×10⁹/L</td><td>&lt;100 出血风险↑；&lt;50 需就医；&gt;400 血栓风险、骨髓增殖病可能</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">平均血小板体积（MPV）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">7-13 fL</td><td>增大提示血小板活性高，见于动脉血栓倾向；减小见于骨髓造血受损</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+            <tr data-cat="blood"><td class="indicator-name">血细胞比容（HCT / PCV）</td><td><span class="category-badge cat-blood">血常规</span></td><td class="normal-range">男 0.40-0.50<br>女 0.35-0.45</td><td>↓ 贫血；↑ 脱水、红细胞增多症；常与血红蛋白一同参考</td><td class="chapter-link"><a href="chapter2.html">第2章</a></td></tr>
+
+            <!-- ========== 肝功能 ========== -->
+            <tr data-cat="liver"><td class="indicator-name">丙氨酸氨基转移酶（ALT）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 40 U/L</td><td>最敏感的肝细胞损伤指标；&gt;10倍：急性肝炎；轻度↑：脂肪肝/药物</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">天冬氨酸氨基转移酶（AST）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 40 U/L</td><td>AST/ALT&gt;2 提示酒精性肝病；运动后可短暂升高</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">γ-谷氨酰转肽酶（GGT）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">&lt; 50 U/L</td><td>对酒精极敏感；↑ 酒精性肝损伤、胆汁淤积、脂肪肝</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">碱性磷酸酶（ALP）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">40-150 U/L</td><td>↑ 胆汁淤积、骨病（骨折/佩吉特病）；儿童/孕期自然偏高</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">总胆红素（TBIL）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">3.4-17.1 μmol/L</td><td>↑ 黄疸；&lt;34 轻度↑常见于Gilbert综合征（良性，多见年轻男性）</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">直接胆红素（DBIL）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">0-6 μmol/L</td><td>↑ 肝细胞性/胆汁淤积性黄疸（与间接胆红素比值可辅助鉴别）</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">间接胆红素（IBIL）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">0-12 μmol/L</td><td>↑ 溶血性贫血、Gilbert综合征、新生儿黄疸</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">白蛋白（ALB）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">35-55 g/L</td><td>↓ 肝合成下降（慢性肝病、肝硬化）、营养不良、肾病综合征</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">总蛋白（TP）</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">65-85 g/L</td><td>↓ 肝病/营养不良；↑ 骨髓瘤/脱水；需结合白蛋白/球蛋白比例判断</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+            <tr data-cat="liver"><td class="indicator-name">球蛋白（GLO）/ A/G比值</td><td><span class="category-badge cat-liver">肝功能</span></td><td class="normal-range">A/G 1.2-2.4</td><td>A/G倒置（&lt;1.0）见于肝硬化、多发性骨髓瘤；球蛋白↑见于慢性炎症</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+
+            <!-- ========== 肾功能 ========== -->
+            <tr data-cat="kidney"><td class="indicator-name">肌酐（Cr / SCr）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">男 53-106 μmol/L<br>女 44-97 μmol/L</td><td>需结合年龄计算eGFR；年轻人肌酐稍高可能正常；老年人同值可能eGFR很低</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">肾小球滤过率（eGFR）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">≥60 mL/min/1.73m²</td><td>G1≥90正常；G2=60-89轻度↓；G3=30-59中度↓；G4=15-29重度；G5&lt;15肾衰</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">尿素氮（BUN）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">2.9-7.5 mmol/L</td><td>↑ 肾功↓/高蛋白饮食/脱水；BUN/Cr&gt;20 提示肾前性；受饮食影响大</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">尿酸（UA）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">男 200-420 μmol/L<br>女 140-360 μmol/L</td><td>&gt;420（男）/&gt;360（女）=高尿酸；&gt;540 痛风风险大；无症状不必立刻用药</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="kidney"><td class="indicator-name">胱抑素C（Cys C）</td><td><span class="category-badge cat-kidney">肾功能</span></td><td class="normal-range">0.5-1.0 mg/L</td><td>比肌酐更早反映肾功损害；不受肌肉量影响；老人/儿童更有价值</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+
+            <!-- ========== 尿常规 ========== -->
+            <tr data-cat="urine"><td class="indicator-name">尿蛋白（PRO）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">阴性（-）</td><td>+ ~ +++ 肾小球损伤；剧烈运动/发热/直立后可短暂出现（一过性）</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">尿糖（GLU）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">阴性（-）</td><td>阳性多见于血糖升高（&gt;肾糖阈 8.9）；少数肾糖阈低者血糖正常也可阳性</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">尿潜血（OB / BLD）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">阴性（-）</td><td>+：镜下血尿；需区分红细胞来源；女性月经期常见假阳性</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">尿白细胞（LEU / WBC）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">阴性（-）或 &lt;5/HP</td><td>↑ 泌尿道感染（尿路炎症最敏感指标）；女性标本易污染</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">亚硝酸盐（NIT）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">阴性（-）</td><td>阳性强烈提示细菌性尿路感染（革兰氏阴性菌）</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">尿比重（SG）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">1.003-1.030</td><td>&lt;1.010 低比重见于肾浓缩功能↓/大量饮水；&gt;1.025 浓缩尿/脱水</td><td class="chapter-link"><a href="chapter4.html">第4章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">尿酮体（KET）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">阴性（-）</td><td>阳性见于糖尿病酮症、禁食过久、长期低碳饮食、过度运动</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <tr data-cat="urine"><td class="indicator-name">尿胆原（URO）</td><td><span class="category-badge cat-urine">尿常规</span></td><td class="normal-range">弱阳性（正常可有微量）</td><td>↑ 肝细胞损伤/溶血性黄疸；阴性见于胆管梗阻（胆汁排出受阻）</td><td class="chapter-link"><a href="chapter3.html">第3章</a></td></tr>
+
+            <!-- ========== 血糖 ========== -->
+            <tr data-cat="sugar"><td class="indicator-name">空腹血糖（FBG / FPG）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">3.9-6.1 mmol/L</td><td>6.1-7.0 糖尿病前期；≥7.0（两次）糖尿病；需严格空腹8小时</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <tr data-cat="sugar"><td class="indicator-name">糖化血红蛋白（HbA1c）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">&lt; 5.7%</td><td>5.7-6.4% 糖尿病前期；≥6.5% 糖尿病诊断；反映过去2-3月均值</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <tr data-cat="sugar"><td class="indicator-name">餐后2小时血糖（2hPG）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">&lt; 7.8 mmol/L</td><td>7.8-11.1 糖耐量受损；≥11.1 糖尿病诊断指标之一</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+            <tr data-cat="sugar"><td class="indicator-name">空腹胰岛素（FINS）</td><td><span class="category-badge cat-sugar">血糖</span></td><td class="normal-range">2.6-24.9 μIU/mL</td><td>空腹高胰岛素+血糖偏高=胰岛素抵抗；用于评估代谢综合征</td><td class="chapter-link"><a href="chapter5.html">第5章</a></td></tr>
+
+            <!-- ========== 血脂 ========== -->
+            <tr data-cat="lipid"><td class="indicator-name">总胆固醇（TC）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 5.18 mmol/L</td><td>5.18-6.19 边界升高；≥6.2 升高；TC升高不一定是坏事（需看HDL占比）</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">低密度脂蛋白（LDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">普通人 &lt;3.4<br>高危人群 &lt;2.6<br>极高危 &lt;1.8 mmol/L</td><td>最重要的血脂指标；与动脉粥样硬化直接相关；目标值因危险分层不同</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">高密度脂蛋白（HDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">男 ≥1.04 mmol/L<br>女 ≥1.30 mmol/L</td><td>越高越好（好胆固醇）；&lt;1.0 为低，心血管风险↑；运动可有效提升HDL</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">甘油三酯（TG）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 1.7 mmol/L</td><td>1.7-5.6 升高；&gt;5.6 急性胰腺炎风险！与饮酒/精制碳水密切相关</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">非高密度脂蛋白胆固醇（非HDL-C）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 3.8 mmol/L</td><td>TC - HDL-C的差值，综合反映致动脉硬化胆固醇总量，意义超过TC</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+            <tr data-cat="lipid"><td class="indicator-name">载脂蛋白B（ApoB）</td><td><span class="category-badge cat-lipid">血脂</span></td><td class="normal-range">&lt; 1.0 g/L</td><td>每个LDL颗粒含一个ApoB，ApoB比LDL-C更精准反映心血管风险颗粒数</td><td class="chapter-link"><a href="chapter6.html">第6章</a></td></tr>
+
+            <!-- ========== 甲状腺 ========== -->
+            <tr data-cat="thyroid"><td class="indicator-name">促甲状腺激素（TSH）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">0.4-4.0 mIU/L</td><td>筛查首选；↑ 甲减；↓ 甲亢；TSH最敏感，变化早于T3/T4</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <tr data-cat="thyroid"><td class="indicator-name">游离三碘甲腺原氨酸（FT3）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">2.3-6.3 pmol/L</td><td>活性最强的甲状腺激素；↑ 甲亢；↓ 甲减；受营养状态影响</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <tr data-cat="thyroid"><td class="indicator-name">游离甲状腺素（FT4）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">10.3-24.5 pmol/L</td><td>TSH↑+FT4↓=甲减；TSH↓+FT4↑=甲亢；TSH↑+FT4正常=亚临床甲减</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <tr data-cat="thyroid"><td class="indicator-name">抗甲状腺过氧化物酶抗体（TPOAb）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">&lt; 35 IU/mL</td><td>升高是桥本甲状腺炎标志；女性常见；阳性≠一定有症状</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+            <tr data-cat="thyroid"><td class="indicator-name">抗甲状腺球蛋白抗体（TgAb）</td><td><span class="category-badge cat-thyroid">甲状腺</span></td><td class="normal-range">&lt; 40 IU/mL</td><td>桥本甲状腺炎的另一标志物；常与TPOAb联合检测</td><td class="chapter-link"><a href="chapter7.html">第7章</a></td></tr>
+
+            <!-- ========== 肿瘤标志物 ========== -->
+            <tr data-cat="tumor"><td class="indicator-name">甲胎蛋白（AFP）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 20 ng/mL</td><td>轻度↑(20-200)：肝炎修复/孕期；明显↑(&gt;400)：强烈提示肝癌</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">癌胚抗原（CEA）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt;5 ng/mL（非吸烟）<br>&lt;10（吸烟者）</td><td>吸烟/肠炎/胃炎均可↑；用于结肠癌术后监测而非筛查</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">前列腺特异抗原（PSA）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 4.0 ng/mL</td><td>前列腺炎/增生均可↑；4-10为灰区（结合f/tPSA比值判断）；抽血前避免前列腺按摩</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">CA-125</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 35 U/mL</td><td>月经期/子宫内膜异位症均可↑；卵巢癌监测指标（筛查特异性低）</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">CA19-9</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 37 U/mL</td><td>胰腺炎/胆结石均可↑；用于胰腺癌/胆管癌监测；Lewis阴性血型可持续低值</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">CA72-4</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 6.9 U/mL</td><td>胃癌/卵巢癌辅助监测；假阳性相对少</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">神经元特异性烯醇化酶（NSE）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 15 ng/mL</td><td>小细胞肺癌标志；溶血可导致假性升高（采血后不可久置）</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+            <tr data-cat="tumor"><td class="indicator-name">细胞角蛋白19片段（CYFRA21-1）</td><td><span class="category-badge cat-tumor">肿瘤标志</span></td><td class="normal-range">&lt; 3.3 ng/mL</td><td>非小细胞肺癌（鳞癌）标志；肾功不全也可升高</td><td class="chapter-link"><a href="chapter8.html">第8章</a></td></tr>
+
+            <!-- ========== 心脏指标 ========== -->
+            <tr data-cat="cardiac"><td class="indicator-name">肌钙蛋白I/T（cTnI/cTnT）</td><td><span class="category-badge cat-cardiac">心脏</span></td><td class="normal-range">cTnI &lt;0.04 ng/mL<br>（各厂家阈值不同）</td><td>心肌细胞损伤高度特异性标志；急性心梗4-6小时升高；发作时反复测定</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="cardiac"><td class="indicator-name">B型钠尿肽（BNP / NT-proBNP）</td><td><span class="category-badge cat-cardiac">心脏</span></td><td class="normal-range">BNP &lt;100 pg/mL<br>NT-proBNP（&lt;75岁）&lt;125</td><td>心衰最重要的生化标志；升高反映心脏压力负荷；肾衰也会升高</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="cardiac"><td class="indicator-name">同型半胱氨酸（Hcy）</td><td><span class="category-badge cat-cardiac">心脏</span></td><td class="normal-range">&lt; 15 μmol/L</td><td>↑ 心脑血管风险因素之一；叶酸/B12/B6缺乏可导致升高</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="cardiac"><td class="indicator-name">超敏C反应蛋白（hs-CRP）</td><td><span class="category-badge cat-cardiac">心脏</span></td><td class="normal-range">&lt; 1.0 mg/L（低危）<br>1-3 中危<br>&gt;3 高危（心血管）</td><td>低度慢性炎症的心血管风险标志；感染时可极度升高（急性相）；需排除感染再解读</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+
+            <!-- ========== 凝血功能 ========== -->
+            <tr data-cat="coag"><td class="indicator-name">凝血酶原时间（PT）</td><td><span class="category-badge cat-coag">凝血</span></td><td class="normal-range">11-14 秒<br>INR 0.8-1.2</td><td>延长：华法林治疗/维生素K缺乏/肝功不全；服抗凝药者INR目标2-3</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="coag"><td class="indicator-name">活化部分凝血活酶时间（APTT）</td><td><span class="category-badge cat-coag">凝血</span></td><td class="normal-range">26-36 秒</td><td>延长：血友病/肝素治疗；缩短：血栓倾向</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="coag"><td class="indicator-name">纤维蛋白原（FIB / FG）</td><td><span class="category-badge cat-coag">凝血</span></td><td class="normal-range">2-4 g/L</td><td>↑ 急性炎症/高凝状态/心血管风险因素；↓ 弥散性血管内凝血（DIC）</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="coag"><td class="indicator-name">D-二聚体（D-Dimer）</td><td><span class="category-badge cat-coag">凝血</span></td><td class="normal-range">&lt; 0.5 mg/L FEU</td><td>↑ 血栓溶解标志（DVT/PE）；炎症/手术/孕期也可升高；阴性可排除血栓</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+
+            <!-- ========== 电解质 ========== -->
+            <tr data-cat="electro"><td class="indicator-name">血钾（K⁺）</td><td><span class="category-badge cat-electro">电解质</span></td><td class="normal-range">3.5-5.5 mmol/L</td><td>&lt;3.5 低钾（乏力/心律不齐）；&gt;5.5 高钾（危及心脏）；利尿药易导致低钾</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="electro"><td class="indicator-name">血钠（Na⁺）</td><td><span class="category-badge cat-electro">电解质</span></td><td class="normal-range">135-145 mmol/L</td><td>↓ 水过多/心衰/抗利尿激素异常；↑ 脱水；老人、心衰患者需定期监测</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="electro"><td class="indicator-name">血钙（Ca²⁺）</td><td><span class="category-badge cat-electro">电解质</span></td><td class="normal-range">2.1-2.6 mmol/L<br>（需结合白蛋白校正）</td><td>↑ 甲状旁腺功能亢进/恶性肿瘤骨转移；↓ 甲状旁腺功能减退/维生素D缺乏</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="electro"><td class="indicator-name">血磷（P）</td><td><span class="category-badge cat-electro">电解质</span></td><td class="normal-range">0.81-1.45 mmol/L</td><td>↑ 肾功不全/甲状旁腺功能减退；↓ 营养不良/磷消耗增加</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="electro"><td class="indicator-name">血镁（Mg²⁺）</td><td><span class="category-badge cat-electro">电解质</span></td><td class="normal-range">0.75-1.25 mmol/L</td><td>↓ 长期腹泻/利尿药/酒精；低镁可导致心律不齐和低钙</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+
+            <!-- ========== 骨代谢 ========== -->
+            <tr data-cat="bone"><td class="indicator-name">25-羟维生素D（25-OH VD）</td><td><span class="category-badge cat-bone">骨代谢</span></td><td class="normal-range">≥50 nmol/L（充足）<br>30-50 不足；&lt;30 缺乏</td><td>中国人普遍偏低；↓ 骨质疏松风险、免疫功能↓、老人跌倒风险↑</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="bone"><td class="indicator-name">甲状旁腺激素（PTH）</td><td><span class="category-badge cat-bone">骨代谢</span></td><td class="normal-range">15-68 pg/mL</td><td>↑ 甲旁亢/维生素D缺乏/慢性肾病代偿；↓ 甲旁减；需结合血钙判断</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="bone"><td class="indicator-name">骨密度T值（DXA）</td><td><span class="category-badge cat-bone">骨代谢</span></td><td class="normal-range">T值 ≥-1.0 正常</td><td>-1.0~-2.5 骨量减少；≤-2.5 骨质疏松；建议50岁以上女性/65岁以上男性常规检测</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+            <tr data-cat="bone"><td class="indicator-name">I型胶原交联C末端肽（β-CTX）</td><td><span class="category-badge cat-bone">骨代谢</span></td><td class="normal-range">绝经前女性&lt;0.573 ng/mL</td><td>骨吸收标志物；↑ 骨转换加速（骨质疏松/骨肿瘤）；抗骨质疏松药疗效监测</td><td class="chapter-link"><a href="chapter10.html">第10章</a></td></tr>
+
         </tbody>
     </table>
 
-    <p style="margin-top:16px;color:#6b7280;font-size:0.85rem;">⚠️ 以上参考范围来自常见临床标准，不同医院试剂盒可能有差异，以报告单上的参考范围为准。</p>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap;gap:8px;">
+        <p style="color:#6b7280;font-size:0.85rem;">⚠️ 参考范围来自常用临床标准，以报告单实际参考范围为准。所有异常结果请结合症状和医生建议综合判断。</p>
+        <span id="totalCount" style="color:#9ca3af;font-size:0.82rem;"></span>
+    </div>
 </div>
 
 <footer class="site-footer">
@@ -176,12 +276,23 @@ function setFilter(cat, btn) {
 function filterTable() {
     const q = document.getElementById('searchInput').value.toLowerCase();
     const rows = document.querySelectorAll('#lookupBody tr');
+    let visible = 0;
     rows.forEach(row => {
         const catMatch = currentFilter === 'all' || row.dataset.cat === currentFilter;
         const textMatch = !q || row.textContent.toLowerCase().includes(q);
-        row.style.display = (catMatch && textMatch) ? '' : 'none';
+        const show = catMatch && textMatch;
+        row.style.display = show ? '' : 'none';
+        if (show) visible++;
     });
+    const el = document.getElementById('totalCount');
+    if (el) el.textContent = `共显示 ${visible} 条指标`;
 }
+// 初始化计数
+document.addEventListener('DOMContentLoaded', function() {
+    const total = document.querySelectorAll('#lookupBody tr').length;
+    const el = document.getElementById('totalCount');
+    if (el) el.textContent = `共 ${total} 条指标`;
+});
 </script>
 <script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>
 <script src="../auth.js"></script>
