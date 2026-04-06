@@ -36,7 +36,7 @@ img { max-width: 100%; }
 /* ── 导航栏（由 nav.js 注入） ── */
 .top-nav {
   position: sticky; top: 0; z-index: 100;
-  background: var(--primary-dark);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
   box-shadow: 0 2px 12px rgba(0,0,0,.25);
 }
 .top-nav-inner {
@@ -139,6 +139,11 @@ img { max-width: 100%; }
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 2rem; align-items: start;
+}
+.main-content.full-width {
+  grid-template-columns: 1fr;
+  max-width: none;
+  padding: 0;
 }
 .article { min-width: 0; }
 .article h2 {

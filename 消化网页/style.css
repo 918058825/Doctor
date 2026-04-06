@@ -62,9 +62,8 @@ a:hover { color: var(--primary); }
    =================================================== */
 .top-nav {
     position: sticky; top: 0; z-index: 1000;
-    background: white;
-    border-bottom: 1px solid var(--gray-200);
-    box-shadow: var(--shadow);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
 .top-nav-inner {
     max-width: 1280px;
@@ -78,11 +77,11 @@ a:hover { color: var(--primary); }
 .logo {
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--primary-dark);
+    color: white;
     text-decoration: none;
     white-space: nowrap;
 }
-.logo:hover { color: var(--primary); }
+.logo:hover { opacity: 0.9; color: white; }
 .nav-links {
     list-style: none;
     display: flex;
@@ -99,15 +98,15 @@ a:hover { color: var(--primary); }
     border-radius: 8px;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--gray-700);
+    color: rgba(255,255,255,0.85);
     text-decoration: none;
     cursor: pointer;
     transition: all 0.2s;
     white-space: nowrap;
 }
 .nav-links > li > a:hover, .nav-dropdown-toggle:hover {
-    background: var(--primary-light);
-    color: var(--primary-dark);
+    background: rgba(255,255,255,0.18);
+    color: white;
 }
 .nav-arrow { font-size: 0.7rem; transition: transform 0.2s; }
 .nav-hamburger {
@@ -122,7 +121,7 @@ a:hover { color: var(--primary); }
 }
 .nav-hamburger span {
     display: block; width: 22px; height: 2px;
-    background: var(--gray-700); border-radius: 2px; transition: all 0.2s;
+    background: rgba(255,255,255,0.85); border-radius: 2px; transition: all 0.2s;
 }
 
 /* 下拉菜单 */
@@ -328,6 +327,8 @@ a:hover { color: var(--primary); }
     gap: 2rem;
     align-items: start;
 }
+.main-content.full-width { grid-template-columns: 1fr; }
+.content-body { min-width: 0; }
 .article { min-width: 0; }
 .article h2 {
     font-size: 1.5rem;
