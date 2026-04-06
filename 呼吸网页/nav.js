@@ -18,15 +18,15 @@
     ];
 
     const tools = [
-        { h: 'nodule-guide.html',   i: '', t: '肺结节随访指南' },
-        { h: 'cough-checker.html',  i: '', t: '咳嗽原因自查' },
-        { h: 'lung-function.html',  i: '', t: '肺功能报告解读' },
+        { h: 'nodule-guide.html',   i: '🔵', t: '肺结节随访指南' },
+        { h: 'cough-checker.html',  i: '🔍', t: '咋啡原因自查' },
+        { h: 'lung-function.html',  i: '📈', t: '肺功能报告解读' },
     ];
 
     const phases = [
-        { label: ' 呼吸基础（第 1-2 章）', items: chapters.slice(0, 2) },
-        { label: ' 常见疾病（第 3-6 章）', items: chapters.slice(2, 6) },
-        { label: ' 进阶健康（第 7-9 章）', items: chapters.slice(6) },
+        { label: '🔵 呼吸基础（第 1-2 章）', items: chapters.slice(0, 2) },
+        { label: '🟢 常见疾病（第 3-6 章）', items: chapters.slice(2, 6) },
+        { label: '🟣 进阶健康（第 7-9 章）', items: chapters.slice(6) },
     ];
 
     const isAct = h => h === page;
@@ -40,7 +40,7 @@
     ).join('');
 
     const toolGroup = `<div class="dropdown-group">
-            <div class="dropdown-label"> 工具页</div>
+            <div class="dropdown-label">🛠️ 工具页</div>
             ${tools.map(t => lnk(t.h, isAct(t.h) ? 'active' : null, `${t.i} ${t.t}`)).join('\n            ')}
         </div>`;
 
@@ -48,15 +48,15 @@
     const toolActive    = tools.some(t => t.h === page);
 
     const navHTML = `
-        ${lnk('index.html', 'logo', ' 呼吸篇')}
+        ${lnk('index.html', 'logo', '🫁 呼吸篇')}
         <ul class="nav-links" id="navLinks">
-            <li><a href="../index.html" class="nav-portal-link"> 总目录</a></li>
+            <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
-                <a href="#" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}"> 章节 <span class="nav-arrow"></span></a>
+                <a href="#" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}">📚 章节 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu chapters-menu">${chapGroup}</div>
             </li>
             <li class="nav-dropdown">
-                <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}"> 工具 <span class="nav-arrow"></span></a>
+                <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}">🛠️ 工具 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu tools-menu">${toolGroup}</div>
             </li>
             <li>${lnk('index.html', isAct('index.html') ? 'active' : null, '主页')}</li>
@@ -65,15 +65,15 @@
             <span></span><span></span><span></span>
         </button>`;
 
-    let sidebarContent = '<a href="../index.html" class="sidebar-link sidebar-portal-link"> 返回总目录</a>';
-    sidebarContent += lnk('index.html', 'sidebar-link' + (isAct('index.html') ? ' active' : ''), ' 主页');
+    let sidebarContent = '<a href="../index.html" class="sidebar-link sidebar-portal-link">← 返回总目录</a>';
+    sidebarContent += lnk('index.html', 'sidebar-link' + (isAct('index.html') ? ' active' : ''), '🏠 主页');
     phases.forEach(p => {
         sidebarContent += `<div class="sidebar-section">${p.label}</div>`;
         sidebarContent += p.items.map(c =>
             lnk(c.h, 'sidebar-link' + (isAct(c.h) ? ' active' : ''), `${c.n}. ${c.t}`)
         ).join('');
     });
-    sidebarContent += '<div class="sidebar-section"> 工具页</div>';
+    sidebarContent += '<div class="sidebar-section">🛠️ 工具页</div>';
     sidebarContent += tools.map(t =>
         lnk(t.h, 'sidebar-link' + (isAct(t.h) ? ' active' : ''), `${t.i} ${t.t}`)
     ).join('');
@@ -82,8 +82,8 @@
     <div class="nav-overlay" id="navOverlay"></div>
     <div class="nav-sidebar" id="navSidebar">
         <div class="sidebar-header">
-            <span> 呼吸篇</span>
-            <button class="sidebar-close" id="sidebarClose"></button>
+            <span>🪫 呼吸篇</span>
+            <button class="sidebar-close" id="sidebarClose">✕</button>
         </div>
         <div class="sidebar-body">${sidebarContent}</div>
     </div>`;
@@ -105,7 +105,7 @@
         fab.href = 'index.html';
         fab.className = 'fab-home';
         fab.title = '返回首页';
-        fab.innerHTML = '';
+        fab.innerHTML = '🏠';
         document.body.appendChild(fab);
     }
 

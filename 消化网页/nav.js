@@ -19,16 +19,16 @@
     ];
 
     const tools = [
-        { h: 'symptom-checker.html',   i: '', t: '消化道症状自查' },
-        { h: 'colonoscopy-guide.html', i: '', t: '肠镜筛查指南' },
-        { h: 'digestive-drugs.html',   i: '', t: '常见消化药物说明' },
+        { h: 'symptom-checker.html',   i: '🔍', t: '消化道症状自查' },
+        { h: 'colonoscopy-guide.html', i: '🔭', t: '肠镜筛查指南' },
+        { h: 'digestive-drugs.html',   i: '💊', t: '常见消化药物说明' },
     ];
 
     const phases = [
-        { label: ' 消化基础（第 1 章）',    items: chapters.slice(0, 1) },
-        { label: ' 胃部疾病（第 2-5 章）',  items: chapters.slice(1, 5) },
-        { label: ' 肠道健康（第 6-8 章）',  items: chapters.slice(5, 8) },
-        { label: ' 肝胆问题（第 9-10 章）', items: chapters.slice(8) },
+        { label: '🟡 消化基础（第 1 章）',    items: chapters.slice(0, 1) },
+        { label: '🟠 胃部疾病（第 2-5 章）',  items: chapters.slice(1, 5) },
+        { label: '🟢 肠道健康（第 6-8 章）',  items: chapters.slice(5, 8) },
+        { label: '🟣 肆胆问题（第 9-10 章）', items: chapters.slice(8) },
     ];
 
     const isAct = h => h === page;
@@ -42,7 +42,7 @@
     ).join('');
 
     const toolGroup = `<div class="dropdown-group">
-            <div class="dropdown-label"> 工具页</div>
+            <div class="dropdown-label">🛠️ 工具页</div>
             ${tools.map(t => lnk(t.h, isAct(t.h) ? 'active' : null, `${t.i} ${t.t}`)).join('\n            ')}
         </div>`;
 
@@ -50,15 +50,15 @@
     const toolActive    = tools.some(t => t.h === page);
 
     const navHTML = `
-        ${lnk('index.html', 'logo', ' 消化篇')}
+        ${lnk('index.html', 'logo', '🍽️ 消化篇')}
         <ul class="nav-links" id="navLinks">
-            <li><a href="../index.html" class="nav-portal-link"> 总目录</a></li>
+            <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
-                <a href="#" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}"> 章节 <span class="nav-arrow"></span></a>
+                <a href="#" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}">📚 章节 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu chapters-menu">${chapGroup}</div>
             </li>
             <li class="nav-dropdown">
-                <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}"> 工具 <span class="nav-arrow"></span></a>
+                <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}">🛠️ 工具 <span class="nav-arrow">▾</span></a>
                 <div class="nav-dropdown-menu tools-menu">${toolGroup}</div>
             </li>
             <li>${lnk('index.html', isAct('index.html') ? 'active' : null, '主页')}</li>
@@ -67,15 +67,15 @@
             <span></span><span></span><span></span>
         </button>`;
 
-    let sidebarContent = '<a href="../index.html" class="sidebar-link sidebar-portal-link"> 返回总目录</a>';
-    sidebarContent += lnk('index.html', 'sidebar-link' + (isAct('index.html') ? ' active' : ''), ' 主页');
+    let sidebarContent = '<a href="../index.html" class="sidebar-link sidebar-portal-link">← 返回总目录</a>';
+    sidebarContent += lnk('index.html', 'sidebar-link' + (isAct('index.html') ? ' active' : ''), '🏠 主页');
     phases.forEach(p => {
         sidebarContent += `<div class="sidebar-section">${p.label}</div>`;
         sidebarContent += p.items.map(c =>
             lnk(c.h, 'sidebar-link' + (isAct(c.h) ? ' active' : ''), `${c.n}. ${c.t}`)
         ).join('');
     });
-    sidebarContent += '<div class="sidebar-section"> 工具页</div>';
+    sidebarContent += '<div class="sidebar-section">🛠️ 工具页</div>';
     sidebarContent += tools.map(t =>
         lnk(t.h, 'sidebar-link' + (isAct(t.h) ? ' active' : ''), `${t.i} ${t.t}`)
     ).join('');
@@ -84,8 +84,8 @@
     <div class="nav-overlay" id="navOverlay"></div>
     <div class="nav-sidebar" id="navSidebar">
         <div class="sidebar-header">
-            <span> 消化篇</span>
-            <button class="sidebar-close" id="sidebarClose"></button>
+            <span>🍽️ 消化篇</span>
+            <button class="sidebar-close" id="sidebarClose">✕</button>
         </div>
         <div class="sidebar-body">${sidebarContent}</div>
     </div>`;
@@ -107,7 +107,7 @@
         fab.href = 'index.html';
         fab.className = 'fab-home';
         fab.title = '返回首页';
-        fab.innerHTML = '';
+        fab.innerHTML = '🏠';
         document.body.appendChild(fab);
     }
 

@@ -540,4 +540,7 @@ img { max-width: 100%; }
   .hero-stats { gap: 1rem 1.5rem; }
   .chapter-nav { flex-direction: column; }
   .chapter-nav a { max-width: 100%; }
+  .hero-btn-primary, .hero-btn-outline { padding: .6rem 1rem; font-size: .9rem; }
+  .index-hero-cta { gap: 10px; }
+  .ihs-item { min-width: 0; }
 }

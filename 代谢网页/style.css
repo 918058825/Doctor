@@ -1137,4 +1137,7 @@ body {
     .breadcrumb { padding: 0.8rem 1rem 0; }
     .home-section { padding: 2rem 1rem 0.5rem; }
     .ihs-divider { display: none; }
+    .ihs-item { min-width: 0; padding: 0.3rem 0.6rem; }
+    .hero-btn-primary, .hero-btn-outline { padding: 10px 16px; font-size: .9rem; }
+    .index-hero-cta { gap: 10px; }
 }
