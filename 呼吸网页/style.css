@@ -1206,7 +1206,7 @@ body {
 @media (max-width: 900px) {
     .main-content { grid-template-columns: 1fr; padding: 1rem 1.2rem 3rem; }
     .sidebar { position: static; }
-    .nav-links { display: none; }
+    .top-nav .nav-links { display: none; }
     .nav-hamburger { display: flex; }
     .index-hero-title { font-size: 2rem; }
     .comparison-box { grid-template-columns: 1fr; }

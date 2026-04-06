@@ -531,7 +531,7 @@ img { max-width: 100%; }
 @media (max-width: 900px) {
   .main-content { grid-template-columns: 1fr; }
   .sidebar { display: none; }
-  .nav-links { display: none; }
+  .top-nav .nav-links { display: none; }
   .hamburger { display: flex; }
 }
 @media (max-width: 640px) {
