@@ -823,22 +823,25 @@ body {
 }
 .hands-on-card .steps li {
     counter-increment: step;
-    padding: 0.5rem 0 0.5rem 2.5rem;
+    padding: 0.4rem 0;
     position: relative;
     line-height: 1.7;
     color: #374151;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
 }
 .hands-on-card .steps li::before {
     content: "步骤" counter(step);
-    position: absolute;
-    left: 0;
+    flex-shrink: 0;
     font-size: 0.75rem;
     font-weight: 700;
     color: #16a34a;
     background: #dcfce7;
     padding: 2px 8px;
     border-radius: 10px;
-    top: 0.55rem;
+    margin-top: 0.25rem;
+    white-space: nowrap;
 }
 .hands-on-card .what-you-feel {
     margin-top: 1rem;
