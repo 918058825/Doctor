@@ -516,7 +516,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       + '<div class="xw-nav-right">'
       +   '<button id="xw-theme-toggle" title="切换日夜模式">🌙</button>'
       +   '<div style="display:flex;gap:.4rem;align-items:center">' + authHtml + '</div>'
-      +   '<button id="xw-hamburger">☰</button>'
       + '</div>'
       + '</nav>'
       + '<div id="xw-mobile-menu">'
