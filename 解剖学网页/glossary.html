@@ -34,7 +34,6 @@
         <ul class="nav-links">
             <li><a href="index.html">首页</a></li>
             <li><a href="glossary.html" class="active">术语词典</a></li>
-            <li><a href="quiz.html">自测问答</a></li>
             <li><a href="compare.html">系统对比</a></li>
         </ul>
     </div>
@@ -288,6 +287,26 @@ function filterGlossary() {
 }
 
 filterGlossary();
+</script>
+
+<script>
+// 工具页底部导航
+document.addEventListener('DOMContentLoaded', function() {
+    var toolNav = document.createElement('div');
+    toolNav.className = 'chapter-nav';
+    toolNav.innerHTML = `
+        <a href="index.html">
+            <span>🏠</span>
+            <span><span class="nav-label">返回</span>主页</span>
+        </a>
+        <a href="compare.html" class="next">
+            <span><span class="nav-label">下一个工具</span>系统对比</span>
+            <span>→</span>
+        </a>
+    `;
+    var contentBody = document.querySelector('.content-body');
+    if (contentBody) contentBody.appendChild(toolNav);
+});
 </script>
 
 <script>window._AUTH_ROOT='../';window._REQUIRE_LOGIN=true;</script>

@@ -25,7 +25,6 @@
 
     const tools = [
         { h: 'glossary.html',        i: '📖', t: '术语词典' },
-        { h: 'quiz.html',            i: '🧪', t: '自测问答' },
         { h: 'compare.html',         i: '⚖️', t: '系统对比' },
         { h: 'daily-scenarios.html', i: '🎬', t: '日常场景' },
         { h: 'body-signals.html',    i: '📡', t: '信号解码' },
@@ -49,8 +48,8 @@
     ).join('');
 
     const toolGroups = [
-        { label: '📚 参考工具', items: tools.slice(0, 3) },
-        { label: '🎯 理解工具', items: tools.slice(3) },
+        { label: '📚 参考工具', items: tools.slice(0, 2) },
+        { label: '🎯 理解工具', items: tools.slice(2) },
     ];
     const toolGroup = toolGroups.map(g =>
         `<div class="dropdown-group">
