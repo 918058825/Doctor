@@ -161,11 +161,16 @@ body {
     display: inline-block;
 }
 .content-body h2:first-child { margin-top: 0; }
+.home-section-header h2 { margin: 0; }
 .content-body h3 {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--gray-800);
     margin: 1.8rem 0 0.8rem;
+}
+/* 章节卡片内的 h3 不受全局 margin 影响 */
+.chapter-card h3 {
+    margin: 0 0 3px;
 }
 .content-body h4 {
     font-size: 1.05rem;
@@ -247,48 +252,53 @@ body {
 .chapter-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    margin: 1.5rem 0;
+    gap: 0.6rem;
+    margin: 0.4rem 0;
 }
 .chapter-card {
     background: white;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: 1.5rem;
+    padding: 1rem 1.2rem;
     text-decoration: none;
     color: inherit;
     transition: all 0.3s;
     border-left: 4px solid var(--primary);
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: .9rem;
 }
 .chapter-card:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-3px);
 }
 .chapter-card .ch-num {
-    display: inline-block;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     background: var(--primary);
     color: white;
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    text-align: center;
-    line-height: 36px;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 700;
-    margin-bottom: 10px;
+}
+.chapter-card .ch-body {
+    min-width: 0;
 }
 .chapter-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--gray-900);
-    margin-bottom: 6px;
+    margin-bottom: 3px;
 }
 .chapter-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--gray-500);
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 .chapter-card .tag {
     display: inline-block;
@@ -297,7 +307,7 @@ body {
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 0.75rem;
-    margin-top: 8px;
+    margin-top: 5px;
 }
 
 /* 不同系统颜色 */
@@ -970,14 +980,14 @@ body {
 
 /* ---- 区块容器 ---- */
 .home-section {
-    margin: 1.2rem 0;
+    margin: 0.4rem 0;
 }
 .home-section-header {
     display: flex;
     align-items: baseline;
     gap: 12px;
-    margin-bottom: 1.2rem;
-    padding-bottom: 10px;
+    margin-bottom: 0.5rem;
+    padding-bottom: 6px;
     border-bottom: 2px solid #e5e7eb;
 }
 .home-section-header h2 {
@@ -993,11 +1003,11 @@ body {
 /* ---- 阶段标签 ---- */
 .phase-label {
     display: inline-block;
-    padding: 4px 14px;
+    padding: 3px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 600;
-    margin: 1.2rem 0 0.8rem;
+    margin: 0.6rem 0 0.4rem;
     letter-spacing: 0.02em;
 }
 .phase-green  { background: #dcfce7; color: #15803d; }

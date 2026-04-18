@@ -1225,3 +1225,16 @@ body {
     .hero-btn-primary, .hero-btn-outline { padding: 10px 16px; font-size: .9rem; }
     .index-hero-cta { gap: 10px; }
 }
+
+/* ===== 紧凑布局修正 ===== */
+.main-content { padding: 0 2rem 3rem; }
+.home-section { margin: 0.4rem 0; }
+.home-section-header { margin-bottom: 0.5rem; padding-bottom: 6px; }
+.home-section-header h2 { margin: 0; }
+.phase-label { padding: 3px 12px; margin: 0.6rem 0 0.4rem; }
+.chapter-grid { gap: 0.6rem; margin: 0.4rem 0; }
+.chapter-card { padding: 1rem 1.2rem; display: flex; align-items: center; gap: .9rem; }
+.chapter-card .ch-num { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; font-size: 0.82rem; }
+.chapter-card .ch-body { min-width: 0; }
+.chapter-card h3 { font-size: 1rem; margin: 0 0 3px; }
+.chapter-card p { font-size: 0.85rem; margin: 0; line-height: 1.4; }
