@@ -496,7 +496,7 @@ img { max-width: 100%; }
   border-color: var(--primary); transform: translateY(-2px);
   box-shadow: var(--shadow-md); color: var(--text);
 }
-.chapter-card .ch-num { font-size: .75rem; color: var(--primary); font-weight: 700; margin-bottom: .3rem; }
+.chapter-card .ch-num { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; background: var(--primary); color: white; width: 32px; height: 32px; border-radius: 50%; font-size: 0.82rem; font-weight: 700; }
 .chapter-card .ch-title { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
 .chapter-card .ch-desc { font-size: .85rem; color: var(--text-muted); line-height: 1.5; }
 

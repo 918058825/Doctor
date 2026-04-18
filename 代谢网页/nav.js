@@ -48,7 +48,7 @@
     const toolActive    = tools.some(t => t.h === page);
 
     const navHTML = `
-        ${lnk('index.html', 'logo', '🧬 代谢篇')}
+        ${lnk('index.html', 'logo', '🔄 代谢')}
         <ul class="nav-links" id="navLinks">
             <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
