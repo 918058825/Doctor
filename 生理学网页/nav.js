@@ -54,7 +54,7 @@
 
     /* ---- 顶部导航 HTML ---- */
     const navHTML = `
-        ${lnk('index.html', 'logo', '🧬 运行篇')}
+        ${lnk('index.html', 'logo', '🧬 生理学')}
         <ul class="nav-links" id="navLinks">
             <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
@@ -89,7 +89,7 @@
     <div class="nav-overlay" id="navOverlay"></div>
     <div class="nav-sidebar" id="navSidebar">
         <div class="sidebar-header">
-            <span>🧬 运行篇</span>
+            <span>🧬 生理学</span>
             <button class="sidebar-close" id="sidebarClose">✕</button>
         </div>
         <div class="sidebar-body">${sidebarContent}</div>

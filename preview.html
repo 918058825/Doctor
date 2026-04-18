@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>手机预览</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 20px 0;
+  font-family: sans-serif;
+}
+.phone-bar {
+  width: 393px;
+  background: #111;
+  border-radius: 18px 18px 0 0;
+  padding: 10px 16px 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 11px;
+}
+.phone-bar input {
+  flex: 1;
+  background: #333;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #ccc;
+  font-size: 11px;
+  outline: none;
+}
+.phone-wrap {
+  width: 393px;
+  height: 720px;
+  border: 3px solid #333;
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.label {
+  margin-top: 12px;
+  color: #555;
+  font-size: 11px;
+}
+/* 尺寸切换 */
+.sizes {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.sizes button {
+  background: #2a2a3e;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11px;
+}
+.sizes button.active {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: #fff;
+}
+</style>
+</head>
+<body>
+
+<div class="sizes">
+  <button class="active" onclick="setSize(393,720,this)">iPhone 15 (393)</button>
+  <button onclick="setSize(375,667,this)">iPhone SE (375)</button>
+  <button onclick="setSize(430,932,this)">iPhone Max (430)</button>
+  <button onclick="setSize(360,800,this)">Android (360)</button>
+</div>
+
+<div class="phone-bar">
+  <span>🔒</span>
+  <input id="url-bar" value="index.html" readonly>
+  <span onclick="reloadFrame()" style="cursor:pointer">↺</span>
+</div>
+<div class="phone-wrap" id="phone-wrap">
+  <iframe id="frame" src="index.html"></iframe>
+</div>
+<div class="label" id="size-label">393 × 720 px · iPhone 15</div>
+
+<script>
+function setSize(w, h, btn) {
+  document.querySelectorAll('.sizes button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelector('.phone-bar').style.width = w + 'px';
+  document.getElementById('phone-wrap').style.width = w + 'px';
+  document.getElementById('phone-wrap').style.height = h + 'px';
+  document.getElementById('size-label').textContent = w + ' × ' + h + ' px · ' + btn.textContent.trim();
+}
+function reloadFrame() {
+  document.getElementById('frame').src = document.getElementById('frame').src;
+}
+</script>
+</body>
+</html>

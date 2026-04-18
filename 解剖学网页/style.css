@@ -139,7 +139,7 @@ body {
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 2rem 3rem;
+    padding: 0 2rem 3rem;
     display: grid;
     grid-template-columns: 1fr 280px;
     gap: 2rem;
@@ -970,7 +970,7 @@ body {
 
 /* ---- 区块容器 ---- */
 .home-section {
-    margin: 2.8rem 0;
+    margin: 1.2rem 0;
 }
 .home-section-header {
     display: flex;
