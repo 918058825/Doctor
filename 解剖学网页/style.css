@@ -597,6 +597,101 @@ div.compare-table > table {
     margin-bottom: 5px;
 }
 
+/* ===== 术语对卡片（术语+含义+举例） ===== */
+.term-pair-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin: 0.7rem 0;
+}
+.term-pair-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 0.7rem 0.9rem;
+    border-left: 3px solid var(--primary);
+}
+.tp-term  { font-weight: 700; font-size: 0.88rem; color: var(--primary-dark); margin-bottom: 3px; }
+.tp-meaning { font-size: 0.85rem; color: var(--gray-700); margin-bottom: 3px; }
+.tp-example { font-size: 0.78rem; color: var(--gray-500); }
+
+/* ===== 两列对比卡 ===== */
+.split-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin: 0.7rem 0;
+}
+.split-left, .split-right {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 0.75rem 1rem;
+    font-size: 0.88rem;
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+.split-left  { border-top: 3px solid var(--primary); }
+.split-right { border-top: 3px solid var(--accent); }
+.sc-label {
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* ===== 通用网格卡片 ===== */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin: 0.7rem 0;
+}
+.grid-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 0.7rem 0.9rem;
+    border-top: 3px solid var(--primary);
+}
+.gc-title { font-weight: 700; font-size: 0.88rem; color: var(--gray-800); margin-bottom: 4px; }
+.gc-body  { font-size: 0.82rem; color: var(--gray-600); line-height: 1.55; }
+
+/* ===== 腹部九分法网格 ===== */
+.abdomen-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin: 0.7rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.ab-cell {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+.ab-cell.ab-head {
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+.ab-cell.ab-body {
+    background: var(--primary-light);
+    color: var(--gray-700);
+}
+
+@media (max-width: 900px) {
+    .term-pair-grid { grid-template-columns: 1fr; }
+    .split-card { grid-template-columns: 1fr; }
+    .grid-cards { grid-template-columns: 1fr; }
+    .abdomen-grid { font-size: 0.75rem; }
+}
+
 /* ===== 研究方法卡片 ===== */
 .method-cards {
     display: grid;
