@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<nav class="top-nav">
+    <div class="top-nav-inner"></div>
+</nav>
+
 <div class="breadcrumb">
     <a href="index.html">首页</a> <span>›</span> 第一章
 </div>
@@ -22,7 +26,7 @@
     <div class="content-body">
 
         <!-- 开篇钩子 -->
-        <div class="info-box green" style="margin-bottom:2rem;">
+        <div class="info-box green">
             <div class="box-title">🤯 先来3个让你震惊的身体冷知识</div>
             <p>📍 你身体里的血管，如果全部首尾相连，总长度超过 <strong>10万公里</strong>——相当于绕地球两圈半</p>
             <p>📍 你的小肠展开有 <strong>6米</strong>长（是你身高的3倍多），全靠折叠才能塞进肚子里</p>
@@ -102,7 +106,7 @@
 
         <p>现代还有很多辅助手段：</p>
 
-        <table class="compare-table">
+        <div class="table-wrap"><table class="compare-table">
             <tr>
                 <th>方法</th>
                 <th>怎么做</th>
@@ -128,7 +132,7 @@
                 <td>把组织切成极薄片，染色后在显微镜下观察</td>
                 <td>可以看到细胞层面的微观结构</td>
             </tr>
-        </table>
+        </table></div>
 
         <h2 id="sec4">四、为什么解剖学是医学的基础</h2>
 
@@ -150,14 +154,38 @@
 
         <h2 id="sec5">五、解剖学的历史小故事</h2>
 
-        <p>解剖学是最古老的医学学科之一，它的历史也是人类用勇气和好奇心对抗偏见与权威的历史，它的历史也是人类用勇气和好奇心对抗偏见与权威的历史：</p>
+        <p>解剖学是最古老的医学学科之一，它的历史也是人类用勇气和好奇心对抗偏见与权威的历史。</p>
 
-        <ul>
-            <li><strong>古埃及</strong>（公元前3000年）：制作木乃伊时要取出内脏，埃及人就这样积累了最早的器官知识——知道心脏、肝脏、肺的位置和大小，甚至会把这些器官分别装在四个"卡诺皮克罐"里保存，认为灵魂还需要用到它们。</li>
-            <li><strong>古希腊·盖伦的"权威错误"</strong>：盖伦（130-210年）是古代最权威的医学家，被誉为"神医"，但他主要解剖的是猴子和猪，而非人类。他的结论被教会奉为"圣典"，在欧洲统治了整整1400年——哪怕里面有明显的错误，也没人敢质疑。</li>
-            <li><strong>文艺复兴·维萨里的革命</strong>：1543年，年仅28岁的维萨里出版了《人体构造》。他亲自解剖人的遗体，发现盖伦犯了200多处错误，全部勇敢地写进书里。保守医生和教会大怒，给他扣上"亵渎"的帽子。但真相是掩盖不住的——他的7大册精确图谱彻底改写了医学史，他因此被称为"现代解剖学之父"。</li>
-            <li><strong>达芬奇的秘密笔记</strong>：达芬奇不只是艺术家，他拿到了佛罗伦萨医院的特许，秘密解剖了30多具尸体，留下700余页精确的解剖素描——心脏的腔室、骨骼的比例、肌肉的走向，精准得令现代学者叹服。这些笔记直到他去世几百年后才公开，否则医学进程可能大大提前。</li>
-        </ul>
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-badge" style="background:#0ea5e9">公元前<br>3000年</div>
+                <div class="tl-body">
+                    <div class="tl-title">🏛️ 古埃及：木乃伊与器官知识</div>
+                    <p>制作木乃伊时需取出内脏，埃及人由此积累了最早的器官知识——知道心脏、肝脏、肺的位置和大小，甚至把内脏分别装入四个"卡诺皮克罐"保存。</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-badge" style="background:#ef4444">130–210年</div>
+                <div class="tl-body">
+                    <div class="tl-title">⚠️ 盖伦的"权威错误"</div>
+                    <p>盖伦被誉为"神医"，但他主要解剖的是猴子和猪而非人类。他的结论被教会奉为"圣典"，在欧洲统治了整整1400年，哪怕里面有明显错误也没人敢质疑。</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-badge" style="background:#16a34a">1543年</div>
+                <div class="tl-body">
+                    <div class="tl-title">📖 维萨里的革命：《人体构造》</div>
+                    <p>年仅28岁的维萨里亲自解剖人体，发现盖伦犯了200多处错误并勇敢写入书中。他的7大册精确图谱彻底改写医学史，被称为"现代解剖学之父"。</p>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-badge" style="background:#7c3aed">15世纪末</div>
+                <div class="tl-body">
+                    <div class="tl-title">🎨 达芬奇的秘密笔记</div>
+                    <p>达芬奇秘密解剖了30多具尸体，留下700余页精确解剖素描——心脏腔室、骨骼比例、肌肉走向，令现代学者叹服。这些笔记直到他去世几百年后才公开。</p>
+                </div>
+            </div>
+        </div>
 
         <div class="info-box green">
             <div class="box-title">🤔 一个有趣的事实</div>
