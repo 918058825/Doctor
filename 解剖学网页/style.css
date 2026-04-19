@@ -597,6 +597,60 @@ div.compare-table > table {
     margin-bottom: 5px;
 }
 
+/* ===== 研究方法卡片 ===== */
+.method-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+    margin: 0.8rem 0;
+}
+.method-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 0.8rem 1rem;
+    border-top: 3px solid var(--primary);
+}
+.method-icon { font-size: 1.4rem; margin-bottom: 4px; }
+.method-name { font-weight: 700; font-size: 0.9rem; color: var(--gray-800); margin-bottom: 4px; }
+.method-how { font-size: 0.82rem; color: var(--gray-600); margin-bottom: 4px; }
+.method-pro { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+
+/* ===== 学科对比卡片 ===== */
+.subject-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0.8rem 0;
+}
+.subject-card {
+    border-left: 4px solid;
+    border-radius: 0 10px 10px 0;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+.sc-header {
+    color: white;
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 5px 12px;
+}
+.sc-body {
+    background: white;
+    padding: 0.55rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+    align-items: baseline;
+}
+.sc-q  { font-weight: 700; font-size: 0.88rem; color: var(--gray-800); flex-shrink: 0; }
+.sc-meta { font-size: 0.82rem; color: var(--gray-500); flex-shrink: 0; }
+.sc-eg { font-size: 0.8rem; color: var(--gray-500); width: 100%; margin-top: 2px; }
+
+@media (max-width: 900px) {
+    .method-cards { grid-template-columns: 1fr; }
+}
+
 /* ===== 时间线 ===== */
 .timeline {
     position: relative;
