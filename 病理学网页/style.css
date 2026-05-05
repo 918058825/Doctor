@@ -719,12 +719,13 @@ div.compare-table > table {
     margin: 0.8rem 0;
 }
 .subject-card {
-    border-left: 4px solid;
+    border-left: 4px solid var(--primary);
     border-radius: 0 10px 10px 0;
     overflow: hidden;
     box-shadow: var(--shadow);
 }
 .sc-header {
+    background: var(--primary);
     color: white;
     font-weight: 700;
     font-size: 0.88rem;
