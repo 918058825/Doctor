@@ -430,6 +430,47 @@ div.compare-table > table {
     gap: 8px;
     margin: 1.5rem 0;
 }
+/* ===== 有序步骤卡片（.step / .step-num / .step-body）===== */
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    box-shadow: var(--shadow);
+}
+.step-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-top: 2px;
+}
+.step-body {
+    flex: 1;
+}
+.step-body strong {
+    display: block;
+    font-size: 0.93rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 3px;
+}
+.step-body p {
+    font-size: 0.84rem;
+    color: var(--gray-600);
+    margin: 0;
+    line-height: 1.55;
+}
 .flow-step {
     background: var(--primary-light);
     color: var(--primary-dark);
