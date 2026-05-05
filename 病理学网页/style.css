@@ -637,10 +637,8 @@ div.compare-table > table {
     font-weight: 700;
     font-size: 0.82rem;
     color: var(--gray-500);
-    text-transform: uppercase;
     letter-spacing: 0.04em;
-    margin-bottom: 6px;
-    display: block;
+    display: inline;
 }
 
 /* ===== 通用网格卡片 ===== */
