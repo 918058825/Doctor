@@ -6,3 +6,6 @@ manage-codes.ps1
 
 # 一键推送脚本 - 本地工具，不提交远程
 push.bat
+
+# Xiaohongshu local drafts
+小红书内容/
