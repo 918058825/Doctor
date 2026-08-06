@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '/^    [a-z]+: \\\\[$/{sec=$1; count[sec]=0} /^      \\\\{ topic:/{count[sec]++} END{for \\(s in count\\) print s, count[s]}' \"D:\\\\12_Ronan\\\\Doctor\\\\quiz-engine.js\")",
+      "Bash(node -e \"const fs = require\\('fs'\\); const content = fs.readFileSync\\('quiz-engine.js', 'utf8'\\); try { new Function\\(content\\); console.log\\('✅ JS语法正确'\\); } catch\\(e\\) { console.log\\('❌ 语法错误:', e.message\\); }\")",
+      "Bash(where node *)",
+      "Bash(awk ' *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'feat: 大幅扩充题库——从162题增至245题 \\(+83题\\) *)",
+      "Bash(git push *)"
+    ]
+  }
+}

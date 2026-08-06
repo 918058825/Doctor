@@ -1,0 +1,52 @@
+/* 第四章试点：方位教学示意图与知识导图 */
+.visual-study-card {
+    margin: 1.5rem 0 1.75rem;
+    padding: 1.25rem;
+    color: #172033;
+    background: linear-gradient(145deg, #f8fbff 0%, #ffffff 60%, #f6fffd 100%);
+    border: 1px solid #cfe0ef;
+    border-radius: 18px;
+    box-shadow: 0 12px 28px rgba(31, 64, 104, 0.08);
+}
+
+.visual-study-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+.visual-study-heading h3 { margin: 0 !important; padding: 0 !important; color: #12315b !important; border: 0 !important; font-size: 1.16rem !important; }
+.visual-eyebrow { margin: 0 0 .22rem !important; color: #1671b9; font-size: .76rem; font-weight: 800; letter-spacing: .08em; }
+.visual-chip { flex: 0 0 auto; padding: .32rem .6rem; color: #075e91; background: #e2f3ff; border: 1px solid #b8e1fa; border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.visual-chip-warm { color: #8a4b04; background: #fff3d7; border-color: #f6d492; }
+
+.anatomy-map { background: linear-gradient(145deg, #fcfdff, #f8fbff 58%, #fffaf2); }
+.map-root { position: relative; max-width: 355px; margin: 0 auto 1.35rem; padding: .75rem 1rem; color: #fff; background: linear-gradient(135deg, #155b8e, #1685b9); border-radius: 12px; text-align: center; font-weight: 800; box-shadow: 0 7px 16px rgba(15, 98, 150, .2); }
+.map-root::after { content: ''; position: absolute; top: 100%; left: 50%; width: 2px; height: 18px; background: #8fc7e6; }
+.map-root span { display: block; margin-top: .18rem; color: #dff5ff; font-size: .76rem; font-weight: 500; }
+.map-branches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; position: relative; }
+.map-branches::before { content: ''; position: absolute; top: -10px; left: 12.5%; width: 75%; border-top: 2px solid #b9dbee; }
+.map-branch { position: relative; min-height: 138px; padding: .85rem .75rem; border: 1px solid; border-radius: 12px; background: #fff; }
+.map-branch::before { content: ''; position: absolute; top: -12px; left: 50%; width: 2px; height: 12px; transform: translateX(-50%); background: currentColor; }
+.map-branch h4 { margin: 0 0 .45rem !important; color: inherit !important; font-size: .88rem !important; }
+.map-branch p { margin: 0 !important; color: #4c6072; font-size: .78rem; line-height: 1.63; }
+.map-branch-blue { color: #1877b5; border-color: #afd8f1; background: #f1f9ff; }
+.map-branch-teal { color: #0c8374; border-color: #a9e0d6; background: #effbf8; }
+.map-branch-violet { color: #7450ad; border-color: #d3c1f2; background: #f8f4ff; }
+.map-branch-amber { color: #a66608; border-color: #f0d09b; background: #fffaf0; }
+.map-reading-path { margin-top: 1rem; padding: .72rem .9rem; color: #3f586c; background: #f2f8fc; border-left: 3px solid #1692c7; border-radius: 0 9px 9px 0; font-size: .86rem; line-height: 1.55; }
+.map-reading-path strong { color: #14577e; }
+
+@media (max-width: 760px) {
+    .visual-study-card { margin-left: -1rem; margin-right: -1rem; padding: 1rem; border-radius: 0; }
+    .visual-study-heading { align-items: flex-start; }
+    .visual-chip { max-width: 118px; text-align: center; line-height: 1.35; }
+    .map-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .map-branches::before { display: none; }
+    .map-branch::before { display: none; }
+    .map-branch { min-height: 0; }
+}
+
+@media (max-width: 390px) {
+    .visual-study-heading h3 { font-size: 1.04rem !important; }
+    .visual-chip { display: none; }
+}
+
+@media print {
+    .visual-study-card { break-inside: avoid; box-shadow: none; }
+}

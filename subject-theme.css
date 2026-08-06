@@ -1,0 +1,364 @@
+/* =============================================================
+   求学少年 · 学科页面共享深色主题
+   所有学科页在各自 style.css 之后引入本文件。结构和学科强调色
+   仍由模块自身决定；此处只统一深色底、卡片、导航与交互质感。
+   ============================================================= */
+
+:root {
+  color-scheme: dark;
+  --theme-bg: #0f172a;
+  --theme-bg-elevated: #162238;
+  --theme-surface: #1e293b;
+  --theme-surface-hover: #25344a;
+  --theme-border: #334155;
+  --theme-border-strong: #475569;
+  --theme-text: #f1f5f9;
+  --theme-text-soft: #cbd5e1;
+  --theme-muted: #94a3b8;
+  --theme-faint: #64748b;
+  --theme-shadow: 0 14px 30px rgba(2, 6, 23, .28);
+  --theme-shadow-hover: 0 18px 40px rgba(2, 6, 23, .42);
+
+  /* 保留每个模块的 --primary 作为学科识别色，其余语义色统一提高对比度。 */
+  --primary-dark: color-mix(in srgb, var(--primary) 68%, #ffffff);
+  --accent: #2dd4bf;
+  --warning: #fbbf24;
+  --danger: #fb7185;
+  --purple: #a78bfa;
+  --teal: #2dd4bf;
+
+  /* 将旧的浅色中性色映射到同一套深色阶，不改变模块的主强调色。 */
+  --gray-50: var(--theme-bg);
+  --gray-100: var(--theme-bg-elevated);
+  --gray-200: var(--theme-border);
+  --gray-300: var(--theme-border-strong);
+  --gray-400: var(--theme-faint);
+  --gray-500: var(--theme-muted);
+  --gray-600: var(--theme-text-soft);
+  --gray-700: #d7e1ee;
+  --gray-800: #e6edf6;
+  --gray-900: #f8fafc;
+
+  /* 旧组件的浅色提示底在深色界面中自动变为低对比色块。 */
+  --primary-light: color-mix(in srgb, var(--primary) 16%, var(--theme-bg));
+  --accent-light: color-mix(in srgb, var(--accent) 16%, var(--theme-bg));
+  --warning-light: color-mix(in srgb, var(--warning) 16%, var(--theme-bg));
+  --danger-light: color-mix(in srgb, var(--danger) 16%, var(--theme-bg));
+  --purple-light: color-mix(in srgb, var(--purple) 16%, var(--theme-bg));
+  --teal-light: color-mix(in srgb, var(--teal) 16%, var(--theme-bg));
+  --bg: var(--theme-bg);
+  --bg-card: var(--theme-surface);
+  --text: var(--theme-text);
+  --text-muted: var(--theme-muted);
+}
+
+html { background: var(--theme-bg); }
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% -10%, rgba(56, 189, 248, .10), transparent 28rem),
+    radial-gradient(circle at 96% 8%, rgba(45, 212, 191, .07), transparent 24rem),
+    var(--theme-bg) !important;
+  color: var(--theme-text) !important;
+}
+
+::selection { background: rgba(56, 189, 248, .32); color: #fff; }
+
+/* ---- 全站导航：与主页使用同一组深色表面 ---- */
+.top-nav {
+  background: rgba(15, 23, 42, .92) !important;
+  border-bottom: 1px solid rgba(71, 85, 105, .72);
+  box-shadow: 0 8px 22px rgba(2, 6, 23, .24) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.top-nav .logo,
+.top-nav .nav-links a { color: var(--theme-text) !important; }
+
+.top-nav .nav-links a:hover,
+.top-nav .nav-links a.active,
+.top-nav .nav-links > li > a:hover,
+.top-nav .nav-dropdown-toggle:hover {
+  color: #fff !important;
+  background: rgba(148, 163, 184, .14) !important;
+}
+
+.nav-dropdown-menu,
+.nav-sidebar {
+  background: #172237 !important;
+  border: 1px solid var(--theme-border);
+  box-shadow: var(--theme-shadow-hover) !important;
+}
+
+.nav-dropdown-menu::before { border-bottom-color: #172237 !important; }
+.nav-dropdown-menu a,
+.sidebar-link { color: var(--theme-text-soft) !important; }
+.nav-dropdown-menu a:hover,
+.nav-dropdown-menu a.active,
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: rgba(56, 189, 248, .12) !important;
+  color: #7dd3fc !important;
+}
+.sidebar-header { background: #0f172a !important; border-bottom: 1px solid var(--theme-border); }
+.sidebar-section,
+.dropdown-label { color: var(--theme-muted) !important; }
+.nav-overlay { background: rgba(2, 6, 23, .66) !important; }
+
+/* ---- 页面骨架 ---- */
+.breadcrumb { color: var(--theme-muted) !important; }
+.breadcrumb a { color: #7dd3fc !important; }
+
+.page-hero,
+.page-hero.tool-hero {
+  color: var(--theme-text);
+  background: linear-gradient(135deg, rgba(30, 41, 59, .9), rgba(15, 23, 42, .96)) !important;
+  border: 1px solid var(--theme-border);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, .14);
+}
+
+.page-hero h1,
+.page-hero h2,
+.page-hero h3,
+.page-hero .subtitle,
+.page-hero .page-hero-sub,
+.page-hero-sub { color: inherit !important; }
+.page-hero .subtitle,
+.page-hero-sub { color: var(--theme-muted) !important; }
+.page-hero .chapter-badge,
+.page-hero .hero-tag {
+  background: rgba(56, 189, 248, .13) !important;
+  border: 1px solid rgba(125, 211, 252, .22);
+  color: #bae6fd !important;
+}
+
+.main-content,
+.content-body,
+main,
+.home-section { color: var(--theme-text-soft); }
+.content-body p,
+.content-body li,
+.content-body ul,
+.content-body ol { color: var(--theme-text-soft) !important; }
+.content-body h2 {
+  color: #e0f2fe !important;
+  background: linear-gradient(90deg, rgba(14, 116, 144, .75), rgba(30, 41, 59, .2)) !important;
+  border-bottom: 1px solid rgba(125, 211, 252, .18);
+}
+.content-body h3,
+.content-body h4 { color: var(--theme-text) !important; }
+.content-body h3 { border-left-color: #38bdf8 !important; }
+
+/* ---- 阅读内容保留白色纸张感 ----
+   深色只承担导航、背景和功能性卡片；连续阅读的正文使用白底深字，
+   既保留信息层级，也避免浅色文字落在白卡上。 */
+:root {
+  --reading-surface: #ffffff;
+  --reading-text: #1e293b;
+  --reading-text-soft: #475569;
+  --reading-border: #e2e8f0;
+}
+
+:is(.tl-body, .timeline-card, .history-card, .article-card, .reading-card, .content-card) {
+  background: var(--reading-surface) !important;
+  border-color: var(--reading-border) !important;
+  color: var(--reading-text-soft) !important;
+  box-shadow: 0 8px 20px rgba(2, 6, 23, .16) !important;
+}
+
+:is(.tl-body, .timeline-card, .history-card, .article-card, .reading-card, .content-card) :is(h1, h2, h3, h4, .tl-title) {
+  color: var(--reading-text) !important;
+}
+
+.content-body :is(.tl-body, .timeline-card, .history-card, .article-card, .reading-card, .content-card) :is(p, li, ul, ol, span) {
+  color: var(--reading-text-soft) !important;
+}
+
+/* ---- 统一卡片语言 ---- */
+:is(
+  .card, .chapter-card, .sidebar-card, .stat-item, .term-pair-card,
+  .scenario-card, .hands-on-card, .tool-card, .signal-card, .tip-card,
+  .knowledge-card, .range-card, .module-card, .grid-card, .split-card,
+  .comparison-box, .diagram-box, .intro-item, .faq-item, .fq-item,
+  .drug-card, .method-card, .method-cards > *, .ab-cell, .sf-item,
+  .tl-item, .cb-normal, .cb-path, .flow-node
+) {
+  background: var(--theme-surface) !important;
+  border-color: var(--theme-border) !important;
+  color: var(--theme-text-soft) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+:is(
+  .card, .chapter-card, .scenario-card, .hands-on-card, .tool-card,
+  .signal-card, .tip-card, .knowledge-card, .range-card, .module-card,
+  .grid-card, .comparison-box, .faq-item, .fq-item, .drug-card, .sf-item,
+  .flow-node
+):hover {
+  background: var(--theme-surface-hover) !important;
+  border-color: var(--theme-border-strong) !important;
+  box-shadow: var(--theme-shadow-hover) !important;
+}
+
+/* 时间线本身不做成整块卡片，只让右侧正文保留白色阅读面。 */
+.tl-item {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+
+.card h1, .card h2, .card h3,
+.chapter-card h1, .chapter-card h2, .chapter-card h3,
+.sidebar-card h1, .sidebar-card h2, .sidebar-card h3,
+.tool-card h1, .tool-card h2, .tool-card h3,
+.scenario-card h1, .scenario-card h2, .scenario-card h3,
+.knowledge-card h1, .knowledge-card h2, .knowledge-card h3,
+.module-card h1, .module-card h2, .module-card h3,
+.grid-card h1, .grid-card h2, .grid-card h3,
+.range-card h1, .range-card h2, .range-card h3,
+.faq-item h1, .faq-item h2, .faq-item h3 { color: var(--theme-text) !important; }
+
+.chapter-card p,
+.chapter-card .ch-desc,
+.chapter-card .ch-meta,
+.chapter-card .tag,
+.card p,
+.tool-desc,
+.scenario-card p,
+.signal-card p,
+.range-card p,
+.sf-desc { color: var(--theme-muted) !important; }
+
+.chapter-card .tag,
+.system-tag,
+.anatomy-tag,
+.tag-course,
+.phase-label {
+  background: rgba(148, 163, 184, .12) !important;
+  border: 1px solid rgba(148, 163, 184, .18);
+  color: var(--theme-text-soft) !important;
+}
+
+.chapter-card .ch-num,
+.progress-stat,
+.stat-item .num,
+.big-num { color: #fff !important; }
+
+/* ---- 知识提示、步骤与流程 ---- */
+.info-box,
+.key-concept,
+.life-example,
+.clinical-link,
+.mnemonic,
+.misconception,
+.myth,
+.truth,
+.cs-analogy,
+.what-you-feel,
+.chapter-intro,
+.intro-hooks,
+.warning-list,
+.action-list,
+.dt-ans,
+.faq-a,
+.flow-step,
+.fq-why,
+.fq-matter,
+.fq-action {
+  color: var(--theme-text-soft) !important;
+  background-color: rgba(30, 41, 59, .82) !important;
+  border-color: var(--theme-border) !important;
+}
+
+.info-box.blue, .key-concept { border-left-color: #38bdf8 !important; }
+.info-box.green { border-left-color: #2dd4bf !important; }
+.info-box.yellow { border-left-color: #fbbf24 !important; }
+.info-box.red, .clinical-link { border-left-color: #fb7185 !important; }
+.info-box.purple, .mnemonic { border-left-color: #a78bfa !important; }
+.life-example { border-left-color: #fbbf24 !important; }
+.box-title, .cs-title, .intro-label, .fq-q, .faq-q { color: var(--theme-text) !important; }
+
+/* ---- 表格、列表、输入控件 ---- */
+.table-wrap,
+div.compare-table,
+.compare-table,
+.indicator-table,
+.indicator-table table,
+.progress-overview,
+.chapter-progress-list {
+  background: var(--theme-surface) !important;
+  border-color: var(--theme-border) !important;
+  box-shadow: var(--theme-shadow) !important;
+}
+
+.compare-table th,
+.indicator-table th,
+.compare-table thead th,
+.indicator-table thead th {
+  background: #162238 !important;
+  color: #e0f2fe !important;
+  border-color: var(--theme-border) !important;
+}
+
+.compare-table td,
+.indicator-table td,
+.compare-table tr,
+.indicator-table tr,
+.compare-table td:first-child {
+  color: var(--theme-text-soft) !important;
+  background: transparent !important;
+  border-color: var(--theme-border) !important;
+}
+.compare-table tr:hover td,
+.indicator-table tr:hover td { background: rgba(148, 163, 184, .08) !important; }
+
+input, select, textarea {
+  background: #0f172a !important;
+  color: var(--theme-text) !important;
+  border-color: var(--theme-border-strong) !important;
+}
+input::placeholder, textarea::placeholder { color: var(--theme-faint) !important; }
+
+/* ---- 次级导航与页脚 ---- */
+.sidebar-card .toc-list a,
+.chapter-nav a,
+.extend-link,
+.cross-ref {
+  color: #7dd3fc !important;
+  background: rgba(30, 41, 59, .72) !important;
+  border-color: var(--theme-border) !important;
+}
+.sidebar-card .toc-list a:hover,
+.chapter-nav a:hover,
+.extend-link:hover,
+.cross-ref:hover { background: rgba(56, 189, 248, .12) !important; }
+
+.site-footer,
+footer {
+  background: #0b1220 !important;
+  border-top: 1px solid var(--theme-border) !important;
+  color: var(--theme-muted) !important;
+}
+.site-footer a, footer a { color: #7dd3fc !important; }
+
+.fab-home {
+  background: linear-gradient(135deg, #0284c7, #1d4ed8) !important;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, .32) !important;
+}
+.fab-home::after {
+  content: '返回网站首页' !important;
+  background: #172237 !important;
+  border: 1px solid var(--theme-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+@media print {
+  html, body { background: #fff !important; color: #111827 !important; }
+}

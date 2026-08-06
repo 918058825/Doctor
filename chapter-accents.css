@@ -1,0 +1,67 @@
+/* =============================================================
+   求学少年 · 章节阅读层级增强
+   仅用于章节与工具内容页：保留原有白底阅读面，以标题颜色建立层级。
+   ============================================================= */
+
+:root {
+  --chapter-blue: #2563eb;
+  --chapter-blue-deep: #1e3a8a;
+  --chapter-teal: #0f766e;
+  --chapter-teal-deep: #115e59;
+  --chapter-indigo: #4f46e5;
+  --chapter-indigo-deep: #3730a3;
+  --chapter-purple: #7c3aed;
+  --chapter-purple-deep: #5b21b6;
+  --chapter-ink: #172033;
+  --chapter-muted: #475569;
+}
+
+/* 章节页头：轻渐变而非整片深色，保持白色阅读页的呼吸感。 */
+.page-hero {
+  background: linear-gradient(135deg, #eef6ff 0%, #ffffff 66%) !important;
+  border-bottom: 1px solid #bfdbfe !important;
+}
+.page-hero h1 { color: var(--chapter-ink) !important; }
+.page-hero .subtitle,
+.page-hero-sub { color: var(--chapter-muted) !important; }
+.page-hero .chapter-badge,
+.page-hero .hero-tag {
+  background: var(--chapter-blue) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, .18);
+}
+
+/* 一级标题按节奏换色：一眼即可识别阅读层级。 */
+.content-body h2 {
+  color: #fff !important;
+  border: 0 !important;
+  border-radius: 9px 9px 0 0;
+  box-shadow: 0 5px 12px rgba(15, 23, 42, .12);
+}
+.content-body h2:nth-of-type(4n + 1) { background: linear-gradient(90deg, var(--chapter-blue-deep), var(--chapter-blue)) !important; }
+.content-body h2:nth-of-type(4n + 2) { background: linear-gradient(90deg, var(--chapter-teal-deep), var(--chapter-teal)) !important; }
+.content-body h2:nth-of-type(4n + 3) { background: linear-gradient(90deg, var(--chapter-indigo-deep), var(--chapter-indigo)) !important; }
+.content-body h2:nth-of-type(4n + 4) { background: linear-gradient(90deg, var(--chapter-purple-deep), var(--chapter-purple)) !important; }
+
+/* 二级标题保留白底，用左侧色条与极淡底色区分，而不干扰正文。 */
+.content-body h3 {
+  padding: .38rem .72rem;
+  border-left-width: 4px !important;
+  border-radius: 0 7px 7px 0;
+  background: #f8fafc;
+}
+.content-body h3:nth-of-type(4n + 1) { color: var(--chapter-blue-deep) !important; border-left-color: var(--chapter-blue) !important; background: #eff6ff; }
+.content-body h3:nth-of-type(4n + 2) { color: var(--chapter-teal-deep) !important; border-left-color: var(--chapter-teal) !important; background: #f0fdfa; }
+.content-body h3:nth-of-type(4n + 3) { color: var(--chapter-indigo-deep) !important; border-left-color: var(--chapter-indigo) !important; background: #eef2ff; }
+.content-body h3:nth-of-type(4n + 4) { color: var(--chapter-purple-deep) !important; border-left-color: var(--chapter-purple) !important; background: #faf5ff; }
+
+.content-body h4 {
+  color: var(--chapter-ink) !important;
+  padding-bottom: .24rem;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+@media (max-width: 680px) {
+  .content-body h2 { border-radius: 7px 7px 0 0; }
+  .content-body h3 { padding: .34rem .62rem; }
+}
