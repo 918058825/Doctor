@@ -5,12 +5,6 @@
 (function () {
   'use strict';
 
-  // 立即应用已保存的主题，避免闪烁
-  (function () {
-    var t = localStorage.getItem('xw-theme') || 'dark';
-    if (t === 'dark') document.documentElement.classList.add('xw-dark');
-  })();
-
   var SUPA_URL = 'https://zehnaclrzehoetuiobrd.supabase.co';
   var SUPA_KEY = 'sb_publishable_gXoC13G2xfS6Nbp3hDgoKg_L38_axGF';
   var SESS_KEY = 'xw_sess_v1';
@@ -21,50 +15,34 @@
 
   // ---------- 全局导航 CSS ----------
   var NAV_CSS = `
-html:not(.xw-dark){--bg:#f8fafc;--surface:#ffffff;--border:#e2e8f0;--text:#0f172a;--muted:#475569}
-html:not(.xw-dark) body{background:#f8fafc!important;color:#0f172a!important}
 body{padding-top:44px!important}
 #xw-topnav{position:fixed;top:0;left:0;right:0;z-index:9997;height:44px;display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:0 1rem;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;border-bottom:1px solid var(--border,#334155);background:var(--surface,#1e293b);box-shadow:0 1px 6px rgba(0,0,0,.12)}
-html:not(.xw-dark) #xw-topnav{background:#fff;border-bottom-color:#e2e8f0;box-shadow:0 1px 6px rgba(0,0,0,.06)}
 .xw-nav-left{display:flex;align-items:center;gap:.9rem}
 .xw-logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0}
 .xw-avatar{width:28px;height:28px;border-radius:7px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#059669,#0284c7);font-size:.78rem;font-weight:800;color:white}
 .xw-avatar img{width:100%;height:100%;object-fit:cover;display:block}
 .xw-brand{font-size:.92rem;font-weight:800;white-space:nowrap;color:var(--text,#f1f5f9)}
-html:not(.xw-dark) .xw-brand{color:#0f172a}
 .xw-nav-links{display:flex;align-items:center;gap:.1rem}
 .xw-nav-links>a,.xw-dropdown-btn{padding:.28rem .65rem;border-radius:6px;font-size:.8rem;font-weight:600;color:var(--muted,#94a3b8);text-decoration:none;background:transparent;border:none;cursor:pointer;font-family:inherit;transition:background .15s,color .15s;white-space:nowrap;line-height:1.4}
 .xw-nav-links>a:hover,.xw-dropdown-btn:hover{background:rgba(255,255,255,.07);color:var(--text,#f1f5f9)}
-html:not(.xw-dark) .xw-nav-links>a,html:not(.xw-dark) .xw-dropdown-btn{color:#64748b}
-html:not(.xw-dark) .xw-nav-links>a:hover,html:not(.xw-dark) .xw-dropdown-btn:hover{background:#f1f5f9;color:#0f172a}
 .xw-dropdown{position:relative}
 .xw-dropdown-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:155px;background:var(--surface,#1e293b);border:1px solid var(--border,#334155);border-radius:10px;padding:.4rem;z-index:10000;box-shadow:0 8px 24px rgba(0,0,0,.25)}
-html:not(.xw-dark) .xw-dropdown-menu{background:#fff;border-color:#e2e8f0;box-shadow:0 8px 24px rgba(0,0,0,.1)}
 .xw-dropdown-menu.open{display:block}
 .xw-dropdown-menu a{display:block;padding:.4rem .7rem;border-radius:6px;font-size:.8rem;color:var(--muted,#94a3b8);text-decoration:none;white-space:nowrap;transition:background .12s,color .12s}
 .xw-dropdown-menu a:hover{background:rgba(255,255,255,.07);color:var(--text,#f1f5f9)}
-html:not(.xw-dark) .xw-dropdown-menu a{color:#475569}
-html:not(.xw-dark) .xw-dropdown-menu a:hover{background:#f1f5f9;color:#0f172a}
 .xw-nav-right{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
-#xw-theme-toggle,#xw-hamburger{width:30px;height:30px;border-radius:7px;flex-shrink:0;background:transparent;border:1px solid var(--border,#334155);display:flex;align-items:center;justify-content:center;font-size:.88rem;cursor:pointer;transition:background .15s;line-height:1}
-html:not(.xw-dark) #xw-theme-toggle,html:not(.xw-dark) #xw-hamburger{border-color:#e2e8f0}
-#xw-theme-toggle:hover,#xw-hamburger:hover{background:rgba(255,255,255,.08)}
-html:not(.xw-dark) #xw-theme-toggle:hover,html:not(.xw-dark) #xw-hamburger:hover{background:#f1f5f9}
+#xw-hamburger{width:30px;height:30px;border-radius:7px;flex-shrink:0;background:transparent;border:1px solid var(--border,#334155);display:flex;align-items:center;justify-content:center;font-size:.88rem;cursor:pointer;transition:background .15s;line-height:1}
+#xw-hamburger:hover{background:rgba(255,255,255,.08)}
 .xw-btn-login,.xw-btn-account{padding:.24rem .7rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-block;transition:opacity .15s}
 .xw-btn-login{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
-html:not(.xw-dark) .xw-btn-login{border-color:#cbd5e1;color:#0f172a}
 .xw-btn-account{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
 .xw-btn-account.vip{border-color:rgba(251,191,36,.5);color:#fbbf24}
-html:not(.xw-dark) .xw-btn-account{border-color:#cbd5e1;color:#0f172a}
 .xw-btn-login:hover,.xw-btn-account:hover{opacity:.8}
 #xw-mobile-menu{display:none;position:fixed;top:44px;left:0;right:0;background:var(--surface,#1e293b);border-bottom:1px solid var(--border,#334155);padding:.6rem 1.25rem 1rem;z-index:9996;box-shadow:0 4px 16px rgba(0,0,0,.2)}
-html:not(.xw-dark) #xw-mobile-menu{background:#fff;border-color:#e2e8f0}
 #xw-mobile-menu.open{display:block}
 #xw-mobile-menu a{display:block;padding:.55rem .4rem;font-size:.88rem;font-weight:600;color:var(--muted,#94a3b8);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .12s}
-html:not(.xw-dark) #xw-mobile-menu a{color:#475569;border-color:#f1f5f9}
 #xw-mobile-menu a:last-child{border-bottom:none}
 #xw-mobile-menu a:hover{color:var(--text,#f1f5f9)}
-html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
 @media(min-width:640px){#xw-hamburger{display:none!important}.xw-nav-links{display:flex!important}}
 @media(max-width:639px){.xw-nav-links{display:none!important}#xw-hamburger{display:flex!important}}
 .top-nav{top:44px!important}
@@ -477,14 +455,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
   }
   window._doForgot = _doForgot;
 
-  // ---------- 主题切换 ----------
-  function applyTheme(t) {
-    if (t === 'dark') document.documentElement.classList.add('xw-dark');
-    else document.documentElement.classList.remove('xw-dark');
-    var btn = document.getElementById('xw-theme-toggle');
-    if (btn) btn.textContent = (t === 'dark') ? '☀️' : '🌙';
-  }
-
   // ---------- 全局顶部导航 ----------
   function injectTopNav() {
     if (document.getElementById('xw-topnav')) return;
@@ -514,7 +484,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       +   '</div>'
       + '</div>'
       + '<div class="xw-nav-right">'
-      +   '<button id="xw-theme-toggle" title="切换日夜模式">🌙</button>'
       +   '<div style="display:flex;gap:.4rem;align-items:center">' + authHtml + '</div>'
       + '</div>'
       + '</nav>'
@@ -535,18 +504,6 @@ html:not(.xw-dark) #xw-mobile-menu a:hover{color:#0f172a}
       img.onload = function () { avEl.innerHTML = '<img src="' + this.src + '" alt="">'; };
       img.src = ROOT + 'avatar.png';
     }
-
-    // 应用主题
-    var theme = localStorage.getItem('xw-theme') || 'dark';
-    applyTheme(theme);
-
-    // 主题切换按钮
-    document.getElementById('xw-theme-toggle').addEventListener('click', function () {
-      var dark = document.documentElement.classList.contains('xw-dark');
-      var next = dark ? 'light' : 'dark';
-      applyTheme(next);
-      localStorage.setItem('xw-theme', next);
-    });
 
     // 移动端汉堡菜单
     var hamburger = document.getElementById('xw-hamburger');

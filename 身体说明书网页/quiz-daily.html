@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -110,9 +110,10 @@
 <footer class="site-footer"></footer>
 
 <script src="nav.js"></script>
-<script src="../site-navigation.js?v=4"></script>
+<script src="../site-navigation.js?v=5"></script>
+<script src="../quiz-engine.js?v=4"></script>
 <script>
-/* ===== 题库（共60题）===== */
+/* ===== 题库：保留每日精选题，并自动合并各科目刷题题库 ===== */
 var BANK = [
 /* ---- 解剖学 15题 ---- */
 {s:'anatomy',sn:'解剖学',
@@ -422,6 +423,42 @@ var BANK = [
  e:'阿司匹林<strong>不可逆抑制 COX-1</strong>→花生四烯酸不能转化为 TXA₂（强促血小板聚集）→血小板聚集功能降低。血小板没有细胞核，不能重新合成 COX，抑制效果持续整个血小板寿命（7~10天）。',
  l:'../药理学网页/chapter3.html'}
 ];
+
+/* 把各科目刷题页共享题库中的新增题目同步到每日一题，按题干去重。 */
+(function mergeSubjectQuizBank() {
+    var sharedBank = window.DOCTOR_QUIZ_BANK || {};
+    var subjects = {
+        anatomy:      { name: '解剖学',      path: '../解剖学网页/' },
+        physiology:   { name: '生理学',      path: '../生理学网页/' },
+        pathology:    { name: '病理学',      path: '../病理学网页/' },
+        pharmacology: { name: '药理学',      path: '../药理学网页/' }
+    };
+    var seen = {};
+
+    BANK.forEach(function(q) {
+        seen[q.s + '::' + String(q.q).replace(/\s+/g, '').toLowerCase()] = true;
+    });
+
+    Object.keys(subjects).forEach(function(subject) {
+        var meta = subjects[subject];
+        (sharedBank[subject] || []).forEach(function(q) {
+            var key = subject + '::' + String(q.q).replace(/\s+/g, '').toLowerCase();
+            if (seen[key]) return;
+
+            var item = {
+                s: subject,
+                sn: meta.name,
+                q: q.q,
+                o: q.o,
+                a: q.a,
+                e: q.e
+            };
+            if (q.c) item.l = meta.path + q.c;
+            BANK.push(item);
+            seen[key] = true;
+        });
+    });
+})();
 
 /* ===== 核心逻辑 ===== */
 var DRAW_COUNT = 10;

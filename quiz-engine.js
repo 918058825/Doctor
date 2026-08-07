@@ -229,6 +229,8 @@
   const roundSize = 5;
   const state = { questions: [], answers: new Map(), score: 0, best: 0 };
   const root = document.getElementById('quizApp');
+  window.DOCTOR_QUIZ_BANK = BANK;
+  if (!root) return;
   const escapeHTML = value => String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
   const shuffle = values => {
     const copy = values.slice();

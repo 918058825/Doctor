@@ -564,13 +564,13 @@ img { max-width: 100%; display: block; }
 .mnav-next:hover { background: var(--primary-dark); color: white !important; }
 
 /* ===== Responsive ===== */
-@media (max-width: 800px) {
+@media (max-width: 900px) {
     .module-grid { grid-template-columns: 1fr; }
     .course-grid { grid-template-columns: 1fr 1fr; }
     .flow-chain { flex-direction: column; align-items: center; }
     .flow-arrow { transform: rotate(90deg); }
 }
-@media (max-width: 640px) {
+@media (max-width: 560px) {
     .page-hero { padding: 1.8rem 1rem 1.5rem; }
     .page-hero h1 { font-size: 1.4rem; }
     .main-content { padding: 0 1rem; margin: 1rem auto; }

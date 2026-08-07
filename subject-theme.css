@@ -362,3 +362,178 @@ footer {
 @media print {
   html, body { background: #fff !important; color: #111827 !important; }
 }
+
+/* =============================================================
+   学科首页焕新：延续总首页的轻量卡片与清晰层级
+   仅作用于包含 .home-section 的学科首页，不影响正文阅读页。
+   ============================================================= */
+
+.main-content.full-width {
+  max-width: 1120px;
+  padding: 1.45rem 1.5rem 3.5rem;
+}
+
+.main-content.full-width > .content-body {
+  max-width: none;
+  padding-top: 0;
+}
+
+.main-content.full-width > .content-body > .home-section {
+  margin: 0 0 2.25rem;
+}
+
+.main-content.full-width > .content-body > .home-section + .home-section {
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(71, 85, 105, .38);
+}
+
+.main-content.full-width .home-section-header {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 1.05rem;
+  padding: 0 0 .85rem;
+  border-bottom: 1px solid rgba(71, 85, 105, .5);
+  position: relative;
+}
+
+.main-content.full-width .home-section-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 4.5rem;
+  height: 2px;
+  border-radius: 99px;
+  background: #38bdf8;
+}
+
+.main-content.full-width .home-section-header h2 {
+  margin: 0;
+  color: var(--theme-text) !important;
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.main-content.full-width .phase-label {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 32px;
+  margin: 1.35rem 0 .65rem;
+  padding: .3rem .78rem;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, .09) !important;
+  border: 1px solid rgba(148, 163, 184, .2) !important;
+  color: var(--theme-text-soft) !important;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+.main-content.full-width .phase-label:first-of-type {
+  margin-top: .15rem;
+}
+
+.main-content.full-width .phase-green { border-color: rgba(45, 212, 191, .34) !important; color: #99f6e4 !important; }
+.main-content.full-width .phase-yellow,
+.main-content.full-width .phase-amber { border-color: rgba(251, 191, 36, .34) !important; color: #fde68a !important; }
+.main-content.full-width .phase-red { border-color: rgba(251, 113, 133, .34) !important; color: #fda4af !important; }
+.main-content.full-width .phase-blue { border-color: rgba(56, 189, 248, .34) !important; color: #bae6fd !important; }
+.main-content.full-width .phase-orange { border-color: rgba(251, 146, 60, .34) !important; color: #fed7aa !important; }
+.main-content.full-width .phase-purple { border-color: rgba(167, 139, 250, .34) !important; color: #ddd6fe !important; }
+.main-content.full-width .phase-teal { border-color: rgba(45, 212, 191, .34) !important; color: #99f6e4 !important; }
+
+.main-content.full-width .chapter-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 0 0 .15rem;
+}
+
+.main-content.full-width .chapter-card {
+  min-height: 92px;
+  padding: 1rem 1.05rem;
+  border: 1px solid rgba(71, 85, 105, .68) !important;
+  border-left: 3px solid rgba(56, 189, 248, .7) !important;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, .98), rgba(24, 37, 58, .95)) !important;
+  box-shadow: 0 7px 18px rgba(2, 6, 23, .2) !important;
+  gap: .85rem;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.main-content.full-width .chapter-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(125, 211, 252, .55) !important;
+  border-left-color: #38bdf8 !important;
+  background: linear-gradient(135deg, rgba(37, 52, 74, .98), rgba(28, 46, 68, .98)) !important;
+  box-shadow: 0 12px 24px rgba(2, 6, 23, .3) !important;
+}
+
+.main-content.full-width .chapter-card .ch-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  background: rgba(37, 99, 235, .18) !important;
+  border: 1px solid rgba(96, 165, 250, .4);
+  color: #bfdbfe !important;
+  font-size: .82rem;
+}
+
+.main-content.full-width .chapter-card h3 {
+  margin: 0 0 .18rem;
+  color: var(--theme-text) !important;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.main-content.full-width .chapter-card p {
+  margin: 0;
+  color: var(--theme-muted) !important;
+  font-size: .83rem;
+  line-height: 1.5;
+}
+
+.main-content.full-width .chapter-card.green { border-left-color: rgba(45, 212, 191, .78) !important; }
+.main-content.full-width .chapter-card.orange { border-left-color: rgba(251, 191, 36, .78) !important; }
+.main-content.full-width .chapter-card.red { border-left-color: rgba(251, 113, 133, .78) !important; }
+.main-content.full-width .chapter-card.purple { border-left-color: rgba(167, 139, 250, .78) !important; }
+
+.main-content.full-width .tools-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+.main-content.full-width .tool-card {
+  min-height: 82px;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(71, 85, 105, .68) !important;
+  border-radius: 12px;
+  background: rgba(30, 41, 59, .78) !important;
+  color: var(--theme-text) !important;
+  box-shadow: none !important;
+}
+
+.main-content.full-width .tool-card:hover {
+  transform: translateY(-2px);
+  background: rgba(37, 52, 74, .96) !important;
+  border-color: rgba(125, 211, 252, .45) !important;
+  box-shadow: 0 10px 22px rgba(2, 6, 23, .25) !important;
+}
+
+.main-content.full-width .tool-icon { font-size: 1.45rem; }
+.main-content.full-width .tool-name { color: var(--theme-text) !important; font-size: .92rem; }
+.main-content.full-width .tool-desc { color: var(--theme-muted) !important; font-size: .78rem; }
+
+@media (max-width: 900px) {
+  .main-content.full-width { padding: 1.1rem 1rem 2.8rem; }
+  .main-content.full-width .chapter-grid { grid-template-columns: 1fr; }
+  .main-content.full-width .tools-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .main-content.full-width .tools-grid { grid-template-columns: 1fr; }
+  .main-content.full-width .chapter-card { min-height: 86px; padding: .85rem .9rem; }
+}

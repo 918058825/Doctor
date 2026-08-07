@@ -534,7 +534,7 @@ img { max-width: 100%; }
   .top-nav .nav-links { display: none; }
   .nav-hamburger { display: flex; }
 }
-@media (max-width: 640px) {
+@media (max-width: 560px) {
   .comparison-box { grid-template-columns: 1fr; }
   .fast-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-stats { gap: 1rem 1.5rem; }

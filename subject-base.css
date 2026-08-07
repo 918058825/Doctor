@@ -1,5 +1,6 @@
 /* ========================================
-   解剖学学习网页 - 全局样式
+   求学少年 - 学科共享基础样式
+   适用：解剖学、生理学、病理学、药理学、体检报告
    ======================================== */
 
 /* 基础重置 */
@@ -1216,6 +1217,22 @@ div.compare-table > table {
     .content-body h2 { margin-left: -1rem; margin-right: -1rem; padding-left: 1rem; }
     .content-body { padding-top: 0.5rem; }
     .info-box, .life-example, .clinical-link, .mnemonic, .key-concept { margin: 0.6rem 0; }
+}
+
+/* 手机阅读层：保证正文、段落间距和常用按钮都易读、易点按。 */
+@media (max-width: 560px) {
+    body { font-size: 16px; line-height: 1.78; }
+    .main-content { padding: 0 0.9rem 2.75rem; }
+    .content-body { font-size: 1rem; line-height: 1.85; }
+    .content-body p { margin-bottom: 0.8rem; }
+    .content-body li { margin-bottom: 0.55rem; }
+    .content-body h2 { font-size: 0.88rem; margin-top: 1.5rem; padding-top: 0.45rem; padding-bottom: 0.45rem; }
+    .content-body h3 { font-size: 1.05rem; margin-top: 1.1rem; }
+    .info-box, .life-example, .clinical-link, .mnemonic, .key-concept { padding: 0.9rem 1rem; margin: 0.85rem 0; }
+    .chapter-card { padding: 1rem; }
+    .chapter-card p { font-size: 0.9rem; line-height: 1.55; }
+    .chapter-nav { flex-direction: column; gap: 0.6rem; }
+    .chapter-nav a { width: 100%; max-width: none; min-height: 44px; padding: 10px 12px; }
 }
 
 /* ===================================================
