@@ -1,0 +1,68 @@
+/* 解剖学首页局部优化：触控、键盘可访问性与平板布局。 */
+
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+.nav-hamburger {
+    width: 44px;
+    height: 44px;
+    margin-left: 4px;
+    padding: 12px 9px;
+    border-radius: 8px;
+}
+
+.nav-hamburger:hover {
+    background: rgba(255, 255, 255, .1);
+}
+
+.sidebar-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 8px;
+}
+
+.home-section-header .subject-quiz-shortcut {
+    min-height: 44px;
+    padding: .55rem .72rem;
+    font-size: .8rem;
+}
+
+:is(
+    .top-nav a,
+    .top-nav button,
+    .chapter-card,
+    .tool-card,
+    .subject-home-bottom-link,
+    .sidebar-link,
+    .sidebar-close
+):focus-visible {
+    outline: 3px solid #7dd3fc;
+    outline-offset: 3px;
+}
+
+/* 721–900px 仍保留双列，避免平板页面变成过长的单列。 */
+@media (min-width: 721px) and (max-width: 900px) {
+    .main-content.full-width .chapter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 720px) {
+    .main-content.full-width .chapter-grid {
+        grid-template-columns: 1fr;
+    }
+}

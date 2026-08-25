@@ -67,17 +67,17 @@
         <ul class="nav-links" id="navLinks">
             <li><a href="../index.html" class="nav-portal-link">🏠 总目录</a></li>
             <li class="nav-dropdown">
-                <a href="#" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}">📚 章节 <span class="nav-arrow">▾</span></a>
-                <div class="nav-dropdown-menu chapters-menu">${chapGroup}</div>
+                <a href="#" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="chaptersMenu" class="nav-dropdown-toggle${chapterActive ? ' active' : ''}">📚 章节 <span class="nav-arrow" aria-hidden="true">▾</span></a>
+                <div class="nav-dropdown-menu chapters-menu" id="chaptersMenu">${chapGroup}</div>
             </li>
             <li class="nav-dropdown">
-                <a href="#" class="nav-dropdown-toggle${toolActive ? ' active' : ''}">🛠️ 工具 <span class="nav-arrow">▾</span></a>
-                <div class="nav-dropdown-menu tools-menu">${toolGroup}</div>
+                <a href="#" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="toolsMenu" class="nav-dropdown-toggle${toolActive ? ' active' : ''}">🛠️ 工具 <span class="nav-arrow" aria-hidden="true">▾</span></a>
+                <div class="nav-dropdown-menu tools-menu" id="toolsMenu">${toolGroup}</div>
             </li>
             <li>${lnk('index.html', isAct('index.html') ? 'active' : null, '主页')}</li>
         </ul>
-        <button class="nav-hamburger" id="navHamburger" aria-label="打开菜单">
-            <span></span><span></span><span></span>
+        <button type="button" class="nav-hamburger" id="navHamburger" aria-label="打开菜单" aria-expanded="false" aria-controls="navSidebar">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
         </button>`;
 
     /* ---- 侧边栏内容 ---- */
@@ -96,14 +96,14 @@
 
 
     const sidebarHTML = `
-    <div class="nav-overlay" id="navOverlay"></div>
-    <div class="nav-sidebar" id="navSidebar">
+    <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+    <aside class="nav-sidebar" id="navSidebar" aria-label="解剖学导航" aria-hidden="true" inert>
         <div class="sidebar-header">
             <span>🫀 解剖学</span>
-            <button class="sidebar-close" id="sidebarClose">✕</button>
+            <button type="button" class="sidebar-close" id="sidebarClose" aria-label="关闭菜单">✕</button>
         </div>
         <div class="sidebar-body">${sidebarContent}</div>
-    </div>`;
+    </aside>`;
 
     /* ---- 注入 DOM ---- */
     const navInner = document.querySelector('.top-nav-inner');
@@ -137,18 +137,38 @@
 
     const openSidebar = () => {
         sidebar && sidebar.classList.add('open');
+        sidebar && sidebar.removeAttribute('inert');
+        sidebar && sidebar.setAttribute('aria-hidden', 'false');
         overlay && overlay.classList.add('show');
+        hamburger && hamburger.setAttribute('aria-expanded', 'true');
+        hamburger && hamburger.setAttribute('aria-label', '关闭菜单');
         document.body.style.overflow = 'hidden';
+        closeBtn && closeBtn.focus();
     };
-    const closeSidebar = () => {
+    const closeSidebar = (returnFocus) => {
         sidebar && sidebar.classList.remove('open');
+        sidebar && sidebar.setAttribute('inert', '');
+        sidebar && sidebar.setAttribute('aria-hidden', 'true');
         overlay && overlay.classList.remove('show');
+        hamburger && hamburger.setAttribute('aria-expanded', 'false');
+        hamburger && hamburger.setAttribute('aria-label', '打开菜单');
         document.body.style.overflow = '';
+        if (returnFocus) hamburger && hamburger.focus();
     };
 
     hamburger && hamburger.addEventListener('click', openSidebar);
-    overlay   && overlay.addEventListener('click', closeSidebar);
-    closeBtn  && closeBtn.addEventListener('click', closeSidebar);
+    overlay   && overlay.addEventListener('click', function () { closeSidebar(true); });
+    closeBtn  && closeBtn.addEventListener('click', function () { closeSidebar(true); });
+
+    const closeDropdowns = (returnFocus) => {
+        const openToggle = document.querySelector('.nav-dropdown.open .nav-dropdown-toggle');
+        document.querySelectorAll('.nav-dropdown').forEach(function (dd) {
+            dd.classList.remove('open');
+            const toggle = dd.querySelector('.nav-dropdown-toggle');
+            toggle && toggle.setAttribute('aria-expanded', 'false');
+        });
+        if (returnFocus && openToggle) openToggle.focus();
+    };
 
     // 下拉菜单点击切换
     document.querySelectorAll('.nav-dropdown').forEach(function (dd) {
@@ -158,8 +178,17 @@
             e.preventDefault();
             e.stopPropagation();
             const wasOpen = dd.classList.contains('open');
-            document.querySelectorAll('.nav-dropdown').forEach(function (d) { d.classList.remove('open'); });
-            if (!wasOpen) dd.classList.add('open');
+            closeDropdowns(false);
+            if (!wasOpen) {
+                dd.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+            }
+        });
+        toggle.addEventListener('keydown', function (e) {
+            if (e.key === ' ') {
+                e.preventDefault();
+                toggle.click();
+            }
         });
     });
 
@@ -167,8 +196,17 @@
     document.addEventListener('click', function (e) {
         const inDropdown = e.target && e.target.closest && e.target.closest('.nav-dropdown');
         if (!inDropdown) {
-            document.querySelectorAll('.nav-dropdown').forEach(function (d) { d.classList.remove('open'); });
+            closeDropdowns(false);
         }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (sidebar && sidebar.classList.contains('open')) {
+            closeSidebar(true);
+            return;
+        }
+        closeDropdowns(true);
     });
 
 })();
