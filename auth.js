@@ -33,11 +33,13 @@ body{padding-top:44px!important}
 .xw-nav-right{display:flex;align-items:center;gap:.4rem;flex-shrink:0}
 #xw-hamburger{width:30px;height:30px;border-radius:7px;flex-shrink:0;background:transparent;border:1px solid var(--border,#334155);display:flex;align-items:center;justify-content:center;font-size:.88rem;cursor:pointer;transition:background .15s;line-height:1}
 #xw-hamburger:hover{background:rgba(255,255,255,.08)}
-.xw-btn-login,.xw-btn-account{padding:.24rem .7rem;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-block;transition:opacity .15s}
+.xw-btn-register,.xw-btn-login,.xw-btn-account{min-height:32px;padding:.28rem .7rem;border-radius:7px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;transition:opacity .15s,transform .15s}
+.xw-btn-register{background:#0d9488;border:1px solid #0d9488;color:white}
 .xw-btn-login{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
 .xw-btn-account{background:transparent;border:1px solid var(--border,#334155);color:var(--text,#f1f5f9)}
 .xw-btn-account.vip{border-color:rgba(251,191,36,.5);color:#fbbf24}
-.xw-btn-login:hover,.xw-btn-account:hover{opacity:.8}
+.xw-btn-register:hover,.xw-btn-login:hover,.xw-btn-account:hover{opacity:.88;transform:translateY(-1px)}
+.xw-btn-register:focus-visible,.xw-btn-login:focus-visible,.xw-btn-account:focus-visible{outline:3px solid rgba(94,234,212,.35);outline-offset:2px}
 #xw-mobile-menu{display:none;position:fixed;top:44px;left:0;right:0;background:var(--surface,#1e293b);border-bottom:1px solid var(--border,#334155);padding:.6rem 1.25rem 1rem;z-index:9996;box-shadow:0 4px 16px rgba(0,0,0,.2)}
 #xw-mobile-menu.open{display:block}
 #xw-mobile-menu a{display:block;padding:.55rem .4rem;font-size:.88rem;font-weight:600;color:var(--muted,#94a3b8);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.05);transition:color .12s}
@@ -70,7 +72,10 @@ body{padding-top:44px!important}
     '.xw-ml a,.xw-mswitch{color:#16a34a;cursor:pointer;text-decoration:none;font-weight:600}',
     '.xw-ml a:hover,.xw-mswitch:hover{text-decoration:underline}',
     '.xw-mfgt{display:block;text-align:center;margin-top:.65rem;font-size:.82rem;color:#16a34a;cursor:pointer;font-weight:600}',
-    '.xw-mfgt:hover{text-decoration:underline}'
+    '.xw-mfgt:hover{text-decoration:underline}',
+    '.xw-auth-choice{display:grid;gap:.7rem;margin-top:1.15rem}',
+    '.xw-mb-secondary{background:#fff;color:#334155;border:1px solid #cbd5e1;margin-top:0}',
+    '.xw-code-note{margin-top:.9rem;padding:.72rem .85rem;border-radius:9px;background:#f0fdfa;border:1px solid #99f6e4;color:#0f766e;font-size:.78rem;line-height:1.65;text-align:left}'
   ].join('');
 
   // ---------- Session ----------
@@ -285,9 +290,18 @@ body{padding-top:44px!important}
     var mc = document.getElementById('xw-mc'); if (!mc) return;
     var h = '<button class="xw-mc-x" onclick="closeAuthModal()">✕</button>';
 
-    if (type === 'login') {
-      h += '<div class="xw-mc-ttl">登录</div>'
-         + '<div class="xw-mc-sub">登录后可访问全部内容</div>'
+    if (type === 'access') {
+      h += '<div class="xw-mc-ttl">首次使用需要授权码</div>'
+         + '<div class="xw-mc-sub">已购买用户请使用授权码完成注册<br>已有账号可直接登录</div>'
+         + '<div class="xw-auth-choice">'
+         +   '<button class="xw-mb" onclick="_renderModal(\'register\')">使用授权码注册</button>'
+         +   '<button class="xw-mb xw-mb-secondary" onclick="_renderModal(\'login\')">已有账号，直接登录</button>'
+         + '</div>'
+         + '<div class="xw-code-note">授权码由小红书购买后人工发送<br>一枚授权码仅可绑定一个手机号</div>';
+
+    } else if (type === 'login') {
+      h += '<div class="xw-mc-ttl">账号登录</div>'
+         + '<div class="xw-mc-sub">已注册用户使用手机号和密码登录</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
@@ -295,12 +309,12 @@ body{padding-top:44px!important}
          + '<div class="xw-mf"><label>密码</label>'
          + '<input class="xw-mi" type="password" id="xw-pw" placeholder="请输入密码" autocomplete="current-password"></div>'
          + '<button class="xw-mb" id="xw-mb-btn" onclick="_doLogin()">登录</button>'
-         + '<div class="xw-ml">还没账号？<span class="xw-mswitch" onclick="_renderModal(\'register\')">立即注册</span></div>'
+         + '<div class="xw-ml">还没账号？<span class="xw-mswitch" onclick="_renderModal(\'register\')">使用授权码注册</span></div>'
          + '<span class="xw-mfgt" onclick="_renderModal(\'forgot\')">忘记密码？用授权码找回</span>';
 
     } else if (type === 'register') {
-      h += '<div class="xw-mc-ttl">注册</div>'
-         + '<div class="xw-mc-sub">输入手机号、密码和授权码完成注册<br>授权码只能绑定一个手机号</div>'
+      h += '<div class="xw-mc-ttl">使用授权码注册</div>'
+         + '<div class="xw-mc-sub">授权码由小红书购买后人工发送<br>首次注册需要手机号、密码和授权码<br>以后登录只需要手机号和密码</div>'
          + '<div id="xw-merr" class="xw-merr2"></div>'
          + '<div class="xw-mf"><label>手机号</label>'
          + '<div class="xw-ph-row"><div class="xw-ph-pre">🇨🇳 +86</div>'
@@ -311,7 +325,8 @@ body{padding-top:44px!important}
          + '<input class="xw-mi" type="password" id="xw-pw2" placeholder="再次输入密码" autocomplete="new-password"></div>'
          + '<div class="xw-mf"><label>授权码</label>'
          + '<input class="xw-mi" type="text" id="xw-code" placeholder="请输入授权码" autocomplete="off" style="text-transform:uppercase;letter-spacing:.08em"></div>'
-         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doRegister()">注册</button>'
+         + '<button class="xw-mb" id="xw-mb-btn" onclick="_doRegister()">使用授权码注册</button>'
+         + '<div class="xw-code-note">一枚授权码仅可绑定一个手机号，请使用长期使用的手机号注册。</div>'
          + '<div class="xw-ml">已有账号？<span class="xw-mswitch" onclick="_renderModal(\'login\')">返回登录</span></div>';
 
     } else if (type === 'forgot') {
@@ -386,8 +401,8 @@ body{padding-top:44px!important}
         headers: { 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY }
       });
       var rows = await r.json();
-      if (!rows || !rows.length) { _showMErr('授权码无效，请检查后重试'); btn.disabled = false; btn.textContent = '注册'; return; }
-      if (rows[0].is_used) { _showMErr('该授权码已被使用，每个授权码只能注册一个账号'); btn.disabled = false; btn.textContent = '注册'; return; }
+      if (!rows || !rows.length) { _showMErr('未找到该授权码，请检查是否完整复制；仍无法使用，请在小红书联系“求学少年”。'); btn.disabled = false; btn.textContent = '使用授权码注册'; return; }
+      if (rows[0].is_used) { _showMErr('该授权码已绑定账号。若是本人已注册，请返回登录；若不是，请联系客服核对。'); btn.disabled = false; btn.textContent = '使用授权码注册'; return; }
       // 2. 创建账号
       btn.textContent = '创建账号…';
       var email = phoneToEmail(ph);
@@ -395,7 +410,7 @@ body{padding-top:44px!important}
         await XWAuth.signUp(email, pw);
       } catch(e2) {
         if (/already/i.test(e2.message) || /exists/i.test(e2.message)) {
-          _showMErr('该手机号已注册，请直接登录'); btn.disabled = false; btn.textContent = '注册'; return;
+          _showMErr('该手机号已有账号，请返回并直接登录。'); btn.disabled = false; btn.textContent = '使用授权码注册'; return;
         }
         throw e2;
       }
@@ -411,13 +426,13 @@ body{padding-top:44px!important}
         body: JSON.stringify({ input_code: code, input_phone: ph })
       });
       var bindRes = await bindR.json();
-      if (bindRes === 'used') { _showMErr('该授权码已被其他账号绑定'); btn.disabled = false; btn.textContent = '注册'; return; }
-      if (bindRes === 'invalid') { _showMErr('授权码绑定失败，请联系客服'); btn.disabled = false; btn.textContent = '注册'; return; }
+      if (bindRes === 'used') { _showMErr('该授权码已绑定其他账号，请在小红书联系客服核对。'); btn.disabled = false; btn.textContent = '使用授权码注册'; return; }
+      if (bindRes === 'invalid') { _showMErr('授权码绑定失败，请在小红书联系“求学少年”。'); btn.disabled = false; btn.textContent = '使用授权码注册'; return; }
       // 成功
       closeAuthModal();
       location.reload();
     } catch (e) {
-      _showMErr(e.message || '注册失败，请重试'); btn.disabled = false; btn.textContent = '注册';
+      _showMErr(e.message || '注册失败，请重试'); btn.disabled = false; btn.textContent = '使用授权码注册';
     }
   }
   window._doRegister = _doRegister;
@@ -470,7 +485,8 @@ body{padding-top:44px!important}
     var loggedIn = XWAuth.isLoggedIn();
     var authHtml = loggedIn
       ? '<button class="xw-btn-account" id="xw-account-btn" onclick="openAccountModal()">👤 我的账号</button>'
-      : '<button class="xw-btn-login" onclick="openAuthModal(\'login\')">登录</button>';
+      : '<button class="xw-btn-register" onclick="openAuthModal(\'register\')">使用授权码注册</button>'
+      + '<button class="xw-btn-login" onclick="openAuthModal(\'login\')">登录</button>';
 
     document.body.insertAdjacentHTML('afterbegin',
       '<nav id="xw-topnav">'
@@ -496,14 +512,6 @@ body{padding-top:44px!important}
       +   '<a href="' + ROOT + '药理学网页/index.html">💊 药理学</a>'
       + '</div>'
     );
-
-    // 尝试加载头像图片
-    var avEl = document.getElementById('xw-avatar-el');
-    if (avEl) {
-      var img = new Image();
-      img.onload = function () { avEl.innerHTML = '<img src="' + this.src + '" alt="">'; };
-      img.src = ROOT + 'avatar.png';
-    }
 
     // 移动端汉堡菜单
     var hamburger = document.getElementById('xw-hamburger');
@@ -554,7 +562,7 @@ body{padding-top:44px!important}
     // 所有其他内部链接：拦截并弹出登录框
     e.preventDefault();
     e.stopPropagation();
-    openAuthModal('login');
+    openAuthModal('access');
   }, true);
 
   // ---------- 锁定遮罩 ----------
@@ -570,9 +578,11 @@ body{padding-top:44px!important}
     if (hero) hero.style.cssText += 'filter:blur(3px);pointer-events:none;';
 
     var inner = '<div style="font-size:2.6rem;margin-bottom:1rem">🔒</div>'
-        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">登录后即可查看全部内容</h2>'
-        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.8rem">输入手机号和授权码登录，登录后所有内容立即解锁</p>'
-        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;background:#0284c7;color:white;padding:.8rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem">立即登录</button>';
+        + '<h2 style="color:#f1f5f9;font-size:1.15rem;font-weight:800;margin-bottom:.5rem">注册或登录后开始学习</h2>'
+        + '<p style="color:#94a3b8;font-size:.85rem;line-height:1.7;margin-bottom:1.3rem">已购买用户使用授权码完成首次注册；已有账号使用手机号和密码登录。</p>'
+        + '<button onclick="openAuthModal(\'register\')" style="display:block;width:100%;min-height:44px;background:#0d9488;color:white;padding:.75rem;border-radius:10px;font-weight:700;border:none;cursor:pointer;font-size:.9rem">使用授权码注册</button>'
+        + '<button onclick="openAuthModal(\'login\')" style="display:block;width:100%;min-height:44px;background:transparent;color:#f1f5f9;padding:.7rem;border-radius:10px;font-weight:700;border:1px solid #475569;cursor:pointer;font-size:.9rem;margin-top:.65rem">已有账号，直接登录</button>'
+        + '<p style="color:#64748b;font-size:.72rem;line-height:1.6;margin-top:.9rem">授权码由小红书购买后人工发送<br>一枚授权码仅绑定一个手机号</p>';
 
     var el = document.createElement('div');
     el.id = 'xw-lock-overlay';

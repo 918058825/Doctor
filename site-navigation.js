@@ -54,7 +54,14 @@
       .subject-footer p { margin: 0 !important; }
       .subject-footer-title { font-size: .9rem; font-weight: 700; line-height: 1.45; }
       .subject-footer-note { margin-top: .3rem !important; font-size: .78rem; line-height: 1.5; opacity: .74; }
-      @media (max-width: 560px) { .subject-home-bottom-nav { grid-template-columns: 1fr; padding: 0 1rem 2rem; gap: .65rem; } .subject-home-bottom-link { min-height: 52px; } }
+      .chapter-reading-guide { margin: 0 0 1.15rem; padding: .9rem 1rem; border: 1px solid rgba(56, 189, 248, .3); border-left: 4px solid #38bdf8; border-radius: 12px; background: linear-gradient(135deg, rgba(14, 116, 144, .12), rgba(15, 23, 42, .04)); color: inherit; }
+      .chapter-reading-guide strong { display: block; margin-bottom: .35rem; color: #0284c7; font-size: .94rem; }
+      .chapter-reading-guide p { margin: 0 !important; font-size: .86rem; line-height: 1.75; opacity: .9; }
+      .chapter-reading-guide .reading-order { display: inline; font-weight: 700; }
+      .chapter-content-note { margin: 1.6rem 0 .5rem; padding: .85rem 1rem; border: 1px solid rgba(148, 163, 184, .28); border-radius: 11px; background: rgba(148, 163, 184, .07); font-size: .79rem; line-height: 1.7; color: inherit; opacity: .82; }
+      .chapter-content-note strong { color: inherit; }
+      .chapter-content-note a { color: #0284c7; text-decoration: underline; text-underline-offset: 2px; }
+      @media (max-width: 560px) { .subject-home-bottom-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0 .75rem 2rem; gap: .55rem; } .subject-home-bottom-link { min-height: 52px; gap: .45rem; padding: .7rem .65rem; } .subject-home-bottom-title { font-size: .84rem; } .subject-home-bottom-arrow { font-size: 1rem; } }
       @media (max-width: 430px) { .home-section-header.has-subject-quiz-shortcut { gap: .45rem; padding: .52rem .56rem !important; } .home-section-header.has-subject-quiz-shortcut h2 { font-size: 1rem !important; } .subject-quiz-shortcut { padding: .4rem .5rem; font-size: .73rem; } }
     `;
     document.head.appendChild(style);
@@ -169,11 +176,60 @@
     footer.parentNode.insertBefore(nav, footer);
   }
 
-  addStyles();
-  enhanceTopNavigation();
-  enhanceSidebar();
-  enhanceFloatingHome();
-  normalizeFooter();
-  addQuizShortcut();
-  addSubjectHomeBottomNav();
+  function addChapterReadingGuide() {
+    if (!/^chapter\d+\.html$/i.test(page) || document.querySelector('.chapter-reading-guide')) return;
+    const content = document.querySelector('.content-body, article.article');
+    if (!content) return;
+
+    const subjectTips = {
+      '解剖学网页': '先认位置和相邻关系，不用第一遍就背完所有名称。',
+      '生理学网页': '先抓住“正常时怎么运转”，再看数字和调节细节。',
+      '病理学网页': '按“原因 → 身体变化 → 可能结果”顺着读。',
+      '药理学网页': '先分清药物用途、主要风险和何时求助；剂量只作原理说明，不能据此自行用药。',
+      '心血管网页': '先认识症状和危险信号，再理解检查与治疗。',
+      '脑血管网页': '优先记住识别卒中和立即呼叫 120，机制可以第二遍再读。',
+      '呼吸网页': '先判断是常见不适还是危险信号，再看疾病名称。',
+      '消化网页': '先定位症状发生在哪里，再理解检查项目。',
+      '代谢网页': '先看长期趋势，不要被单次体重或化验数字吓住。',
+      '体检报告网页': '先看异常程度、是否要复查、何时就医，不要只盯着红色箭头。',
+      '身体说明书网页': '先建立身体整体地图，再按兴趣进入对应系统。'
+    };
+    const guide = document.createElement('aside');
+    guide.className = 'chapter-reading-guide';
+    guide.setAttribute('aria-label', '新手阅读提示');
+    guide.innerHTML = `
+      <strong>🧭 第一次学？按这个顺序读</strong>
+      <p><span class="reading-order">它是什么 → 正常时怎样 → 出问题会怎样 → 我能做什么。</span>${subjectTips[folder] || '第一遍先理解主线，不必记住全部术语和数字。'}看不懂的名词先跳过，读完小结再回来。</p>`;
+    content.insertBefore(guide, content.firstElementChild);
+  }
+
+  function addChapterContentNote() {
+    if (!/^chapter\d+\.html$/i.test(page) || document.querySelector('.chapter-content-note')) return;
+    const content = document.querySelector('.content-body, article.article');
+    if (!content) return;
+
+    const note = document.createElement('aside');
+    note.className = 'chapter-content-note';
+    note.setAttribute('aria-label', '内容边界与更新时间');
+    note.innerHTML = `<strong>内容边界：</strong>本章用于建立医学常识，不用于自我诊断、停药或调整剂量。化验参考范围以你的报告单为准；出现急症信号请立即就医。<br><strong>内容复核：</strong>2026 年 8 月，依据公开医学教材与专业指南复核；指南更新时以医生和最新正式文件为准。`;
+
+    const chapterNav = content.querySelector('.chapter-nav');
+    if (chapterNav) content.insertBefore(note, chapterNav);
+    else content.appendChild(note);
+  }
+
+  function init() {
+    addStyles();
+    enhanceTopNavigation();
+    enhanceSidebar();
+    enhanceFloatingHome();
+    normalizeFooter();
+    addQuizShortcut();
+    addSubjectHomeBottomNav();
+    addChapterReadingGuide();
+    addChapterContentNote();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
 })();

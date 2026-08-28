@@ -9,7 +9,7 @@
         { h: 'chapter1.html',  n: '1',  t: '心脏是怎么工作的' },
         { h: 'chapter2.html',  n: '2',  t: '高血压：无声的杀手' },
         { h: 'chapter3.html',  n: '3',  t: '冠心病与心绞痛' },
-        { h: 'chapter4.html',  n: '4',  t: '心肌梗死：急救黄金1小时' },
+        { h: 'chapter4.html',  n: '4',  t: '怀疑心肌梗死：先拨打120' },
         { h: 'chapter5.html',  n: '5',  t: '心力衰竭' },
         { h: 'chapter6.html',  n: '6',  t: '心律失常与房颤' },
         { h: 'chapter7.html',  n: '7',  t: '动脉粥样硬化' },

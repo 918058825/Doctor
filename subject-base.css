@@ -742,6 +742,18 @@ div.compare-table > table {
 .sc-meta { font-size: 0.82rem; color: var(--gray-500); flex-shrink: 0; }
 .sc-eg { font-size: 0.8rem; color: var(--gray-500); width: 100%; margin-top: 2px; }
 
+@media (max-width: 640px) {
+    .sc-body { display: block; }
+    .sc-q, .sc-meta, .sc-eg {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+    .sc-q + .sc-q, .sc-q + .sc-meta, .sc-meta + .sc-q { margin-top: 0.35rem; }
+}
+
 @media (max-width: 900px) {
     .method-cards { grid-template-columns: 1fr; }
 }
@@ -1226,7 +1238,7 @@ div.compare-table > table {
     .content-body { font-size: 1rem; line-height: 1.85; }
     .content-body p { margin-bottom: 0.8rem; }
     .content-body li { margin-bottom: 0.55rem; }
-    .content-body h2 { font-size: 0.88rem; margin-top: 1.5rem; padding-top: 0.45rem; padding-bottom: 0.45rem; }
+    .content-body h2 { font-size: 0.88rem; margin-top: 1.5rem; margin-left: -0.9rem; margin-right: -0.9rem; padding-top: 0.45rem; padding-bottom: 0.45rem; }
     .content-body h3 { font-size: 1.05rem; margin-top: 1.1rem; }
     .info-box, .life-example, .clinical-link, .mnemonic, .key-concept { padding: 0.9rem 1rem; margin: 0.85rem 0; }
     .chapter-card { padding: 1rem; }
