@@ -65,25 +65,6 @@ main {
   width: 100%;
   flex: 1;
 }
-.start-guide {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border: 1px solid rgba(56, 189, 248, .32);
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(14, 116, 144, .2), rgba(30, 41, 59, .82));
-}
-.start-guide h1 { font-size: 1.05rem; margin-bottom: .35rem; }
-.start-guide > p { color: #cbd5e1; font-size: .78rem; line-height: 1.65; margin-bottom: .75rem; }
-.start-paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; }
-.start-path {
-  display: flex; align-items: center; justify-content: space-between; gap: .6rem;
-  min-height: 58px; padding: .65rem .75rem; border: 1px solid rgba(148, 163, 184, .25);
-  border-radius: 9px; background: rgba(15, 23, 42, .45); transition: border-color .18s, transform .18s;
-}
-.start-path:hover { border-color: #38bdf8; transform: translateY(-1px); }
-.start-path strong { display: block; font-size: .84rem; margin-bottom: .15rem; }
-.start-path span { display: block; color: #94a3b8; font-size: .69rem; line-height: 1.45; }
-.start-path b { flex: 0 0 auto; color: #7dd3fc; }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -92,7 +73,6 @@ main {
 @media (max-width: 460px) {
   main { padding: 1rem .8rem 1.4rem; }
   .grid { grid-template-columns: 1fr; }
-  .start-paths { grid-template-columns: 1fr; }
 }
 
 /* card */
@@ -241,18 +221,6 @@ footer a:hover { color: var(--text); }
 <body>
 
 <main>
-  <section class="start-guide" aria-labelledby="start-guide-title">
-    <h1 id="start-guide-title">👋 第一次来，不知道从哪学？</h1>
-    <p>不需要医学基础，也不必一次按目录学完。先选一个目标，遇到陌生术语可以跳过，理解主线比背数字更重要。</p>
-    <div class="start-paths">
-      <a class="start-path" href="解剖学网页/chapter1.html">
-        <span><strong>零基础系统学</strong>解剖学起步，再学人体怎样运转</span><b aria-hidden="true">→</b>
-      </a>
-      <a class="start-path" href="体检报告网页/chapter1.html">
-        <span><strong>先解决现实问题</strong>从体检报告开始，需要时再补基础</span><b aria-hidden="true">→</b>
-      </a>
-    </div>
-  </section>
   <div class="grid" id="course-directory">
 
     <div class="section-label">🧬 基础医学</div>
