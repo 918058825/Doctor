@@ -131,8 +131,20 @@ body{padding-top:44px!important}
     };
   }
 
+  async function fetchWithFriendlyError(url, options) {
+    try {
+      return await fetch(url, options);
+    } catch (e) {
+      var message = (e && e.message) || '';
+      if (/failed to fetch|networkerror|network request failed|load failed/i.test(message)) {
+        throw new Error('无法连接服务器，请检查网络后重试；若网络正常，可能是服务暂时异常，请稍后再试');
+      }
+      throw e;
+    }
+  }
+
   async function apiPost(path, body, token) {
-    var r = await fetch(SUPA_URL + path, {
+    var r = await fetchWithFriendlyError(SUPA_URL + path, {
       method: 'POST',
       headers: makeHeaders(token),
       body: JSON.stringify(body)
@@ -155,7 +167,7 @@ body{padding-top:44px!important}
   }
 
   async function apiGet(path, token) {
-    var r = await fetch(SUPA_URL + path, {
+    var r = await fetchWithFriendlyError(SUPA_URL + path, {
       headers: Object.assign({}, makeHeaders(token), { 'Accept': 'application/json' })
     });
     var d = await r.json();
