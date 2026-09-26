@@ -9,3 +9,7 @@ push.bat
 
 # Xiaohongshu local drafts
 小红书内容/
+
+# Local materials and Python environment (not part of the website)
+/素材/
+/.venv/
